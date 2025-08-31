@@ -1,90 +1,94 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, TrendingUp, Users, Target } from "lucide-react";
-import heroBackground from "@/assets/hero-background.jpg";
+import { ArrowRight, Play, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img 
-          src={heroBackground} 
-          alt="Hero background" 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-hero opacity-90" />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="max-w-4xl mx-auto animate-fade-in">
-          {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white mb-8">
-            <TrendingUp className="w-4 h-4 mr-2" />
-            <span className="text-sm font-medium">Trusted by 640+ Franchise Professionals</span>
-          </div>
-
-          {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            We Don't Just Generate
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-200">
-              Leads, We Build Brands
-            </span>
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-xl sm:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Dominate the franchise market with high-quality leads and powerful brand positioning that makes real noise for franchise consultants and franchisors.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button 
-              size="lg"
-              className="bg-white text-brand-navy hover:bg-blue-50 shadow-elegant px-8 py-4 text-lg font-semibold"
-            >
-              Book a Strategy Call <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button 
-              variant="outline"
-              size="lg"
-              className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg"
-            >
-              View Our Process
-            </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto">
-            <div className="text-center animate-slide-up">
-              <div className="flex items-center justify-center mb-2">
-                <Users className="w-6 h-6 text-blue-200 mr-2" />
-                <span className="text-3xl font-bold text-white">640+</span>
+    <section className="pt-16 min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-accent/30 to-primary/5">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div className="space-y-8 animate-fade-in">
+              {/* Badge */}
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary">
+                <TrendingUp className="w-4 h-4 mr-2" />
+                <span className="text-sm font-medium">Trusted by 640+ Franchise Professionals</span>
               </div>
-              <p className="text-blue-100">Happy Clients</p>
-            </div>
-            <div className="text-center animate-slide-up" style={{ animationDelay: "0.2s" }}>
-              <div className="flex items-center justify-center mb-2">
-                <Target className="w-6 h-6 text-blue-200 mr-2" />
-                <span className="text-3xl font-bold text-white">297K+</span>
+
+              {/* Headlines */}
+              <div className="space-y-4">
+                <h1 className="text-5xl lg:text-7xl font-bold text-brand-navy leading-tight">
+                  We Don't Just
+                  <span className="block text-transparent bg-clip-text bg-gradient-primary">
+                    Generate Leads
+                  </span>
+                </h1>
+                <h2 className="text-4xl lg:text-5xl font-bold text-brand-navy">
+                  We Build Brands
+                </h2>
               </div>
-              <p className="text-blue-100">Qualified Leads</p>
-            </div>
-            <div className="text-center animate-slide-up" style={{ animationDelay: "0.4s" }}>
-              <div className="flex items-center justify-center mb-2">
-                <TrendingUp className="w-6 h-6 text-blue-200 mr-2" />
-                <span className="text-3xl font-bold text-white">95%</span>
+
+              {/* Subheadline */}
+              <p className="text-xl text-brand-gray leading-relaxed max-w-lg">
+                Transform your franchise business with high-quality leads and powerful brand positioning that dominates the market.
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/contact">
+                  <Button size="lg" className="bg-gradient-primary hover:shadow-elegant text-lg px-8 py-6">
+                    Start Your Growth <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="text-lg px-8 py-6 hover:bg-accent group"
+                >
+                  <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                  Watch Demo
+                </Button>
               </div>
-              <p className="text-blue-100">Success Rate</p>
+            </div>
+
+            {/* Interactive Visual */}
+            <div className="relative animate-slide-up">
+              <div className="relative bg-gradient-secondary rounded-3xl p-8 shadow-elegant">
+                {/* Stats Cards */}
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="bg-card p-6 rounded-2xl shadow-card hover:shadow-elegant transition-all hover:-translate-y-2 group cursor-pointer">
+                    <div className="text-3xl font-bold text-primary group-hover:scale-110 transition-transform">640+</div>
+                    <div className="text-sm text-brand-gray">Clients Served</div>
+                  </div>
+                  <div className="bg-card p-6 rounded-2xl shadow-card hover:shadow-elegant transition-all hover:-translate-y-2 group cursor-pointer">
+                    <div className="text-3xl font-bold text-primary group-hover:scale-110 transition-transform">297K+</div>
+                    <div className="text-sm text-brand-gray">Leads Generated</div>
+                  </div>
+                </div>
+                
+                {/* Process Flow */}
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3 p-4 bg-card rounded-xl shadow-card hover:shadow-elegant transition-all group">
+                    <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center text-white text-sm font-bold group-hover:scale-110 transition-transform">1</div>
+                    <span className="text-brand-gray group-hover:text-brand-navy transition-colors">Analyze & Target</span>
+                  </div>
+                  <div className="flex items-center space-x-3 p-4 bg-card rounded-xl shadow-card hover:shadow-elegant transition-all group">
+                    <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center text-white text-sm font-bold group-hover:scale-110 transition-transform">2</div>
+                    <span className="text-brand-gray group-hover:text-brand-navy transition-colors">Qualify Prospects</span>
+                  </div>
+                  <div className="flex items-center space-x-3 p-4 bg-card rounded-xl shadow-card hover:shadow-elegant transition-all group">
+                    <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center text-white text-sm font-bold group-hover:scale-110 transition-transform">3</div>
+                    <span className="text-brand-gray group-hover:text-brand-navy transition-colors">Deliver Results</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Floating Elements */}
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-primary/20 rounded-full animate-pulse" />
+              <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-secondary/30 rounded-full animate-bounce" />
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse" />
         </div>
       </div>
     </section>

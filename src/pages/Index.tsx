@@ -1,8 +1,8 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Process from "@/components/Process";
-import Contact from "@/components/Contact";
+import FeaturedServices from "@/components/FeaturedServices";
+import QuickStats from "@/components/QuickStats";
+import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -10,9 +10,9 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       <Hero />
-      <Services />
-      <Process />
-      <Contact />
+      <QuickStats />
+      <FeaturedServices />
+      <CTASection />
       <Footer />
     </div>
   );
