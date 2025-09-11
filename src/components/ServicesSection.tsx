@@ -5,21 +5,19 @@ const ServicesSection = () => {
     {
       title: "LinkedIn marketing",
       description: "We run strategic campaigns to engage qualified professionals and generate serious franchise inquiries. To build your network with valuable candidates.",
-      images: [
-        "https://framerusercontent.com/images/LsJGvkbYbF1y4ifkFrjeNfRfzYM.jpg",
-        "https://framerusercontent.com/images/5P0eN6qtSxQg8Lrk6rw2GR9e7eI.jpg",
-        "https://framerusercontent.com/images/oUkBi1c8nERocfQrJWNLxZ9Fipw.jpg"
-      ]
+      type: "visual"
     },
     {
       title: "Personalised cold outreach",
       description: "We send cold emails to upto 297,000 professionals. Our clear messaging moves cold leads into serious investors.",
       stat: "297k+",
-      statLabel: "Subject Message"
+      statLabel: "Subject Message",
+      type: "stat"
     },
     {
       title: "Content creation", 
-      description: "We craft engaging eye catchy reels, podcasts, graphic designing, articles, blogs for LinkedIn, Twitter, YouTube to build brand and authority."
+      description: "We craft engaging eye catchy reels, podcasts, graphic designing, articles, blogs for LinkedIn, Twitter, YouTube to build brand and authority.",
+      type: "content"
     },
     {
       title: "Social media marketing",
@@ -32,80 +30,73 @@ const ServicesSection = () => {
         { name: "WhatsApp", icon: "whatsapp.com" },
         { name: "Gmail", icon: "Gmail.com" },
         { name: "Make", icon: "make.com" }
-      ]
+      ],
+      type: "platforms"
     }
   ];
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Top Marketing Solutions</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <div className="text-center mb-20">
+          <h2 className="text-5xl font-bold text-foreground mb-6">Our Top Marketing Solutions</h2>
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-4">
             Innovative solutions tailored to meet your unique business needs
           </p>
-          <p className="text-gray-600 mt-4">
+          <p className="text-muted-foreground max-w-4xl mx-auto">
             Sure, we offer a range of digital marketing services including SEO, social media management, and PPC advertising. Which service are you interested in?
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto space-y-16">
+        <div className="max-w-7xl mx-auto space-y-24">
           {services.map((service, index) => (
-            <div key={index} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Content */}
-              <div className={`space-y-6 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                <h3 className="text-3xl font-bold text-gray-900">
+            <div key={index} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              {/* Content Side */}
+              <div className={`space-y-8 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                <h3 className="text-4xl font-bold text-foreground leading-tight">
                   {service.title}
                 </h3>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg text-muted-foreground leading-relaxed">
                   {service.description}
                 </p>
                 
                 {service.stat && (
-                  <div className="inline-block">
-                    <div className="text-4xl font-bold text-blue-600 mb-2">
+                  <div className="inline-block p-6 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl">
+                    <div className="text-5xl font-bold text-primary mb-2">
                       {service.stat}
                     </div>
-                    <div className="text-gray-600">{service.statLabel}</div>
+                    <div className="text-muted-foreground font-medium">{service.statLabel}</div>
                   </div>
                 )}
               </div>
 
-              {/* Visual */}
+              {/* Visual Side */}
               <div className={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                {service.images && (
-                  <div className="grid grid-cols-2 gap-4">
-                    {service.images.map((img, imgIndex) => (
-                      <div key={imgIndex} className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-                        <img src={img} alt="" className="w-full h-full object-cover" />
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {service.stat && !service.images && (
-                  <div className="bg-gray-50 rounded-2xl p-8 text-center">
-                    <div className="text-6xl font-bold text-blue-600 mb-4">
+                {/* Stat Display */}
+                {service.type === "stat" && (
+                  <div className="bg-gradient-to-br from-card to-muted/20 rounded-3xl p-12 text-center shadow-card hover:shadow-hover transition-all duration-500">
+                    <div className="text-7xl font-black text-primary mb-6">
                       {service.stat}
                     </div>
-                    <div className="text-gray-600 text-lg">{service.statLabel}</div>
-                    <div className="mt-6 space-y-2">
-                      <div className="bg-white rounded p-3 text-gray-700">Subject</div>
-                      <div className="bg-white rounded p-3 text-gray-700">Message</div>
+                    <div className="text-muted-foreground text-xl font-medium mb-8">{service.statLabel}</div>
+                    <div className="space-y-4">
+                      <div className="bg-white rounded-xl p-4 text-foreground font-medium shadow-sm">Subject</div>
+                      <div className="bg-white rounded-xl p-4 text-foreground font-medium shadow-sm">Message</div>
                     </div>
                   </div>
                 )}
 
-                {service.platforms && (
-                  <div className="grid grid-cols-4 gap-4">
-                    {service.platforms.map((platform, pIndex) => (
-                      <div key={pIndex} className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
+                {/* Platforms Display */}
+                {service.type === "platforms" && (
+                  <div className="grid grid-cols-4 gap-6">
+                    {service.platforms?.map((platform, pIndex) => (
+                      <div key={pIndex} className="aspect-square bg-gradient-to-br from-muted/30 to-muted/10 rounded-2xl flex items-center justify-center hover:shadow-card transition-all duration-300 hover:-translate-y-1 border border-border/30">
                         <img 
                           src={`https://logo.clearbit.com/${platform.icon}?size=500`} 
                           alt={platform.name}
-                          className="w-8 h-8"
+                          className="w-10 h-10"
                           onError={(e) => {
-                            e.currentTarget.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" fill="%23e5e7eb"/><text x="16" y="20" text-anchor="middle" fill="%236b7280" font-size="8">${platform.name.charAt(0)}</text></svg>`;
+                            e.currentTarget.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" fill="%23f3f4f6" rx="8"/><text x="20" y="26" text-anchor="middle" fill="%236b7280" font-size="10" font-weight="bold">${platform.name.charAt(0)}</text></svg>`;
                           }}
                         />
                       </div>
@@ -113,11 +104,30 @@ const ServicesSection = () => {
                   </div>
                 )}
 
-                {!service.images && !service.stat && !service.platforms && (
-                  <div className="bg-gray-50 rounded-2xl p-8 flex items-center justify-center">
-                    <div className="text-gray-400 text-center">
-                      <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4"></div>
-                      <p>Content Creation Visual</p>
+                {/* Content Creation Visual */}
+                {service.type === "content" && (
+                  <div className="bg-gradient-to-br from-card to-muted/20 rounded-3xl p-16 flex items-center justify-center shadow-card">
+                    <div className="text-center text-muted-foreground">
+                      <div className="w-24 h-24 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <svg className="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                      </div>
+                      <p className="text-lg font-medium">Content Creation Visual</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Default LinkedIn Visual */}
+                {service.type === "visual" && (
+                  <div className="bg-gradient-to-br from-card to-muted/20 rounded-3xl p-16 flex items-center justify-center shadow-card">
+                    <div className="text-center text-muted-foreground">
+                      <div className="w-24 h-24 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <svg className="w-12 h-12 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                      </div>
+                      <p className="text-lg font-medium">LinkedIn Marketing</p>
                     </div>
                   </div>
                 )}
