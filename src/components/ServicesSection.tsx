@@ -8,8 +8,7 @@ const ServicesSection = () => {
       images: [
         "https://framerusercontent.com/images/LsJGvkbYbF1y4ifkFrjeNfRfzYM.jpg",
         "https://framerusercontent.com/images/5P0eN6qtSxQg8Lrk6rw2GR9e7eI.jpg",
-        "https://framerusercontent.com/images/oUkBi1c8nERocfQrJWNLxZ9Fipw.jpg",
-        "https://framerusercontent.com/images/iABb6ejla3A5ZzE4zgxiPqBaYHI.jpg"
+        "https://framerusercontent.com/images/oUkBi1c8nERocfQrJWNLxZ9Fipw.jpg"
       ]
     },
     {
