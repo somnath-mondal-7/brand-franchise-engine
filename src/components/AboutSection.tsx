@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const AboutSection = () => {
   return (
@@ -14,12 +15,14 @@ const AboutSection = () => {
           </p>
 
           <div className="pt-6">
-            <Button 
-              variant="outline"
-              className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3"
-            >
-              Learn more
-            </Button>
+            <Link to="/about">
+              <Button 
+                variant="outline"
+                className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3"
+              >
+                Learn more
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
