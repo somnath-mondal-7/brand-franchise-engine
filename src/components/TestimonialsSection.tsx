@@ -3,22 +3,26 @@ const TestimonialsSection = () => {
     {
       name: "Michale Finch",
       title: "Franchise Broker iFranchise LLC",
-      content: "FranchiseLeadsHQ has transformed our lead generation process. The quality of leads we receive is exceptional."
+      videoId: "VIDEO_ID_1", // Replace with actual video ID
+      thumbnail: "https://framerusercontent.com/images/testimonial1.jpg"
     },
     {
       name: "Jesica Thompson", 
       title: "Consultant Franchise Solutions Inc.",
-      content: "Working with FranchiseLeadsHQ has been a game-changer for our business. Their approach is professional and results-driven."
+      videoId: "VIDEO_ID_2", // Replace with actual video ID
+      thumbnail: "https://framerusercontent.com/images/testimonial2.jpg"
     },
     {
       name: "Dion Garnett",
       title: "Franchise Broker, NearfranchisePro Inc.",
-      content: "The team at FranchiseLeadsHQ understands the franchise industry like no other. Highly recommended."
+      videoId: "VIDEO_ID_3", // Replace with actual video ID
+      thumbnail: "https://framerusercontent.com/images/testimonial3.jpg"
     },
     {
       name: "Jonarthan Morgan",
       title: "CEO, Nextfranh Corp",
-      content: "Their brand building services have helped us establish a strong presence in the market. Excellent work."
+      videoId: "VIDEO_ID_4", // Replace with actual video ID
+      thumbnail: "https://framerusercontent.com/images/testimonial4.jpg"
     }
   ];
 
@@ -37,16 +41,22 @@ const TestimonialsSection = () => {
             {testimonials.map((testimonial, index) => (
               <div 
                 key={index}
-                className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300"
+                className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group"
               >
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4"></div>
-                  <h4 className="text-lg font-bold text-gray-900">{testimonial.name}</h4>
-                  <p className="text-blue-600 font-medium">{testimonial.title}</p>
+                <div className="aspect-video bg-gray-900 relative">
+                  <iframe
+                    className="w-full h-full"
+                    src={`https://player.vimeo.com/video/${testimonial.videoId}`}
+                    title={`${testimonial.name} Testimonial`}
+                    frameBorder="0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 </div>
-                <p className="text-gray-600 leading-relaxed italic">
-                  "{testimonial.content}"
-                </p>
+                <div className="p-6">
+                  <h4 className="text-lg font-bold text-gray-900 mb-1">{testimonial.name}</h4>
+                  <p className="text-blue-600 font-medium text-sm">{testimonial.title}</p>
+                </div>
               </div>
             ))}
           </div>

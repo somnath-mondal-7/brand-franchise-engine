@@ -33,15 +33,15 @@ const Hero = () => {
           {/* Video Section */}
           <div className="pt-12">
             <div className="relative max-w-4xl mx-auto">
-              <div className="aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-lg">
-                <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                  <div className="text-center space-y-4">
-                    <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto cursor-pointer hover:bg-blue-700 transition-colors">
-                      <Play className="w-8 h-8 text-white ml-1" />
-                    </div>
-                    <p className="text-gray-600 font-medium">Watch our introduction video</p>
-                  </div>
-                </div>
+              <div className="aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
+                <iframe
+                  className="w-full h-full"
+                  src="https://player.vimeo.com/video/YOUR_HERO_VIDEO_ID"
+                  title="FranchiseLeadsHQ Introduction"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
           </div>
