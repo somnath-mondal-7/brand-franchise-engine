@@ -1,28 +1,19 @@
 const TestimonialsSection = () => {
   const testimonials = [
     {
-      name: "Michale Finch",
-      title: "Franchise Broker iFranchise LLC",
-      videoId: "VIDEO_ID_1", // Replace with actual video ID
-      thumbnail: "https://framerusercontent.com/images/testimonial1.jpg"
+      name: "Dion Garnett",
+      title: "Franchise Broker, NearfranchisePro Inc.",
+      videoSrc: "/videos/dion-garnett-review.mp4"
     },
     {
       name: "Jesica Thompson", 
       title: "Consultant Franchise Solutions Inc.",
-      videoId: "VIDEO_ID_2", // Replace with actual video ID
-      thumbnail: "https://framerusercontent.com/images/testimonial2.jpg"
-    },
-    {
-      name: "Dion Garnett",
-      title: "Franchise Broker, NearfranchisePro Inc.",
-      videoId: "VIDEO_ID_3", // Replace with actual video ID
-      thumbnail: "https://framerusercontent.com/images/testimonial3.jpg"
+      videoSrc: "/videos/jesica-thompson-review.mp4"
     },
     {
       name: "Jonarthan Morgan",
       title: "CEO, Nextfranh Corp",
-      videoId: "VIDEO_ID_4", // Replace with actual video ID
-      thumbnail: "https://framerusercontent.com/images/testimonial4.jpg"
+      videoSrc: "/videos/jonathan-morgan-review.mp4"
     }
   ];
 
@@ -44,14 +35,14 @@ const TestimonialsSection = () => {
                 className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group"
               >
                 <div className="aspect-video bg-gray-900 relative">
-                  <iframe
-                    className="w-full h-full"
-                    src={`https://player.vimeo.com/video/${testimonial.videoId}`}
-                    title={`${testimonial.name} Testimonial`}
-                    frameBorder="0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
+                  <video
+                    className="w-full h-full object-cover"
+                    controls
+                    preload="metadata"
+                  >
+                    <source src={testimonial.videoSrc} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
                 <div className="p-6">
                   <h4 className="text-lg font-bold text-gray-900 mb-1">{testimonial.name}</h4>
