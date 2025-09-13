@@ -14,6 +14,11 @@ const TestimonialsSection = () => {
       name: "Jonarthan Morgan",
       title: "CEO, Nextfranh Corp",
       videoSrc: "/videos/jonathan-morgan-review.mp4"
+    },
+    {
+      name: "Bob Vearling",
+      title: "Franchise Broker, iFranchise LLC",
+      videoSrc: "/videos/bob-vearling-review.mp4"
     }
   ];
 
@@ -27,8 +32,8 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {testimonials.map((testimonial, index) => (
               <div 
                 key={index}

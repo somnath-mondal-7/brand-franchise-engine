@@ -50,20 +50,19 @@ const Hero = () => {
           <div className="pt-16">
             <p className="text-gray-600 text-lg mb-8">Loved by 640+ clients</p>
             <div className="flex justify-center overflow-hidden">
-              <div className="flex items-center animate-scroll">
-                {/* First set of logos */}
-                <img src="/src/assets/logo1.svg" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
-                <img src="/src/assets/logo2.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
-                <img src="/src/assets/logo3.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
-                <img src="/src/assets/logo4.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
-                <img src="/src/assets/logo5.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
+              <div className="flex items-center animate-infinite-scroll">
+                <img src="/src/assets/logo1.svg" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src="/src/assets/logo2.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src="/src/assets/logo3.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src="/src/assets/logo4.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src="/src/assets/logo5.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
                 
-                {/* Second set of logos for seamless loop */}
-                <img src="/src/assets/logo1.svg" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
-                <img src="/src/assets/logo2.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
-                <img src="/src/assets/logo3.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
-                <img src="/src/assets/logo4.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
-                <img src="/src/assets/logo5.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
+                {/* Duplicate set for seamless loop */}
+                <img src="/src/assets/logo1.svg" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src="/src/assets/logo2.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src="/src/assets/logo3.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src="/src/assets/logo4.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src="/src/assets/logo5.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
               </div>
             </div>
           </div>
