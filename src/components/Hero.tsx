@@ -1,5 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
+import logo1 from "@/assets/clients/logo1.svg";
+import logo2 from "@/assets/clients/logo2.png";
+import logo3 from "@/assets/clients/logo3.png";
+import logo4 from "@/assets/clients/logo4.png";
+import logo5 from "@/assets/clients/logo5.png";
 
 const Hero = () => {
   return (
@@ -50,19 +55,19 @@ const Hero = () => {
           <div className="pt-16">
             <p className="text-gray-600 text-lg mb-8">Loved by 640+ clients</p>
             <div className="flex justify-center overflow-hidden">
-              <div className="flex items-center animate-infinite-scroll">
-                <img src="/src/assets/logo1.svg" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
-                <img src="/src/assets/logo2.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
-                <img src="/src/assets/logo3.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
-                <img src="/src/assets/logo4.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
-                <img src="/src/assets/logo5.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
-                
+              {/* Track */}
+              <div className="flex items-center min-w-max animate-infinite-scroll">
+                <img src={logo1} alt="Client logo 1 - FranchiseLeadsHQ" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src={logo2} alt="Client logo 2 - FranchiseLeadsHQ" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src={logo3} alt="Client logo 3 - FranchiseLeadsHQ" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src={logo4} alt="Client logo 4 - FranchiseLeadsHQ" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src={logo5} alt="Client logo 5 - FranchiseLeadsHQ" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
                 {/* Duplicate set for seamless loop */}
-                <img src="/src/assets/logo1.svg" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
-                <img src="/src/assets/logo2.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
-                <img src="/src/assets/logo3.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
-                <img src="/src/assets/logo4.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
-                <img src="/src/assets/logo5.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src={logo1} alt="Client logo 1 duplicate" aria-hidden className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src={logo2} alt="Client logo 2 duplicate" aria-hidden className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src={logo3} alt="Client logo 3 duplicate" aria-hidden className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src={logo4} alt="Client logo 4 duplicate" aria-hidden className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
+                <img src={logo5} alt="Client logo 5 duplicate" aria-hidden className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-8" />
               </div>
             </div>
           </div>

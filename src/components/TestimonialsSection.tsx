@@ -40,14 +40,33 @@ const TestimonialsSection = () => {
                 className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group max-w-sm mx-auto"
               >
                 <div className="aspect-square bg-gray-900 relative">
-                  <video
-                    className="w-full h-full object-cover"
-                    controls
-                    preload="metadata"
-                  >
-                    <source src={testimonial.videoSrc} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  {testimonial.videoSrc.includes('drive.google.com') ? (
+                    <iframe
+                      className="w-full h-full"
+                      src={(() => {
+                        const url = testimonial.videoSrc;
+                        let id: string | null = null;
+                        const viewMatch = url.match(/\/d\/([^/]+)\//);
+                        if (viewMatch) id = viewMatch[1];
+                        const idParamMatch = url.match(/[?&]id=([^&]+)/);
+                        if (!id && idParamMatch) id = idParamMatch[1];
+                        return id ? `https://drive.google.com/file/d/${id}/preview` : url;
+                      })()}
+                      title={`${testimonial.name} testimonial video`}
+                      frameBorder="0"
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  ) : (
+                    <video
+                      className="w-full h-full object-cover"
+                      controls
+                      preload="metadata"
+                    >
+                      <source src={testimonial.videoSrc} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  )}
                 </div>
                 <div className="p-4">
                   <h4 className="text-lg font-bold text-gray-900 mb-1">{testimonial.name}</h4>
