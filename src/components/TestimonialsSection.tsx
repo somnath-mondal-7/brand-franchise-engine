@@ -28,13 +28,13 @@ const TestimonialsSection = () => {
         </div>
 
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
               <div 
                 key={index}
-                className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group"
+                className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group max-w-sm mx-auto"
               >
-                <div className="aspect-video bg-gray-900 relative">
+                <div className="aspect-square bg-gray-900 relative">
                   <video
                     className="w-full h-full object-cover"
                     controls
@@ -44,7 +44,7 @@ const TestimonialsSection = () => {
                     Your browser does not support the video tag.
                   </video>
                 </div>
-                <div className="p-6">
+                <div className="p-4">
                   <h4 className="text-lg font-bold text-gray-900 mb-1">{testimonial.name}</h4>
                   <p className="text-blue-600 font-medium text-sm">{testimonial.title}</p>
                 </div>

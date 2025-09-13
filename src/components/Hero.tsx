@@ -36,7 +36,7 @@ const Hero = () => {
               <div className="aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
                 <iframe
                   className="w-full h-full"
-                  src="https://player.vimeo.com/video/YOUR_HERO_VIDEO_ID"
+                  src="https://drive.google.com/file/d/1QIqVt5J6OTmNiVFdVDJT6GAg_mQPw54q/preview"
                   title="FranchiseLeadsHQ Introduction"
                   frameBorder="0"
                   allow="autoplay; fullscreen; picture-in-picture"
@@ -49,21 +49,21 @@ const Hero = () => {
           {/* Client Logos Section */}
           <div className="pt-16">
             <p className="text-gray-600 text-lg mb-8">Loved by 640+ clients</p>
-            <div className="flex justify-center">
-              <div className="flex space-x-8 items-center overflow-hidden">
-                <div className="flex space-x-8 animate-scroll">
-                  {/* Actual client logos */}
-                  <img src="/src/assets/logo1.svg" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity" />
-                  <img src="/src/assets/logo2.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity" />
-                  <img src="/src/assets/logo3.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity" />
-                  <img src="/src/assets/logo4.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity" />
-                  <img src="/src/assets/logo5.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity" />
-                  <img src="/src/assets/logo1.svg" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity" />
-                  <img src="/src/assets/logo2.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity" />
-                  <img src="/src/assets/logo3.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity" />
-                  <img src="/src/assets/logo4.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity" />
-                  <img src="/src/assets/logo5.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity" />
-                </div>
+            <div className="flex justify-center overflow-hidden">
+              <div className="flex items-center animate-scroll">
+                {/* First set of logos */}
+                <img src="/src/assets/logo1.svg" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
+                <img src="/src/assets/logo2.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
+                <img src="/src/assets/logo3.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
+                <img src="/src/assets/logo4.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
+                <img src="/src/assets/logo5.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
+                
+                {/* Second set of logos for seamless loop */}
+                <img src="/src/assets/logo1.svg" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
+                <img src="/src/assets/logo2.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
+                <img src="/src/assets/logo3.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
+                <img src="/src/assets/logo4.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
+                <img src="/src/assets/logo5.png" alt="Client Logo" className="h-12 w-auto flex-shrink-0 opacity-60 hover:opacity-100 transition-opacity mx-6" />
               </div>
             </div>
           </div>
