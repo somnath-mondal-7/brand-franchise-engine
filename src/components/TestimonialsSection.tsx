@@ -18,7 +18,7 @@ const TestimonialsSection = () => {
     {
       name: "Bob Vearling",
       title: "Franchise Broker, iFranchise LLC",
-      videoSrc: "/videos/bob-vearling-review.mp4"
+      videoSrc: "https://drive.google.com/uc?export=download&id=1R9aNfy9Hl2nkFu8WMey-bRUii2ttOBnS"
     }
   ];
 
