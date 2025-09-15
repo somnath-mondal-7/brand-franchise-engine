@@ -1,18 +1,59 @@
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+import { Check, Send, Users, TrendingUp, Target, Award } from "lucide-react";
 
 const ServicesSection = () => {
+  const [activeService, setActiveService] = useState(0);
+  const [emailSent, setEmailSent] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const demographics = [
+    { icon: Users, label: "Business Executives", count: "85,000+", color: "text-blue-500" },
+    { icon: TrendingUp, label: "Entrepreneurs", count: "120,000+", color: "text-green-500" },
+    { icon: Target, label: "Franchise Seekers", count: "45,000+", color: "text-purple-500" },
+    { icon: Award, label: "Industry Leaders", count: "67,000+", color: "text-orange-500" }
+  ];
+
+  const contentTypes = [
+    { type: "Reels", engagement: "89%" },
+    { type: "Podcasts", engagement: "76%" },
+    { type: "Articles", engagement: "93%" },
+    { type: "Blogs", engagement: "81%" }
+  ];
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) {
+      const interval = setInterval(() => {
+        setActiveService(prev => (prev + 1) % demographics.length);
+      }, 2000);
+      return () => clearInterval(interval);
+    }
+  }, [isMobile]);
+
+  const handleSendEmail = () => {
+    setEmailSent(true);
+    setTimeout(() => setEmailSent(false), 3000);
+  };
+
   const services = [
     {
       title: "LinkedIn marketing",
       description: "We run strategic campaigns to engage qualified professionals and generate serious franchise inquiries. To build your network with valuable candidates.",
-      type: "visual"
+      type: "linkedin"
     },
     {
       title: "Personalised cold outreach",
       description: "We send cold emails to upto 297,000 professionals. Our clear messaging moves cold leads into serious investors.",
       stat: "297k+",
       statLabel: "Subject Message",
-      type: "stat"
+      type: "outreach"
     },
     {
       title: "Content creation", 
@@ -72,16 +113,100 @@ const ServicesSection = () => {
 
               {/* Visual Side */}
               <div className={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                {/* Stat Display */}
-                {service.type === "stat" && (
-                  <div className="bg-gradient-to-br from-card to-muted/20 rounded-3xl p-12 text-center shadow-card hover:shadow-hover transition-all duration-500">
+                {/* LinkedIn Marketing with Interactive Demographics */}
+                {service.type === "linkedin" && (
+                  <div className="bg-gradient-to-br from-card to-muted/20 rounded-3xl p-8 shadow-card">
+                    <div className="grid grid-cols-2 gap-4">
+                      {demographics.map((demo, demoIndex) => {
+                        const Icon = demo.icon;
+                        const isActive = isMobile ? activeService === demoIndex : false;
+                        return (
+                          <div
+                            key={demoIndex}
+                            className={`p-6 rounded-2xl border transition-all duration-300 cursor-pointer
+                              ${isActive || (!isMobile && 'hover:border-primary hover:shadow-lg hover:scale-105')}
+                              bg-white border-border/30`}
+                            onMouseEnter={() => !isMobile && setActiveService(demoIndex)}
+                            onClick={() => isMobile && setActiveService(demoIndex)}
+                          >
+                            <Icon className={`w-8 h-8 ${demo.color} mb-3`} />
+                            <div className={`text-2xl font-bold mb-1 transition-colors duration-300 
+                              ${isActive || (!isMobile && activeService === demoIndex) ? 'text-primary' : 'text-foreground'}`}>
+                              {demo.count}
+                            </div>
+                            <div className="text-sm text-muted-foreground">{demo.label}</div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div className="mt-6 p-4 bg-primary/5 rounded-xl">
+                      <div className="text-sm font-medium text-primary">Active Campaign</div>
+                      <div className="text-lg font-bold text-foreground">
+                        {demographics[activeService]?.label} Targeting
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Cold Outreach with Send Button Animation */}
+                {service.type === "outreach" && (
+                  <div className="bg-gradient-to-br from-card to-muted/20 rounded-3xl p-12 text-center shadow-card">
                     <div className="text-7xl font-black text-primary mb-6">
                       {service.stat}
                     </div>
                     <div className="text-muted-foreground text-xl font-medium mb-8">{service.statLabel}</div>
-                    <div className="space-y-4">
-                      <div className="bg-white rounded-xl p-4 text-foreground font-medium shadow-sm">Subject</div>
-                      <div className="bg-white rounded-xl p-4 text-foreground font-medium shadow-sm">Message</div>
+                    <div className="space-y-4 mb-8">
+                      <div className="bg-white rounded-xl p-4 text-foreground font-medium shadow-sm">
+                        Subject: Franchise Opportunity
+                      </div>
+                      <div className="bg-white rounded-xl p-4 text-foreground font-medium shadow-sm">
+                        Message: Personalized content...
+                      </div>
+                    </div>
+                    <Button 
+                      onClick={handleSendEmail}
+                      className={`relative overflow-hidden transition-all duration-500 ${
+                        emailSent ? 'bg-green-500 hover:bg-green-500' : ''
+                      }`}
+                      disabled={emailSent}
+                    >
+                      <div className={`flex items-center gap-2 transition-all duration-300 ${
+                        emailSent ? 'transform translate-x-[-100%] opacity-0' : 'transform translate-x-0 opacity-100'
+                      }`}>
+                        <Send className="w-4 h-4" />
+                        Send Emails
+                      </div>
+                      <div className={`absolute inset-0 flex items-center justify-center gap-2 transition-all duration-300 ${
+                        emailSent ? 'transform translate-x-0 opacity-100' : 'transform translate-x-[100%] opacity-0'
+                      }`}>
+                        <Check className="w-5 h-5 text-white animate-bounce" />
+                        <span className="text-white font-medium">Sent!</span>
+                      </div>
+                    </Button>
+                  </div>
+                )}
+
+                {/* Content Creation with Interactive Types */}
+                {service.type === "content" && (
+                  <div className="bg-gradient-to-br from-card to-muted/20 rounded-3xl p-8 shadow-card">
+                    <div className="grid grid-cols-2 gap-4">
+                      {contentTypes.map((content, contentIndex) => (
+                        <div
+                          key={contentIndex}
+                          className="p-6 rounded-2xl bg-white border border-border/30 
+                            hover:border-primary hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+                        >
+                          <div className="text-lg font-bold text-foreground mb-2">{content.type}</div>
+                          <div className="text-2xl font-black text-primary mb-1">{content.engagement}</div>
+                          <div className="text-sm text-muted-foreground">Engagement Rate</div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-6 text-center">
+                      <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary/10 to-primary/5 rounded-full">
+                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-sm font-medium text-foreground">Content Pipeline Active</span>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -90,45 +215,17 @@ const ServicesSection = () => {
                 {service.type === "platforms" && (
                   <div className="grid grid-cols-4 gap-6">
                     {service.platforms?.map((platform, pIndex) => (
-                      <div key={pIndex} className="aspect-square bg-gradient-to-br from-muted/30 to-muted/10 rounded-2xl flex items-center justify-center hover:shadow-card transition-all duration-300 hover:-translate-y-1 border border-border/30">
+                      <div key={pIndex} className="aspect-square bg-gradient-to-br from-muted/30 to-muted/10 rounded-2xl flex items-center justify-center hover:shadow-card transition-all duration-300 hover:-translate-y-1 border border-border/30 hover:border-primary/50">
                         <img 
                           src={`https://logo.clearbit.com/${platform.icon}?size=500`} 
                           alt={platform.name}
-                          className="w-10 h-10"
+                          className="w-10 h-10 transition-transform duration-300 hover:scale-110"
                           onError={(e) => {
                             e.currentTarget.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" fill="%23f3f4f6" rx="8"/><text x="20" y="26" text-anchor="middle" fill="%236b7280" font-size="10" font-weight="bold">${platform.name.charAt(0)}</text></svg>`;
                           }}
                         />
                       </div>
                     ))}
-                  </div>
-                )}
-
-                {/* Content Creation Visual */}
-                {service.type === "content" && (
-                  <div className="bg-gradient-to-br from-card to-muted/20 rounded-3xl p-16 flex items-center justify-center shadow-card">
-                    <div className="text-center text-muted-foreground">
-                      <div className="w-24 h-24 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <svg className="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg>
-                      </div>
-                      <p className="text-lg font-medium">Content Creation Visual</p>
-                    </div>
-                  </div>
-                )}
-
-                {/* Default LinkedIn Visual */}
-                {service.type === "visual" && (
-                  <div className="bg-gradient-to-br from-card to-muted/20 rounded-3xl p-16 flex items-center justify-center shadow-card">
-                    <div className="text-center text-muted-foreground">
-                      <div className="w-24 h-24 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <svg className="w-12 h-12 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                        </svg>
-                      </div>
-                      <p className="text-lg font-medium">LinkedIn Marketing</p>
-                    </div>
                   </div>
                 )}
               </div>
