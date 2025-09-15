@@ -211,21 +211,90 @@ const ServicesSection = () => {
                   </div>
                 )}
 
-                {/* Platforms Display */}
+                {/* Social Media Marketing with Live Message Flow */}
                 {service.type === "platforms" && (
-                  <div className="grid grid-cols-4 gap-6">
-                    {service.platforms?.map((platform, pIndex) => (
-                      <div key={pIndex} className="aspect-square bg-gradient-to-br from-muted/30 to-muted/10 rounded-2xl flex items-center justify-center hover:shadow-card transition-all duration-300 hover:-translate-y-1 border border-border/30 hover:border-primary/50">
-                        <img 
-                          src={`https://logo.clearbit.com/${platform.icon}?size=500`} 
-                          alt={platform.name}
-                          className="w-10 h-10 transition-transform duration-300 hover:scale-110"
-                          onError={(e) => {
-                            e.currentTarget.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" fill="%23f3f4f6" rx="8"/><text x="20" y="26" text-anchor="middle" fill="%236b7280" font-size="10" font-weight="bold">${platform.name.charAt(0)}</text></svg>`;
-                          }}
-                        />
+                  <div className="bg-gradient-to-br from-card to-muted/20 rounded-3xl p-8 shadow-card">
+                    <div className="grid grid-cols-2 gap-6 mb-8">
+                      {service.platforms?.slice(0, 4).map((platform, pIndex) => (
+                        <div 
+                          key={pIndex} 
+                          className="relative group bg-white rounded-2xl p-6 border border-border/30 hover:border-primary/50 transition-all duration-300 hover:shadow-lg"
+                        >
+                          <div className="flex items-center gap-3 mb-4">
+                            <img 
+                              src={`https://logo.clearbit.com/${platform.icon}?size=500`} 
+                              alt={platform.name}
+                              className="w-8 h-8"
+                              onError={(e) => {
+                                e.currentTarget.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" fill="%23f3f4f6" rx="6"/><text x="16" y="20" text-anchor="middle" fill="%236b7280" font-size="8" font-weight="bold">${platform.name.charAt(0)}</text></svg>`;
+                              }}
+                            />
+                            <span className="font-semibold text-foreground">{platform.name}</span>
+                          </div>
+                          
+                          <div className="space-y-2">
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-muted-foreground">Messages</span>
+                              <span className="text-lg font-bold text-primary">
+                                {Math.floor(Math.random() * 500 + 100)}+
+                              </span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-muted-foreground">Response Rate</span>
+                              <span className="text-sm font-medium text-green-600">
+                                {Math.floor(Math.random() * 30 + 15)}%
+                              </span>
+                            </div>
+                          </div>
+                          
+                          {/* Live message indicator */}
+                          <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="flex items-center gap-1">
+                              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                              <span className="text-xs text-green-600 font-medium">Live</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* Message Flow Animation */}
+                    <div className="bg-white rounded-2xl p-6 border border-border/30">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="text-sm font-medium text-foreground">Active Campaigns</div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                          <span className="text-sm text-green-600">Sending...</span>
+                        </div>
                       </div>
-                    ))}
+                      
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3 p-3 bg-primary/5 rounded-lg">
+                          <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                            <Send className="w-4 h-4 text-primary" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-sm font-medium text-foreground">Bulk Campaign #1</div>
+                            <div className="text-xs text-muted-foreground">Targeting business owners</div>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-sm font-bold text-primary">2,847</div>
+                            <div className="text-xs text-muted-foreground">sent today</div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                          <div className="w-8 h-8 bg-green-200 rounded-full flex items-center justify-center">
+                            <Check className="w-4 h-4 text-green-600" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-sm font-medium text-foreground">Response received</div>
+                            <div className="text-xs text-muted-foreground">Interested in franchise opportunity</div>
+                          </div>
+                          <div className="text-xs text-green-600 font-medium">Just now</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
