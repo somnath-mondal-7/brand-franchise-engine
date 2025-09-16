@@ -6,6 +6,10 @@ import logo3 from "@/assets/clients/logo3.png";
 import logo4 from "@/assets/clients/logo4.png";
 import logo5 from "@/assets/clients/logo5.png";
 import LogoProcessor from "@/components/LogoProcessor";
+import avatar1 from "@/assets/clients/avatars/avatar1.jpg";
+import avatar2 from "@/assets/clients/avatars/avatar2.jpg";
+import avatar3 from "@/assets/clients/avatars/avatar3.jpg";
+import avatar4 from "@/assets/clients/avatars/avatar4.jpg";
 
 const Hero = () => {
   return (
@@ -52,27 +56,19 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Client Photos and Rating */}
+          {/* Client Photos, Rating and Logos */}
           <div className="pt-16">
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="flex -space-x-2">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold text-sm border-2 border-white">
-                  JM
-                </div>
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-white font-semibold text-sm border-2 border-white">
-                  ST
-                </div>
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white font-semibold text-sm border-2 border-white">
-                  AL
-                </div>
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm border-2 border-white">
-                  MR
-                </div>
+            <div className="mb-8">
+              <div className="mb-4 flex items-center justify-center -space-x-2">
+                <img src={avatar1} alt="Happy client 1" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
+                <img src={avatar2} alt="Happy client 2" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
+                <img src={avatar3} alt="Happy client 3" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
+                <img src={avatar4} alt="Happy client 4" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-blue-500 fill-current" viewBox="0 0 20 20">
+                    <svg key={i} className="w-5 h-5 text-blue-500 fill-current" viewBox="0 0 20 20" aria-hidden="true">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
@@ -80,14 +76,13 @@ const Hero = () => {
                 <span className="text-gray-600 text-lg font-medium">Loved by 640+ clients</span>
               </div>
             </div>
-            
             {/* Company Logos */}
             <div className="flex items-center justify-center gap-8 flex-wrap max-w-4xl mx-auto">
-              <img src={logo1} alt="Client company logo" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
-              <img src={logo2} alt="Client company logo" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
-              <img src={logo3} alt="Client company logo" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
-              <img src={logo4} alt="Client company logo" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
-              <img src={logo5} alt="Client company logo" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
+              <img src={logo1} alt="Client company logo" loading="lazy" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
+              <img src={logo2} alt="Client company logo" loading="lazy" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
+              <img src={logo3} alt="Client company logo" loading="lazy" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
+              <img src={logo4} alt="Client company logo" loading="lazy" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
+              <img src={logo5} alt="Client company logo" loading="lazy" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
             </div>
           </div>
         </div>
