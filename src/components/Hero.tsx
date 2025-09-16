@@ -76,13 +76,24 @@ const Hero = () => {
                 <span className="text-gray-600 text-lg font-medium">Loved by 640+ clients</span>
               </div>
             </div>
-            {/* Company Logos */}
-            <div className="flex items-center justify-center gap-8 flex-wrap max-w-4xl mx-auto">
-              <img src={logo1} alt="Client company logo" loading="lazy" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
-              <img src={logo2} alt="Client company logo" loading="lazy" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
-              <img src={logo3} alt="Client company logo" loading="lazy" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
-              <img src={logo4} alt="Client company logo" loading="lazy" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
-              <img src={logo5} alt="Client company logo" loading="lazy" className="h-10 w-auto opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
+            {/* Company Logos - Infinite Marquee */}
+            <div className="relative overflow-hidden">
+              <div className="flex w-[200%] animate-marquee">
+                <div className="flex items-center justify-center gap-12 flex-none w-1/2 px-8">
+                  <img src={logo1} alt="Client logo 1" loading="lazy" className="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
+                  <img src={logo2} alt="Client logo 2" loading="lazy" className="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
+                  <img src={logo3} alt="Client logo 3" loading="lazy" className="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
+                  <img src={logo4} alt="Client logo 4" loading="lazy" className="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
+                  <img src={logo5} alt="Client logo 5" loading="lazy" className="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 mix-blend-multiply" />
+                </div>
+                <div className="flex items-center justify-center gap-12 flex-none w-1/2 px-8" aria-hidden="true">
+                  <img src={logo1} alt="" loading="lazy" className="h-10 w-auto opacity-80 transition-opacity grayscale mix-blend-multiply" />
+                  <img src={logo2} alt="" loading="lazy" className="h-10 w-auto opacity-80 transition-opacity grayscale mix-blend-multiply" />
+                  <img src={logo3} alt="" loading="lazy" className="h-10 w-auto opacity-80 transition-opacity grayscale mix-blend-multiply" />
+                  <img src={logo4} alt="" loading="lazy" className="h-10 w-auto opacity-80 transition-opacity grayscale mix-blend-multiply" />
+                  <img src={logo5} alt="" loading="lazy" className="h-10 w-auto opacity-80 transition-opacity grayscale mix-blend-multiply" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
