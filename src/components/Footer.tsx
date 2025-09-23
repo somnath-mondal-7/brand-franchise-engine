@@ -31,7 +31,14 @@ const Footer = () => {
             <ul className="space-y-2 text-gray-400">
               <li><a href="#services" className="hover:text-white transition-colors">Lead Generation</a></li>
               <li><a href="#services" className="hover:text-white transition-colors">Brand Building</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Digital Marketing</a></li>
+              <li>
+                <a href="/digital-marketing" className="group relative hover:text-white transition-colors">
+                  <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-semibold">
+                    Digital Marketing ✨
+                  </span>
+                  <span className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-purple-600/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity rounded"></span>
+                </a>
+              </li>
               <li><a href="#services" className="hover:text-white transition-colors">LinkedIn Marketing</a></li>
             </ul>
           </div>
@@ -53,15 +60,26 @@ const Footer = () => {
             <div className="space-y-3 text-gray-400">
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4" />
-                <span>hello@franchiseleadshq.com</span>
+                <span>support@franchiseleadshq.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4" />
                 <span>(+1) 3215159932</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4" />
-                <span>New York, NY</span>
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-4 h-4 mt-1" />
+                <div className="space-y-2">
+                  <div>
+                    <p className="font-medium text-gray-300">USA Office</p>
+                    <p>432 Park Avenue, Suite 1502</p>
+                    <p>New York, NY 10016</p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-300">India Office</p>
+                    <p>Salt Lake Sector Five</p>
+                    <p>Kolkata, West Bengal 700091</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
