@@ -27,13 +27,13 @@
     --ring: 225 100% 67%;
     --radius: 0.75rem;
 
-    /* Trust & Integrity Color Palette - Blue & Orange */
-    --primary: 220 91% 54%;  /* Trustworthy Blue */
-    --primary-light: 220 91% 65%;
-    --primary-dark: 220 91% 45%;
-    --accent: 25 95% 58%;  /* Vibrant Orange for energy */
-    --accent-light: 25 95% 70%;
-    --accent-dark: 25 95% 45%;
+    /* Trust & Integrity Color Palette - Orange Primary */
+    --primary: 25 95% 58%;  /* Vibrant Orange Primary */
+    --primary-light: 25 95% 70%;
+    --primary-dark: 25 95% 45%;
+    --accent: 220 91% 54%;  /* Trustworthy Blue as accent */
+    --accent-light: 220 91% 65%;
+    --accent-dark: 220 91% 45%;
     
     /* Brand Colors */
     --brand-blue: 220 91% 54%;
@@ -46,18 +46,18 @@
     --brand-gray: 0 0% 45%;
     --brand-light: 220 14% 96%;
 
-    /* Gradients - Blue to Orange for trust & integrity */
-    --gradient-primary: linear-gradient(135deg, hsl(220 91% 54%), hsl(25 95% 58%));
-    --gradient-hero: linear-gradient(135deg, hsl(220 91% 54%) 0%, hsl(25 95% 58%) 100%);
+    /* Gradients - Orange primary with blue accents */
+    --gradient-primary: linear-gradient(135deg, hsl(25 95% 58%), hsl(25 95% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(25 95% 58%) 0%, hsl(25 95% 70%) 100%);
     --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 14% 98%) 100%);
-    --gradient-trust: linear-gradient(90deg, hsl(220 91% 54%) 0%, hsl(220 91% 60%) 50%, hsl(25 95% 58%) 100%);
+    --gradient-trust: linear-gradient(90deg, hsl(25 95% 58%) 0%, hsl(25 95% 65%) 50%, hsl(25 95% 70%) 100%);
     --gradient-warm: linear-gradient(135deg, hsl(25 95% 58%) 0%, hsl(25 95% 70%) 100%);
     --gradient-cool: linear-gradient(135deg, hsl(220 91% 54%) 0%, hsl(220 91% 65%) 100%);
 
-    /* Shadows with blue-orange accent */
-    --shadow-elegant: 0 20px 25px -5px hsl(220 91% 54% / 0.15), 0 10px 10px -5px hsl(25 95% 58% / 0.08);
-    --shadow-card: 0 4px 6px -1px hsl(220 91% 54% / 0.1), 0 2px 4px -1px hsl(25 95% 58% / 0.06);
-    --shadow-hover: 0 25px 50px -12px hsl(220 91% 54% / 0.25);
+    /* Shadows with orange primary */
+    --shadow-elegant: 0 20px 25px -5px hsl(25 95% 58% / 0.15), 0 10px 10px -5px hsl(25 95% 58% / 0.08);
+    --shadow-card: 0 4px 6px -1px hsl(25 95% 58% / 0.1), 0 2px 4px -1px hsl(25 95% 58% / 0.06);
+    --shadow-hover: 0 25px 50px -12px hsl(25 95% 58% / 0.25);
     --shadow-orange: 0 10px 25px -5px hsl(25 95% 58% / 0.2);
     --shadow-blue: 0 10px 25px -5px hsl(220 91% 54% / 0.2);
 
