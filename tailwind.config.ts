@@ -54,7 +54,11 @@ export default {
 				},
 				brand: {
 					blue: 'hsl(var(--brand-blue))',
+					'blue-light': 'hsl(var(--brand-blue-light))',
 					'blue-dark': 'hsl(var(--brand-blue-dark))',
+					orange: 'hsl(var(--brand-orange))',
+					'orange-light': 'hsl(var(--brand-orange-light))',
+					'orange-dark': 'hsl(var(--brand-orange-dark))',
 					navy: 'hsl(var(--brand-navy))',
 					light: 'hsl(var(--brand-light))',
 					gray: 'hsl(var(--brand-gray))'
@@ -77,12 +81,16 @@ export default {
 			},
 			backgroundImage: {
 				'gradient-primary': 'var(--gradient-primary)',
-				'gradient-secondary': 'var(--gradient-secondary)',
-				'gradient-hero': 'var(--gradient-hero)'
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-trust': 'var(--gradient-trust)',
+				'gradient-warm': 'var(--gradient-warm)',
+				'gradient-cool': 'var(--gradient-cool)'
 			},
 			boxShadow: {
 				'elegant': 'var(--shadow-elegant)',
-				'card': 'var(--shadow-card)'
+				'card': 'var(--shadow-card)',
+				'orange': 'var(--shadow-orange)',
+				'blue': 'var(--shadow-blue)'
 			},
 			transitionTimingFunction: {
 				'smooth': 'var(--transition-smooth)'

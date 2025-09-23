@@ -27,22 +27,39 @@
     --ring: 225 100% 67%;
     --radius: 0.75rem;
 
-    /* Brand Colors - Matching FranchiseleadsHQ */
-    --brand-blue: 225 100% 67%;
-    --brand-blue-light: 225 100% 85%;
+    /* Trust & Integrity Color Palette - Blue & Orange */
+    --primary: 220 91% 54%;  /* Trustworthy Blue */
+    --primary-light: 220 91% 65%;
+    --primary-dark: 220 91% 45%;
+    --accent: 25 95% 58%;  /* Vibrant Orange for energy */
+    --accent-light: 25 95% 70%;
+    --accent-dark: 25 95% 45%;
+    
+    /* Brand Colors */
+    --brand-blue: 220 91% 54%;
+    --brand-blue-light: 220 91% 65%;
+    --brand-blue-dark: 220 91% 45%;
+    --brand-orange: 25 95% 58%;
+    --brand-orange-light: 25 95% 70%;
+    --brand-orange-dark: 25 95% 45%;
     --brand-navy: 215 25% 27%;
     --brand-gray: 0 0% 45%;
     --brand-light: 220 14% 96%;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(225 100% 67%), hsl(225 100% 85%));
-    --gradient-hero: linear-gradient(135deg, hsl(225 100% 67%) 0%, hsl(225 100% 85%) 100%);
+    /* Gradients - Blue to Orange for trust & integrity */
+    --gradient-primary: linear-gradient(135deg, hsl(220 91% 54%), hsl(25 95% 58%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 91% 54%) 0%, hsl(25 95% 58%) 100%);
     --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 14% 98%) 100%);
+    --gradient-trust: linear-gradient(90deg, hsl(220 91% 54%) 0%, hsl(220 91% 60%) 50%, hsl(25 95% 58%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(25 95% 58%) 0%, hsl(25 95% 70%) 100%);
+    --gradient-cool: linear-gradient(135deg, hsl(220 91% 54%) 0%, hsl(220 91% 65%) 100%);
 
-    /* Shadows */
-    --shadow-elegant: 0 20px 25px -5px hsl(225 100% 67% / 0.1), 0 10px 10px -5px hsl(225 100% 67% / 0.04);
-    --shadow-card: 0 4px 6px -1px hsl(225 100% 67% / 0.1), 0 2px 4px -1px hsl(225 100% 67% / 0.06);
-    --shadow-hover: 0 25px 50px -12px hsl(225 100% 67% / 0.25);
+    /* Shadows with blue-orange accent */
+    --shadow-elegant: 0 20px 25px -5px hsl(220 91% 54% / 0.15), 0 10px 10px -5px hsl(25 95% 58% / 0.08);
+    --shadow-card: 0 4px 6px -1px hsl(220 91% 54% / 0.1), 0 2px 4px -1px hsl(25 95% 58% / 0.06);
+    --shadow-hover: 0 25px 50px -12px hsl(220 91% 54% / 0.25);
+    --shadow-orange: 0 10px 25px -5px hsl(25 95% 58% / 0.2);
+    --shadow-blue: 0 10px 25px -5px hsl(220 91% 54% / 0.2);
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
