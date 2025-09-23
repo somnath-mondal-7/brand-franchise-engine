@@ -42,6 +42,9 @@ const Navigation = () => {
                 <a href="#about" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   About
                 </a>
+                <a href="#blog" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
+                  Blog
+                </a>
                 <a href="#faq" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   FAQ
                 </a>
@@ -133,6 +136,13 @@ const Navigation = () => {
                     onClick={toggleMenu}
                   >
                     About
+                  </a>
+                  <a
+                    href="#blog"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
+                    onClick={toggleMenu}
+                  >
+                    Blog
                   </a>
                   <a
                     href="#faq"

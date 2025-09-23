@@ -42,7 +42,7 @@ const BlogSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-muted/30 to-white">
+    <section id="blog" className="py-24 bg-gradient-to-b from-muted/30 to-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <Badge className="mb-4 bg-primary/10 text-primary px-4 py-2">
