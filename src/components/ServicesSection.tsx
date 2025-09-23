@@ -295,25 +295,23 @@ const ServicesSection = () => {
                         </div>
                       </div>
                     </div>
-                    
-                    {/* Exclusive Marketing Services CTA */}
-                    <div className="mt-12 pt-8 border-t border-border/30">
-                      <div className="text-center">
-                        <Button 
-                          asChild
-                          className="bg-gradient-trust hover:shadow-orange text-white px-10 py-5 text-lg font-semibold shadow-elegant hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-xl"
-                        >
-                          <a href="/digital-marketing">
-                            Learn more Exclusive Marketing Services
-                          </a>
-                        </Button>
-                      </div>
-                    </div>
                   </div>
                 )}
               </div>
             </div>
           ))}
+        </div>
+        
+        {/* Exclusive Marketing Services CTA - Centered with gap */}
+        <div className="mt-16 mb-12 text-center">
+          <Button 
+            asChild
+            className="bg-gradient-trust hover:shadow-orange text-white px-10 py-5 text-lg font-semibold shadow-elegant hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-xl"
+          >
+            <a href="/digital-marketing">
+              Learn more Exclusive Marketing Services
+            </a>
+          </Button>
         </div>
       </div>
     </section>

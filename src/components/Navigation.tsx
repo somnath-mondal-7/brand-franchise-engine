@@ -17,11 +17,11 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center">
+              <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
                 <span className="text-white font-bold text-lg">F</span>
               </div>
               <span className="text-xl font-semibold text-gray-900">
-                Franchiseleads<span className="text-blue-600">HQ</span>
+                Franchiseleads<span className="text-primary">HQ</span>
               </span>
             </Link>
           </div>
@@ -30,42 +30,42 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-8">
             {isHomePage ? (
               <>
-                <a href="#process" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+                <a href="#process" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   Process
                 </a>
-                <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+                <a href="#services" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   Services
                 </a>
-                <a href="#benefits" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+                <a href="#benefits" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   Benefits
                 </a>
-                <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+                <a href="#about" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   About
                 </a>
-                <a href="#faq" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+                <a href="#faq" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   FAQ
                 </a>
               </>
             ) : (
               <>
-                <Link to="/" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+                <Link to="/" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   Home
                 </Link>
-                <Link to="/services" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+                <Link to="/services" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   Services
                 </Link>
-                <Link to="/about" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+                <Link to="/about" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   Who We Are
                 </Link>
-                <Link to="/testimonials" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+                <Link to="/testimonials" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   Testimonials
                 </Link>
-                <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+                <Link to="/blog" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   Blog
                 </Link>
               </>
             )}
-            <Link to="/contact" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+            <Link to="/contact" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
               Contact Us
             </Link>
           </div>
@@ -77,7 +77,7 @@ const Navigation = () => {
               (+1) 3215159932
             </Button>
             <Button 
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg"
+              className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg"
               onClick={() => window.open('https://calendly.com/som832707/book-an-1-1consualtation', '_blank')}
             >
               Let's talk
@@ -105,35 +105,35 @@ const Navigation = () => {
                 <>
                   <a
                     href="#process"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
                     onClick={toggleMenu}
                   >
                     Process
                   </a>
                   <a
                     href="#services"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
                     onClick={toggleMenu}
                   >
                     Services
                   </a>
                   <a
                     href="#benefits"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
                     onClick={toggleMenu}
                   >
                     Benefits
                   </a>
                   <a
                     href="#about"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
                     onClick={toggleMenu}
                   >
                     About
                   </a>
                   <a
                     href="#faq"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
                     onClick={toggleMenu}
                   >
                     FAQ
@@ -143,35 +143,35 @@ const Navigation = () => {
                 <>
                   <Link
                     to="/"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
                     onClick={toggleMenu}
                   >
                     Home
                   </Link>
                   <Link
                     to="/services"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
                     onClick={toggleMenu}
                   >
                     Services
                   </Link>
                   <Link
                     to="/about"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
                     onClick={toggleMenu}
                   >
                     Who We Are
                   </Link>
                   <Link
                     to="/testimonials"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
                     onClick={toggleMenu}
                   >
                     Testimonials
                   </Link>
                   <Link
                     to="/blog"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
                     onClick={toggleMenu}
                   >
                     Blog
@@ -180,7 +180,7 @@ const Navigation = () => {
               )}
               <Link
                 to="/contact"
-                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
                 onClick={toggleMenu}
               >
                 Contact Us
@@ -191,7 +191,7 @@ const Navigation = () => {
                   (+1) 3215159932
                 </Button>
                 <Button 
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                  className="w-full bg-primary hover:bg-primary/90 text-white"
                   onClick={() => window.open('https://calendly.com/som832707/book-an-1-1consualtation', '_blank')}
                 >
                   Let's talk
