@@ -6,24 +6,36 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      question: "How soon can I expect to see results?",
-      answer: "Typically, you can expect to see initial results within 2-4 weeks of starting our services. However, the best results usually come after 1-3 months as we optimize and refine our approach based on initial performance data."
+      question: "How quickly can I start generating franchise leads?",
+      answer: "Most clients see qualified leads within 30 days of launching their campaign. Our proven system includes immediate setup of targeted advertising, lead magnets, and follow-up sequences to accelerate results."
     },
     {
-      question: "What makes you different from other marketing agencies?",
-      answer: "We specialize exclusively in the franchise industry, which means we understand the unique challenges and opportunities that franchise consultants and franchisors face. Our strategies are purpose-built for franchise businesses, not adapted from generic marketing approaches."
+      question: "What makes your franchise lead generation different?",
+      answer: "We specialize exclusively in franchise marketing with a proven system that has generated 50,000+ leads. Our approach combines targeted advertising, brand building, and conversion optimization specifically for franchise consultants and franchisors."
     },
     {
-      question: "What is the refund policy?",
-      answer: "We offer a 1-month satisfaction guarantee with a 7-day refund policy. If you're not completely satisfied with our services within the first 7 days, we'll provide a full refund. We're confident in our ability to deliver results."
+      question: "Do you work with franchise consultants or franchisors?",
+      answer: "We work with both! Our lead generation strategies are tailored for franchise consultants seeking qualified prospects and franchisors looking to expand their franchise network with the right partners."
     },
     {
-      question: "How do you offer support if I get stuck somewhere?",
-      answer: "We provide comprehensive support through multiple channels including dedicated account management, regular check-ins, email support, and phone consultations. Our team is always available to help you maximize the value of our services."
+      question: "What's included in your franchise lead generation service?",
+      answer: "Our comprehensive service includes targeted digital advertising, landing page optimization, lead nurturing sequences, CRM setup, conversion tracking, and ongoing optimization to maximize your ROI."
     },
     {
-      question: "What kind of leads do you provide? Are they qualified?",
-      answer: "We provide highly qualified leads that have been pre-screened through our multi-point vetting system. These are real prospects actively looking for franchise opportunities, not just general inquiries. We focus on quality over quantity."
+      question: "How do you ensure lead quality for franchise opportunities?",
+      answer: "We use advanced targeting criteria including financial qualifications, business experience, location preferences, and industry interest. Our lead scoring system prioritizes the most qualified prospects for your franchise opportunities."
+    },
+    {
+      question: "What kind of ROI can I expect from franchise lead generation?",
+      answer: "Our clients typically see 3-5x ROI within 90 days. With an average franchise fee of $45,000 and our cost-effective lead generation, even one conversion per month delivers significant returns."
+    },
+    {
+      question: "Do you provide ongoing support and optimization?",
+      answer: "Yes! We provide continuous campaign optimization, monthly performance reports, A/B testing of creatives, and strategic consulting to improve results over time. Your success is our priority."
+    },
+    {
+      question: "How do you handle lead nurturing for franchise prospects?",
+      answer: "Our multi-touch nurturing system includes automated email sequences, retargeting campaigns, educational content delivery, and timely follow-up to keep prospects engaged throughout their decision-making process."
     }
   ];
 
@@ -32,12 +44,30 @@ const FAQSection = () => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-white">
+    <section id="faq" className="py-20 bg-muted/30">
+      {/* FAQ Schema Markup */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        })}
+      </script>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Your Questions, Answered</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Answers to your most common questions about our AI services
+          <h2 className="text-4xl font-bold text-foreground mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Get answers to common questions about franchise lead generation and our proven marketing strategies.
           </p>
         </div>
 
@@ -46,25 +76,26 @@ const FAQSection = () => {
             {faqs.map((faq, index) => (
               <div 
                 key={index}
-                className="border border-gray-200 rounded-lg overflow-hidden"
+                className="bg-card border border-border rounded-lg overflow-hidden shadow-sm"
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+                  className="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-muted/50 transition-colors"
+                  aria-expanded={openFAQ === index}
                 >
-                  <span className="text-lg font-semibold text-gray-900">
+                  <span className="text-lg font-semibold text-card-foreground">
                     {faq.question}
                   </span>
                   {openFAQ === index ? (
-                    <ChevronUp className="w-5 h-5 text-gray-500" />
+                    <ChevronUp className="w-5 h-5 text-muted-foreground" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-gray-500" />
+                    <ChevronDown className="w-5 h-5 text-muted-foreground" />
                   )}
                 </button>
                 
                 {openFAQ === index && (
                   <div className="px-8 pb-6">
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>

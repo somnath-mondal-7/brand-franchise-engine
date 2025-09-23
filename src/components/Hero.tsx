@@ -18,25 +18,25 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           {/* Main Headline */}
           <div className="space-y-4">
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
               We Don't Just Generate Leads{" "}
-              <span className="text-blue-600">We Build Brands.</span>
+              <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">We Build Brands.</span>
             </h1>
           </div>
 
           {/* Subheadline */}
-          <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-            At FranchiseleadsHQ, we help businesses dominate the market with high-quality leads and powerful brand positioning that makes real noise.
+          <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            Transform your franchise business with our proven lead generation system. We've generated <strong>50,000+ qualified leads</strong> for franchise consultants and franchisors worldwide.
           </p>
 
           {/* CTA Button */}
           <div className="pt-4">
             <Button 
               size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg rounded-lg"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg rounded-lg"
               onClick={() => window.open('https://calendly.com/som832707/book-an-1-1consualtation', '_blank')}
             >
-              Book a call
+              Get Your Free Strategy Call
             </Button>
           </div>
 
@@ -59,21 +59,21 @@ const Hero = () => {
           {/* Client Photos, Rating and Logos */}
           <div className="pt-16">
             <div className="mb-8">
-              <div className="mb-4 flex items-center justify-center -space-x-2">
-                <img src={avatar1} alt="Happy client 1" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
-                <img src={avatar2} alt="Happy client 2" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
-                <img src={avatar3} alt="Happy client 3" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
-                <img src={avatar4} alt="Happy client 4" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
+              <div className="flex items-center justify-center -space-x-2">
+                <img src={avatar1} alt="Franchise consultant success story - generated $2M in leads" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
+                <img src={avatar2} alt="Franchisor testimonial - 300% ROI increase" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
+                <img src={avatar3} alt="Marketing director review - best lead quality" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
+                <img src={avatar4} alt="Business owner testimonial - 50+ leads monthly" loading="lazy" className="h-10 w-10 rounded-full ring-2 ring-white object-cover" />
               </div>
               <div className="flex items-center justify-center gap-2">
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-blue-500 fill-current" viewBox="0 0 20 20" aria-hidden="true">
+                    <svg key={i} className="w-5 h-5 text-primary fill-current" viewBox="0 0 20 20" aria-hidden="true">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
-                <span className="text-gray-600 text-lg font-medium">Loved by 5000+ people</span>
+                <span className="text-muted-foreground text-lg font-medium">Loved by 5000+ people</span>
               </div>
             </div>
             
