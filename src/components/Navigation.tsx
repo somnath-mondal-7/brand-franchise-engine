@@ -57,6 +57,9 @@ const Navigation = () => {
                 <Link to="/about" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   Who We Are
                 </Link>
+                <Link to="/digital-marketing" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
+                  Digital Marketing
+                </Link>
                 <Link to="/testimonials" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   Testimonials
                 </Link>
@@ -161,6 +164,13 @@ const Navigation = () => {
                     onClick={toggleMenu}
                   >
                     Who We Are
+                  </Link>
+                  <Link
+                    to="/digital-marketing"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
+                    onClick={toggleMenu}
+                  >
+                    Digital Marketing
                   </Link>
                   <Link
                     to="/testimonials"

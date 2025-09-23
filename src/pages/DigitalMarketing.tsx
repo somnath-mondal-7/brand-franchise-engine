@@ -59,26 +59,26 @@ const DigitalMarketing = () => {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+      <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-sky-100">
         <SEOBreadcrumbs />
         
         {/* Hero Section */}
         <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-100/30 to-blue-100/30"></div>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center max-w-4xl mx-auto">
-              <Badge className="mb-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-2">
+              <Badge className="mb-6 bg-gradient-to-r from-orange-500 to-blue-400 text-white px-6 py-2">
                 <Zap className="w-4 h-4 mr-2" />
                 Digital Marketing Excellence
               </Badge>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-500 via-orange-500 to-sky-500 bg-clip-text text-transparent">
                 Digital Marketing That Delivers
               </h1>
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
                 Transform your franchise with cutting-edge digital marketing strategies that drive real results. 
                 From PPC campaigns to SEO dominance, we've got your growth covered.
               </p>
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg">
+              <Button size="lg" className="bg-gradient-to-r from-orange-500 to-blue-500 hover:from-orange-600 hover:to-blue-600 text-white px-8 py-4 text-lg">
                 Get Started Today
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
@@ -91,13 +91,13 @@ const DigitalMarketing = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {stats.map((stat, index) => (
-                <Card key={index} className="bg-white/5 backdrop-blur-sm border-white/10 text-center hover:bg-white/10 transition-all duration-300">
+                <Card key={index} className="bg-white/80 backdrop-blur-sm border-blue-200 text-center hover:bg-white/90 hover:border-orange-200 transition-all duration-300 shadow-lg">
                   <CardContent className="p-6">
-                    <div className="flex justify-center mb-3 text-blue-400">
+                    <div className="flex justify-center mb-3 text-orange-500">
                       {stat.icon}
                     </div>
-                    <div className="text-3xl font-bold text-white mb-2">{stat.value}</div>
-                    <div className="text-gray-400 text-sm">{stat.label}</div>
+                    <div className="text-3xl font-bold text-gray-800 mb-2">{stat.value}</div>
+                    <div className="text-gray-600 text-sm">{stat.label}</div>
                   </CardContent>
                 </Card>
               ))}
@@ -109,10 +109,10 @@ const DigitalMarketing = () => {
         <section className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
                 Our Digital Marketing Services
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Comprehensive digital solutions designed to accelerate your franchise growth
               </p>
             </div>
@@ -121,8 +121,8 @@ const DigitalMarketing = () => {
               {services.map((service, index) => (
                 <Card 
                   key={index}
-                  className={`group relative overflow-hidden bg-white/5 backdrop-blur-sm border-white/10 hover:border-white/20 transition-all duration-500 cursor-pointer ${
-                    hoveredCard === index ? service.bgGlow : ''
+                  className={`group relative overflow-hidden bg-white/90 backdrop-blur-sm border-blue-100 hover:border-orange-200 hover:shadow-xl transition-all duration-500 cursor-pointer ${
+                    hoveredCard === index ? 'bg-orange-50/50' : ''
                   }`}
                   onMouseEnter={() => setHoveredCard(index)}
                   onMouseLeave={() => setHoveredCard(null)}
@@ -133,10 +133,10 @@ const DigitalMarketing = () => {
                     <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center mb-4 text-white group-hover:scale-110 transition-transform duration-300`}>
                       {service.icon}
                     </div>
-                    <CardTitle className="text-2xl text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
+                    <CardTitle className="text-2xl text-gray-800 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-orange-500 group-hover:to-blue-500 transition-all duration-300">
                       {service.title}
                     </CardTitle>
-                    <CardDescription className="text-gray-300 text-lg">
+                    <CardDescription className="text-gray-600 text-lg">
                       {service.description}
                     </CardDescription>
                   </CardHeader>
@@ -144,10 +144,10 @@ const DigitalMarketing = () => {
                   <CardContent className="relative z-10">
                     <div className="space-y-6">
                       <div>
-                        <h4 className="text-white font-semibold mb-3">Platforms & Channels:</h4>
+                        <h4 className="text-gray-800 font-semibold mb-3">Platforms & Channels:</h4>
                         <div className="flex flex-wrap gap-2">
                           {service.platforms.map((platform, idx) => (
-                            <Badge key={idx} variant="outline" className="border-blue-400/30 text-blue-300 hover:bg-blue-400/10 transition-colors">
+                            <Badge key={idx} variant="outline" className="border-orange-300 text-orange-600 hover:bg-orange-50 transition-colors">
                               {platform}
                             </Badge>
                           ))}
@@ -155,8 +155,8 @@ const DigitalMarketing = () => {
                       </div>
 
                       <div>
-                        <h4 className="text-white font-semibold mb-3">Key Features:</h4>
-                        <ul className="space-y-2 text-gray-300">
+                        <h4 className="text-gray-800 font-semibold mb-3">Key Features:</h4>
+                        <ul className="space-y-2 text-gray-600">
                           {service.features.map((feature, idx) => (
                             <li key={idx} className="flex items-center">
                               <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color} mr-3`}></div>
@@ -168,7 +168,7 @@ const DigitalMarketing = () => {
 
                       <Button 
                         variant="outline" 
-                        className="w-full border-white/20 text-white hover:bg-white/10 group-hover:border-blue-400/50 group-hover:text-blue-300 transition-all duration-300"
+                        className="w-full border-orange-300 text-orange-600 hover:bg-orange-50 group-hover:border-blue-400 group-hover:text-blue-600 transition-all duration-300"
                       >
                         Learn More
                         <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -182,22 +182,22 @@ const DigitalMarketing = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
+        <section className="py-20 relative bg-gradient-to-r from-orange-50 to-blue-50">
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-100/30 to-blue-100/30"></div>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
                 Ready to Dominate Digital Marketing?
               </h2>
-              <p className="text-xl text-gray-300 mb-8">
+              <p className="text-xl text-gray-600 mb-8">
                 Let's create a custom digital marketing strategy that drives real results for your franchise.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4">
+                <Button size="lg" className="bg-gradient-to-r from-orange-500 to-blue-500 hover:from-orange-600 hover:to-blue-600 text-white px-8 py-4">
                   Start Your Campaign
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-                <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-4">
+                <Button size="lg" variant="outline" className="border-orange-300 text-orange-600 hover:bg-orange-50 px-8 py-4">
                   Schedule Consultation
                 </Button>
               </div>
