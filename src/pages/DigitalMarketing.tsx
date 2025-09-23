@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, Target, Search, Phone, Code, Zap, TrendingUp, Globe, MousePointer, Users } from "lucide-react";
+import { ArrowRight, Target, Search, Phone, Code, Zap, TrendingUp, Globe, MousePointer, Users, Bot } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -46,6 +46,15 @@ const DigitalMarketing = () => {
       features: ["Responsive Design", "SEO Optimization", "Performance", "User Experience"],
       color: "from-orange-500 to-red-500",
       bgGlow: "bg-orange-500/10"
+    },
+    {
+      icon: <Bot className="w-8 h-8" />,
+      title: "AI & Automation",
+      description: "Leverage cutting-edge AI tools and automation to streamline your marketing",
+      platforms: ["ChatBots", "Marketing Automation", "AI Analytics"],
+      features: ["Lead Scoring", "Automated Responses", "Predictive Analytics", "Workflow Automation"],
+      color: "from-indigo-500 to-purple-500",
+      bgGlow: "bg-indigo-500/10"
     }
   ];
 
@@ -117,7 +126,7 @@ const DigitalMarketing = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
                 <Card 
                   key={index}
