@@ -6,12 +6,8 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      question: "How quickly can I get USA franchise leads?",
-      answer: "Most clients start receiving qualified USA franchise leads within 30 days of launching their campaign. Our proven system includes immediate setup of targeted advertising across American markets, lead magnets, and follow-up sequences specifically designed for the US franchise market."
-    },
-    {
-      question: "Do you specialize in USA franchise lead generation?",
-      answer: "Yes! We specialize in generating high-quality franchise leads across all major US markets including California, Texas, Florida, New York, and nationwide. Our team understands American franchise regulations, market preferences, and what motivates US-based investors to take action."
+      question: "How quickly can I start generating franchise leads?",
+      answer: "Most clients see qualified leads within 30 days of launching their campaign. Our proven system includes immediate setup of targeted advertising, lead magnets, and follow-up sequences to accelerate results."
     },
     {
       question: "What makes your franchise lead generation different?",

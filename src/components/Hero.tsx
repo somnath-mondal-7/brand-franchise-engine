@@ -19,14 +19,14 @@ const Hero = () => {
           {/* Main Headline */}
           <div className="space-y-4">
             <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-              USA Franchise Leads That{" "}
-              <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Convert to Sales</span>
+              We Don't Just Generate Leads{" "}
+              <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">We Build Brands.</span>
             </h1>
           </div>
 
           {/* Subheadline */}
           <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Get qualified franchise leads in the USA with our proven system. We've generated <strong>50,000+ high-quality franchise leads</strong> for consultants and franchisors across America. Start getting leads in 30 days or less.
+            Transform your franchise business with our proven lead generation system. We've generated <strong>50,000+ qualified leads</strong> for franchise consultants and franchisors worldwide.
           </p>
 
           {/* CTA Button */}
