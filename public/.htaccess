@@ -1,0 +1,19 @@
+# Ensure sitemap.xml is served with correct content-type
+<Files "sitemap.xml">
+    Header set Content-Type "application/xml; charset=utf-8"
+</Files>
+
+# Additional XML content-type headers
+<FilesMatch "\.(xml|xsl)$">
+    Header set Content-Type "application/xml; charset=utf-8"
+</FilesMatch>
+
+# Cache control for sitemaps
+<Files "sitemap.xml">
+    Header set Cache-Control "public, max-age=3600"
+</Files>
+
+# Ensure robots.txt is served correctly
+<Files "robots.txt">
+    Header set Content-Type "text/plain; charset=utf-8"
+</Files>
