@@ -60,6 +60,22 @@ const Navigation = () => {
                 <Link to="/services" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   Services
                 </Link>
+                <div className="relative group">
+                  <span className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium cursor-pointer">
+                    Franchise Leads
+                  </span>
+                  <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-48 z-50">
+                    <Link to="/franchise-leads-usa" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">
+                      USA Franchise Leads
+                    </Link>
+                    <Link to="/franchise-leads-uk" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">
+                      UK Franchise Leads
+                    </Link>
+                    <Link to="/franchise-leads-canada" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">
+                      Canada Franchise Leads
+                    </Link>
+                  </div>
+                </div>
                 <Link to="/about" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   Who We Are
                 </Link>
@@ -170,6 +186,27 @@ const Navigation = () => {
                     onClick={toggleMenu}
                   >
                     Services
+                  </Link>
+                  <Link
+                    to="/franchise-leads-usa"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
+                    onClick={toggleMenu}
+                  >
+                    USA Franchise Leads
+                  </Link>
+                  <Link
+                    to="/franchise-leads-uk"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
+                    onClick={toggleMenu}
+                  >
+                    UK Franchise Leads
+                  </Link>
+                  <Link
+                    to="/franchise-leads-canada"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
+                    onClick={toggleMenu}
+                  >
+                    Canada Franchise Leads
                   </Link>
                   <Link
                     to="/about"
