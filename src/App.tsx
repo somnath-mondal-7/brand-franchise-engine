@@ -15,6 +15,10 @@ import Contact from "./pages/Contact";
 import FranchiseLeadsUSA from "./pages/FranchiseLeadsUSA";
 import FranchiseLeadsUK from "./pages/FranchiseLeadsUK";
 import FranchiseLeadsCanada from "./pages/FranchiseLeadsCanada";
+import FranchiseLeadsAustralia from "./pages/FranchiseLeadsAustralia";
+import FranchiseLeadsDubai from "./pages/FranchiseLeadsDubai";
+import FranchiseLeadsIndia from "./pages/FranchiseLeadsIndia";
+import FranchiseLeadsKuwait from "./pages/FranchiseLeadsKuwait";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,9 +35,13 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/digital-marketing" element={<DigitalMarketing />} />
-            <Route path="/franchise-leads-usa" element={<FranchiseLeadsUSA />} />
-            <Route path="/franchise-leads-uk" element={<FranchiseLeadsUK />} />
-            <Route path="/franchise-leads-canada" element={<FranchiseLeadsCanada />} />
+          <Route path="/franchise-leads-usa" element={<FranchiseLeadsUSA />} />
+          <Route path="/franchise-leads-uk" element={<FranchiseLeadsUK />} />
+          <Route path="/franchise-leads-canada" element={<FranchiseLeadsCanada />} />
+          <Route path="/franchise-leads-australia" element={<FranchiseLeadsAustralia />} />
+          <Route path="/franchise-leads-dubai" element={<FranchiseLeadsDubai />} />
+          <Route path="/franchise-leads-india" element={<FranchiseLeadsIndia />} />
+          <Route path="/franchise-leads-kuwait" element={<FranchiseLeadsKuwait />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/testimonials" element={<Testimonials />} />

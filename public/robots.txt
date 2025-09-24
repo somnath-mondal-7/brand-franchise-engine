@@ -25,3 +25,12 @@ Allow: /
 
 User-agent: Twitterbot
 Allow: /
+
+# Location-specific pages optimization
+Allow: /franchise-leads-usa
+Allow: /franchise-leads-uk  
+Allow: /franchise-leads-canada
+Allow: /franchise-leads-australia
+Allow: /franchise-leads-dubai
+Allow: /franchise-leads-india
+Allow: /franchise-leads-kuwait
