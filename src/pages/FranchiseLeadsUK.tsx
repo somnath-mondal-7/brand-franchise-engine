@@ -11,12 +11,12 @@ const FranchiseLeadsUK = () => {
         <title>Franchise Leads UK - #1 British Franchise Lead Generation Service</title>
         <meta name="description" content="Get qualified franchise leads in UK. Leading British franchise marketing agency generating high-quality leads for franchise consultants across England, Scotland, Wales, and Northern Ireland." />
         <meta name="keywords" content="franchise leads UK, franchise lead generation UK, British franchise leads, UK franchise opportunities, franchise marketing agency UK, franchise consultant leads Britain" />
-        <link rel="canonical" href="https://franchiseleadshq.lovable.app/franchise-leads-uk" />
+        <link rel="canonical" href="https://www.franchiseleadshq.com/franchise-leads-uk" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Franchise Leads UK - #1 British Lead Generation Service" />
         <meta property="og:description" content="Get qualified franchise leads in UK. Leading British franchise marketing agency." />
-        <meta property="og:url" content="https://franchiseleadshq.lovable.app/franchise-leads-uk" />
+        <meta property="og:url" content="https://www.franchiseleadshq.com/franchise-leads-uk" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="Franchise Leads UK - #1 British Lead Generation Service" />

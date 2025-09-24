@@ -11,12 +11,12 @@ const FranchiseLeadsCanada = () => {
         <title>Franchise Leads Canada - #1 Canadian Franchise Lead Generation Service</title>
         <meta name="description" content="Get qualified franchise leads in Canada. Leading Canadian franchise marketing agency generating high-quality leads for franchise consultants across all provinces and territories." />
         <meta name="keywords" content="franchise leads Canada, franchise lead generation Canada, Canadian franchise leads, Canada franchise opportunities, franchise marketing agency Canada, franchise consultant leads Canadian" />
-        <link rel="canonical" href="https://franchiseleadshq.lovable.app/franchise-leads-canada" />
+        <link rel="canonical" href="https://www.franchiseleadshq.com/franchise-leads-canada" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Franchise Leads Canada - #1 Canadian Lead Generation Service" />
         <meta property="og:description" content="Get qualified franchise leads in Canada. Leading Canadian franchise marketing agency." />
-        <meta property="og:url" content="https://franchiseleadshq.lovable.app/franchise-leads-canada" />
+        <meta property="og:url" content="https://www.franchiseleadshq.com/franchise-leads-canada" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="Franchise Leads Canada - #1 Canadian Lead Generation Service" />

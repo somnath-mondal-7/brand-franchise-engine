@@ -11,12 +11,12 @@ const FranchiseLeadsKuwait = () => {
         <title>Franchise Leads Kuwait - #1 Franchise Lead Generation Service in Kuwait</title>
         <meta name="description" content="Get qualified franchise leads in Kuwait. We've generated 3,500+ franchise consultant leads across Kuwait City, Hawalli, Ahmadi, Jahra. Expert Kuwait franchise marketing agency." />
         <meta name="keywords" content="franchise leads Kuwait, franchise lead generation Kuwait, franchise consultant leads Kuwait City, Hawalli franchise opportunities, Ahmadi franchise leads, Kuwait franchise marketing, Kuwait franchise consultants, Gulf franchise leads, franchise opportunities Kuwait, franchise business Kuwait" />
-        <link rel="canonical" href="https://franchiseleadshq.lovable.app/franchise-leads-kuwait" />
+        <link rel="canonical" href="https://www.franchiseleadshq.com/franchise-leads-kuwait" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Franchise Leads Kuwait - #1 Lead Generation Service" />
         <meta property="og:description" content="Get qualified franchise leads in Kuwait. 3,500+ leads generated for Kuwait franchise consultants." />
-        <meta property="og:url" content="https://franchiseleadshq.lovable.app/franchise-leads-kuwait" />
+        <meta property="og:url" content="https://www.franchiseleadshq.com/franchise-leads-kuwait" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="Franchise Leads Kuwait - #1 Lead Generation Service" />

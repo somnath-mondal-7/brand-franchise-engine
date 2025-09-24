@@ -11,12 +11,12 @@ const FranchiseLeadsDubai = () => {
         <title>Franchise Leads Dubai UAE - #1 Franchise Lead Generation Service in Middle East</title>
         <meta name="description" content="Get qualified franchise leads in Dubai, UAE, Abu Dhabi, Sharjah. We've generated 8,000+ franchise consultant leads across UAE and Middle East. Expert Dubai franchise marketing agency." />
         <meta name="keywords" content="franchise leads Dubai, franchise lead generation UAE, franchise consultant leads Dubai, Abu Dhabi franchise opportunities, Sharjah franchise leads, UAE franchise marketing, Dubai franchise consultants, Middle East franchise leads, franchise opportunities UAE, franchise business Dubai" />
-        <link rel="canonical" href="https://franchiseleadshq.lovable.app/franchise-leads-dubai" />
+        <link rel="canonical" href="https://www.franchiseleadshq.com/franchise-leads-dubai" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Franchise Leads Dubai UAE - #1 Lead Generation Service" />
         <meta property="og:description" content="Get qualified franchise leads in Dubai, UAE. 8,000+ leads generated for Middle East franchise consultants." />
-        <meta property="og:url" content="https://franchiseleadshq.lovable.app/franchise-leads-dubai" />
+        <meta property="og:url" content="https://www.franchiseleadshq.com/franchise-leads-dubai" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="Franchise Leads Dubai UAE - #1 Lead Generation Service" />

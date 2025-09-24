@@ -52,7 +52,7 @@ const SEOBreadcrumbs = () => {
             "@type": "ListItem",
             "position": index + 1,
             "name": breadcrumb.label,
-            "item": breadcrumb.href ? `https://franchiseleadshq.lovable.app${breadcrumb.href}` : undefined
+            "item": breadcrumb.href ? `https://www.franchiseleadshq.com${breadcrumb.href}` : undefined
           }))
         })}
       </script>

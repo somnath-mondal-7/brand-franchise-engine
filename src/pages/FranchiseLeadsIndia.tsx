@@ -11,12 +11,12 @@ const FranchiseLeadsIndia = () => {
         <title>Franchise Leads India - #1 Franchise Lead Generation Service in India</title>
         <meta name="description" content="Get qualified franchise leads in India. We've generated 20,000+ franchise consultant leads across Mumbai, Delhi, Bangalore, Chennai, Hyderabad, Pune, Kolkata. Expert Indian franchise marketing agency." />
         <meta name="keywords" content="franchise leads India, franchise lead generation India, franchise consultant leads Mumbai, Delhi franchise opportunities, Bangalore franchise leads, Chennai franchise marketing, Hyderabad franchise consultants, Indian franchise leads, franchise opportunities India, franchise business India" />
-        <link rel="canonical" href="https://franchiseleadshq.lovable.app/franchise-leads-india" />
+        <link rel="canonical" href="https://www.franchiseleadshq.com/franchise-leads-india" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Franchise Leads India - #1 Lead Generation Service" />
         <meta property="og:description" content="Get qualified franchise leads in India. 20,000+ leads generated for Indian franchise consultants across all major cities." />
-        <meta property="og:url" content="https://franchiseleadshq.lovable.app/franchise-leads-india" />
+        <meta property="og:url" content="https://www.franchiseleadshq.com/franchise-leads-india" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="Franchise Leads India - #1 Lead Generation Service" />

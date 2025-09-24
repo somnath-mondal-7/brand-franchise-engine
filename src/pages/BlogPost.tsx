@@ -231,14 +231,14 @@ const BlogPost = () => {
             "name": "FranchiseLeadsHQ",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://franchiseleadshq.lovable.app/logo.png"
+              "url": "https://www.franchiseleadshq.com/logo.png"
             }
           },
           "datePublished": post.date,
           "dateModified": post.date,
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://franchiseleadshq.lovable.app/blog/${slug}`
+            "@id": `https://www.franchiseleadshq.com/blog/${slug}`
           },
           "keywords": post.keywords.join(", "),
           "articleSection": post.category

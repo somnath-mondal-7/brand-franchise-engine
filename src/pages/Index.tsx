@@ -20,13 +20,13 @@ const Index = () => {
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "FranchiseLeadsHQ",
-          "url": "https://franchiseleadshq.lovable.app",
+          "url": "https://www.franchiseleadshq.com",
           "description": "Leading franchise marketing agency specializing in lead generation and brand building for franchise consultants and franchisors.",
           "potentialAction": {
             "@type": "SearchAction",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "https://franchiseleadshq.lovable.app/search?q={search_term_string}"
+              "urlTemplate": "https://www.franchiseleadshq.com/search?q={search_term_string}"
             },
             "query-input": "required name=search_term_string"
           },

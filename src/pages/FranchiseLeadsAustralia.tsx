@@ -11,12 +11,12 @@ const FranchiseLeadsAustralia = () => {
         <title>Franchise Leads Australia - #1 Franchise Lead Generation Service in Australia</title>
         <meta name="description" content="Get qualified franchise leads in Australia. We've generated 15,000+ franchise consultant leads across Sydney, Melbourne, Brisbane, Perth, Adelaide. Expert Australian franchise marketing agency." />
         <meta name="keywords" content="franchise leads Australia, franchise lead generation Australia, franchise consultant leads Sydney, Melbourne franchise opportunities, Brisbane franchise leads, Perth franchise marketing, Adelaide franchise consultants, Australian franchise leads, franchise opportunities Australia, franchise business Australia" />
-        <link rel="canonical" href="https://franchiseleadshq.lovable.app/franchise-leads-australia" />
+        <link rel="canonical" href="https://www.franchiseleadshq.com/franchise-leads-australia" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Franchise Leads Australia - #1 Lead Generation Service" />
         <meta property="og:description" content="Get qualified franchise leads in Australia. 15,000+ leads generated for Australian franchise consultants across all major cities." />
-        <meta property="og:url" content="https://franchiseleadshq.lovable.app/franchise-leads-australia" />
+        <meta property="og:url" content="https://www.franchiseleadshq.com/franchise-leads-australia" />
         
         {/* Twitter */}
         <meta name="twitter:title" content="Franchise Leads Australia - #1 Lead Generation Service" />
