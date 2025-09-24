@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,9 +18,11 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
-                <span className="text-white font-bold text-lg">F</span>
-              </div>
+              <img 
+                src={logo} 
+                alt="FranchiseLeadsHQ Logo" 
+                className="w-10 h-10 object-contain"
+              />
               <span className="text-xl font-semibold text-gray-900">
                 Franchiseleads<span className="text-primary">HQ</span>
               </span>
