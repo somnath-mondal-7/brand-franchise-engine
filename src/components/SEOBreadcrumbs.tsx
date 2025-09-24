@@ -15,7 +15,10 @@ const SEOBreadcrumbs = () => {
     'services': 'Our Services', 
     'blog': 'Blog',
     'testimonials': 'Client Testimonials',
-    'contact': 'Contact Us'
+    'contact': 'Contact Us',
+    'legal-terms': 'Legal Terms',
+    'privacy-policy': 'Privacy Policy',
+    'refund-satisfaction-guarantee-policy': 'Refund Policy'
   };
 
   const getBreadcrumbs = (): BreadcrumbItem[] => {

@@ -19,6 +19,8 @@ import FranchiseLeadsAustralia from "./pages/FranchiseLeadsAustralia";
 import FranchiseLeadsDubai from "./pages/FranchiseLeadsDubai";
 import FranchiseLeadsIndia from "./pages/FranchiseLeadsIndia";
 import FranchiseLeadsKuwait from "./pages/FranchiseLeadsKuwait";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import RefundPolicy from "./pages/RefundPolicy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -46,6 +48,8 @@ const App = () => (
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/legal-terms/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/legal-terms/refund-satisfaction-guarantee-policy" element={<RefundPolicy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
