@@ -104,40 +104,40 @@ const Hero = () => {
                 </div>
                 
                 {/* Mobile: Scrolling logos */}
-                <div className="md:hidden relative overflow-hidden">
-                  <div className="flex w-[200%] animate-marquee">
-                    <div className="flex items-center justify-center gap-8 flex-none w-1/2 px-8">
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100">
-                        <img src={logo1} alt="Client logo 1" loading="lazy" className="h-10 w-auto opacity-70 grayscale" />
+                <div className="md:hidden relative overflow-hidden py-4">
+                  <div className="flex animate-marquee gap-8">
+                    <div className="flex items-center justify-center gap-8 flex-shrink-0">
+                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
+                        <img src={logo1} alt="Client logo 1" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100">
-                        <img src={logo2} alt="Client logo 2" loading="lazy" className="h-10 w-auto opacity-70 grayscale" />
+                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
+                        <img src={logo2} alt="Client logo 2" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100">
-                        <img src={logo3} alt="Client logo 3" loading="lazy" className="h-10 w-auto opacity-70 grayscale" />
+                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
+                        <img src={logo3} alt="Client logo 3" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100">
-                        <img src={logo4} alt="Client logo 4" loading="lazy" className="h-10 w-auto opacity-70 grayscale" />
+                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
+                        <img src={logo4} alt="Client logo 4" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100">
-                        <img src={logo5} alt="Client logo 5" loading="lazy" className="h-10 w-auto opacity-70 grayscale" />
+                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
+                        <img src={logo5} alt="Client logo 5" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
                     </div>
-                    <div className="flex items-center justify-center gap-8 flex-none w-1/2 px-8" aria-hidden="true">
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100">
-                        <img src={logo1} alt="" loading="lazy" className="h-10 w-auto opacity-70 grayscale" />
+                    <div className="flex items-center justify-center gap-8 flex-shrink-0" aria-hidden="true">
+                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
+                        <img src={logo1} alt="" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100">
-                        <img src={logo2} alt="" loading="lazy" className="h-10 w-auto opacity-70 grayscale" />
+                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
+                        <img src={logo2} alt="" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100">
-                        <img src={logo3} alt="" loading="lazy" className="h-10 w-auto opacity-70 grayscale" />
+                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
+                        <img src={logo3} alt="" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100">
-                        <img src={logo4} alt="" loading="lazy" className="h-10 w-auto opacity-70 grayscale" />
+                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
+                        <img src={logo4} alt="" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
-                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100">
-                        <img src={logo5} alt="" loading="lazy" className="h-10 w-auto opacity-70 grayscale" />
+                      <div className="flex items-center justify-center p-3 bg-white rounded-lg shadow-sm border border-gray-100 min-w-[80px]">
+                        <img src={logo5} alt="" loading="lazy" className="h-8 w-auto opacity-70 grayscale max-w-[60px]" />
                       </div>
                     </div>
                   </div>

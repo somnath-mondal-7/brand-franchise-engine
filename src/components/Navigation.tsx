@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
@@ -30,7 +30,7 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6 ml-6">
             {isHomePage ? (
               <>
                 <a href="#process" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
@@ -60,11 +60,16 @@ const Navigation = () => {
                 <Link to="/services" className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                   Services
                 </Link>
-                <div className="relative group">
-                  <span className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium cursor-pointer">
+                <div 
+                  className="relative group"
+                  onMouseEnter={() => setIsDropdownOpen(true)}
+                  onMouseLeave={() => setIsDropdownOpen(false)}
+                >
+                  <button className="flex items-center text-gray-700 hover:text-primary transition-colors duration-200 font-medium">
                     Franchise Leads
-                  </span>
-                  <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-48 z-50">
+                    <ChevronDown className="ml-1 w-4 h-4" />
+                  </button>
+                  <div className={`absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg transition-all duration-200 min-w-48 z-50 ${isDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                     <Link to="/franchise-leads-usa" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">
                       USA Franchise Leads
                     </Link>
@@ -73,6 +78,18 @@ const Navigation = () => {
                     </Link>
                     <Link to="/franchise-leads-canada" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">
                       Canada Franchise Leads
+                    </Link>
+                    <Link to="/franchise-leads-australia" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">
+                      Australia Franchise Leads
+                    </Link>
+                    <Link to="/franchise-leads-dubai" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">
+                      Dubai Franchise Leads
+                    </Link>
+                    <Link to="/franchise-leads-india" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">
+                      India Franchise Leads
+                    </Link>
+                    <Link to="/franchise-leads-kuwait" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">
+                      Kuwait Franchise Leads
                     </Link>
                   </div>
                 </div>
@@ -96,7 +113,7 @@ const Navigation = () => {
           </div>
 
           {/* Phone and CTA */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50">
               <Phone className="w-4 h-4 mr-2" />
               (+1) 3215159932
@@ -110,7 +127,7 @@ const Navigation = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <Button
               variant="ghost"
               size="sm"
@@ -124,8 +141,8 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-100">
+          <div className="lg:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-100 max-h-96 overflow-y-auto">
               {isHomePage ? (
                 <>
                   <a
@@ -187,27 +204,60 @@ const Navigation = () => {
                   >
                     Services
                   </Link>
-                  <Link
-                    to="/franchise-leads-usa"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
-                    onClick={toggleMenu}
-                  >
-                    USA Franchise Leads
-                  </Link>
-                  <Link
-                    to="/franchise-leads-uk"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
-                    onClick={toggleMenu}
-                  >
-                    UK Franchise Leads
-                  </Link>
-                  <Link
-                    to="/franchise-leads-canada"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
-                    onClick={toggleMenu}
-                  >
-                    Canada Franchise Leads
-                  </Link>
+                  <div className="space-y-1">
+                    <div className="px-3 py-2 text-base font-medium text-gray-600 border-b border-gray-100">
+                      Franchise Leads:
+                    </div>
+                    <Link
+                      to="/franchise-leads-usa"
+                      className="block px-6 py-2 text-sm text-gray-700 hover:text-primary transition-colors duration-200"
+                      onClick={toggleMenu}
+                    >
+                      USA Franchise Leads
+                    </Link>
+                    <Link
+                      to="/franchise-leads-uk"
+                      className="block px-6 py-2 text-sm text-gray-700 hover:text-primary transition-colors duration-200"
+                      onClick={toggleMenu}
+                    >
+                      UK Franchise Leads
+                    </Link>
+                    <Link
+                      to="/franchise-leads-canada"
+                      className="block px-6 py-2 text-sm text-gray-700 hover:text-primary transition-colors duration-200"
+                      onClick={toggleMenu}
+                    >
+                      Canada Franchise Leads
+                    </Link>
+                    <Link
+                      to="/franchise-leads-australia"
+                      className="block px-6 py-2 text-sm text-gray-700 hover:text-primary transition-colors duration-200"
+                      onClick={toggleMenu}
+                    >
+                      Australia Franchise Leads
+                    </Link>
+                    <Link
+                      to="/franchise-leads-dubai"
+                      className="block px-6 py-2 text-sm text-gray-700 hover:text-primary transition-colors duration-200"
+                      onClick={toggleMenu}
+                    >
+                      Dubai Franchise Leads
+                    </Link>
+                    <Link
+                      to="/franchise-leads-india"
+                      className="block px-6 py-2 text-sm text-gray-700 hover:text-primary transition-colors duration-200"
+                      onClick={toggleMenu}
+                    >
+                      India Franchise Leads
+                    </Link>
+                    <Link
+                      to="/franchise-leads-kuwait"
+                      className="block px-6 py-2 text-sm text-gray-700 hover:text-primary transition-colors duration-200"
+                      onClick={toggleMenu}
+                    >
+                      Kuwait Franchise Leads
+                    </Link>
+                  </div>
                   <Link
                     to="/about"
                     className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary transition-colors duration-200"
@@ -245,14 +295,17 @@ const Navigation = () => {
               >
                 Contact Us
               </Link>
-              <div className="px-3 py-2 space-y-2">
+              <div className="px-3 py-2 space-y-2 border-t border-gray-100 mt-2">
                 <Button variant="outline" className="w-full border-gray-300 text-gray-700">
                   <Phone className="w-4 h-4 mr-2" />
                   (+1) 3215159932
                 </Button>
                 <Button 
                   className="w-full bg-primary hover:bg-primary/90 text-white"
-                  onClick={() => window.open('https://calendly.com/som832707/book-an-1-1consualtation', '_blank')}
+                  onClick={() => {
+                    window.open('https://calendly.com/som832707/book-an-1-1consualtation', '_blank');
+                    toggleMenu();
+                  }}
                 >
                   Let's talk
                 </Button>
