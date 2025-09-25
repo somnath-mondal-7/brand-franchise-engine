@@ -122,6 +122,6 @@
   animation: scroll 20s linear infinite;
 }
 
-.animate-infinite-scroll {
+.animate-marquee {
   animation: infinite-scroll 15s linear infinite;
 }

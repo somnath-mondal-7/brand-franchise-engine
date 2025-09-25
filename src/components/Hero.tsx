@@ -5,7 +5,7 @@ import logo2 from "@/assets/clients/logo2.png";
 import logo3 from "@/assets/clients/logo3.png";
 import logo4 from "@/assets/clients/logo4.png";
 import logo5 from "@/assets/clients/logo5.png";
-import LogoProcessor from "@/components/LogoProcessor";
+
 import avatar1 from "@/assets/clients/avatars/avatar1.jpg";
 import avatar2 from "@/assets/clients/avatars/avatar2.jpg";
 import avatar3 from "@/assets/clients/avatars/avatar3.jpg";
@@ -147,7 +147,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <LogoProcessor />
+      
     </section>
   );
 };
