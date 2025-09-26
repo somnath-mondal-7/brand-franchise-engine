@@ -10,6 +10,7 @@ import Services from "./pages/Services";
 import DigitalMarketing from "./pages/DigitalMarketing";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import BlogAdmin from "./pages/BlogAdmin";
 import Testimonials from "./pages/Testimonials";
 import Contact from "./pages/Contact";
 import FranchiseLeadsUSA from "./pages/FranchiseLeadsUSA";
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/franchise-leads-kuwait" element={<FranchiseLeadsKuwait />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/admin/blog" element={<BlogAdmin />} />
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/legal-terms/privacy-policy" element={<PrivacyPolicy />} />
