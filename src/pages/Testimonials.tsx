@@ -184,7 +184,7 @@ const Testimonials = () => {
                     </video>
                   </div>
                   <CardContent className="p-5">
-                    <h4 className="text-base font-bold text-foreground">{video.name}</h4>
+                    <h3 className="text-base font-bold text-foreground">{video.name}</h3>
                     <p className="text-xs text-muted-foreground mt-0.5">{video.title}</p>
                   </CardContent>
                 </Card>
