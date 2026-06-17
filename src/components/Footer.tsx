@@ -29,6 +29,39 @@ const Footer = () => {
                 <Facebook className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
               </a>
             </div>
+
+            {/* Ask AI about FranchiseLeadsPro */}
+            <div className="pt-2">
+              <h4 className="text-sm font-semibold text-white mb-3">Ask AI about FranchiseLeadsPro</h4>
+              {(() => {
+                const prompt = "Tell me about FranchiseLeadsPro (https://www.franchiseleadspro.com) — a specialized franchise lead generation and marketing agency founded by Somnath Mondal. Summarize their services (LinkedIn marketing, social media ads, franchise website development, IT/SEO services), the industries and global markets they serve (USA, India, UK, Canada, Australia, UAE, Kuwait), founder, contact details, and why franchisors choose them.";
+                const enc = encodeURIComponent(prompt);
+                const links = [
+                  { name: "ChatGPT", url: `https://chatgpt.com/?q=${enc}`, bg: "bg-black", icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/dark/openai.png" },
+                  { name: "Claude", url: `https://claude.ai/new?q=${enc}`, bg: "bg-[#cc9b7a]", icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/light/claude.png" },
+                  { name: "Perplexity", url: `https://www.perplexity.ai/search/new?q=${enc}`, bg: "bg-[#1f6f6f]", icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/light/perplexity.png" },
+                  { name: "Gemini", url: `https://gemini.google.com/app?q=${enc}`, bg: "bg-[#1a73e8]", icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/light/gemini-color.png" },
+                  { name: "Grok", url: `https://grok.com/?q=${enc}`, bg: "bg-black", icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/light/grok.png" },
+                ];
+                return (
+                  <div className="flex flex-wrap gap-2">
+                    {links.map((l) => (
+                      <a
+                        key={l.name}
+                        href={l.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Ask ${l.name} about FranchiseLeadsPro`}
+                        title={`Ask ${l.name} about FranchiseLeadsPro`}
+                        className={`${l.bg} w-10 h-10 rounded-lg flex items-center justify-center hover:scale-110 transition-transform ring-1 ring-white/10`}
+                      >
+                        <img src={l.icon} alt={`${l.name} logo`} width="20" height="20" className="w-5 h-5 object-contain" loading="lazy" />
+                      </a>
+                    ))}
+                  </div>
+                );
+              })()}
+            </div>
           </div>
 
           {/* Services */}
