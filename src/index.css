@@ -4,62 +4,68 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 15%;
+    /* ============================================================
+       GLOBAL BRAND PALETTE — Deep Maroon + Warm Gold
+       Classy, legacy, trust-driven. Single source of truth site-wide.
+       ============================================================ */
+    --background: 30 25% 97%;            /* Warm cream */
+    --foreground: 340 20% 15%;           /* Deep charcoal-plum */
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 15%;
+    --card-foreground: 340 20% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 15%;
-    --primary: 225 100% 67%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 0 0% 15%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 220 14% 96%;
-    --accent-foreground: 0 0% 15%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 225 100% 67%;
-    --radius: 0.75rem;
+    --popover-foreground: 340 20% 15%;
 
-    /* Trust & Integrity Color Palette - Orange Primary */
-    --primary: 25 95% 58%;  /* Vibrant Orange Primary */
-    --primary-light: 25 95% 70%;
-    --primary-dark: 25 95% 45%;
-    --accent: 220 91% 54%;  /* Trustworthy Blue as accent */
-    --accent-light: 220 91% 65%;
-    --accent-dark: 220 91% 45%;
-    
-    /* Brand Colors */
-    --brand-blue: 220 91% 54%;
-    --brand-blue-light: 220 91% 65%;
-    --brand-blue-dark: 220 91% 45%;
-    --brand-orange: 25 95% 58%;
-    --brand-orange-light: 25 95% 70%;
-    --brand-orange-dark: 25 95% 45%;
-    --brand-navy: 215 25% 27%;
-    --brand-gray: 0 0% 45%;
-    --brand-light: 220 14% 96%;
+    --primary: 350 55% 28%;              /* Deep maroon — main brand */
+    --primary-foreground: 40 40% 96%;
+    --primary-light: 350 48% 38%;
+    --primary-dark: 350 60% 20%;
 
-    /* Gradients - Orange primary with blue accents */
-    --gradient-primary: linear-gradient(135deg, hsl(25 95% 58%), hsl(25 95% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(25 95% 58%) 0%, hsl(25 95% 70%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 14% 98%) 100%);
-    --gradient-trust: linear-gradient(90deg, hsl(25 95% 58%) 0%, hsl(25 95% 65%) 50%, hsl(25 95% 70%) 100%);
-    --gradient-warm: linear-gradient(135deg, hsl(25 95% 58%) 0%, hsl(25 95% 70%) 100%);
-    --gradient-cool: linear-gradient(135deg, hsl(220 91% 54%) 0%, hsl(220 91% 65%) 100%);
+    --secondary: 35 30% 96%;
+    --secondary-foreground: 350 55% 28%;
+    --muted: 30 18% 94%;
+    --muted-foreground: 340 10% 40%;
 
-    /* Shadows with orange primary */
-    --shadow-elegant: 0 20px 25px -5px hsl(25 95% 58% / 0.15), 0 10px 10px -5px hsl(25 95% 58% / 0.08);
-    --shadow-card: 0 4px 6px -1px hsl(25 95% 58% / 0.1), 0 2px 4px -1px hsl(25 95% 58% / 0.06);
-    --shadow-hover: 0 25px 50px -12px hsl(25 95% 58% / 0.25);
-    --shadow-orange: 0 10px 25px -5px hsl(25 95% 58% / 0.2);
-    --shadow-blue: 0 10px 25px -5px hsl(220 91% 54% / 0.2);
+    --accent: 40 65% 52%;                /* Warm muted gold — trust/legacy */
+    --accent-foreground: 350 55% 12%;
+    --accent-light: 40 70% 62%;
+    --accent-dark: 40 60% 42%;
 
-    /* Transitions */
+    --destructive: 0 72% 42%;
+    --destructive-foreground: 40 40% 96%;
+
+    --border: 30 15% 88%;
+    --input: 30 15% 88%;
+    --ring: 40 65% 52%;
+    --radius: 0.5rem;
+
+    /* Brand tokens (legacy names kept; remapped to maroon/gold so no
+       component breaks. Any leftover "orange"/"blue" classes now render
+       on-brand maroon/gold automatically.) */
+    --brand-navy: 350 55% 22%;
+    --brand-gray: 340 10% 40%;
+    --brand-light: 35 30% 96%;
+    --brand-orange: 350 55% 28%;          /* mapped → maroon */
+    --brand-orange-light: 350 48% 38%;
+    --brand-orange-dark: 350 60% 20%;
+    --brand-blue: 40 65% 52%;             /* mapped → gold */
+    --brand-blue-light: 40 70% 62%;
+    --brand-blue-dark: 40 60% 42%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(350 55% 28%), hsl(350 48% 38%));
+    --gradient-hero: linear-gradient(135deg, hsl(350 60% 20%) 0%, hsl(350 50% 30%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(30 18% 96%) 100%);
+    --gradient-trust: linear-gradient(90deg, hsl(350 55% 28%) 0%, hsl(40 65% 52%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(40 65% 52%) 0%, hsl(40 70% 62%) 100%);
+    --gradient-cool: linear-gradient(135deg, hsl(350 55% 28%) 0%, hsl(350 45% 35%) 100%);
+
+    /* Shadows */
+    --shadow-elegant: 0 18px 38px -14px hsl(350 55% 28% / 0.22), 0 6px 14px -6px hsl(350 55% 28% / 0.10);
+    --shadow-card: 0 4px 14px -6px hsl(350 55% 28% / 0.10);
+    --shadow-hover: 0 26px 48px -16px hsl(350 55% 28% / 0.28);
+    --shadow-orange: 0 10px 25px -5px hsl(350 55% 28% / 0.20);
+    --shadow-blue: 0 10px 25px -5px hsl(40 65% 52% / 0.25);
+
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }

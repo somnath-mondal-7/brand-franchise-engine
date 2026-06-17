@@ -122,8 +122,8 @@ const PrivacyPolicy = () => {
           <section>
             <h2 className="text-2xl font-semibold mb-3">8. International Data Transfers</h2>
             <p>
-              FranchiseLeadsPro is registered in India and serves clients globally (USA, UK, Canada,
-              Australia, UAE, Kuwait, India and others). Your data may be processed in countries
+              FranchiseLeadsPro serves clients globally (USA, UK, Canada,
+              Australia, UAE and India). Your data may be processed in countries
               outside your own. Wherever data is stored, we apply the same level of protection
               described in this policy.
             </p>

@@ -125,15 +125,6 @@ const countryInsights: Record<string, RegionInsight> = {
     demographicHighlight: "9.9 million residents with 88% expatriate population. High disposable income and cosmopolitan consumer base drive demand for international brand franchises.",
     growthTrend: "UAE franchise sector is growing at 27% annually. Expo legacy development zones and new residential communities create continuous expansion opportunities."
   },
-  KW: {
-    economyDescription: "Kuwait's $180 billion economy is oil-driven but actively diversifying. The government's New Kuwait 2035 vision emphasizes private sector growth and SME development.",
-    franchiseClimate: "Kuwait's franchise market is growing rapidly with approximately 300 franchise brands operating. The government actively supports franchise investment as part of economic diversification.",
-    topIndustries: ["Food & beverage", "Retail", "Education", "Health & fitness", "Automotive", "Personal services"],
-    investmentRange: "KWD 20K – 500K ($65K – $1.6M) depending on concept",
-    regulatoryNote: "Kuwait's Commercial Law governs franchise relationships. Foreign franchisors typically need a local Kuwaiti partner or agent, though free trade zone exceptions exist.",
-    demographicHighlight: "4.3 million residents with 70% under age 40. High GDP per capita ($33,000) and strong consumer spending drive premium franchise demand.",
-    growthTrend: "Kuwait's franchise market is projected to grow 15% annually through 2030 as Vision 2035 economic diversification creates new commercial zones and retail destinations."
-  },
 };
 
 // Generate unique content for a specific location

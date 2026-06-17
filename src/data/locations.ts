@@ -1211,23 +1211,6 @@ export const locationData: LocationData[] = [
       },
     ]
   },
-  {
-    country: "Kuwait",
-    countryCode: "KW",
-    states: [
-      {
-        name: "Kuwait City",
-        slug: "kuwait-city",
-        cities: [
-          { name: "Kuwait City", slug: "kuwait-city-main", population: 60000 },
-          { name: "Salmiya", slug: "salmiya", population: 170000 },
-          { name: "Hawalli", slug: "hawalli", population: 164212 },
-          { name: "Farwaniya", slug: "farwaniya", population: 235000 },
-          { name: "Ahmadi", slug: "ahmadi", population: 637000 },
-        ]
-      },
-    ]
-  },
 ];
 
 // Core service keywords (comprehensive franchise consulting services)

@@ -176,8 +176,8 @@ Ontario, British Columbia, Quebec, Alberta: Toronto, Vancouver, Montreal, Calgar
 ### Australia
 All states and territories: Sydney, Melbourne, Brisbane, Perth, Adelaide, Gold Coast, Canberra, and more.
 
-### UAE & Middle East
-Dubai, Abu Dhabi, Sharjah, Kuwait City, and surrounding areas.
+### UAE
+Dubai, Abu Dhabi, Sharjah, and surrounding areas.
 
 ---
 
@@ -199,7 +199,7 @@ A: Yes. We provide custom website development, mobile app development, SEO, IT o
 A: We offer custom pricing based on your specific needs. Contact us for a free consultation at https://calendly.com/lets-build-your-brand
 
 **Q: Do you work internationally?**
-A: Yes. We serve franchise brands in the USA, India, UK, Canada, Australia, UAE, Kuwait, and other markets worldwide.
+A: Yes. We serve franchise brands across the USA, UK, Canada, Australia, UAE/Dubai and India.
 
 **Q: How quickly can I expect results?**
 A: Most clients receive their first qualified franchise leads within 30 days. Website development projects typically launch within 2-4 weeks.

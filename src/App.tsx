@@ -25,7 +25,7 @@ import FranchiseLeadsCanada from "./pages/FranchiseLeadsCanada";
 import FranchiseLeadsAustralia from "./pages/FranchiseLeadsAustralia";
 import FranchiseLeadsDubai from "./pages/FranchiseLeadsDubai";
 import FranchiseLeadsIndia from "./pages/FranchiseLeadsIndia";
-import FranchiseLeadsKuwait from "./pages/FranchiseLeadsKuwait";
+
 import BuyFranchiseLeads from "./pages/BuyFranchiseLeads";
 import LocationPage from "./pages/LocationPage";
 import KeywordPage from "./pages/KeywordPage";
@@ -80,7 +80,7 @@ const App = () => (
           <Route path="/franchise-leads-australia" element={<FranchiseLeadsAustralia />} />
           <Route path="/franchise-leads-dubai" element={<FranchiseLeadsDubai />} />
           <Route path="/franchise-leads-india" element={<FranchiseLeadsIndia />} />
-          <Route path="/franchise-leads-kuwait" element={<FranchiseLeadsKuwait />} />
+          
           <Route path="/buy-franchise-leads" element={<BuyFranchiseLeads />} />
             {/* Dynamic Location Routes */}
             <Route path="/locations/:country" element={<CountryLocationPage />} />
