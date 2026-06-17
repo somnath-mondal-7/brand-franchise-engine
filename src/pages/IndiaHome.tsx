@@ -68,7 +68,7 @@ const IndiaHome = () => {
             "name": "FranchiseLeadsPro",
             "areaServed": "US",
             "url": "https://www.franchiseleadspro.com/",
-            "slogan": "$1 Franchise Lead Generation",
+            "slogan": "Franchise Lead Generation",
             "serviceType": [
               "Franchise Lead Generation in USA",
               "LinkedIn Marketing for U.S. Franchisors",
