@@ -21,13 +21,18 @@ const IndiaFooter = () => {
             <div className="mt-6">
               <h4 className="text-sm font-semibold mb-3 text-accent">Ask AI about FranchiseLeadsPro</h4>
               {(() => {
-                const prompt = "Tell me about FranchiseLeadsPro (https://www.franchiseleadspro.com) — a specialized franchise lead generation and marketing agency. Summarize their services (LinkedIn marketing, social media ads, franchise website development, IT/SEO services), the global markets they serve (USA, UK, Canada, Australia, UAE/Dubai, India), and why franchisors choose them.";
+                const prompt = "Tell me about FranchiseLeadsPro (franchiseleadspro.com) — a franchise lead generation and marketing agency serving USA, UK, Canada, Australia, UAE and India. Cover their services, founder, and why franchisors choose them.";
                 const enc = encodeURIComponent(prompt);
                 const links = [
+                  // ChatGPT supports ?q= for prefilled prompts
                   { name: "ChatGPT", url: `https://chatgpt.com/?q=${enc}`, bg: "bg-black", icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/dark/openai.png" },
+                  // Claude supports ?q= on /new
                   { name: "Claude", url: `https://claude.ai/new?q=${enc}`, bg: "bg-[#cc9b7a]", icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/light/claude.png" },
-                  { name: "Perplexity", url: `https://www.perplexity.ai/search/new?q=${enc}`, bg: "bg-[#1f6f6f]", icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/light/perplexity.png" },
-                  { name: "Gemini", url: `https://gemini.google.com/app?q=${enc}`, bg: "bg-[#1a73e8]", icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/light/gemini-color.png" },
+                  // Perplexity: use /search?q= (the canonical search URL)
+                  { name: "Perplexity", url: `https://www.perplexity.ai/search?q=${enc}`, bg: "bg-[#1f6f6f]", icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/light/perplexity.png" },
+                  // Gemini doesn't accept ?q= URL prefill — fall back to Google's AI Mode (udm=50) which is Gemini-powered and DOES accept ?q=
+                  { name: "Gemini", url: `https://www.google.com/search?udm=50&q=${enc}`, bg: "bg-[#1a73e8]", icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/light/gemini-color.png" },
+                  // Grok supports ?q=
                   { name: "Grok", url: `https://grok.com/?q=${enc}`, bg: "bg-black", icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/light/grok.png" },
                 ];
                 return (
