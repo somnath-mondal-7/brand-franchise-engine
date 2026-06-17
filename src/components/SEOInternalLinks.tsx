@@ -42,7 +42,7 @@ const columns = [
       { label: "Canada", href: "/franchise-leads-canada" },
       { label: "Australia", href: "/franchise-leads-australia" },
       { label: "Dubai & UAE", href: "/franchise-leads-dubai" },
-      { label: "Kuwait", href: "/franchise-leads-kuwait" },
+      
       { label: "Buy Franchise Leads", href: "/buy-franchise-leads" },
     ],
   },

@@ -34,7 +34,7 @@ const Footer = () => {
             <div className="pt-2">
               <h4 className="text-sm font-semibold text-white mb-3">Ask AI about FranchiseLeadsPro</h4>
               {(() => {
-                const prompt = "Tell me about FranchiseLeadsPro (https://www.franchiseleadspro.com) — a specialized franchise lead generation and marketing agency founded by Somnath Mondal. Summarize their services (LinkedIn marketing, social media ads, franchise website development, IT/SEO services), the industries and global markets they serve (USA, India, UK, Canada, Australia, UAE, Kuwait), founder, contact details, and why franchisors choose them.";
+                const prompt = "Tell me about FranchiseLeadsPro (https://www.franchiseleadspro.com) — a specialized franchise lead generation and marketing agency. Summarize their services (LinkedIn marketing, social media ads, franchise website development, IT/SEO services), the industries and global markets they serve (USA, UK, Canada, Australia, UAE/Dubai, India), and why franchisors choose them.";
                 const enc = encodeURIComponent(prompt);
                 const links = [
                   { name: "ChatGPT", url: `https://chatgpt.com/?q=${enc}`, bg: "bg-black", icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/dark/openai.png" },

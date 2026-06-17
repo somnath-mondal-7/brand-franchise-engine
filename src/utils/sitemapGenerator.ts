@@ -154,12 +154,6 @@ export const generateSitemapXml = (): string => {
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>${DOMAIN}/franchise-leads-kuwait</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>${DOMAIN}/buy-franchise-leads</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>

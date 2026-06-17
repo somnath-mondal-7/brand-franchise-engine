@@ -69,7 +69,7 @@ const Sitemap = () => {
                 <a href="/franchise-leads-canada" className="text-primary hover:underline">Franchise Leads Canada</a>
                 <a href="/franchise-leads-australia" className="text-primary hover:underline">Franchise Leads Australia</a>
                 <a href="/franchise-leads-dubai" className="text-primary hover:underline">Franchise Leads Dubai</a>
-                <a href="/franchise-leads-kuwait" className="text-primary hover:underline">Franchise Leads Kuwait</a>
+                
               </div>
             </div>
           </div>

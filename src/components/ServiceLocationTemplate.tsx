@@ -272,8 +272,6 @@ export const ServiceLocationTemplate = ({
       return `Australia's franchise industry is well-regulated under the Franchising Code of Conduct, providing a stable environment for franchise growth.${populationText} of ${location} offers access to a high-spending consumer market. Our ${service} campaigns are designed for Australian market dynamics and ACCC compliance.`;
     } else if (countryCode === "AE") {
       return `The UAE franchise market is rapidly expanding, driven by a cosmopolitan population and business-friendly free zones.${populationText} of ${location} offers premium positioning in the Middle Eastern market. Our ${service} strategies account for cultural nuances, RERA regulations, and the region's unique investor profiles.`;
-    } else if (countryCode === "KW") {
-      return `Kuwait's growing economy and young population create strong demand for franchise concepts.${populationText} of ${location} offers access to a high-income consumer base in the GCC region. Our ${service} approach is tailored to Kuwaiti business culture, MOC requirements, and regional market trends.`;
     }
     return `${location} offers growing opportunities in the franchise sector with increasing investor interest and consumer demand.${populationText} provides a strong base for ${service} campaigns. Our data-driven approach ensures your franchise reaches the right prospects in this market.`;
   };

@@ -170,8 +170,8 @@ const FranchiseLeadsDubai = () => {
               </div>
               
               <div className="bg-white p-6 rounded-xl shadow-card text-center">
-                <h3 className="text-lg font-semibold mb-2">Middle East Region</h3>
-                <p className="text-gray-600 text-sm">Qatar, Bahrain, Kuwait, Saudi Arabia</p>
+                <h3 className="text-lg font-semibold mb-2">GCC Region</h3>
+                <p className="text-gray-600 text-sm">Cross-border franchise expansion across the Gulf</p>
               </div>
             </div>
           </div>

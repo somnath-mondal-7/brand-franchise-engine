@@ -38,8 +38,8 @@ const TermsOfService = () => {
             <p>
               FranchiseLeadsPro is a B2B franchise marketing and lead generation consultancy
               registered in India. We provide services to franchise brands, franchisors,
-              consultants, brokers and emerging franchise concepts across India, USA, UK, Canada,
-              Australia, the UAE, Kuwait and other markets.
+              consultants, brokers and emerging franchise concepts across the USA, UK, Canada,
+              Australia, the UAE and India.
             </p>
           </section>
 
