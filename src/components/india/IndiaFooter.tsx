@@ -45,10 +45,10 @@ const IndiaFooter = () => {
                     bg: "bg-[#1f6f6f]",
                     icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/light/perplexity.png",
                   },
-                  // Gemini: app URL ignores ?q=. Fallback to a plain Google search — user can tap "AI Mode" once there.
+                  // Gemini: use Google AI Mode with udm=50 + aep=11 (auto-submits into Gemini-powered AI Mode, the same trick SalesBlink uses)
                   {
                     name: "Gemini",
-                    url: `https://www.google.com/search?q=${enc("FranchiseLeadsPro franchiseleadspro.com franchise lead generation agency")}`,
+                    url: `https://www.google.com/search?udm=50&aep=11&q=${enc("Tell me about FranchiseLeadsPro (franchiseleadspro.com) — a franchise lead generation and marketing agency. Cover their services, markets (USA, UK, Canada, Australia, UAE, India), and founder.")}`,
                     bg: "bg-[#1a73e8]",
                     icon: "https://cdn.jsdelivr.net/gh/lobehub/lobe-icons/packages/static-png/light/gemini-color.png",
                   },
