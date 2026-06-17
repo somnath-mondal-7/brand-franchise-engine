@@ -68,13 +68,15 @@ const Index = () => {
 
       <IndiaNav />
       <SEOBreadcrumbs />
-      <Hero />
-      <PortfolioSection />
-      <TestimonialsSection />
-      <CaseStudiesSection />
-      <PricingSection />
-      <SEOInternalLinks />
-      <FinalCTASection />
+      <main>
+        <Hero />
+        <PortfolioSection />
+        <TestimonialsSection />
+        <CaseStudiesSection />
+        <PricingSection />
+        <SEOInternalLinks />
+        <FinalCTASection />
+      </main>
       <IndiaFooter />
     </div>
   );
