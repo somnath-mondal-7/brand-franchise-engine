@@ -13,6 +13,10 @@ const PrivacyPolicy = () => {
           content="Detailed Privacy Policy for FranchiseLeadsPro — how we collect, store, use, share and protect your personal and business information."
         />
         <link rel="canonical" href="https://www.franchiseleadspro.com/legal-terms/privacy-policy" />
+        <meta property="og:title" content="Privacy Policy | FranchiseLeadsPro" />
+        <meta property="og:description" content="How FranchiseLeadsPro collects, stores, uses, shares and protects your personal and business information." />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/legal-terms/privacy-policy" />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       <IndiaNav />

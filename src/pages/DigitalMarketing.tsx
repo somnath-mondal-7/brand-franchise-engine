@@ -63,10 +63,29 @@ const DigitalMarketing = () => {
   return (
     <>
       <Helmet>
-        <title>Digital Marketing Services for Franchises | PPC, SEO, Social Media | FranchiseLeadsPro</title>
-        <meta name="description" content="Full-service digital marketing for franchise brands. PPC advertising, SEO, social media marketing, content marketing, and AI-powered automation. Drive franchise growth with data-driven strategies." />
+        <title>Franchise Digital Marketing: PPC, SEO & Social | FranchiseLeadsPro</title>
+        <meta name="description" content="Digital marketing for franchise brands — PPC, SEO, social media, web design, and AI automation built to drive franchise growth." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/digital-marketing" />
         <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Franchise Digital Marketing: PPC, SEO & Social | FranchiseLeadsPro" />
+        <meta property="og:description" content="PPC, SEO, social media, web design, and AI automation built to drive franchise growth." />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/digital-marketing" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Franchise Digital Marketing Services",
+            "description": "PPC, SEO, social media, website development, and AI automation for franchise brands.",
+            "serviceType": "Digital Marketing",
+            "provider": {
+              "@type": "Organization",
+              "name": "FranchiseLeadsPro",
+              "url": "https://www.franchiseleadspro.com"
+            },
+            "areaServed": ["United States", "United Kingdom", "Canada", "Australia", "United Arab Emirates", "India"]
+          })}
+        </script>
       </Helmet>
       <IndiaNav />
       <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-sky-100">
@@ -167,7 +186,7 @@ const DigitalMarketing = () => {
                         className="w-full border-orange-300 text-orange-600 hover:bg-orange-50 group-hover:border-blue-400 group-hover:text-blue-600 transition-all duration-300"
                         onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
                       >
-                        Learn More
+                        View Service Details
                         <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </div>

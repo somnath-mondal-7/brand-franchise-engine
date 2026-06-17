@@ -184,7 +184,7 @@ const Testimonials = () => {
                     </video>
                   </div>
                   <CardContent className="p-5">
-                    <h4 className="text-base font-bold text-foreground">{video.name}</h4>
+                    <h3 className="text-base font-bold text-foreground">{video.name}</h3>
                     <p className="text-xs text-muted-foreground mt-0.5">{video.title}</p>
                   </CardContent>
                 </Card>
@@ -229,9 +229,9 @@ const Testimonials = () => {
                     <div className="border-t border-border pt-6">
                       <div className="flex items-start justify-between">
                         <div>
-                          <h4 className="font-semibold text-brand-navy group-hover:text-primary transition-colors">
+                          <h3 className="font-semibold text-brand-navy group-hover:text-primary transition-colors">
                             {testimonial.name}
-                          </h4>
+                          </h3>
                           <p className="text-sm text-brand-gray">{testimonial.title}</p>
                           <p className="text-sm font-medium text-primary">{testimonial.company}</p>
                         </div>
@@ -267,7 +267,7 @@ const Testimonials = () => {
                 </p>
                 <Link to="/services">
                   <Button variant="outline" className="hover:bg-primary hover:text-white">
-                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                    View Lead Generation Services <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </Card>
@@ -279,7 +279,7 @@ const Testimonials = () => {
                 </p>
                 <Link to="/services">
                   <Button variant="outline" className="hover:bg-primary hover:text-white">
-                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                    View Brand Building Services <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </Card>

@@ -75,6 +75,21 @@ const Services = () => {
         <meta property="og:description" content="LinkedIn marketing, paid + organic social campaigns, and high-converting franchise website development." />
         <meta property="og:url" content="https://www.franchiseleadspro.com/services" />
         <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Franchise Marketing Services",
+            "description": "LinkedIn marketing, paid + organic social campaigns, and high-converting franchise website development for franchisors and consultants.",
+            "serviceType": "Franchise Marketing",
+            "provider": {
+              "@type": "Organization",
+              "name": "FranchiseLeadsPro",
+              "url": "https://www.franchiseleadspro.com"
+            },
+            "areaServed": ["United States", "United Kingdom", "Canada", "Australia", "United Arab Emirates", "India"]
+          })}
+        </script>
       </Helmet>
       <div className="min-h-screen bg-background">
         <IndiaNav />

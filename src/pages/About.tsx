@@ -23,6 +23,20 @@ const About = () => {
         <meta property="og:description" content="A franchise-only growth partner helping Indian and US franchisors attract qualified investors and scale faster." />
         <meta property="og:url" content="https://www.franchiseleadspro.com/about" />
         <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "About FranchiseLeadsPro",
+            "url": "https://www.franchiseleadspro.com/about",
+            "description": "A franchise-only growth partner helping Indian and US franchisors attract qualified investors and scale faster.",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "FranchiseLeadsPro",
+              "url": "https://www.franchiseleadspro.com"
+            }
+          })}
+        </script>
       </Helmet>
 
       <IndiaNav />

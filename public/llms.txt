@@ -73,14 +73,28 @@ FranchiseLeadsPro is a specialized marketing and technology agency serving the g
 - Contact page: https://www.franchiseleadspro.com/contact
 - Services: https://www.franchiseleadspro.com/services
 
-## Links
-- Home: https://www.franchiseleadspro.com/
-- About: https://www.franchiseleadspro.com/about
-- Services: https://www.franchiseleadspro.com/services
-- Blog: https://www.franchiseleadspro.com/blog
-- Testimonials: https://www.franchiseleadspro.com/testimonials
-- Franchise Leads USA: https://www.franchiseleadspro.com/franchise-leads-usa
-- Franchise Leads India: https://www.franchiseleadspro.com/franchise-leads-india
-- Franchise Leads UK: https://www.franchiseleadspro.com/franchise-leads-uk
-- Buy Franchise Leads: https://www.franchiseleadspro.com/buy-franchise-leads
-- Full details: https://www.franchiseleadspro.com/llms-full.txt
+## Pages
+
+- [Home](/): Franchise lead generation and marketing agency homepage.
+- [About](/about): Who we are and how we help franchise brands grow.
+- [Services](/services): LinkedIn marketing, social ads, and franchise website development.
+- [Digital Marketing](/digital-marketing): PPC, SEO, social, and AI automation for franchises.
+- [Franchise Marketing](/franchise-marketing): Franchise-specific marketing strategies and case studies.
+- [Buy Franchise Leads](/buy-franchise-leads): Pricing and packages for qualified franchise leads.
+- [Testimonials](/testimonials): Client success stories and video reviews.
+- [Case Studies](/case-studies): Detailed franchise growth case studies.
+- [Blog](/blog): Articles on franchise marketing, lead generation, and growth.
+- [Contact](/contact): Book a free consultation or reach our team.
+
+## Locations
+
+- [Franchise Leads USA](/franchise-leads-usa): Lead generation for U.S. franchisors.
+- [Franchise Leads UK](/franchise-leads-uk): Lead generation for U.K. franchisors.
+- [Franchise Leads Canada](/franchise-leads-canada): Lead generation for Canadian franchisors.
+- [Franchise Leads Australia](/franchise-leads-australia): Lead generation for Australian franchisors.
+- [Franchise Leads Dubai](/franchise-leads-dubai): Lead generation across UAE.
+- [Franchise Leads India](/franchise-leads-india): Lead generation for Indian franchisors.
+
+## Optional
+
+- [Full details](/llms-full.txt): Long-form site summary for AI assistants.
