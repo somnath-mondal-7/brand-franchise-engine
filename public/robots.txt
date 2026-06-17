@@ -66,7 +66,7 @@ Allow: /franchise-leads-canada
 Allow: /franchise-leads-australia
 Allow: /franchise-leads-dubai
 Allow: /franchise-leads-india
-Allow: /franchise-leads-kuwait
+
 Allow: /buy-franchise-leads
 Allow: /blog
 Allow: /services
