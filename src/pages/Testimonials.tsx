@@ -267,7 +267,7 @@ const Testimonials = () => {
                 </p>
                 <Link to="/services">
                   <Button variant="outline" className="hover:bg-primary hover:text-white">
-                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                    View Lead Generation Services <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </Card>
