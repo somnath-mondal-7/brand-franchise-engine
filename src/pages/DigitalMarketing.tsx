@@ -186,7 +186,7 @@ const DigitalMarketing = () => {
                         className="w-full border-orange-300 text-orange-600 hover:bg-orange-50 group-hover:border-blue-400 group-hover:text-blue-600 transition-all duration-300"
                         onClick={() => window.open('https://calendly.com/lets-build-your-brand', '_blank')}
                       >
-                        Learn More
+                        View Service Details
                         <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </div>
