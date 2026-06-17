@@ -229,9 +229,9 @@ const Testimonials = () => {
                     <div className="border-t border-border pt-6">
                       <div className="flex items-start justify-between">
                         <div>
-                          <h4 className="font-semibold text-brand-navy group-hover:text-primary transition-colors">
+                          <h3 className="font-semibold text-brand-navy group-hover:text-primary transition-colors">
                             {testimonial.name}
-                          </h4>
+                          </h3>
                           <p className="text-sm text-brand-gray">{testimonial.title}</p>
                           <p className="text-sm font-medium text-primary">{testimonial.company}</p>
                         </div>
