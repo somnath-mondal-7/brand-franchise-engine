@@ -54,9 +54,13 @@ const IndiaHome = () => {
   return (
     <div className="india-theme min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>$1 Franchise Lead Generation in USA | FranchiseLeadsPro</title>
+        <title>Franchise Lead Generation in USA | FranchiseLeadsPro</title>
         <meta name="description" content="America's franchise growth partner. LinkedIn, social media and website-driven franchise lead generation for U.S. franchisors. Book a free consultation." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/" />
+        <meta property="og:title" content="Franchise Lead Generation in USA | FranchiseLeadsPro" />
+        <meta property="og:description" content="America's franchise growth partner — LinkedIn, social, and website-driven lead generation for U.S. franchisors." />
+        <meta property="og:url" content="https://www.franchiseleadspro.com/" />
+        <meta property="og:type" content="website" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
