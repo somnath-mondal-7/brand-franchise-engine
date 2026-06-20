@@ -148,11 +148,6 @@
 }
 
 
-  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
-  color: hsl(var(--foreground));
-  background: hsl(var(--background));
-  letter-spacing: -0.005em;
-}
 
 .india-theme .font-display {
   font-family: 'Playfair Display', 'Poppins', Georgia, serif;
