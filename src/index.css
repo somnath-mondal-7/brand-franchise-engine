@@ -117,30 +117,31 @@
   --muted: 42 18% 94%;
   --muted-foreground: 0 0% 38%;
 
-  --accent: 217 59% 15%;               /* #10213D deep navy */
+  --accent: 213 40% 30%;               /* #2E4A6B soft trust blue */
   --accent-foreground: 40 33% 97%;
-  --accent-light: 217 45% 25%;
-  --accent-dark: 217 65% 10%;
+  --accent-light: 213 35% 42%;
+  --accent-dark: 213 45% 22%;
 
   --border: 38 18% 88%;
   --input: 38 18% 88%;
   --ring: 22 64% 58%;
   --radius: 0.5rem;
 
-  --brand-navy: 217 59% 15%;
+  --brand-navy: 213 40% 30%;
   --brand-gray: 0 0% 38%;
   --brand-light: 42 18% 94%;
 
   --gradient-primary: linear-gradient(135deg, hsl(22 64% 58%), hsl(22 64% 68%));
   --gradient-hero: linear-gradient(135deg, hsl(40 33% 97%) 0%, hsl(42 18% 94%) 100%);
-  --gradient-trust: linear-gradient(90deg, hsl(217 59% 15%), hsl(22 64% 58%));
+  --gradient-trust: linear-gradient(90deg, hsl(213 40% 30%), hsl(22 64% 58%));
   --gradient-warm: linear-gradient(135deg, hsl(22 64% 58%), hsl(22 64% 68%));
-  --gradient-cool: linear-gradient(135deg, hsl(217 59% 15%), hsl(217 45% 25%));
+  --gradient-cool: linear-gradient(135deg, hsl(213 40% 30%), hsl(213 35% 42%));
   --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(40 33% 97%));
 
-  --shadow-elegant: 0 18px 40px -18px hsl(217 59% 15% / 0.18), 0 6px 14px -6px hsl(217 59% 15% / 0.08);
-  --shadow-card: 0 4px 14px -6px hsl(217 59% 15% / 0.08);
-  --shadow-hover: 0 26px 48px -20px hsl(217 59% 15% / 0.22);
+  --shadow-elegant: 0 18px 40px -18px hsl(213 40% 30% / 0.18), 0 6px 14px -6px hsl(213 40% 30% / 0.08);
+  --shadow-card: 0 4px 14px -6px hsl(213 40% 30% / 0.08);
+  --shadow-hover: 0 26px 48px -20px hsl(213 40% 30% / 0.22);
+
 
   font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
   color: hsl(var(--foreground));
