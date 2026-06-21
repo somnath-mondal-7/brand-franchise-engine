@@ -42,7 +42,7 @@ const IndiaHome = () => {
         <Hero />
         <PressFeatures variant="strip" />
         <TestimonialsSection />
-        <PressFeatures />
+        <PressFeatures limit={2} showViewAll />
         <PhilosophyBlock />
         <FinalCTASection />
       </main>
