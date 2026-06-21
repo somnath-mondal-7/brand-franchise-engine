@@ -3,18 +3,6 @@ import { Link } from "react-router-dom";
 
 const features = [
   {
-    publication: "The Hindustan Wires",
-    headline:
-      "Building a New Era of Franchise Growth Through Marketing, Technology and Human Connections",
-    url: "https://thehindustanwires.com/somnath-mondal-building-a-new-era-of-franchise-growth-through-marketing-technology-and-human-connections/",
-  },
-  {
-    publication: "DailyHunt",
-    headline:
-      "Featured: The Founder Story Behind FranchiseLeadsPro's Premium Approach to Franchise Marketing",
-    url: "https://dhunt.in/14IvL0",
-  },
-  {
     publication: "The Entrepreneur Stories",
     headline:
       "Somnath Mondal: Building a New Era of Franchise Growth Through Marketing, Technology and Human Connections",
@@ -26,13 +14,27 @@ const features = [
       "Somnath Mondal: Building a New Era of Franchise Growth Through Marketing, Technology and Human Connections",
     url: "https://thebusinessstories.com/somnath-mondal-building-a-new-era-of-franchise-growth-through-marketing-technology-and-human-connections/",
   },
+  {
+    publication: "The Hindustan Wires",
+    headline:
+      "Building a New Era of Franchise Growth Through Marketing, Technology and Human Connections",
+    url: "https://thehindustanwires.com/somnath-mondal-building-a-new-era-of-franchise-growth-through-marketing-technology-and-human-connections/",
+  },
+  {
+    publication: "DailyHunt",
+    headline:
+      "Featured: The Founder Story Behind FranchiseLeadsPro's Premium Approach to Franchise Marketing",
+    url: "https://dhunt.in/14IvL0",
+  },
 ];
 
 interface PressFeaturesProps {
   variant?: "section" | "strip";
+  limit?: number;
+  showViewAll?: boolean;
 }
 
-const PressFeatures = ({ variant = "section" }: PressFeaturesProps) => {
+const PressFeatures = ({ variant = "section", limit, showViewAll = false }: PressFeaturesProps) => {
   if (variant === "strip") {
     return (
       <div className="border-y border-border bg-secondary/40">
