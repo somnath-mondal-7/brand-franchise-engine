@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram } from "lucide-react";
 
 const IndiaFooter = () => {
   return (
@@ -13,9 +13,39 @@ const IndiaFooter = () => {
               </span>
             </div>
             <p className="text-primary-foreground/80 max-w-md leading-relaxed">
-              America's end-to-end franchise consulting partner. From franchise strategy, documentation and FDD to marketing, lead generation and investor matchmaking — we handle the full franchise growth journey.
+              A premium franchise growth partner — quietly engineering qualified investor conversations for consultants and franchisors through marketing, technology and human connection.
             </p>
-            <p className="mt-6 text-xs uppercase tracking-[0.2em] text-accent/90">$1 Franchise Lead Generation</p>
+
+            {/* Social links */}
+            <div className="mt-6 flex items-center gap-3">
+              <a
+                href="https://www.linkedin.com/company/franchiseleadspro/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="FranchiseLeadsPro on LinkedIn"
+                className="w-10 h-10 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:border-accent hover:text-accent transition-colors"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.instagram.com/franchiseleadspro_company/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="FranchiseLeadsPro on Instagram"
+                className="w-10 h-10 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:border-accent hover:text-accent transition-colors"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.facebook.com/somnath.mondal.535492"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="FranchiseLeadsPro on Facebook"
+                className="w-10 h-10 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:border-accent hover:text-accent transition-colors"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+            </div>
 
             {/* Ask AI about FranchiseLeadsPro */}
             <div className="mt-6">
