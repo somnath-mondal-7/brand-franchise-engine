@@ -114,31 +114,12 @@ const IndiaFooter = () => {
           <div>
             <h4 className="font-display text-lg mb-4 text-accent">Explore</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li><Link to="/#solutions" className="hover:text-accent">Solutions</Link></li>
-              <li><Link to="/#pricing" className="hover:text-accent">Pricing</Link></li>
+              <li><Link to="/about" className="hover:text-accent">About</Link></li>
+              <li><Link to="/services" className="hover:text-accent">Services</Link></li>
               <li><Link to="/case-studies" className="hover:text-accent">Case Studies</Link></li>
               <li><Link to="/blog" className="hover:text-accent">Blog</Link></li>
-              <li>
-                <a
-                  href="https://thehindustanwires.com/somnath-mondal-building-a-new-era-of-franchise-growth-through-marketing-technology-and-human-connections/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-accent"
-                >
-                  Press: The Hindustan Wires
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://dhunt.in/14IvL0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-accent"
-                >
-                  Press: DailyHunt
-                </a>
-              </li>
-              <li><Link to="/" className="hover:text-accent">USA Operations</Link></li>
+              <li><Link to="/press" className="hover:text-accent">Press &amp; Media</Link></li>
+              <li><Link to="/contact" className="hover:text-accent">Contact Us</Link></li>
             </ul>
           </div>
 
