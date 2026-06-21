@@ -88,6 +88,26 @@ const IndiaFooter = () => {
               <li><Link to="/#pricing" className="hover:text-accent">Pricing</Link></li>
               <li><Link to="/case-studies" className="hover:text-accent">Case Studies</Link></li>
               <li><Link to="/blog" className="hover:text-accent">Blog</Link></li>
+              <li>
+                <a
+                  href="https://thehindustanwires.com/somnath-mondal-building-a-new-era-of-franchise-growth-through-marketing-technology-and-human-connections/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent"
+                >
+                  Press: The Hindustan Wires
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://dhunt.in/14IvL0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent"
+                >
+                  Press: DailyHunt
+                </a>
+              </li>
               <li><Link to="/" className="hover:text-accent">USA Operations</Link></li>
             </ul>
           </div>
