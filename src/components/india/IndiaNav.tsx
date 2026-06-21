@@ -7,6 +7,7 @@ const mainLinks = [
   { label: "Home", href: "/" },
   { label: "Features", href: "/features" },
   { label: "Case Studies", href: "/case-studies" },
+  { label: "Testimonials", href: "/testimonials" },
 ];
 
 const resources = [
