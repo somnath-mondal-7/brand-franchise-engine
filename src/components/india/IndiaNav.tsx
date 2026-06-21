@@ -6,9 +6,19 @@ import { Link } from "react-router-dom";
 const mainLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Features", href: "/features" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Testimonials", href: "/testimonials" },
+];
+
+const services = [
+  { label: "Digital Marketing", href: "/services", desc: "Full-funnel digital growth for franchise brands." },
+  { label: "Website & App Development", href: "/services", desc: "High-converting franchise sites and apps built to scale." },
+  { label: "Branding", href: "/services", desc: "Positioning and identity that earns investor trust." },
+  { label: "Lead Generation", href: "/services", desc: "Qualified franchise buyer leads on tap." },
+  { label: "SEO Services", href: "/services", desc: "Rank for the searches your investors actually make." },
+  { label: "PPC", href: "/services", desc: "Paid campaigns engineered for franchise ROI." },
+  { label: "AI & Automation", href: "/services", desc: "Automate outreach, follow-ups and lead nurturing." },
+  { label: "Features", href: "/features", desc: "Everything inside the FranchiseLeadsPro platform." },
 ];
 
 const resources = [
@@ -44,7 +54,10 @@ const IndiaNav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [resOpen, setResOpen] = useState(false);
   const [mobileResOpen, setMobileResOpen] = useState(false);
+  const [svcOpen, setSvcOpen] = useState(false);
+  const [mobileSvcOpen, setMobileSvcOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const svcCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -60,6 +73,14 @@ const IndiaNav = () => {
   const scheduleClose = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     closeTimer.current = setTimeout(() => setResOpen(false), 120);
+  };
+  const openSvc = () => {
+    if (svcCloseTimer.current) clearTimeout(svcCloseTimer.current);
+    setSvcOpen(true);
+  };
+  const scheduleSvcClose = () => {
+    if (svcCloseTimer.current) clearTimeout(svcCloseTimer.current);
+    svcCloseTimer.current = setTimeout(() => setSvcOpen(false), 120);
   };
 
   return (
@@ -81,14 +102,62 @@ const IndiaNav = () => {
           {/* Desktop links */}
           <div className="hidden lg:flex items-center gap-10">
             {mainLinks.map((l) => (
-              <Link
-                key={l.href}
-                to={l.href}
-                className="text-sm font-semibold text-accent/80 hover:text-primary transition-colors"
-              >
-                {l.label}
-              </Link>
+              <span key={l.href} className="flex items-center gap-10">
+                <Link
+                  to={l.href}
+                  className="text-sm font-semibold text-accent/80 hover:text-primary transition-colors"
+                >
+                  {l.label}
+                </Link>
+                {l.label === "About" && (
+                  <div
+                    className="relative"
+                    onMouseEnter={openSvc}
+                    onMouseLeave={scheduleSvcClose}
+                  >
+                    <button
+                      onClick={() => setSvcOpen((v) => !v)}
+                      className="inline-flex items-center gap-1 text-sm font-semibold text-accent/80 hover:text-primary transition-colors"
+                      aria-expanded={svcOpen}
+                    >
+                      Our Services
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          svcOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+
+                    {svcOpen && (
+                      <div
+                        onMouseEnter={openSvc}
+                        onMouseLeave={scheduleSvcClose}
+                        className="absolute left-0 top-full pt-4 w-[520px]"
+                      >
+                        <div className="bg-background border border-border rounded-2xl shadow-2xl overflow-hidden p-4 grid grid-cols-2 gap-1">
+                          {services.map((s) => (
+                            <Link
+                              key={s.label}
+                              to={s.href}
+                              onClick={() => setSvcOpen(false)}
+                              className="block rounded-lg px-3 py-2.5 hover:bg-secondary transition-colors"
+                            >
+                              <div className="font-display text-sm font-bold text-accent">
+                                {s.label}
+                              </div>
+                              <div className="text-xs text-accent/65 mt-0.5">
+                                {s.desc}
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </span>
             ))}
+
 
             {/* Resources dropdown */}
             <div
@@ -186,15 +255,46 @@ const IndiaNav = () => {
         >
           <div className="py-4 space-y-1 border-t border-border">
             {mainLinks.map((l) => (
-              <Link
-                key={l.href}
-                to={l.href}
-                onClick={() => setOpen(false)}
-                className="block px-3 py-3 text-base font-semibold text-accent hover:bg-secondary rounded-md"
-              >
-                {l.label}
-              </Link>
+              <div key={l.href}>
+                <Link
+                  to={l.href}
+                  onClick={() => setOpen(false)}
+                  className="block px-3 py-3 text-base font-semibold text-accent hover:bg-secondary rounded-md"
+                >
+                  {l.label}
+                </Link>
+                {l.label === "About" && (
+                  <>
+                    <button
+                      onClick={() => setMobileSvcOpen((v) => !v)}
+                      className="w-full flex items-center justify-between px-3 py-3 text-base font-semibold text-accent hover:bg-secondary rounded-md"
+                    >
+                      Our Services
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          mobileSvcOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {mobileSvcOpen && (
+                      <div className="pl-4 space-y-1">
+                        {services.map((s) => (
+                          <Link
+                            key={s.label}
+                            to={s.href}
+                            onClick={() => setOpen(false)}
+                            className="block px-3 py-2 text-sm font-semibold text-accent/80 hover:text-primary hover:bg-secondary rounded-md"
+                          >
+                            {s.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
             ))}
+
 
             <button
               onClick={() => setMobileResOpen((v) => !v)}
