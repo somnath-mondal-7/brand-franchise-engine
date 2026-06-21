@@ -1,18 +1,7 @@
 import { ArrowUpRight, Newspaper } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const features = [
-  {
-    publication: "The Hindustan Wires",
-    headline:
-      "Building a New Era of Franchise Growth Through Marketing, Technology and Human Connections",
-    url: "https://thehindustanwires.com/somnath-mondal-building-a-new-era-of-franchise-growth-through-marketing-technology-and-human-connections/",
-  },
-  {
-    publication: "DailyHunt",
-    headline:
-      "Featured: The Founder Story Behind FranchiseLeadsPro's Premium Approach to Franchise Marketing",
-    url: "https://dhunt.in/14IvL0",
-  },
   {
     publication: "The Entrepreneur Stories",
     headline:
@@ -25,13 +14,27 @@ const features = [
       "Somnath Mondal: Building a New Era of Franchise Growth Through Marketing, Technology and Human Connections",
     url: "https://thebusinessstories.com/somnath-mondal-building-a-new-era-of-franchise-growth-through-marketing-technology-and-human-connections/",
   },
+  {
+    publication: "The Hindustan Wires",
+    headline:
+      "Building a New Era of Franchise Growth Through Marketing, Technology and Human Connections",
+    url: "https://thehindustanwires.com/somnath-mondal-building-a-new-era-of-franchise-growth-through-marketing-technology-and-human-connections/",
+  },
+  {
+    publication: "DailyHunt",
+    headline:
+      "Featured: The Founder Story Behind FranchiseLeadsPro's Premium Approach to Franchise Marketing",
+    url: "https://dhunt.in/14IvL0",
+  },
 ];
 
 interface PressFeaturesProps {
   variant?: "section" | "strip";
+  limit?: number;
+  showViewAll?: boolean;
 }
 
-const PressFeatures = ({ variant = "section" }: PressFeaturesProps) => {
+const PressFeatures = ({ variant = "section", limit, showViewAll = false }: PressFeaturesProps) => {
   if (variant === "strip") {
     return (
       <div className="border-y border-border bg-secondary/40">
@@ -78,7 +81,7 @@ const PressFeatures = ({ variant = "section" }: PressFeaturesProps) => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {features.map((f) => (
+          {(limit ? features.slice(0, limit) : features).map((f) => (
             <a
               key={f.url}
               href={f.url}
@@ -111,6 +114,17 @@ const PressFeatures = ({ variant = "section" }: PressFeaturesProps) => {
             </a>
           ))}
         </div>
+
+        {showViewAll && (
+          <div className="mt-10 text-center">
+            <Link
+              to="/press"
+              className="text-sm font-semibold text-accent hover:text-primary transition-colors inline-flex items-center gap-1"
+            >
+              View all press <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
