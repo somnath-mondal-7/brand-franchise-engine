@@ -20,6 +20,9 @@ import CaseStudies from "./pages/CaseStudies";
 import Features from "./pages/Features";
 import CaseStudyHOF from "./pages/CaseStudyHOF";
 import Contact from "./pages/Contact";
+import Faq from "./pages/Faq";
+import Press from "./pages/Press";
+import MediaLibrary from "./pages/MediaLibrary";
 import FranchiseLeadsUSA from "./pages/FranchiseLeadsUSA";
 import FranchiseLeadsUK from "./pages/FranchiseLeadsUK";
 import FranchiseLeadsCanada from "./pages/FranchiseLeadsCanada";
@@ -114,6 +117,9 @@ const App = () => (
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/case-studies/hof-franchise-consulting" element={<CaseStudyHOF />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/press" element={<Press />} />
+            <Route path="/media-library" element={<MediaLibrary />} />
             <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/sitemap-blog.xml" element={<BlogSitemap />} />
             <Route path="/search" element={<Navigate to="/" replace />} />
