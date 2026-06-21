@@ -1,13 +1,20 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, CheckCircle2, Users, Workflow, Shield, Target, MessageSquare } from "lucide-react";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
 import { Button } from "@/components/ui/button";
 
+import doneForYouImg from "@/assets/features/done-for-you.jpg";
+import usaVaImg from "@/assets/features/usa-va.jpg";
+import targetingImg from "@/assets/features/targeting.jpg";
+import messagingImg from "@/assets/features/messaging.jpg";
+import crmImg from "@/assets/features/crm-workflow.jpg";
+
 const features = [
   {
-    icon: Users,
+    image: doneForYouImg,
+    alt: "American marketing team collaborating around a table",
     eyebrow: "Done-For-You",
     title: "We send leads. You close deals.",
     body:
@@ -19,7 +26,8 @@ const features = [
     ],
   },
   {
-    icon: Shield,
+    image: usaVaImg,
+    alt: "USA-based virtual assistant working at a laptop with American flag in background",
     eyebrow: "100% USA-Based Virtual Assistant",
     title: "A real US-based VA on your account — not a chatbot, not offshore.",
     body:
@@ -32,7 +40,8 @@ const features = [
     highlight: true,
   },
   {
-    icon: Target,
+    image: targetingImg,
+    alt: "LinkedIn audience targeting dashboard on a laptop",
     eyebrow: "Built for Franchise",
     title: "Targeting that actually reaches franchise buyers.",
     body:
@@ -44,7 +53,8 @@ const features = [
     ],
   },
   {
-    icon: MessageSquare,
+    image: messagingImg,
+    alt: "Premium copywriter desk with laptop, notebook and espresso",
     eyebrow: "Premium Messaging",
     title: "Executive-grade messaging written for franchisors.",
     body:
@@ -56,7 +66,8 @@ const features = [
     ],
   },
   {
-    icon: Workflow,
+    image: crmImg,
+    alt: "Illustration of CRM integrations and workflow nodes",
     eyebrow: "CRM & Workflow",
     title: "Plugs into the tools you already run.",
     body:
@@ -101,18 +112,15 @@ const Features = () => {
 
         {/* Feature blocks */}
         <section className="border-t border-border bg-secondary/30">
-          <div className="container mx-auto px-6 lg:px-8 py-16 lg:py-24 space-y-20 max-w-6xl">
+          <div className="container mx-auto px-6 lg:px-8 py-16 lg:py-24 space-y-24 max-w-6xl">
             {features.map((f, i) => {
-              const Icon = f.icon;
               const reverse = i % 2 === 1;
               return (
                 <article
                   key={f.title}
-                  className={`grid lg:grid-cols-12 gap-10 lg:gap-16 items-center ${
-                    f.highlight ? "scroll-mt-24" : ""
-                  }`}
+                  className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center"
                 >
-                  <div className={`lg:col-span-7 ${reverse ? "lg:order-2" : ""}`}>
+                  <div className={`lg:col-span-6 ${reverse ? "lg:order-2" : ""}`}>
                     <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] uppercase text-primary mb-4">
                       <span className="h-px w-6 bg-primary" />
                       {f.eyebrow}
@@ -133,37 +141,24 @@ const Features = () => {
                     </ul>
                   </div>
 
-                  <div className={`lg:col-span-5 ${reverse ? "lg:order-1" : ""}`}>
-                    <div
-                      className={`relative rounded-2xl p-10 lg:p-12 border ${
-                        f.highlight
-                          ? "bg-accent text-white border-accent shadow-blue"
-                          : "bg-background border-border shadow-sm"
-                      }`}
-                    >
+                  <div className={`lg:col-span-6 ${reverse ? "lg:order-1" : ""}`}>
+                    <div className="relative">
                       <div
-                        className={`inline-flex items-center justify-center h-14 w-14 rounded-xl mb-6 ${
-                          f.highlight ? "bg-primary text-white" : "bg-primary/10 text-primary"
+                        className={`absolute -inset-3 rounded-3xl ${
+                          f.highlight ? "bg-primary/15" : "bg-accent/5"
                         }`}
-                      >
-                        <Icon className="h-7 w-7" />
-                      </div>
-                      <p
-                        className={`text-sm font-semibold tracking-[0.18em] uppercase mb-2 ${
-                          f.highlight ? "text-primary" : "text-primary"
-                        }`}
-                      >
-                        {f.eyebrow}
-                      </p>
-                      <p
-                        className={`text-xl font-bold leading-snug ${
-                          f.highlight ? "text-white" : "text-accent"
-                        }`}
-                      >
-                        {f.title}
-                      </p>
+                        aria-hidden
+                      />
+                      <img
+                        src={f.image}
+                        alt={f.alt}
+                        loading="lazy"
+                        width={1024}
+                        height={1024}
+                        className="relative rounded-2xl w-full aspect-square object-cover shadow-xl border border-border"
+                      />
                       {f.highlight && (
-                        <div className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
+                        <div className="absolute bottom-4 left-4 right-4 bg-accent/95 backdrop-blur text-white rounded-xl px-4 py-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider shadow-blue">
                           <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
                           USA-Based · Native English · Franchise-Trained
                         </div>
