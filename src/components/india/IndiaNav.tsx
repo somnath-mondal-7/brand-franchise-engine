@@ -6,9 +6,19 @@ import { Link } from "react-router-dom";
 const mainLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Features", href: "/features" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Testimonials", href: "/testimonials" },
+];
+
+const services = [
+  { label: "Digital Marketing", href: "/services", desc: "Full-funnel digital growth for franchise brands." },
+  { label: "Website & App Development", href: "/services", desc: "High-converting franchise sites and apps built to scale." },
+  { label: "Branding", href: "/services", desc: "Positioning and identity that earns investor trust." },
+  { label: "Lead Generation", href: "/services", desc: "Qualified franchise buyer leads on tap." },
+  { label: "SEO Services", href: "/services", desc: "Rank for the searches your investors actually make." },
+  { label: "PPC", href: "/services", desc: "Paid campaigns engineered for franchise ROI." },
+  { label: "AI & Automation", href: "/services", desc: "Automate outreach, follow-ups and lead nurturing." },
+  { label: "Features", href: "/features", desc: "Everything inside the FranchiseLeadsPro platform." },
 ];
 
 const resources = [
