@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone } from "lucide-react";
-import heroHandshake from "@/assets/hero-handshake.jpg";
+import heroHandshake from "@/assets/hero-handshake.webp";
 
 const Hero = () => {
   const openCal = () => window.open("https://calendly.com/lets-build-your-brand", "_blank");
@@ -60,6 +60,9 @@ const Hero = () => {
               width="1024"
               height="1024"
               loading="eager"
+              decoding="async"
+              // @ts-ignore - valid HTML attribute
+              fetchpriority="high"
               className="w-full h-auto"
             />
           </div>

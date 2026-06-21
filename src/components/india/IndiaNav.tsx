@@ -135,21 +135,28 @@ const IndiaNav = () => {
                         className="absolute left-0 top-full pt-4 w-[520px]"
                       >
                         <div className="bg-background border border-border rounded-2xl shadow-2xl overflow-hidden p-4 grid grid-cols-2 gap-1">
-                          {services.map((s) => (
-                            <Link
-                              key={s.label}
-                              to={s.href}
-                              onClick={() => setSvcOpen(false)}
-                              className="block rounded-lg px-3 py-2.5 hover:bg-secondary transition-colors"
-                            >
-                              <div className="font-display text-sm font-bold text-accent">
-                                {s.label}
-                              </div>
-                              <div className="text-xs text-accent/65 mt-0.5">
-                                {s.desc}
-                              </div>
-                            </Link>
-                          ))}
+                          {services.map((s) => {
+                            const isFeatures = s.label === "Features";
+                            return (
+                              <Link
+                                key={s.label}
+                                to={s.href}
+                                onClick={() => setSvcOpen(false)}
+                                className={`block rounded-lg px-3 py-2.5 transition-colors ${
+                                  isFeatures
+                                    ? "bg-primary/10 hover:bg-primary/15 ring-1 ring-primary/30"
+                                    : "hover:bg-secondary"
+                                }`}
+                              >
+                                <div className={`font-display text-sm font-bold ${isFeatures ? "text-primary" : "text-accent"}`}>
+                                  {s.label}
+                                </div>
+                                <div className="text-xs text-accent/65 mt-0.5">
+                                  {s.desc}
+                                </div>
+                              </Link>
+                            );
+                          })}
                         </div>
                       </div>
                     )}

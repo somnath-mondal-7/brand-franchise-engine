@@ -115,20 +115,6 @@ const services = [
     ],
     href: "/services",
   },
-  {
-    icon: LayoutGrid,
-    title: "Features",
-    tagline: "Everything inside the FranchiseLeadsPro platform.",
-    description:
-      "A single platform combining CRM, analytics, automations and reporting — purpose-built for franchise growth teams.",
-    points: [
-      "Unified lead CRM",
-      "Pipeline analytics",
-      "Built-in automations",
-      "Team collaboration",
-    ],
-    href: "/features",
-  },
 ];
 
 const Services = () => {
