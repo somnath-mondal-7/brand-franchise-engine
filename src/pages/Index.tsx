@@ -4,6 +4,7 @@ import IndiaNav from "@/components/india/IndiaNav";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import PressFeatures from "@/components/PressFeatures";
 import FinalCTASection from "@/components/FinalCTASection";
+import PhilosophyBlock from "@/components/PhilosophyBlock";
 import IndiaFooter from "@/components/india/IndiaFooter";
 
 const Index = () => {
@@ -30,6 +31,7 @@ const Index = () => {
         <PressFeatures variant="strip" />
         <TestimonialsSection />
         <PressFeatures />
+        <PhilosophyBlock />
         <FinalCTASection />
       </main>
       <IndiaFooter />
