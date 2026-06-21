@@ -255,15 +255,46 @@ const IndiaNav = () => {
         >
           <div className="py-4 space-y-1 border-t border-border">
             {mainLinks.map((l) => (
-              <Link
-                key={l.href}
-                to={l.href}
-                onClick={() => setOpen(false)}
-                className="block px-3 py-3 text-base font-semibold text-accent hover:bg-secondary rounded-md"
-              >
-                {l.label}
-              </Link>
+              <div key={l.href}>
+                <Link
+                  to={l.href}
+                  onClick={() => setOpen(false)}
+                  className="block px-3 py-3 text-base font-semibold text-accent hover:bg-secondary rounded-md"
+                >
+                  {l.label}
+                </Link>
+                {l.label === "About" && (
+                  <>
+                    <button
+                      onClick={() => setMobileSvcOpen((v) => !v)}
+                      className="w-full flex items-center justify-between px-3 py-3 text-base font-semibold text-accent hover:bg-secondary rounded-md"
+                    >
+                      Our Services
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          mobileSvcOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {mobileSvcOpen && (
+                      <div className="pl-4 space-y-1">
+                        {services.map((s) => (
+                          <Link
+                            key={s.label}
+                            to={s.href}
+                            onClick={() => setOpen(false)}
+                            className="block px-3 py-2 text-sm font-semibold text-accent/80 hover:text-primary hover:bg-secondary rounded-md"
+                          >
+                            {s.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
             ))}
+
 
             <button
               onClick={() => setMobileResOpen((v) => !v)}
