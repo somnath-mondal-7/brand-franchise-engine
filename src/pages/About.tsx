@@ -155,6 +155,9 @@ const About = () => {
                 <p className="font-display text-xl text-foreground font-bold">Somnath Mondal</p>
                 <p className="text-sm text-muted-foreground">Founder &amp; CEO, FranchiseLeadsPro</p>
               </div>
+              <p className="mt-6 text-sm text-muted-foreground/80 italic">
+                Featured in The Hindustan Wires, The Entrepreneur Stories, The Business Stories &amp; DailyHunt.
+              </p>
             </div>
           </div>
         </div>
