@@ -102,14 +102,62 @@ const IndiaNav = () => {
           {/* Desktop links */}
           <div className="hidden lg:flex items-center gap-10">
             {mainLinks.map((l) => (
-              <Link
-                key={l.href}
-                to={l.href}
-                className="text-sm font-semibold text-accent/80 hover:text-primary transition-colors"
-              >
-                {l.label}
-              </Link>
+              <span key={l.href} className="flex items-center gap-10">
+                <Link
+                  to={l.href}
+                  className="text-sm font-semibold text-accent/80 hover:text-primary transition-colors"
+                >
+                  {l.label}
+                </Link>
+                {l.label === "About" && (
+                  <div
+                    className="relative"
+                    onMouseEnter={openSvc}
+                    onMouseLeave={scheduleSvcClose}
+                  >
+                    <button
+                      onClick={() => setSvcOpen((v) => !v)}
+                      className="inline-flex items-center gap-1 text-sm font-semibold text-accent/80 hover:text-primary transition-colors"
+                      aria-expanded={svcOpen}
+                    >
+                      Our Services
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          svcOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+
+                    {svcOpen && (
+                      <div
+                        onMouseEnter={openSvc}
+                        onMouseLeave={scheduleSvcClose}
+                        className="absolute left-0 top-full pt-4 w-[520px]"
+                      >
+                        <div className="bg-background border border-border rounded-2xl shadow-2xl overflow-hidden p-4 grid grid-cols-2 gap-1">
+                          {services.map((s) => (
+                            <Link
+                              key={s.label}
+                              to={s.href}
+                              onClick={() => setSvcOpen(false)}
+                              className="block rounded-lg px-3 py-2.5 hover:bg-secondary transition-colors"
+                            >
+                              <div className="font-display text-sm font-bold text-accent">
+                                {s.label}
+                              </div>
+                              <div className="text-xs text-accent/65 mt-0.5">
+                                {s.desc}
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </span>
             ))}
+
 
             {/* Resources dropdown */}
             <div
