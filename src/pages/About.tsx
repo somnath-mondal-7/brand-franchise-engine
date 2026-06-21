@@ -112,6 +112,90 @@ const About = () => {
         </div>
       </section>
 
+      {/* FOUNDER MESSAGE */}
+      <section className="py-24 sm:py-28 bg-secondary/40">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-12 items-center max-w-6xl mx-auto">
+            <div className="lg:col-span-5">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-primary/10 rounded-2xl -z-10" />
+                <img
+                  src={somnathAsset.url}
+                  alt="Somnath Mondal — Founder of FranchiseLeadsPro"
+                  width={768}
+                  height={1024}
+                  loading="lazy"
+                  className="w-full h-auto rounded-2xl shadow-2xl object-cover"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-7">
+              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Founder's Message</p>
+              <Quote className="w-10 h-10 text-primary mb-4" />
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.1] text-foreground mb-6">
+                "Franchise growth is a trust business — not a leads business."
+              </h2>
+              <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+                <p>
+                  When I started FranchiseLeadsPro, I had one belief: franchise brands deserve a
+                  marketing partner that actually understands franchising — not a generic agency
+                  running the same ad templates across every industry.
+                </p>
+                <p>
+                  We've spent years inside franchise sales rooms, watching what truly moves
+                  qualified investors. Today, our team brings that insight to every client — with
+                  the discipline of a senior consultancy and the speed of a modern growth team.
+                </p>
+                <p>
+                  If you're a franchisor or franchise consultant serious about scaling, we'd be
+                  honoured to build your next chapter together.
+                </p>
+              </div>
+              <div className="mt-7">
+                <p className="font-display text-xl text-foreground font-bold">Somnath Mondal</p>
+                <p className="text-sm text-muted-foreground">Founder &amp; CEO, FranchiseLeadsPro</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CORE TEAM */}
+      <section className="py-24 sm:py-28">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-14 text-center mx-auto">
+            <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Core Team</p>
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-foreground">
+              The people behind <em>your franchise growth.</em>
+            </h2>
+            <p className="text-lg text-muted-foreground mt-5">
+              A focused team of franchise specialists — not media buyers learning on your budget.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {team.map((m) => (
+              <div key={m.name} className="bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="aspect-[4/5] overflow-hidden bg-secondary">
+                  <img
+                    src={m.img}
+                    alt={`${m.name} — ${m.role} at FranchiseLeadsPro`}
+                    width={768}
+                    height={960}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-display text-xl font-bold text-foreground">{m.name}</h3>
+                  <p className="text-sm text-primary font-semibold mt-1">{m.role}</p>
+                  <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{m.bio}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* PILLARS — dark band */}
       <section className="py-24 sm:py-28 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
