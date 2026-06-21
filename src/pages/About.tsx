@@ -5,14 +5,14 @@ import { ArrowRight, ArrowUpRight, Compass, Handshake, Sparkles, Globe2, Quote, 
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
 import somnathAsset from "@/assets/team/somnath.png.asset.json";
-import johnAsset from "@/assets/team/john.jpg.asset.json";
-import nickAsset from "@/assets/team/nick.jpg.asset.json";
-import emilyAsset from "@/assets/team/emily.jpg.asset.json";
+import johnAsset from "@/assets/team/john.png.asset.json";
+import nickAsset from "@/assets/team/nick.png.asset.json";
+import emilyAsset from "@/assets/team/emily.png.asset.json";
 
 const team = [
+  { name: "Emily Johnson", role: "Admin", img: emilyAsset.url, bio: "Keeps operations, onboarding, and client communications running smoothly across every engagement." },
   { name: "John Friend", role: "Marketing Manager", img: johnAsset.url, bio: "Leads paid and organic campaigns that fill franchise pipelines with qualified investor conversations." },
   { name: "Nick Rich", role: "Account Manager", img: nickAsset.url, bio: "Senior franchise strategist — runs client accounts, weekly reporting, and investor follow-up cadences." },
-  { name: "Emily Johnson", role: "Admin", img: emilyAsset.url, bio: "Keeps operations, onboarding, and client communications running smoothly across every engagement." },
 ];
 
 const pillars = [
