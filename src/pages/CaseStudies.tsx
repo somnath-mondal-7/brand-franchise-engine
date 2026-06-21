@@ -1,10 +1,22 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, CheckCircle2, Quote, Calendar, Globe, Target, Megaphone } from "lucide-react";
+import {
+  ArrowUpRight,
+  CheckCircle2,
+  Quote,
+  Calendar,
+  Globe,
+  Target,
+  Megaphone,
+  ChevronDown,
+} from "lucide-react";
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
 import johnThompsonVideoCS from "@/assets/videos/john-thompson-review.mp4.asset.json";
+import johnCover from "@/assets/case-studies/john-thompson-cover.jpg";
+import hofCover from "@/assets/case-studies/hof-cover.jpg";
 
 const servicesDelivered = [
   "Paid Advertising (Meta + Google)",
@@ -20,30 +32,106 @@ const timeline = [
     phase: "Discovery",
     title: "Understanding the franchise portfolio",
     body:
-      "We sat down with John to map every brand she represents at Franchise Solutions Inc., the typical investor profile for each, and the friction points in her existing intake process.",
+      "We sat down with John to map every brand he represents at Franchise Solutions Inc., the typical investor profile for each, and the friction points in his existing intake process.",
   },
   {
     phase: "Build",
     title: "Launching paid + inbound engine",
     body:
-      "We rebuilt her advertising creative around investor intent, structured a CRM to route enquiries from our network of franchise sites, and gave her a single dashboard to manage everything.",
+      "We rebuilt his advertising creative around investor intent, structured a CRM to route enquiries from our network of franchise sites, and gave him a single dashboard to manage everything.",
   },
   {
     phase: "Scale",
     title: "Steady, qualified inbound — every week",
     body:
-      "Once the engine was live, our role shifted to optimisation — sharper targeting, better qualification, faster follow-up — so John spends her time on conversations that actually close.",
+      "Once the engine was live, our role shifted to optimisation — sharper targeting, better qualification, faster follow-up — so John spends his time on conversations that actually close.",
   },
 ];
 
 const outcomes = [
   { icon: Target, label: "Investor enquiries", body: "Consistent inbound from serious franchise buyers — not curious browsers." },
   { icon: Megaphone, label: "Paid ad efficiency", body: "Sharper creative and tighter audiences mean every dollar works harder." },
-  { icon: Globe, label: "Website conversions", body: "Inbound leads from our franchise network flow straight into her CRM." },
+  { icon: Globe, label: "Website conversions", body: "Inbound leads from our franchise network flow straight into his CRM." },
   { icon: CheckCircle2, label: "Closed placements", body: "A steady cadence of qualified discovery calls that convert to placements." },
 ];
 
+const hofHighlights = [
+  "Complete website rebuild — moved off a dated WordPress theme onto a modern, lightning-fast React build.",
+  "New brand system — bold navy + orange palette, premium typography, professional photography direction.",
+  "Searchable 600+ franchise directory with category filters, investment ranges, and brand highlights.",
+  "Embedded video storytelling with Shawn's introduction on Home and About pages.",
+  "Calendly-integrated booking page and multiple strategic CTAs across the site.",
+  "Mobile-first responsive design with optimized touch targets and a dedicated mobile menu.",
+];
+
+const hofServices = [
+  "Complete Website Redesign & Development",
+  "Custom React / TypeScript Build",
+  "600+ Franchise Brand Directory",
+  "Calendly Booking Integration",
+  "Video Content Optimization & Embedding",
+  "Mobile-First Responsive Design",
+  "SEO Architecture & Implementation",
+  "Brand Identity & Visual System",
+];
+
+type CaseCardProps = {
+  open: boolean;
+  onToggle: () => void;
+  eyebrow: string;
+  cover: string;
+  title: React.ReactNode;
+  subtitle: string;
+  summary: string;
+  children: React.ReactNode;
+};
+
+const CaseCard = ({ open, onToggle, eyebrow, cover, title, subtitle, summary, children }: CaseCardProps) => {
+  return (
+    <article className="rounded-2xl border border-border bg-card overflow-hidden shadow-card">
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        className="w-full text-left grid md:grid-cols-[40%_1fr] gap-0 hover:bg-secondary/30 transition-colors"
+      >
+        <div className="aspect-[16/10] md:aspect-auto md:h-full bg-muted overflow-hidden">
+          <img
+            src={cover}
+            alt={subtitle}
+            loading="lazy"
+            width={1280}
+            height={800}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="p-6 sm:p-8 flex flex-col justify-between gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">{eyebrow}</p>
+            <h3 className="font-display text-2xl sm:text-3xl text-foreground leading-tight mb-2">{title}</h3>
+            <p className="text-sm font-medium text-muted-foreground mb-3">{subtitle}</p>
+            <p className="text-muted-foreground leading-relaxed">{summary}</p>
+          </div>
+          <span className="inline-flex items-center gap-2 text-sm font-semibold text-accent">
+            {open ? "Hide case study" : "Read full case study"}
+            <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
+          </span>
+        </div>
+      </button>
+
+      {open && (
+        <div className="border-t border-border p-6 sm:p-10 bg-background">
+          {children}
+        </div>
+      )}
+    </article>
+  );
+};
+
 const CaseStudies = () => {
+  const [openId, setOpenId] = useState<"john" | "hof" | null>(null);
+  const toggle = (id: "john" | "hof") => setOpenId((cur) => (cur === id ? null : id));
+
   return (
     <div className="india-theme min-h-screen bg-background text-foreground">
       <Helmet>
@@ -81,181 +169,209 @@ const CaseStudies = () => {
               Real Clients. <em>Real Results.</em>
             </h1>
             <p className="text-lg text-primary-foreground/75 max-w-2xl leading-relaxed">
-              A closer look at how franchise consultants and franchisors run their investor lead pipeline
-              with FranchiseLeadsPro — the engine, the process, and the outcome.
+              Click any case study below to read the full story — the engine we built, the process,
+              and the outcome.
             </p>
           </div>
         </div>
       </section>
 
-      {/* FEATURED CASE STUDY — John Thompson */}
+      {/* CASE STUDY CARDS */}
       <section className="py-20 sm:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-3 gap-10">
-            {/* Main content */}
-            <article className="lg:col-span-2 space-y-12">
-              <header>
-                <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">Featured Case Study</p>
-                <h2 className="font-display text-4xl sm:text-5xl leading-[1.05] text-foreground mb-4">
-                  John Thompson — <em>Franchise Solutions Inc.</em>
-                </h2>
-                <p className="text-muted-foreground text-lg leading-relaxed">
-                  Independent franchise consultant. Multiple brands in her portfolio. No active LinkedIn channel.
-                  She needed an investor lead engine that ran in the background while she focused on placements.
-                </p>
-              </header>
-
-              {/* Video */}
-              <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-card">
-                <div className="aspect-video bg-muted">
-                  <video
-                    className="w-full h-full object-cover"
-                    controls
-                    preload="metadata"
-                    poster="/videos/john-thompson-poster.jpg"
-                  >
-                    <source src={johnThompsonVideoCS.url} type="video/mp4" />
-                  </video>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          {/* John Thompson */}
+          <CaseCard
+            open={openId === "john"}
+            onToggle={() => toggle("john")}
+            eyebrow="Paid Ads · CRM · Website Inbound"
+            cover={johnCover}
+            title={<>John Thompson — <em>Franchise Solutions Inc.</em></>}
+            subtitle="Independent Franchise Consultant · USA"
+            summary="An independent franchise consultant running on referrals. We built an investor lead engine that delivers qualified enquiries every week — on autopilot."
+          >
+            <div className="grid lg:grid-cols-3 gap-10">
+              <div className="lg:col-span-2 space-y-10">
+                <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-card">
+                  <div className="aspect-video bg-muted">
+                    <video
+                      className="w-full h-full object-cover"
+                      controls
+                      preload="metadata"
+                      poster="/videos/john-thompson-poster.jpg"
+                    >
+                      <source src={johnThompsonVideoCS.url} type="video/mp4" />
+                    </video>
+                  </div>
                 </div>
-              </div>
 
-              {/* Overview */}
-              <div>
-                <h3 className="font-display text-2xl text-foreground mb-3">Overview</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  John came to us running her consultancy almost entirely on referrals and word of mouth.
-                  Strong brand, great close rate — but no predictable top-of-funnel. We built her a paid
-                  advertising + CRM + website inbound system that puts qualified franchise buyer enquiries
-                  in front of her every single week.
-                </p>
-              </div>
-
-              {/* Timeline */}
-              <div>
-                <h3 className="font-display text-2xl text-foreground mb-6">The Engagement</h3>
-                <div className="space-y-6">
-                  {timeline.map((t, i) => (
-                    <div key={t.phase} className="flex gap-5">
-                      <div className="shrink-0 w-10 h-10 rounded-full bg-accent text-accent-foreground font-display font-bold flex items-center justify-center">
-                        {i + 1}
-                      </div>
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.2em] text-accent mb-1">{t.phase}</p>
-                        <h4 className="font-display text-xl text-foreground mb-1.5">{t.title}</h4>
-                        <p className="text-muted-foreground leading-relaxed">{t.body}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Outcomes — qualitative */}
-              <div>
-                <h3 className="font-display text-2xl text-foreground mb-6">The Outcome</h3>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {outcomes.map((o) => (
-                    <div key={o.label} className="rounded-2xl border border-border bg-card p-6">
-                      <o.icon className="w-6 h-6 text-accent mb-3" />
-                      <p className="font-display text-lg text-foreground mb-1.5">{o.label}</p>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{o.body}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Client quote */}
-              <div className="rounded-2xl bg-primary text-primary-foreground p-8 sm:p-10">
-                <Quote className="w-7 h-7 text-accent mb-4" />
-                <p className="font-display text-2xl leading-snug mb-6">
-                  "From paid ads to CRM automation to a high-converting website, our growth engine finally
-                  runs on autopilot. The team genuinely understands franchise sales — it shows in the
-                  quality of conversations they put on my calendar."
-                </p>
                 <div>
-                  <p className="font-semibold">John Thompson</p>
-                  <p className="text-sm text-primary-foreground/70">Franchise Consultant, Franchise Solutions Inc.</p>
+                  <h4 className="font-display text-2xl text-foreground mb-3">Overview</h4>
+                  <p className="text-muted-foreground leading-relaxed">
+                    John came to us running his consultancy almost entirely on referrals and word of mouth.
+                    Strong brand, great close rate — but no predictable top-of-funnel. We built him a paid
+                    advertising + CRM + website inbound system that puts qualified franchise buyer enquiries
+                    in front of him every single week.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-display text-2xl text-foreground mb-6">The Engagement</h4>
+                  <div className="space-y-6">
+                    {timeline.map((t, i) => (
+                      <div key={t.phase} className="flex gap-5">
+                        <div className="shrink-0 w-10 h-10 rounded-full bg-accent text-accent-foreground font-display font-bold flex items-center justify-center">
+                          {i + 1}
+                        </div>
+                        <div>
+                          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-1">{t.phase}</p>
+                          <h5 className="font-display text-xl text-foreground mb-1.5">{t.title}</h5>
+                          <p className="text-muted-foreground leading-relaxed">{t.body}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-display text-2xl text-foreground mb-6">The Outcome</h4>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {outcomes.map((o) => (
+                      <div key={o.label} className="rounded-2xl border border-border bg-card p-6">
+                        <o.icon className="w-6 h-6 text-accent mb-3" />
+                        <p className="font-display text-lg text-foreground mb-1.5">{o.label}</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{o.body}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="rounded-2xl bg-primary text-primary-foreground p-8 sm:p-10">
+                  <Quote className="w-7 h-7 text-accent mb-4" />
+                  <p className="font-display text-2xl leading-snug mb-6">
+                    "From paid ads to CRM automation to a high-converting website, our growth engine finally
+                    runs on autopilot. The team genuinely understands franchise sales — it shows in the
+                    quality of conversations they put on my calendar."
+                  </p>
+                  <div>
+                    <p className="font-semibold">John Thompson</p>
+                    <p className="text-sm text-primary-foreground/70">Franchise Consultant, Franchise Solutions Inc.</p>
+                  </div>
                 </div>
               </div>
-            </article>
 
-            {/* Sticky sidebar */}
-            <aside className="lg:col-span-1">
-              <div className="lg:sticky lg:top-32 space-y-6">
-                <div className="rounded-2xl border border-border bg-card p-6">
-                  <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Client</p>
-                  <p className="font-display text-xl text-foreground mb-1">John Thompson</p>
-                  <p className="text-sm text-muted-foreground mb-6">Franchise Solutions Inc.</p>
+              <aside className="lg:col-span-1">
+                <div className="lg:sticky lg:top-32 space-y-6">
+                  <div className="rounded-2xl border border-border bg-card p-6">
+                    <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Client</p>
+                    <p className="font-display text-xl text-foreground mb-1">John Thompson</p>
+                    <p className="text-sm text-muted-foreground mb-6">Franchise Solutions Inc.</p>
 
-                  <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">Services Delivered</p>
-                  <ul className="space-y-2 mb-6">
-                    {servicesDelivered.map((s) => (
-                      <li key={s} className="flex items-start gap-2 text-sm text-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 shrink-0" />
-                        <span>{s}</span>
+                    <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">Services Delivered</p>
+                    <ul className="space-y-2 mb-6">
+                      {servicesDelivered.map((s) => (
+                        <li key={s} className="flex items-start gap-2 text-sm text-foreground">
+                          <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                          <span>{s}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Button
+                      className="w-full bg-accent text-accent-foreground hover:bg-accent/90 rounded-full font-semibold h-12"
+                      onClick={() => window.open("https://calendly.com/lets-build-your-brand", "_blank")}
+                    >
+                      <Calendar className="w-4 h-4 mr-2" /> Schedule a Call
+                    </Button>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </CaseCard>
+
+          {/* HOF Franchise Consulting */}
+          <CaseCard
+            open={openId === "hof"}
+            onToggle={() => toggle("hof")}
+            eyebrow="Website Redesign · Brand"
+            cover={hofCover}
+            title={<>HOF Franchise Consulting — <em>Shawn Gurn</em></>}
+            subtitle="Franchise Consultancy · Website Rebuild"
+            summary="A complete website rebuild — modern brand, searchable franchise directory, video storytelling, and a real lead capture system for Shawn's consultancy."
+          >
+            <div className="grid lg:grid-cols-3 gap-10">
+              <div className="lg:col-span-2 space-y-10">
+                <div>
+                  <h4 className="font-display text-2xl text-foreground mb-3">Overview</h4>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Shawn's existing site was built on a dated WordPress theme — slow, generic, and not
+                    converting visitors into discovery calls. We rebuilt the entire experience from the
+                    ground up: new brand system, modern React build, searchable directory of 600+
+                    franchise brands, and a lead capture flow that actually works.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-display text-2xl text-foreground mb-6">What We Shipped</h4>
+                  <ul className="space-y-3">
+                    {hofHighlights.map((h) => (
+                      <li key={h} className="flex items-start gap-3 text-foreground">
+                        <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 shrink-0" />
+                        <span className="leading-relaxed">{h}</span>
                       </li>
                     ))}
                   </ul>
-
-                  <Button
-                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 rounded-full font-semibold h-12"
-                    onClick={() => window.open("https://calendly.com/lets-build-your-brand", "_blank")}
-                  >
-                    <Calendar className="w-4 h-4 mr-2" /> Schedule a Call
-                  </Button>
                 </div>
 
-                <div className="rounded-2xl border border-border bg-secondary/40 p-6">
-                  <p className="font-display text-lg text-foreground mb-2">More client stories</p>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Browse video testimonials and quotes from franchise leaders we work with.
+                <div className="rounded-2xl bg-primary text-primary-foreground p-8 sm:p-10">
+                  <Quote className="w-7 h-7 text-accent mb-4" />
+                  <p className="font-display text-2xl leading-snug mb-6">
+                    "The new site looks and feels like a serious franchise consultancy. Every visitor
+                    now has a clear path — explore the directory, watch my intro, book a call. It's a
+                    proper sales tool, not just a brochure."
                   </p>
-                  <Link to="/testimonials" className="text-sm font-semibold text-accent inline-flex items-center gap-1.5 hover:gap-2 transition-all">
-                    View Testimonials <ArrowUpRight className="w-4 h-4" />
+                  <div>
+                    <p className="font-semibold">Shawn Gurn</p>
+                    <p className="text-sm text-primary-foreground/70">Founder, HOF Franchise Consulting</p>
+                  </div>
+                </div>
+
+                <div>
+                  <Link to="/case-studies/hof-franchise-consulting">
+                    <Button className="bg-accent text-accent-foreground hover:bg-accent/90 h-12 px-7 rounded-full font-semibold">
+                      View full HOF case study <ArrowUpRight className="ml-2 h-4 w-4" />
+                    </Button>
                   </Link>
                 </div>
               </div>
-            </aside>
-          </div>
-        </div>
-      </section>
 
-      {/* MORE CASE STUDIES */}
-      <section className="py-20 bg-secondary/40 border-y border-border">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12">
-            <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">More Case Studies</p>
-            <h2 className="font-display text-3xl sm:text-4xl text-foreground leading-tight">
-              Other franchise brands <em>we've helped build.</em>
-            </h2>
-          </div>
+              <aside className="lg:col-span-1">
+                <div className="lg:sticky lg:top-32 space-y-6">
+                  <div className="rounded-2xl border border-border bg-card p-6">
+                    <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Client</p>
+                    <p className="font-display text-xl text-foreground mb-1">Shawn Gurn</p>
+                    <p className="text-sm text-muted-foreground mb-6">HOF Franchise Consulting</p>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <Link
-              to="/case-studies/hof-franchise-consulting"
-              className="group rounded-2xl border border-border bg-card p-8 hover:shadow-elegant transition-all"
-            >
-              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">Website Redesign</p>
-              <h3 className="font-display text-2xl text-foreground mb-3 group-hover:text-accent transition-colors">
-                HOF Franchise Consulting
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-                Complete website rebuild for Shawn Gurn's franchise consultancy — modern brand,
-                searchable franchise directory, video storytelling, and a real lead capture system.
-              </p>
-              <span className="text-sm font-semibold text-accent inline-flex items-center gap-1.5 group-hover:gap-2 transition-all">
-                Read the case study <ArrowUpRight className="w-4 h-4" />
-              </span>
-            </Link>
+                    <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">Services Delivered</p>
+                    <ul className="space-y-2 mb-6">
+                      {hofServices.map((s) => (
+                        <li key={s} className="flex items-start gap-2 text-sm text-foreground">
+                          <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                          <span>{s}</span>
+                        </li>
+                      ))}
+                    </ul>
 
-            <div className="rounded-2xl border border-dashed border-border bg-card/50 p-8 flex flex-col justify-center">
-              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">Coming Soon</p>
-              <h3 className="font-display text-2xl text-foreground mb-3">More client stories</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                We're documenting more engagements — LinkedIn outreach, paid media, and full franchise
-                growth systems. New case studies drop every month.
-              </p>
+                    <Button
+                      className="w-full bg-accent text-accent-foreground hover:bg-accent/90 rounded-full font-semibold h-12"
+                      onClick={() => window.open("https://calendly.com/lets-build-your-brand", "_blank")}
+                    >
+                      <Calendar className="w-4 h-4 mr-2" /> Schedule a Call
+                    </Button>
+                  </div>
+                </div>
+              </aside>
             </div>
-          </div>
+          </CaseCard>
         </div>
       </section>
 
