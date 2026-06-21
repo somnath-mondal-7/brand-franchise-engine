@@ -17,6 +17,7 @@ import AutoBlogAdmin from "./pages/AutoBlogAdmin";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 import Testimonials from "./pages/Testimonials";
 import CaseStudies from "./pages/CaseStudies";
+import Features from "./pages/Features";
 import CaseStudyHOF from "./pages/CaseStudyHOF";
 import Contact from "./pages/Contact";
 import FranchiseLeadsUSA from "./pages/FranchiseLeadsUSA";
@@ -67,6 +68,7 @@ const App = () => (
           <div className="india-theme">
           <Routes>
             <Route path="/" element={<IndiaHome />} />
+            <Route path="/features" element={<Features />} />
             <Route path="/india" element={<Navigate to="/" replace />} />
             <Route path="/brands/:slug" element={<BrandDetail />} />
             <Route path="/usa" element={<Navigate to="/" replace />} />
