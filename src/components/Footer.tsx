@@ -25,7 +25,7 @@ const Footer = () => {
               <a href="https://www.linkedin.com/company/franchiseleadspro/" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center">
                 <Linkedin className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
               </a>
-              <a href="https://www.facebook.com/somnath.mondal.535492" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center">
+              <a href="https://www.facebook.com/profile.php?id=61579709174263" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center">
                 <Facebook className="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors" />
               </a>
             </div>

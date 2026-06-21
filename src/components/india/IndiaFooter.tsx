@@ -37,7 +37,7 @@ const IndiaFooter = () => {
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="https://www.facebook.com/somnath.mondal.535492"
+                href="https://www.facebook.com/profile.php?id=61579709174263"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="FranchiseLeadsPro on Facebook"
