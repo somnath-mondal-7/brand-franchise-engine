@@ -81,7 +81,7 @@ const PressFeatures = ({ variant = "section", limit, showViewAll = false }: Pres
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {features.map((f) => (
+          {(limit ? features.slice(0, limit) : features).map((f) => (
             <a
               key={f.url}
               href={f.url}
@@ -114,6 +114,17 @@ const PressFeatures = ({ variant = "section", limit, showViewAll = false }: Pres
             </a>
           ))}
         </div>
+
+        {showViewAll && (
+          <div className="mt-10 text-center">
+            <Link
+              to="/press"
+              className="text-sm font-semibold text-accent hover:text-primary transition-colors inline-flex items-center gap-1"
+            >
+              View all press <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
