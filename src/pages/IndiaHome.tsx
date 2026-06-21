@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Hero from "@/components/Hero";
 import IndiaNav from "@/components/india/IndiaNav";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import PressFeatures from "@/components/PressFeatures";
 import FinalCTASection from "@/components/FinalCTASection";
 import IndiaFooter from "@/components/india/IndiaFooter";
 
@@ -38,7 +39,9 @@ const IndiaHome = () => {
 
       <main>
         <Hero />
+        <PressFeatures variant="strip" />
         <TestimonialsSection />
+        <PressFeatures />
         <FinalCTASection />
       </main>
 

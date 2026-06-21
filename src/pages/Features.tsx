@@ -4,6 +4,7 @@ import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
 import { Button } from "@/components/ui/button";
+import PressFeatures from "@/components/PressFeatures";
 
 import doneForYouImg from "@/assets/features/done-for-you.jpg";
 import usaVaImg from "@/assets/features/usa-va.jpg";
@@ -198,7 +199,10 @@ const Features = () => {
             </Link>
           </div>
         </section>
+
+        <PressFeatures />
       </main>
+
 
       <IndiaFooter />
     </div>
