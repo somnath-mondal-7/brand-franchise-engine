@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const mainLinks = [
   { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
   { label: "Features", href: "/features" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Testimonials", href: "/testimonials" },
