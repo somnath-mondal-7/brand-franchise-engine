@@ -5,66 +5,64 @@
 @layer base {
   :root {
     /* ============================================================
-       PREMIUM B2B PALETTE — Ivory + Deep Navy + Soft Orange Accent
-       70% ivory background · 20% deep navy · 10% soft orange accent
+       PREMIUM US MARKETING AGENCY PALETTE
+       White · Reference Orange #F15A29 · Deep Navy #10213D
        ============================================================ */
-    --background: 40 33% 97%;            /* #FAF8F3 ivory */
-    --foreground: 0 0% 11%;              /* #1C1C1C charcoal */
+    --background: 0 0% 100%;             /* pure white */
+    --foreground: 215 50% 12%;           /* #10213D deep navy text */
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 11%;
+    --card-foreground: 215 50% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 11%;
+    --popover-foreground: 215 50% 12%;
 
-    --primary: 22 64% 58%;               /* #D9834F soft premium orange — CTAs & accents */
+    --primary: 14 88% 55%;               /* #F15A29 reference orange */
     --primary-foreground: 0 0% 100%;
-    --primary-light: 22 64% 68%;
-    --primary-dark: 22 64% 48%;
+    --primary-light: 14 88% 65%;
+    --primary-dark: 14 88% 45%;
 
-    --secondary: 42 18% 94%;             /* #F3F1EC light section */
-    --secondary-foreground: 217 59% 15%;
-    --muted: 42 18% 94%;
-    --muted-foreground: 0 0% 38%;
+    --secondary: 210 20% 97%;            /* #F5F7FA cool light section */
+    --secondary-foreground: 215 50% 12%;
+    --muted: 210 20% 97%;
+    --muted-foreground: 215 18% 38%;
 
-    --accent: 213 40% 30%;               /* #2E4A6B soft trust blue */
-    --accent-foreground: 40 33% 97%;
-    --accent-light: 213 35% 42%;
-    --accent-dark: 213 45% 22%;
-
+    --accent: 215 60% 15%;               /* #10213D deep navy */
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 215 45% 28%;
+    --accent-dark: 215 70% 10%;
 
     --destructive: 0 60% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 38 18% 88%;
-    --input: 38 18% 88%;
-    --ring: 22 64% 58%;
+    --border: 215 20% 90%;
+    --input: 215 20% 90%;
+    --ring: 14 88% 55%;
     --radius: 0.5rem;
 
-    /* Legacy brand tokens — remapped to soft orange + soft blue */
-    --brand-navy: 213 40% 30%;
-    --brand-gray: 0 0% 38%;
-    --brand-light: 42 18% 94%;
-    --brand-orange: 22 64% 58%;
-    --brand-orange-light: 22 64% 68%;
-    --brand-orange-dark: 22 64% 48%;
-    --brand-blue: 213 40% 30%;
-    --brand-blue-light: 213 35% 42%;
-    --brand-blue-dark: 213 45% 22%;
+    /* Legacy brand tokens */
+    --brand-navy: 215 60% 15%;
+    --brand-gray: 215 18% 38%;
+    --brand-light: 210 20% 97%;
+    --brand-orange: 14 88% 55%;
+    --brand-orange-light: 14 88% 65%;
+    --brand-orange-dark: 14 88% 45%;
+    --brand-blue: 215 60% 15%;
+    --brand-blue-light: 215 45% 28%;
+    --brand-blue-dark: 215 70% 10%;
 
-    /* Gradients — restrained, premium */
-    --gradient-primary: linear-gradient(135deg, hsl(22 64% 58%), hsl(22 64% 68%));
-    --gradient-hero: linear-gradient(135deg, hsl(40 33% 97%) 0%, hsl(42 18% 94%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(40 33% 97%) 100%);
-    --gradient-trust: linear-gradient(90deg, hsl(213 40% 30%) 0%, hsl(22 64% 58%) 100%);
-    --gradient-warm: linear-gradient(135deg, hsl(22 64% 58%) 0%, hsl(22 64% 68%) 100%);
-    --gradient-cool: linear-gradient(135deg, hsl(213 40% 30%) 0%, hsl(213 35% 42%) 100%);
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(14 88% 55%), hsl(14 88% 62%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(210 20% 97%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
+    --gradient-trust: linear-gradient(90deg, hsl(215 60% 15%) 0%, hsl(14 88% 55%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(14 88% 55%), hsl(14 88% 62%));
+    --gradient-cool: linear-gradient(135deg, hsl(215 60% 15%), hsl(215 45% 28%));
 
-    /* Shadows — soft, editorial */
-    --shadow-elegant: 0 18px 40px -18px hsl(213 40% 30% / 0.18), 0 6px 14px -6px hsl(213 40% 30% / 0.08);
-    --shadow-card: 0 4px 14px -6px hsl(213 40% 30% / 0.08);
-    --shadow-hover: 0 26px 48px -20px hsl(213 40% 30% / 0.22);
-    --shadow-orange: 0 10px 25px -8px hsl(22 64% 58% / 0.25);
-    --shadow-blue: 0 10px 25px -8px hsl(213 40% 30% / 0.22);
-
+    /* Shadows */
+    --shadow-elegant: 0 18px 40px -18px hsl(215 60% 15% / 0.18), 0 6px 14px -6px hsl(215 60% 15% / 0.08);
+    --shadow-card: 0 4px 14px -6px hsl(215 60% 15% / 0.08);
+    --shadow-hover: 0 26px 48px -20px hsl(215 60% 15% / 0.22);
+    --shadow-orange: 0 12px 28px -10px hsl(14 88% 55% / 0.35);
+    --shadow-blue: 0 10px 25px -8px hsl(215 60% 15% / 0.25);
 
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -100,50 +98,48 @@
    stay consistent with the rest of the site.
    ============================================================ */
 .india-theme {
-  --background: 40 33% 97%;            /* #FAF8F3 ivory */
-  --foreground: 0 0% 11%;              /* #1C1C1C charcoal */
+  --background: 0 0% 100%;
+  --foreground: 215 50% 12%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 11%;
+  --card-foreground: 215 50% 12%;
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 11%;
+  --popover-foreground: 215 50% 12%;
 
-  --primary: 22 64% 58%;               /* #D9834F soft premium orange */
+  --primary: 14 88% 55%;
   --primary-foreground: 0 0% 100%;
-  --primary-light: 22 64% 68%;
-  --primary-dark: 22 64% 48%;
+  --primary-light: 14 88% 65%;
+  --primary-dark: 14 88% 45%;
 
-  --secondary: 42 18% 94%;             /* #F3F1EC light section */
-  --secondary-foreground: 217 59% 15%;
-  --muted: 42 18% 94%;
-  --muted-foreground: 0 0% 38%;
+  --secondary: 210 20% 97%;
+  --secondary-foreground: 215 50% 12%;
+  --muted: 210 20% 97%;
+  --muted-foreground: 215 18% 38%;
 
-  --accent: 213 40% 30%;               /* #2E4A6B soft trust blue */
-  --accent-foreground: 40 33% 97%;
-  --accent-light: 213 35% 42%;
-  --accent-dark: 213 45% 22%;
+  --accent: 215 60% 15%;
+  --accent-foreground: 0 0% 100%;
+  --accent-light: 215 45% 28%;
+  --accent-dark: 215 70% 10%;
 
-  --border: 38 18% 88%;
-  --input: 38 18% 88%;
-  --ring: 22 64% 58%;
+  --border: 215 20% 90%;
+  --input: 215 20% 90%;
+  --ring: 14 88% 55%;
   --radius: 0.5rem;
 
-  --brand-navy: 213 40% 30%;
-  --brand-gray: 0 0% 38%;
-  --brand-light: 42 18% 94%;
+  --brand-navy: 215 60% 15%;
+  --brand-gray: 215 18% 38%;
+  --brand-light: 210 20% 97%;
 
-  --gradient-primary: linear-gradient(135deg, hsl(22 64% 58%), hsl(22 64% 68%));
-  --gradient-hero: linear-gradient(135deg, hsl(40 33% 97%) 0%, hsl(42 18% 94%) 100%);
-  --gradient-trust: linear-gradient(90deg, hsl(213 40% 30%), hsl(22 64% 58%));
-  --gradient-warm: linear-gradient(135deg, hsl(22 64% 58%), hsl(22 64% 68%));
-  --gradient-cool: linear-gradient(135deg, hsl(213 40% 30%), hsl(213 35% 42%));
-  --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(40 33% 97%));
+  --gradient-primary: linear-gradient(135deg, hsl(14 88% 55%), hsl(14 88% 62%));
+  --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(210 20% 97%) 100%);
+  --gradient-trust: linear-gradient(90deg, hsl(215 60% 15%), hsl(14 88% 55%));
+  --gradient-warm: linear-gradient(135deg, hsl(14 88% 55%), hsl(14 88% 62%));
+  --gradient-cool: linear-gradient(135deg, hsl(215 60% 15%), hsl(215 45% 28%));
+  --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 20% 98%));
 
-  --shadow-elegant: 0 18px 40px -18px hsl(213 40% 30% / 0.18), 0 6px 14px -6px hsl(213 40% 30% / 0.08);
-  --shadow-card: 0 4px 14px -6px hsl(213 40% 30% / 0.08);
-  --shadow-hover: 0 26px 48px -20px hsl(213 40% 30% / 0.22);
+  --shadow-elegant: 0 18px 40px -18px hsl(215 60% 15% / 0.18), 0 6px 14px -6px hsl(215 60% 15% / 0.08);
+  --shadow-card: 0 4px 14px -6px hsl(215 60% 15% / 0.08);
+  --shadow-hover: 0 26px 48px -20px hsl(215 60% 15% / 0.22);
 
-
-  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
   color: hsl(var(--foreground));
   background: hsl(var(--background));
   letter-spacing: -0.005em;
