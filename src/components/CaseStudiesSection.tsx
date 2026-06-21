@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 const caseStudies = [
   {
     label: "Paid Ads · CRM · Website Inbound",
-    title: "Jonathan Morgan — Franchise Solutions Inc.",
+    title: "John Thompson — Franchise Solutions Inc.",
     body:
       "An independent franchise consultant running on referrals. We built an investor lead engine that delivers qualified enquiries every week — on autopilot.",
     to: "/case-studies",
