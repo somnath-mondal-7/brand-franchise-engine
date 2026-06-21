@@ -615,7 +615,7 @@ Every line should feel like it was written by a real person who has actually don
     properties: {
       title: { type: "string", description: "Casual, friendly title under 70 chars" },
       excerpt: { type: "string", description: "1 sentence hook, max 160 chars" },
-      content: { type: "string", description: "Full markdown body, 3,200-4,200 words. MUST NOT include the title or any H1. Start directly with the opening hook paragraph. Must include a ## FAQ section with 7 ### questions." },
+      content: { type: "string", description: "Full markdown body, 1,100-1,500 words in a premium founder voice. MUST NOT include the title or any H1. Start directly with the opening paragraph. Must include a ## FAQ section with exactly 5 ### questions and a ## Closing thought section." },
       slug: { type: "string", description: "SEO-friendly URL slug, lowercase, dashes only" },
       tags: { type: "array", items: { type: "string" }, description: "5 relevant tags" },
       coverImagePrompt: { type: "string", description: "Vivid 1-2 sentence description for the cover image" },
