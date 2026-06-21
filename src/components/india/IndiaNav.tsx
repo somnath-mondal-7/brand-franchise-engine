@@ -54,7 +54,10 @@ const IndiaNav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [resOpen, setResOpen] = useState(false);
   const [mobileResOpen, setMobileResOpen] = useState(false);
+  const [svcOpen, setSvcOpen] = useState(false);
+  const [mobileSvcOpen, setMobileSvcOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const svcCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -70,6 +73,14 @@ const IndiaNav = () => {
   const scheduleClose = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     closeTimer.current = setTimeout(() => setResOpen(false), 120);
+  };
+  const openSvc = () => {
+    if (svcCloseTimer.current) clearTimeout(svcCloseTimer.current);
+    setSvcOpen(true);
+  };
+  const scheduleSvcClose = () => {
+    if (svcCloseTimer.current) clearTimeout(svcCloseTimer.current);
+    svcCloseTimer.current = setTimeout(() => setSvcOpen(false), 120);
   };
 
   return (
