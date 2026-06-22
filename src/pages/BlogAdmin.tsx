@@ -11,7 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PlusCircle, Edit, Trash2, Eye, Upload, X, FileText } from 'lucide-react';
+import { PlusCircle, Edit, Trash2, Eye, Upload, X, FileText, Send } from 'lucide-react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -299,6 +299,38 @@ export default function BlogAdmin() {
     }
   };
 
+  const handleRequestIndexing = async (slug: string) => {
+    const url = `/blog/${slug}`;
+    toast({ title: "Submitting...", description: `Asking Google + Bing to index ${url}` });
+
+    try {
+      // Submit to both Google Indexing API and IndexNow (Bing/Yandex) in parallel
+      const [googleRes, indexNowRes] = await Promise.allSettled([
+        supabase.functions.invoke('google-indexing', { body: { urls: [url] } }),
+        supabase.functions.invoke('indexnow-ping', { body: { urls: [url] } }),
+      ]);
+
+      const googleOk = googleRes.status === 'fulfilled' && !googleRes.value.error;
+      const bingOk = indexNowRes.status === 'fulfilled' && !indexNowRes.value.error;
+
+      if (googleOk || bingOk) {
+        toast({
+          title: "Indexing requested!",
+          description: `Submitted to ${[googleOk && 'Google', bingOk && 'Bing/Yandex'].filter(Boolean).join(' + ')}. Indexing usually happens in 1-24 hours.`,
+        });
+      } else {
+        throw new Error('Both indexing services failed');
+      }
+    } catch (error) {
+      console.error('Indexing error:', error);
+      toast({
+        title: "Indexing request failed",
+        description: "Check edge function logs for details.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -354,13 +386,24 @@ export default function BlogAdmin() {
                             </div>
                           </div>
                           <div className="flex gap-2 ml-4">
-                            <Button variant="outline" size="sm" onClick={() => window.open(`/blog/${post.slug}`, '_blank')}>
+                            <Button variant="outline" size="sm" onClick={() => window.open(`/blog/${post.slug}`, '_blank')} title="View post">
                               <Eye className="w-4 h-4" />
                             </Button>
-                            <Button variant="outline" size="sm" onClick={() => handleEdit(post)}>
+                            <Button variant="outline" size="sm" onClick={() => handleEdit(post)} title="Edit post">
                               <Edit className="w-4 h-4" />
                             </Button>
-                            <Button variant="outline" size="sm" onClick={() => handleDelete(post.id)}>
+                            {post.is_published && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleRequestIndexing(post.slug)}
+                                title="Request Google indexing"
+                                className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                              >
+                                <Send className="w-4 h-4" />
+                              </Button>
+                            )}
+                            <Button variant="outline" size="sm" onClick={() => handleDelete(post.id)} title="Delete post">
                               <Trash2 className="w-4 h-4" />
                             </Button>
                           </div>
