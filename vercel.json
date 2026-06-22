@@ -59,6 +59,14 @@
     }
   ],
   "rewrites": [
+    { "source": "/brands/:path*", "destination": "/api/gone" },
+    { "source": "/franchise-lead-generation/:path*", "destination": "/api/gone" },
+    { "source": "/franchise-marketing/:path*", "destination": "/api/gone" },
+    { "source": "/franchise-development/:path*", "destination": "/api/gone" },
+    { "source": "/franchise-consulting/:path*", "destination": "/api/gone" },
+    { "source": "/franchise-advertising/:path*", "destination": "/api/gone" },
+    { "source": "/franchise-lead-buying/:path*", "destination": "/api/gone" },
+    { "source": "/locations/:country/:state/:city", "destination": "/api/gone" },
     { "source": "/__l5e/:path*", "destination": "https://brand-franchise-engine.lovable.app/__l5e/:path*" },
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
     { "source": "/sitemaps/:path*", "destination": "/sitemaps/:path*" },
