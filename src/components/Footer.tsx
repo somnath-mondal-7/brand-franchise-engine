@@ -68,30 +68,32 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Services</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#services" className="hover:text-white transition-colors py-1 inline-block">Lead Generation</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors py-1 inline-block">Brand Building</a></li>
+              <li><a href="/franchise-broker-lead-generation" className="hover:text-white transition-colors py-1 inline-block">Franchise Broker Lead Generation</a></li>
+              <li><a href="/franchise-marketing-agency" className="hover:text-white transition-colors py-1 inline-block">Franchise Marketing Agency</a></li>
+              <li><a href="/real-estate-broker-marketing" className="hover:text-white transition-colors py-1 inline-block">Real Estate Broker Marketing</a></li>
+              <li><a href="/mortgage-broker-lead-generation" className="hover:text-white transition-colors py-1 inline-block">Mortgage Broker Lead Generation</a></li>
+              <li><a href="/linkedin-lead-generation-brokers" className="hover:text-white transition-colors py-1 inline-block">LinkedIn Lead Generation</a></li>
               <li>
                 <a href="/digital-marketing" className="group relative hover:text-white transition-colors py-1 inline-block">
                   <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-semibold">
                     Digital Marketing ✨
                   </span>
-                  <span className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-purple-600/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity rounded"></span>
                 </a>
               </li>
-              <li><a href="#services" className="hover:text-white transition-colors py-1 inline-block">LinkedIn Marketing</a></li>
             </ul>
           </div>
 
-          {/* Franchise Leads by Location */}
+          {/* Franchise Broker Leads by Region */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold">Franchise Leads by Location</h4>
+            <h4 className="text-lg font-semibold">Broker Leads by Region</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="/franchise-leads-usa" className="hover:text-white transition-colors py-1 inline-block">USA Franchise Leads</a></li>
-              <li><a href="/locations/usa" className="hover:text-white transition-colors py-1 inline-block">USA Market Hub</a></li>
+              <li><a href="/franchise-broker-leads-usa" className="hover:text-white transition-colors py-1 inline-block">USA (All Regions)</a></li>
+              <li><a href="/franchise-broker-leads-northeast" className="hover:text-white transition-colors py-1 inline-block">Northeast</a></li>
+              <li><a href="/franchise-broker-leads-southeast" className="hover:text-white transition-colors py-1 inline-block">Southeast</a></li>
+              <li><a href="/franchise-broker-leads-midwest" className="hover:text-white transition-colors py-1 inline-block">Midwest</a></li>
+              <li><a href="/franchise-broker-leads-west" className="hover:text-white transition-colors py-1 inline-block">West</a></li>
               <li><a href="/franchise-leads-uk" className="hover:text-white transition-colors py-1 inline-block">UK Franchise Leads</a></li>
-              <li><a href="/locations/uk" className="hover:text-white transition-colors py-1 inline-block">UK Market Hub</a></li>
               <li><a href="/franchise-leads-canada" className="hover:text-white transition-colors py-1 inline-block">Canada Franchise Leads</a></li>
-              <li><a href="/locations/ca" className="hover:text-white transition-colors py-1 inline-block">Canada Market Hub</a></li>
             </ul>
           </div>
 
@@ -99,11 +101,14 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Company</h4>
             <ul className="space-y-2 text-gray-400">
+              <li><a href="/about" className="hover:text-white transition-colors py-1 inline-block">About</a></li>
+              <li><a href="/case-studies" className="hover:text-white transition-colors py-1 inline-block">Case Studies</a></li>
               <li><a href="/blog" className="hover:text-white transition-colors py-1 inline-block">Blog</a></li>
               <li><a href="/contact" className="hover:text-white transition-colors py-1 inline-block">Contact Us</a></li>
               <li><a href="/sitemap" className="hover:text-white transition-colors py-1 inline-block">Sitemap</a></li>
             </ul>
           </div>
+
 
           {/* Contact */}
           <div className="space-y-4 sm:col-span-2 md:col-span-1">
