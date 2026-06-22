@@ -37,6 +37,15 @@ export const generateCorePages = (): SitemapUrl[] => {
     { loc: `${DOMAIN}/buy-franchise-leads`, lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
     { loc: `${DOMAIN}/digital-marketing`, lastmod: currentDate, changefreq: 'weekly', priority: '0.85' },
     { loc: `${DOMAIN}/franchise-broker-lead-generation`, lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
+    { loc: `${DOMAIN}/franchise-marketing-agency`, lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
+    { loc: `${DOMAIN}/real-estate-broker-marketing`, lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
+    { loc: `${DOMAIN}/mortgage-broker-lead-generation`, lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
+    { loc: `${DOMAIN}/linkedin-lead-generation-brokers`, lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
+    { loc: `${DOMAIN}/franchise-broker-lead-generation-usa`, lastmod: currentDate, changefreq: 'weekly', priority: '0.95' },
+    { loc: `${DOMAIN}/franchise-broker-leads-northeast`, lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
+    { loc: `${DOMAIN}/franchise-broker-leads-southeast`, lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
+    { loc: `${DOMAIN}/franchise-broker-leads-midwest`, lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
+    { loc: `${DOMAIN}/franchise-broker-leads-west`, lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
   ];
 };
 
