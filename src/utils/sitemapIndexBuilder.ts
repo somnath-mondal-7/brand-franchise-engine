@@ -39,15 +39,13 @@ export const generateCorePages = (): SitemapUrl[] => {
   ];
 };
 
+// Brand pages removed from sitemap (June 2026): they were thin, templated
+// snapshots that triggered "Crawled – currently not indexed" at scale and
+// attracted the wrong audience (franchise buyers, not broker clients).
 export const generateBrandUrls = (): SitemapUrl[] => {
-  const currentDate = getTodayDate();
-  return brands.map((brand) => ({
-    loc: `${DOMAIN}/brands/${brand.slug}`,
-    lastmod: currentDate,
-    changefreq: 'weekly',
-    priority: '0.8',
-  }));
+  return [];
 };
+
 
 // Curated sitemap policy: only emit URLs backed by unique regional content.
 // This keeps Google away from retired or templated permutations that were
