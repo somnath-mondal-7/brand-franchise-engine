@@ -45,6 +45,7 @@ import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
 import FranchiseMarketing from "./pages/FranchiseMarketing";
 import FranchiseFlow from "./pages/FranchiseFlow";
+import FranchiseBrokerLeadGeneration from "./pages/FranchiseBrokerLeadGeneration";
 import ServiceDetail from "./pages/ServiceDetail";
 import ScrollToTop from "./components/ScrollToTop";
 import ChatWidget from "./components/ChatWidget";
@@ -131,6 +132,7 @@ const App = () => (
             <Route path="/franchise-marketing" element={<FranchiseMarketing />} />
             <Route path="/franchise-marketing/:slug" element={<ServiceDetail />} />
             <Route path="/franchise-flow" element={<FranchiseFlow />} />
+            <Route path="/franchise-broker-lead-generation" element={<FranchiseBrokerLeadGeneration />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           </div>

@@ -36,6 +36,7 @@ export const generateCorePages = (): SitemapUrl[] => {
     
     { loc: `${DOMAIN}/buy-franchise-leads`, lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
     { loc: `${DOMAIN}/digital-marketing`, lastmod: currentDate, changefreq: 'weekly', priority: '0.85' },
+    { loc: `${DOMAIN}/franchise-broker-lead-generation`, lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
   ];
 };
 
