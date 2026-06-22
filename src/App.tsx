@@ -132,6 +132,7 @@ const App = () => (
             <Route path="/franchise-marketing" element={<FranchiseMarketing />} />
             <Route path="/franchise-marketing/:slug" element={<ServiceDetail />} />
             <Route path="/franchise-flow" element={<FranchiseFlow />} />
+            <Route path="/franchise-broker-lead-generation" element={<FranchiseBrokerLeadGeneration />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           </div>
