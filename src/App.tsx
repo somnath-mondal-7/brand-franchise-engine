@@ -45,6 +45,7 @@ import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
 import FranchiseMarketing from "./pages/FranchiseMarketing";
 import FranchiseFlow from "./pages/FranchiseFlow";
+import FranchiseBrokerLeadGeneration from "./pages/FranchiseBrokerLeadGeneration";
 import ServiceDetail from "./pages/ServiceDetail";
 import ScrollToTop from "./components/ScrollToTop";
 import ChatWidget from "./components/ChatWidget";
