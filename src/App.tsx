@@ -46,6 +46,15 @@ import NotFound from "./pages/NotFound";
 import FranchiseMarketing from "./pages/FranchiseMarketing";
 import FranchiseFlow from "./pages/FranchiseFlow";
 import FranchiseBrokerLeadGeneration from "./pages/FranchiseBrokerLeadGeneration";
+import FranchiseMarketingAgency from "./pages/FranchiseMarketingAgency";
+import RealEstateBrokerMarketing from "./pages/RealEstateBrokerMarketing";
+import MortgageBrokerLeadGeneration from "./pages/MortgageBrokerLeadGeneration";
+import LinkedInLeadGenerationBrokers from "./pages/LinkedInLeadGenerationBrokers";
+import FranchiseBrokerLeadsUSA from "./pages/FranchiseBrokerLeadsUSA";
+import FranchiseBrokerLeadsNortheast from "./pages/FranchiseBrokerLeadsNortheast";
+import FranchiseBrokerLeadsSoutheast from "./pages/FranchiseBrokerLeadsSoutheast";
+import FranchiseBrokerLeadsMidwest from "./pages/FranchiseBrokerLeadsMidwest";
+import FranchiseBrokerLeadsWest from "./pages/FranchiseBrokerLeadsWest";
 import ServiceDetail from "./pages/ServiceDetail";
 import ScrollToTop from "./components/ScrollToTop";
 import ChatWidget from "./components/ChatWidget";
@@ -133,6 +142,15 @@ const App = () => (
             <Route path="/franchise-marketing/:slug" element={<ServiceDetail />} />
             <Route path="/franchise-flow" element={<FranchiseFlow />} />
             <Route path="/franchise-broker-lead-generation" element={<FranchiseBrokerLeadGeneration />} />
+            <Route path="/franchise-marketing-agency" element={<FranchiseMarketingAgency />} />
+            <Route path="/real-estate-broker-marketing" element={<RealEstateBrokerMarketing />} />
+            <Route path="/mortgage-broker-lead-generation" element={<MortgageBrokerLeadGeneration />} />
+            <Route path="/linkedin-lead-generation-brokers" element={<LinkedInLeadGenerationBrokers />} />
+            <Route path="/franchise-broker-lead-generation-usa" element={<FranchiseBrokerLeadsUSA />} />
+            <Route path="/franchise-broker-leads-northeast" element={<FranchiseBrokerLeadsNortheast />} />
+            <Route path="/franchise-broker-leads-southeast" element={<FranchiseBrokerLeadsSoutheast />} />
+            <Route path="/franchise-broker-leads-midwest" element={<FranchiseBrokerLeadsMidwest />} />
+            <Route path="/franchise-broker-leads-west" element={<FranchiseBrokerLeadsWest />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           </div>
