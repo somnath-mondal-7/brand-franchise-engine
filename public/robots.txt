@@ -9,7 +9,7 @@ Allow: /llms-full.txt
 Sitemap: https://www.franchiseleadspro.com/sitemap.xml
 Sitemap: https://www.franchiseleadspro.com/sitemap-blog.xml
 
-# Disallow crawling of admin areas, temp files, and duplicate content
+# Disallow admin/private/utility paths
 Disallow: /admin/
 Disallow: /private/
 Disallow: /*?*utm_
@@ -19,6 +19,38 @@ Disallow: /session-demo
 Disallow: /search
 Disallow: /india
 Disallow: /home-original
+
+# ─────────────────────────────────────────────────────────────
+# HARD BLOCK programmatic city/state combinations.
+# These URL patterns produced thousands of thin pages that
+# Google flagged as "Discovered – currently not indexed" and
+# they drag down domain authority. Templates already render
+# noindex, but Disallow stops Google from spending crawl budget
+# on them entirely.
+# ─────────────────────────────────────────────────────────────
+
+# Service + country + state + city permutations
+Disallow: /franchise-marketing/*/*/*
+Disallow: /franchise-lead-generation/*/*/*
+Disallow: /franchise-consulting/*/*/*
+Disallow: /franchise-development/*/*/*
+Disallow: /franchise-advertising/*/*/*
+Disallow: /franchise-branding/*/*/*
+Disallow: /franchise-digital-marketing/*/*/*
+Disallow: /franchise-seo/*/*/*
+Disallow: /franchise-social-media-marketing/*/*/*
+Disallow: /franchise-content-marketing/*/*/*
+
+# Legacy bloat patterns — "affordable / best / top X agency Y" combos
+Disallow: /affordable-*
+Disallow: /best-*
+Disallow: /top-*
+Disallow: /cheap-*
+Disallow: /*-agency-usa/*
+Disallow: /*-opportunity-in-*
+
+# City-level location pages (state hubs stay open)
+Disallow: /locations/*/*/*
 
 # Allow important bot access
 User-agent: Googlebot
@@ -33,7 +65,7 @@ Allow: /
 User-agent: Twitterbot
 Allow: /
 
-# AI/LLM Bots - Allow full access
+# AI/LLM Bots — full access to indexable content
 User-agent: GPTBot
 Allow: /
 Allow: /llms.txt
@@ -61,12 +93,11 @@ Allow: /
 Allow: /
 Allow: /brands/
 Allow: /franchise-leads-usa
-Allow: /franchise-leads-uk  
+Allow: /franchise-leads-uk
 Allow: /franchise-leads-canada
 Allow: /franchise-leads-australia
 Allow: /franchise-leads-dubai
 Allow: /franchise-leads-india
-
 Allow: /buy-franchise-leads
 Allow: /blog
 Allow: /services
