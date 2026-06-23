@@ -4,7 +4,7 @@ import { ArrowUpRight, Check } from "lucide-react";
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
 import { Button } from "@/components/ui/button";
-import { SERVICES } from "./FranchiseMarketing";
+import { SERVICES } from "@/data/franchiseMarketingServices";
 
 type Detail = {
   intro: string;
