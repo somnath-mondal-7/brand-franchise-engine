@@ -55,6 +55,9 @@ import FranchiseBrokerLeadsNortheast from "./pages/FranchiseBrokerLeadsNortheast
 import FranchiseBrokerLeadsSoutheast from "./pages/FranchiseBrokerLeadsSoutheast";
 import FranchiseBrokerLeadsMidwest from "./pages/FranchiseBrokerLeadsMidwest";
 import FranchiseBrokerLeadsWest from "./pages/FranchiseBrokerLeadsWest";
+import BestFranchiseLeadsAgency from "./pages/BestFranchiseLeadsAgency";
+import TopFranchiseLeadsAgencies from "./pages/TopFranchiseLeadsAgencies";
+import FranchiseLeadsAgencyNearMe from "./pages/FranchiseLeadsAgencyNearMe";
 import ServiceDetail from "./pages/ServiceDetail";
 import ScrollToTop from "./components/ScrollToTop";
 import ChatWidget from "./components/ChatWidget";
@@ -151,6 +154,9 @@ const App = () => (
             <Route path="/franchise-broker-leads-southeast" element={<FranchiseBrokerLeadsSoutheast />} />
             <Route path="/franchise-broker-leads-midwest" element={<FranchiseBrokerLeadsMidwest />} />
             <Route path="/franchise-broker-leads-west" element={<FranchiseBrokerLeadsWest />} />
+            <Route path="/best-franchise-leads-agency" element={<BestFranchiseLeadsAgency />} />
+            <Route path="/top-franchise-leads-agencies" element={<TopFranchiseLeadsAgencies />} />
+            <Route path="/franchise-leads-agency-near-me" element={<FranchiseLeadsAgencyNearMe />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           </div>
