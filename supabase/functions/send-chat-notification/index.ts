@@ -67,9 +67,11 @@ const handler = async (req: Request): Promise<Response> => {
         "Authorization": `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "FranchiseLeadsPro <onboarding@resend.dev>",
-        to: ["your-email@example.com"],
-        subject: `New Chat Conversation${visitorName ? ` from ${visitorName}` : ''}`,
+        from: "FranchiseLeadsPro <support@franchiseleadspro.com>",
+        to: ["iamsomnath@franchiseleadspro.com"],
+        cc: ["support@franchiseleadspro.com"],
+        reply_to: visitorEmail || "support@franchiseleadspro.com",
+        subject: `💬 New Chat${visitorName ? ` from ${visitorName}` : ''} on FranchiseLeadsPro`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333;">New Chat Conversation</h2>
