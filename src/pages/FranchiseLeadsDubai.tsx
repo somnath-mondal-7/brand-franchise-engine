@@ -8,19 +8,18 @@ const FranchiseLeadsDubai = () => {
   return (
     <>
       <Helmet>
-        <title>Franchise Leads Dubai UAE - #1 Franchise Lead Generation Service in Middle East</title>
-        <meta name="description" content="Get qualified franchise leads in Dubai, UAE, Abu Dhabi, Sharjah. We've generated 8,000+ franchise consultant leads across UAE and Middle East. Expert Dubai franchise marketing agency." />
-        <meta name="keywords" content="franchise leads Dubai, franchise lead generation UAE, franchise consultant leads Dubai, Abu Dhabi franchise opportunities, Sharjah franchise leads, UAE franchise marketing, Dubai franchise consultants, Middle East franchise leads, franchise opportunities UAE, franchise business Dubai" />
+        <title>Franchise Lead Generation Dubai & UAE | Middle East Franchise Investors</title>
+        <meta name="description" content="Connect with franchise investors in Dubai and the UAE. FranchiseLeadsPro delivers targeted LinkedIn and social media campaigns for the Middle East franchise market." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/franchise-leads-dubai" />
-        
+
         {/* Open Graph */}
-        <meta property="og:title" content="Franchise Leads Dubai UAE - #1 Lead Generation Service" />
-        <meta property="og:description" content="Get qualified franchise leads in Dubai, UAE. 8,000+ leads generated for Middle East franchise consultants." />
+        <meta property="og:title" content="Franchise Lead Generation Dubai & UAE | Middle East Franchise Investors" />
+        <meta property="og:description" content="Connect with franchise investors in Dubai and the UAE. FranchiseLeadsPro delivers targeted LinkedIn and social media campaigns for the Middle East franchise market." />
         <meta property="og:url" content="https://www.franchiseleadspro.com/franchise-leads-dubai" />
-        
+
         {/* Twitter */}
-        <meta name="twitter:title" content="Franchise Leads Dubai UAE - #1 Lead Generation Service" />
-        <meta name="twitter:description" content="Get qualified franchise leads in Dubai, UAE. 8,000+ leads generated for Middle East franchise consultants." />
+        <meta name="twitter:title" content="Franchise Lead Generation Dubai & UAE | Middle East Franchise Investors" />
+        <meta name="twitter:description" content="Connect with franchise investors in Dubai and the UAE. FranchiseLeadsPro delivers targeted LinkedIn and social media campaigns for the Middle East franchise market." />
         
         {/* Structured Data */}
         <script type="application/ld+json">

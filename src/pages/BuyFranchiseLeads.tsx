@@ -3,8 +3,8 @@ import { ShoppingCart, ShieldCheck, Users, Calendar, Target, LineChart } from "l
 
 const config: MoneyPageConfig = {
   canonical: "https://www.franchiseleadspro.com/buy-franchise-leads",
-  metaTitle: "Buy Franchise Leads | Exclusive, Capital-Qualified Candidates",
-  metaDescription: "Skip the shared-portal model. Buy franchise leads that are exclusive to you, pre-qualified against your capital bands, and booked directly to your calendar.",
+  metaTitle: "Buy Franchise Leads | Pre-Qualified Franchise Buyer Leads for Sale",
+  metaDescription: "Buy pre-qualified franchise buyer leads from FranchiseLeadsPro. We deliver verified, intent-based leads of franchise investors actively looking to invest.",
   ogTitle: "Buy Franchise Leads — Exclusive and Qualified",
   ogDescription: "Buy franchise leads the right way — exclusive, capital-qualified, booked to your calendar.",
   badge: "Buy Franchise Leads — The Right Way",

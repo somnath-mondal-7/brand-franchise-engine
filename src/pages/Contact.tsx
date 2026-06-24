@@ -68,12 +68,12 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Contact FranchiseLeadsPro | Free Strategy Call</title>
-        <meta name="description" content="Book a free franchise marketing consultation. Qualified leads, websites, and growth support. Call +1 (424) 445-5334." />
+        <title>Contact FranchiseLeadsPro | Free Franchise Marketing Consultation</title>
+        <meta name="description" content="Get in touch with FranchiseLeadsPro for a free consultation. Call +1 (424) 445-5334 or fill out the contact form to start generating qualified franchise leads." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/contact" />
         <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="Contact FranchiseLeadsPro | Free Strategy Call" />
-        <meta property="og:description" content="Book a free franchise marketing consultation with FranchiseLeadsPro." />
+        <meta property="og:title" content="Contact FranchiseLeadsPro | Free Franchise Marketing Consultation" />
+        <meta property="og:description" content="Get in touch with FranchiseLeadsPro for a free consultation. Call +1 (424) 445-5334 or fill out the contact form to start generating qualified franchise leads." />
         <meta property="og:url" content="https://www.franchiseleadspro.com/contact" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">

@@ -26,11 +26,11 @@ const About = () => {
   return (
     <div className="india-theme min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>About FranchiseLeadsPro | Franchise Growth Partner</title>
-        <meta name="description" content="FranchiseLeadsPro is a franchise-only growth partner helping Indian and US franchisors attract qualified investors and scale faster." />
+        <title>About FranchiseLeadsPro | #1 Franchise Marketing Agency</title>
+        <meta name="description" content="Learn about FranchiseLeadsPro — a dedicated franchise marketing agency helping franchisors and consultants connect with qualified investors since day one." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/about" />
-        <meta property="og:title" content="About FranchiseLeadsPro | Franchise Growth Partner" />
-        <meta property="og:description" content="A franchise-only growth partner helping Indian and US franchisors attract qualified investors and scale faster." />
+        <meta property="og:title" content="About FranchiseLeadsPro | #1 Franchise Marketing Agency" />
+        <meta property="og:description" content="Learn about FranchiseLeadsPro — a dedicated franchise marketing agency helping franchisors and consultants connect with qualified investors since day one." />
         <meta property="og:url" content="https://www.franchiseleadspro.com/about" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
