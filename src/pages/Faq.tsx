@@ -38,7 +38,7 @@ const faqs = [
 const Faq = () => (
   <div className="min-h-screen bg-background">
     <Helmet>
-      <title>FAQs | FranchiseLeadsPro</title>
+      <title>Franchise Lead Generation FAQs | FranchiseLeadsPro</title>
       <meta
         name="description"
         content="Answers to the most common questions about FranchiseLeadsPro's franchise development, USA-based VA team and lead generation services."
@@ -52,7 +52,7 @@ const Faq = () => (
             Frequently Asked Questions
           </span>
           <h1 className="font-display text-4xl sm:text-5xl font-bold text-accent mt-3">
-            Everything you wanted to know
+            Franchise Lead Generation FAQs
           </h1>
           <p className="mt-4 text-accent/70 leading-relaxed">
             Clear answers about how we work, who we work with, and what to

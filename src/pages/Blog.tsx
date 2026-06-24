@@ -291,7 +291,7 @@ const Blog = () => {
                             size="sm"
                             className="text-primary hover:bg-primary hover:text-white transition-all group-hover:scale-105"
                           >
-                            Read More <ArrowRight className="ml-1 h-3 w-3" />
+                            View Post <ArrowRight className="ml-1 h-3 w-3" />
                           </Button>
                         </div>
                       </CardContent>

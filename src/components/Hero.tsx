@@ -22,8 +22,9 @@ const Hero = () => {
 
         {/* Headline — bold editorial, navy + orange */}
         <h1 className="text-center font-extrabold tracking-tight text-accent leading-[0.95] text-[2.6rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] max-w-5xl mx-auto">
-          Attention First.
+          Franchise Marketing:
           <br />
+          Attention First.{" "}
           <span className="text-primary">Growth Next.</span>
         </h1>
 

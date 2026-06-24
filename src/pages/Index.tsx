@@ -12,10 +12,10 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Franchise Lead Generation Agency | FranchiseLeadsPro</title>
-        <meta name="description" content="FranchiseLeadsPro helps franchisors, franchise consultants & brokers generate qualified buyer leads through LinkedIn marketing, social media & web development. USA, India, UK & worldwide." />
+        <meta name="description" content="Franchise lead generation agency helping franchisors, consultants & brokers attract qualified buyers via LinkedIn, social, SEO & web." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/" />
         <meta property="og:title" content="Franchise Lead Generation Agency | FranchiseLeadsPro" />
-        <meta property="og:description" content="FranchiseLeadsPro helps franchisors, franchise consultants & brokers generate qualified buyer leads through LinkedIn marketing, social media & web development. USA, India, UK & worldwide." />
+        <meta property="og:description" content="Franchise lead generation agency helping franchisors, consultants & brokers attract qualified buyers via LinkedIn, social, SEO & web." />
         <meta property="og:url" content="https://www.franchiseleadspro.com/" />
         <meta property="og:type" content="website" />
         {/* WebSite schema with Sitelinks Searchbox */}
