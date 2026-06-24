@@ -580,11 +580,11 @@
   margin-bottom: 1.25rem;
 }
 .blog-content-dark a {
-  color: #b8860b;
+  color: #F15A29;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.blog-content-dark a:hover { color: #8b6508; }
+.blog-content-dark a:hover { color: #c2410c; }
 .blog-content-dark strong { color: #0a0a0a; font-weight: 600; }
 .blog-content-dark ul,
 .blog-content-dark ol {
@@ -593,10 +593,10 @@
   margin-bottom: 1.5rem;
 }
 .blog-content-dark li { margin-bottom: 0.5rem; line-height: 1.75; }
-.blog-content-dark ul li::marker { color: #b8860b; }
-.blog-content-dark ol li::marker { color: #b8860b; font-weight: 700; }
+.blog-content-dark ul li::marker { color: #F15A29; }
+.blog-content-dark ol li::marker { color: #F15A29; font-weight: 700; }
 .blog-content-dark blockquote {
-  border-left: 3px solid #FACC15;
+  border-left: 3px solid #F15A29;
   padding-left: 1.25rem;
   color: #4b5563;
   font-style: italic;

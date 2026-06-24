@@ -9,7 +9,7 @@ const AuthorBio = () => {
         <img
           src={somnathAsset.url}
           alt="Somnath Mondal"
-          className="w-24 h-24 rounded-full object-cover flex-shrink-0 border-2 border-[#FACC15]"
+          className="w-24 h-24 rounded-full object-cover flex-shrink-0 border-2 border-[#F15A29]"
         />
         <div className="flex-1">
           <h3
@@ -27,7 +27,7 @@ const AuthorBio = () => {
           <Link to="/about">
             <Button
               variant="outline"
-              className="border-neutral-300 text-neutral-900 hover:bg-[#FACC15] hover:text-black hover:border-[#FACC15]"
+              className="border-neutral-300 text-neutral-900 hover:bg-[#F15A29] hover:text-white hover:border-[#F15A29]"
             >
               Learn More
             </Button>
