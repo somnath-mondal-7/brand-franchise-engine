@@ -2,9 +2,16 @@ import { Helmet } from "react-helmet-async";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { Button } from "./ui/button";
-import { CheckCircle, TrendingUp, Users, Target, Zap, Building2, Handshake, Award, ArrowRight } from "lucide-react";
+import { CheckCircle, TrendingUp, Users, Target, Zap, Building2, Handshake, Award, ArrowRight, Scale, BarChart3, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import { hasCuratedInsight } from "@/utils/locationContent";
+import {
+  hasCuratedInsight,
+  getRegionInsight,
+  generateMarketNarrative,
+  generateLocationFAQs,
+} from "@/utils/locationContent";
+import { getCityNarrative, getServiceMarketPlay } from "@/utils/cityNarratives";
+
 
 interface ServiceLocationTemplateProps {
   service: string;
