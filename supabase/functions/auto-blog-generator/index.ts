@@ -14,166 +14,114 @@ const FRANCHISE_NEWS_SOURCES = [
   "https://www.forbes.com/franchise/feed/",
 ];
 
-// Combined research topics: Marketing Tips + Industry News + Case Studies
+// USA-FOCUSED FRANCHISE NEWS, POLICY, LAUNCHES, FACTS
+// Strictly news/fact based content — NOT marketing tips. Inspired by what Google
+// actually rewards: timely, factual, US-market franchise coverage.
 const RESEARCH_TOPICS = [
-  // MARKETING TIPS CATEGORY
   {
-    category: "marketing-tips",
-    topic: "franchise lead generation strategies that actually work in 2025",
-    stats: "Top franchises generate 40% more leads using targeted digital campaigns vs broad marketing",
-    angle: "actionable marketing tactics",
-    hook: "Most franchises waste 60% of their marketing budget. Here's how to stop the bleeding."
+    category: "us-franchise-news",
+    topic: "newly launched franchise brands in the USA this quarter and what they signal about the market",
+    stats: "Use only real, verifiable brand launches and openings — never fabricate numbers",
+    angle: "what's new on the US franchise map and why it matters",
+    hook: "A few new US franchise launches just told us where the market is actually heading."
   },
   {
-    category: "marketing-tips",
-    topic: "social media marketing secrets for franchise growth",
-    stats: "Franchises with consistent social presence see 35% higher lead quality and 28% better engagement",
-    angle: "platform-specific strategies",
-    hook: "Your competitors are dominating Instagram while you're still figuring out hashtags."
+    category: "us-franchise-policy",
+    topic: "FTC Franchise Rule and recent updates affecting US franchisors and franchisees",
+    stats: "Reference the actual FTC Franchise Rule (16 CFR Part 436) — describe, don't invent statistics",
+    angle: "what the latest FTC posture means in practice",
+    hook: "The FTC quietly shifted its franchise enforcement stance — here's what changed."
   },
   {
-    category: "marketing-tips",
-    topic: "email marketing automation for franchise sales",
-    stats: "Automated email sequences convert 3x better than manual outreach with 67% time savings",
-    angle: "conversion optimization",
-    hook: "That lead you ignored yesterday? Your competitor just closed them with one email."
+    category: "us-franchise-policy",
+    topic: "state-level franchise registration changes in California, New York, Illinois, Virginia, Maryland and Washington",
+    stats: "Cite the named state acts (e.g., California Franchise Investment Law) by name without inventing data",
+    angle: "state-by-state regulatory landscape",
+    hook: "If you franchise in California or New York, the registration calendar just got harder to ignore."
   },
   {
-    category: "marketing-tips",
-    topic: "local SEO strategies for multi-location franchises",
-    stats: "Optimized Google Business profiles drive 70% more foot traffic and 50% more calls",
-    angle: "local visibility tactics",
-    hook: "You're invisible on Google Maps. Here's how to fix it in 30 days."
+    category: "us-franchise-policy",
+    topic: "joint employer rule, NLRB activity, and how it changes the US franchisor-franchisee relationship",
+    stats: "Reference the NLRB and Department of Labor rule timeline factually",
+    angle: "labor policy impact on franchise systems",
+    hook: "Joint employer keeps coming back. Here's where it actually stands right now."
   },
   {
-    category: "marketing-tips",
-    topic: "PPC advertising optimization for franchise leads",
-    stats: "Well-optimized Google Ads campaigns achieve $45-85 cost per qualified lead vs $200+ industry average",
-    angle: "ad spend efficiency",
-    hook: "Stop burning cash on clicks that never convert. Here's the exact formula."
-  },
-  // INDUSTRY NEWS & TRENDS CATEGORY
-  {
-    category: "industry-news",
-    topic: "franchise industry growth trends and market shifts 2025",
-    stats: "Franchise industry projected to reach $860B by 2025, with 3.5% annual growth",
-    angle: "market analysis and predictions",
-    hook: "The franchise landscape just shifted. Are you positioned for what's coming?"
+    category: "us-franchise-news",
+    topic: "largest US franchise system openings and closings reported in IFA, Franchise Times, and Entrepreneur",
+    stats: "Use only headlines surfaced in the live news feed — never invent unit counts",
+    angle: "openings, closings, and acquisitions reshaping US franchising",
+    hook: "Three big US franchise systems made moves this month that the trade press underplayed."
   },
   {
-    category: "industry-news",
-    topic: "emerging franchise sectors and investment opportunities",
-    stats: "Health tech, senior care, and sustainable franchises growing 18-25% annually",
-    angle: "sector analysis",
-    hook: "The next billion-dollar franchise category is hiding in plain sight."
+    category: "us-franchise-launches",
+    topic: "new US franchise concepts in food service, fitness, home services, pet care, and health that filed FDDs recently",
+    stats: "Use real concept categories — describe trends, don't fabricate growth rates",
+    angle: "emerging US concepts worth watching",
+    hook: "A wave of new US franchise concepts is filing FDDs in categories nobody was watching."
   },
   {
-    category: "industry-news",
-    topic: "franchise technology adoption and digital transformation",
-    stats: "AI-powered franchises report 40% efficiency gains and 25% higher customer satisfaction",
-    angle: "technology impact",
-    hook: "Franchises stuck in 2019 are dying. Here's what the survivors are doing differently."
+    category: "us-franchise-facts",
+    topic: "how the US franchise industry is structured today — IFA, FRANdata, and SBA franchise loan data",
+    stats: "Reference IFA Economic Outlook, FRANdata, and SBA franchise registry by name only — describe dynamics, don't invent numbers",
+    angle: "factual snapshot of the US franchise economy",
+    hook: "Most franchisors quote the IFA report without reading it. Here's what it actually says."
   },
   {
-    category: "industry-news",
-    topic: "franchise buyer demographics and investment patterns",
-    stats: "Millennials now represent 35% of new franchisees, up from 18% in 2018",
-    angle: "demographic shifts",
-    hook: "The profile of your ideal franchisee just changed dramatically. Did you notice?"
+    category: "us-franchise-policy",
+    topic: "SBA franchise lending changes and the SBA Franchise Directory removal — what it means for buyers",
+    stats: "Reference the SBA Franchise Directory sunset factually",
+    angle: "lending policy and capital access for US franchisees",
+    hook: "The SBA quietly killed its franchise directory. The financing fallout is still rolling."
   },
   {
-    category: "industry-news",
-    topic: "franchise regulation changes and compliance updates",
-    stats: "FTC disclosure requirements and state regulations affecting 23% of franchise agreements",
-    angle: "regulatory landscape",
-    hook: "New franchise regulations could cost you $50,000 in fines. Here's what changed."
-  },
-  // CASE STUDIES & SUCCESS STORIES CATEGORY
-  {
-    category: "case-studies",
-    topic: "franchise lead conversion strategies that doubled sales",
-    stats: "Real case: Regional franchise went from 2% to 8% conversion rate in 90 days",
-    angle: "conversion success story",
-    hook: "They were drowning in leads but closing nothing. Then everything changed."
+    category: "us-franchise-news",
+    topic: "private equity buying US franchise systems — recent deals, who's rolling up what, and what franchisees should watch",
+    stats: "Reference real PE activity in franchising at the category level without fabricating deal sizes",
+    angle: "PE roll-ups and what they signal",
+    hook: "Private equity is rewriting the US franchise map quarter by quarter."
   },
   {
-    category: "case-studies",
-    topic: "multi-unit franchise expansion blueprint",
-    stats: "Case study: Single-unit owner scaled to 12 locations in 4 years with strategic growth",
-    angle: "expansion journey",
-    hook: "He started with one location and a mountain of debt. Now he owns 12."
+    category: "us-franchise-launches",
+    topic: "international franchise brands expanding into the United States this year and the markets they're targeting",
+    stats: "Use only real, named brands and their announced US plans",
+    angle: "inbound expansion into US territories",
+    hook: "Foreign franchise brands keep planting flags in the US — here's where, and why now."
   },
   {
-    category: "case-studies",
-    topic: "franchise turnaround stories and recovery strategies",
-    stats: "Struggling franchises that implemented proper marketing saw 180% revenue recovery",
-    angle: "business recovery",
-    hook: "This franchise was 30 days from closing. Here's how they became top performers."
+    category: "us-franchise-facts",
+    topic: "FDD Item 19 financial performance representations — what US franchise buyers should actually read",
+    stats: "Describe the FDD Item 19 framework factually — never invent average revenues",
+    angle: "how to read a real FDD",
+    hook: "Most US franchise buyers skim Item 19 and miss the only paragraph that matters."
   },
   {
-    category: "case-studies",
-    topic: "digital marketing transformation in traditional franchises",
-    stats: "Legacy franchise doubled qualified leads by embracing digital-first approach",
-    angle: "digital success story",
-    hook: "They hadn't updated their marketing since 2015. Then they tried something radical."
+    category: "us-franchise-news",
+    topic: "state attorneys general actions against US franchisors and what franchise buyers should learn from them",
+    stats: "Reference publicly reported enforcement actions only",
+    angle: "enforcement trends in US franchising",
+    hook: "Two state AGs just made it harder to sell a franchise without doing the boring work."
   },
   {
-    category: "case-studies",
-    topic: "franchise discovery day optimization success",
-    stats: "Optimized discovery process increased signing rate from 15% to 62%",
-    angle: "sales process improvement",
-    hook: "Their discovery days were a disaster. One change fixed everything."
-  },
-  // HIGH-PRIORITY TARGET KEYWORDS - Franchise Lead Generation USA
-  {
-    category: "marketing-tips",
-    topic: "franchise lead generation services in USA - how to buy qualified franchise leads",
-    stats: "US franchise lead gen market worth $2.1B, with top providers delivering 35% higher close rates",
-    angle: "franchise lead buying guide for US market",
-    hook: "You're paying $200 per lead. The smart franchisors pay $45. Here's their secret."
+    category: "us-franchise-policy",
+    topic: "California AB 676 franchise law and how it changed franchise sales in California",
+    stats: "Reference AB 676 factually — describe the rule, don't invent metrics",
+    angle: "California-specific franchise compliance",
+    hook: "California's AB 676 quietly rewrote the rules for selling a franchise in the state."
   },
   {
-    category: "marketing-tips",
-    topic: "buy franchise leads USA - complete guide to franchise lead providers and ROI",
-    stats: "Franchises using specialized lead gen services see 4.2x ROI vs DIY methods",
-    angle: "lead provider comparison and strategy",
-    hook: "Not all franchise leads are created equal. Here's how to separate gold from garbage."
+    category: "us-franchise-news",
+    topic: "US multi-unit franchisee acquisitions, defaults, and refranchising deals reported in the last 90 days",
+    stats: "Only describe what live news feeds report — no invented numbers",
+    angle: "what large operators are actually doing",
+    hook: "Multi-unit operators in the US are quietly resetting their portfolios."
   },
   {
-    category: "marketing-tips",
-    topic: "best franchise lead generation companies USA 2025 - honest comparison",
-    stats: "The top 5 franchise lead providers control 60% of qualified buyer traffic in the US",
-    angle: "provider comparison with ROI data",
-    hook: "We analyzed 15 franchise lead gen companies. Only 3 are worth your money."
-  },
-  // HIGH-PRIORITY TARGET KEYWORDS - LinkedIn Lead Generation
-  {
-    category: "marketing-tips",
-    topic: "LinkedIn lead generation for franchise sales - the untapped goldmine",
-    stats: "LinkedIn generates 3x more franchise buyer leads than Facebook with 80% lower cost per qualified lead",
-    angle: "LinkedIn franchise prospecting strategy",
-    hook: "Your next 10 franchisees are scrolling LinkedIn right now. Are you reaching them?"
-  },
-  {
-    category: "marketing-tips",
-    topic: "LinkedIn lead generation services for franchise development teams",
-    stats: "Franchise brands using LinkedIn Sales Navigator close 47% more deals with 2.3x faster sales cycles",
-    angle: "LinkedIn outreach automation and strategy",
-    hook: "Cold calls are dead. LinkedIn InMails convert 300% better for franchise sales."
-  },
-  {
-    category: "marketing-tips",
-    topic: "how to generate franchise leads on LinkedIn without paid ads",
-    stats: "Organic LinkedIn content strategy delivers 5-15 qualified franchise inquiries per month at zero ad cost",
-    angle: "organic LinkedIn growth for franchisors",
-    hook: "Zero ad budget. 12 qualified leads per month. All from LinkedIn. Here's the playbook."
-  },
-  {
-    category: "marketing-tips",
-    topic: "franchise development LinkedIn strategy - from connection to signed agreement",
-    stats: "Top franchise developers close 1 in 8 LinkedIn conversations vs 1 in 50 from cold outreach",
-    angle: "LinkedIn sales funnel for franchise development",
-    hook: "Stop selling franchises on LinkedIn. Start this conversation instead."
+    category: "us-franchise-facts",
+    topic: "real cost of opening a franchise in the United States — Item 7 ranges, working capital, and what's usually missing",
+    stats: "Describe FDD Item 7 framework — never invent average totals",
+    angle: "factual breakdown of US franchise startup costs",
+    hook: "The number on the Item 7 page is rarely the number you actually need."
   },
 ];
 
