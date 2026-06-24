@@ -709,9 +709,29 @@ async function shouldPublish(supabase: any, intervalHours: number): Promise<bool
 }
 
 // Heavy generation pipeline — extracted so it can run in background via EdgeRuntime.waitUntil
-async function runGenerationPipeline(supabase: any, publishAsDraft: boolean) {
-  console.log("Researching current franchise news and trends...");
-  const { context: researchContext, topicData } = await getResearchContext();
+async function runGenerationPipeline(
+  supabase: any,
+  publishAsDraft: boolean,
+  mode: "scheduled" | "breaking" = "scheduled",
+) {
+  let researchContext: string;
+  let topicData: typeof RESEARCH_TOPICS[0];
+
+  if (mode === "breaking") {
+    console.log("📰 Breaking-news mode — scanning RSS for fresh USA franchise stories...");
+    const breaking = await getBreakingNewsContext(supabase);
+    if (!breaking) {
+      console.log("📰 No fresh breaking news — skipping this run.");
+      return { skipped: true } as any;
+    }
+    researchContext = breaking.context;
+    topicData = breaking.topicData;
+  } else {
+    console.log("Researching current franchise news and trends...");
+    const ctx = await getResearchContext();
+    researchContext = ctx.context;
+    topicData = ctx.topicData;
+  }
   console.log(`Topic selected: [${topicData.category}] ${topicData.topic}`);
 
   console.log("Generating human-centric blog content...");
