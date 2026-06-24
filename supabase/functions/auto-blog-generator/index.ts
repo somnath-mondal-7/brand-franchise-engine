@@ -400,7 +400,7 @@ If this got you thinking, here are a few more spots on the site that might help:
 
 // Ensure a FAQ section exists. If the model skipped it, generate a topical fallback.
 async function ensureFaqSection(content: string, topic: string): Promise<string> {
-  if (/^##\s+(faq|frequently asked)/im.test(content)) {
+  if (/^##\s+(\d+\.\s+)?(faq|frequently asked)/im.test(content)) {
     return content;
   }
   console.log("⚠️  FAQ section missing — generating fallback");
@@ -415,38 +415,38 @@ async function ensureFaqSection(content: string, topic: string): Promise<string>
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          systemInstruction: { parts: [{ text: "You write blog FAQs in a casual, friendly, human voice. Use contractions. Sound like a friend giving advice, not a corporate FAQ." }] },
+          systemInstruction: { parts: [{ text: "You write factual US franchise FAQs as a trade-journal reporter. Plain English, contractions OK, no hype, no fabricated statistics." }] },
           contents: [{
             role: "user",
-            parts: [{ text: `Generate a markdown FAQ section for a blog post about: "${topic}".
+            parts: [{ text: `Generate a markdown FAQ section for a US franchise news article about: "${topic}".
 
 Return EXACTLY this format (5 questions, no preamble, no closing):
 
-## FAQ
+## 5. FAQ
 
 ### Question one ending in a question mark?
-Casual 2-3 sentence answer here. Use contractions and a friendly tone.
+Factual 2-3 sentence answer. Reference real US franchise sources where natural (FTC, IFA, SBA, FRANdata, state regulators). Never fabricate numbers.
 
 ### Question two ending in a question mark?
-Casual 2-3 sentence answer.
+Factual 2-3 sentence answer.
 
 ### Question three ending in a question mark?
-Casual 2-3 sentence answer.
+Factual 2-3 sentence answer.
 
 ### Question four ending in a question mark?
-Casual 2-3 sentence answer.
+Factual 2-3 sentence answer.
 
 ### Question five ending in a question mark?
-Casual 2-3 sentence answer.` }],
+Factual 2-3 sentence answer.` }],
           }],
-          generationConfig: { temperature: 0.8, maxOutputTokens: 1500 },
+          generationConfig: { temperature: 0.7, maxOutputTokens: 1500 },
         }),
       }
     );
     if (!res.ok) return content;
     const data = await res.json();
     const faq = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
-    if (!faq || !/^##\s+FAQ/im.test(faq)) return content;
+    if (!faq || !/^##\s+(\d+\.\s+)?FAQ/im.test(faq)) return content;
     return content.trimEnd() + "\n\n" + faq + "\n";
   } catch (e) {
     console.error("FAQ fallback failed:", e);
