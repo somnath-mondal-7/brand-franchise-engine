@@ -34,6 +34,14 @@ export const generateLocationUrls = (): SitemapUrl[] => {
     country.states.forEach(state => {
       if (!hasCuratedInsight(country.countryCode, state.slug)) return;
       urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
+      state.cities.forEach(city => {
+        urls.push({
+          loc: `${DOMAIN}/locations/${cc}/${state.slug}/${city.slug}`,
+          lastmod: currentDate,
+          changefreq: 'monthly',
+          priority: '0.65',
+        });
+      });
     });
   });
 
@@ -53,12 +61,35 @@ export const generateKeywordUrls = (): SitemapUrl[] => {
   return urls;
 };
 
-// Service+location URLs are intentionally excluded from sitemap discovery.
-// Even curated combinations have been the main source of large-scale
-// "Crawled – currently not indexed" reports, so we only keep country/state
-// location hubs plus core service pages in XML.
+// Emit the primary money-keyword ("franchise lead generation") for every curated
+// state and city across USA / UK / Canada — the high-intent surface area.
 export const generateServiceLocationUrls = (): SitemapUrl[] => {
-  return [];
+  const urls: SitemapUrl[] = [];
+  const currentDate = new Date().toISOString().split('T')[0];
+  const primaryServiceSlug = 'franchise-lead-generation';
+
+  locationData.forEach(country => {
+    const cc = country.countryCode.toLowerCase();
+    country.states.forEach(state => {
+      if (!hasCuratedInsight(country.countryCode, state.slug)) return;
+      urls.push({
+        loc: `${DOMAIN}/${primaryServiceSlug}/${cc}/${state.slug}`,
+        lastmod: currentDate,
+        changefreq: 'weekly',
+        priority: '0.7',
+      });
+      state.cities.forEach(city => {
+        urls.push({
+          loc: `${DOMAIN}/${primaryServiceSlug}/${cc}/${state.slug}/${city.slug}`,
+          lastmod: currentDate,
+          changefreq: 'monthly',
+          priority: '0.6',
+        });
+      });
+    });
+  });
+
+  return urls;
 };
 
 export const generateSitemapXml = (): string => {
