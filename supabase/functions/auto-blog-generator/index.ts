@@ -641,12 +641,48 @@ async function runGenerationPipeline(supabase: any, publishAsDraft: boolean) {
   const blogPost = await generateBlogWithAI(researchContext, topicData);
   console.log(`Generated: "${blogPost.title}"`);
 
-  // Image generation disabled — text-only blog posts
-  console.log("⏭️  Image generation disabled (text-only mode)");
-  const coverUrl: string | null = null;
+  // ---- Cover image ----
+  console.log("🎨 Generating cover image...");
+  const coverPrompt =
+    blogPost.coverImagePrompt ||
+    `Editorial photograph illustrating: ${blogPost.title}. US franchise industry setting.`;
+  let coverUrl: string | null = null;
+  try {
+    const coverDataUrl = await generateImageBase64(coverPrompt);
+    if (coverDataUrl) {
+      coverUrl = await uploadImageToStorage(
+        supabase,
+        coverDataUrl,
+        `cover-${Date.now()}-${blogPost.slug.slice(0, 40)}`,
+      );
+    }
+  } catch (e) {
+    console.error("Cover image failed (non-fatal):", e);
+  }
+
+  // ---- Inline images ----
+  const inlineUrls: string[] = [];
+  if (blogPost.inlineImagePrompts && blogPost.inlineImagePrompts.length > 0) {
+    for (let i = 0; i < Math.min(2, blogPost.inlineImagePrompts.length); i++) {
+      try {
+        const d = await generateImageBase64(blogPost.inlineImagePrompts[i]);
+        if (d) {
+          const u = await uploadImageToStorage(
+            supabase,
+            d,
+            `inline-${Date.now()}-${i}-${blogPost.slug.slice(0, 30)}`,
+          );
+          if (u) inlineUrls.push(u);
+        }
+      } catch (e) {
+        console.error(`Inline image ${i} failed:`, e);
+      }
+    }
+  }
 
   let finalContent = stripDuplicateTitle(blogPost.content, blogPost.title);
   finalContent = await ensureFaqSection(finalContent, blogPost.title);
+  if (inlineUrls.length > 0) finalContent = injectInlineImages(finalContent, inlineUrls);
   finalContent = finalContent.trimEnd() + "\n" + buildInternalLinksSection();
 
   const wordCount = finalContent.split(/\s+/).length;
