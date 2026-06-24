@@ -178,7 +178,14 @@ async function getResearchContext(): Promise<{ context: string; topicData: typeo
   // Fetch real-time news
   const feedPromises = FRANCHISE_NEWS_SOURCES.map(fetchRSSFeed);
   const results = await Promise.all(feedPromises);
-  results.forEach(headlines => allHeadlines.push(...headlines));
+  // Only keep headlines that actually mention franchise / FDD / FTC / IFA / SBA / franchisor / franchisee
+  // so mainstream feeds (CNBC, Reuters, WSJ, etc.) only contribute on-topic items.
+  const FRANCHISE_KEYWORDS = /franchis|fdd|ftc|ifa|sba|franchisor|franchisee|multi-unit|qsr/i;
+  results.forEach(headlines => {
+    headlines.forEach((h) => {
+      if (FRANCHISE_KEYWORDS.test(h)) allHeadlines.push(h);
+    });
+  });
   
   // Pick a random topic from our combined categories
   const topicData = RESEARCH_TOPICS[Math.floor(Math.random() * RESEARCH_TOPICS.length)];
