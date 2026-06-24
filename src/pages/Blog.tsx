@@ -101,7 +101,7 @@ const Blog = () => {
             ) : posts.length === 0 ? (
               <p className="text-neutral-500">No posts yet.</p>
             ) : (
-              posts.map((post) => (
+              pagePosts.map((post) => (
                 <article
                   key={post.id}
                   className="grid grid-cols-1 md:grid-cols-2 gap-6 group"
@@ -156,6 +156,52 @@ const Blog = () => {
               ))
             )}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-16 flex items-center justify-center gap-2 flex-wrap">
+              <button
+                onClick={() => {
+                  setPage((p) => Math.max(1, p - 1));
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                disabled={page === 1}
+                className="px-4 py-2 rounded-md border border-neutral-300 text-sm text-neutral-700 hover:border-[#F15A29] hover:text-[#F15A29] disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                ← Prev
+              </button>
+              {Array.from({ length: totalPages }).map((_, i) => {
+                const n = i + 1;
+                const active = n === page;
+                return (
+                  <button
+                    key={n}
+                    onClick={() => {
+                      setPage(n);
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
+                    className={`w-10 h-10 rounded-md text-sm font-medium border transition-colors ${
+                      active
+                        ? "bg-[#F15A29] text-white border-[#F15A29]"
+                        : "bg-white text-neutral-700 border-neutral-300 hover:border-[#F15A29] hover:text-[#F15A29]"
+                    }`}
+                  >
+                    {n}
+                  </button>
+                );
+              })}
+              <button
+                onClick={() => {
+                  setPage((p) => Math.min(totalPages, p + 1));
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                disabled={page === totalPages}
+                className="px-4 py-2 rounded-md border border-neutral-300 text-sm text-neutral-700 hover:border-[#F15A29] hover:text-[#F15A29] disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Next →
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
