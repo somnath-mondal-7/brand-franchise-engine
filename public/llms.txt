@@ -1,100 +1,40 @@
-# FranchiseLeadsPro — Full-Service Franchise Marketing Agency
+# FranchiseLeadsPro
 
-> FranchiseLeadsPro is the #1 franchise lead generation and marketing agency helping franchisors, franchise consultants, and franchise brands worldwide grow through LinkedIn marketing, social media marketing, website development, and IT services.
+FranchiseLeadsPro is a franchise-focused marketing and IT solutions agency. We help franchisors, franchise consultants, and franchise brokers generate qualified franchise buyer leads through LinkedIn marketing, social media campaigns, SEO, website development, and technology solutions.
 
-## About Us
+## Services
 
-FranchiseLeadsPro is a specialized marketing and technology agency serving the global franchise industry. We help franchise brands generate qualified investor leads, build powerful digital presences, and scale their operations through cutting-edge marketing and IT solutions.
+Franchise Lead Generation (USA, India, UK, Canada, Australia, Dubai, Kuwait, worldwide)
 
-**Founded:** 2020
-**Headquarters:** Jersey City, NJ, USA
-**Website:** https://www.franchiseleadspro.com
-**Phone:** +1 (424) 445-5334
-**Email:** support@franchiseleadspro.com
+LinkedIn Marketing for Franchise Lead Generation
 
-## Core Services
+Social Media Marketing (Facebook, Instagram, LinkedIn)
 
-### 1. LinkedIn Marketing for Franchises
-- Targeted LinkedIn outreach to high-net-worth franchise investors
-- Sales Navigator campaigns and lead generation
-- Thought leadership content creation
-- CRM handling and AI automation
-- Personal authority building for franchise executives
+Franchise Website Development
 
-### 2. Social Media Marketing (Paid + Organic)
-- Facebook, Instagram, and LinkedIn advertising campaigns
-- Organic content strategy and community building
-- Retargeting and lookalike audience campaigns
-- A/B testing and performance optimization
-- Video marketing and creative production
+SEO & Digital Marketing for Franchises
 
-### 3. Franchise Website Development & Design
-- High-converting franchise websites with lead capture
-- Mobile-first responsive design
-- SEO-optimized architecture
-- Landing page design and optimization
-- E-commerce and franchise portal development
+IT Services & App Development for Franchise Brands
 
-### 4. IT Services & Technology Solutions
-- Custom web application development
-- Mobile app development (iOS & Android)
-- SEO (Search Engine Optimization)
-- IT outsourcing and managed services
-- Digital transformation consulting
-- CRM implementation and automation
-- Cloud solutions and infrastructure
+Buy Franchise Leads (pre-qualified franchise investor leads)
 
-## Industries We Serve
-- Franchisors (food, retail, fitness, education, services)
-- Franchise Consultants and Brokers
-- Franchise Development Companies
-- Multi-unit Franchise Operators
-- Master Franchise Developers
-- International Franchise Brands
+## Key Pages
 
-## Markets We Cover
-- United States (all 50 states)
-- United Kingdom
-- Canada
-- Australia
-- Dubai & UAE
-- India (all major cities)
+Homepage: https://www.franchiseleadspro.com/
 
-## Key Differentiators
-- Specialized exclusively in franchise industry marketing
-- 15,000+ qualified franchise leads generated
-- 500+ franchise brands served
-- 3-5x average ROI for clients
-- 30-day lead delivery guarantee
-- 7-day money-back guarantee
+Services: https://www.franchiseleadspro.com/services
 
-## Contact & Consultation
-- Free consultation: https://calendly.com/lets-build-your-brand
-- Contact page: https://www.franchiseleadspro.com/contact
-- Services: https://www.franchiseleadspro.com/services
+Buy Franchise Leads: https://www.franchiseleadspro.com/buy-franchise-leads
 
-## Pages
+Contact: https://www.franchiseleadspro.com/contact
 
-- [Home](/): Franchise lead generation and marketing agency homepage.
-- [About](/about): Who we are and how we help franchise brands grow.
-- [Services](/services): LinkedIn marketing, social ads, and franchise website development.
-- [Digital Marketing](/digital-marketing): PPC, SEO, social, and AI automation for franchises.
-- [Franchise Marketing](/franchise-marketing): Franchise-specific marketing strategies and case studies.
-- [Buy Franchise Leads](/buy-franchise-leads): Pricing and packages for qualified franchise leads.
-- [Testimonials](/testimonials): Client success stories and video reviews.
-- [Case Studies](/case-studies): Detailed franchise growth case studies.
-- [Blog](/blog): Articles on franchise marketing, lead generation, and growth.
-- [Contact](/contact): Book a free consultation or reach our team.
+Blog: https://www.franchiseleadspro.com/blog
 
-## Locations
+## Markets Served
 
-- [Franchise Leads USA](/franchise-leads-usa): Lead generation for U.S. franchisors.
-- [Franchise Leads UK](/franchise-leads-uk): Lead generation for U.K. franchisors.
-- [Franchise Leads Canada](/franchise-leads-canada): Lead generation for Canadian franchisors.
-- [Franchise Leads Australia](/franchise-leads-australia): Lead generation for Australian franchisors.
-- [Franchise Leads Dubai](/franchise-leads-dubai): Lead generation across UAE.
-- [Franchise Leads India](/franchise-leads-india): Lead generation for Indian franchisors.
+USA, India, UK, Canada, Australia, Dubai & UAE, Kuwait
 
-## Optional
+## Contact
 
-- [Full details](/llms-full.txt): Long-form site summary for AI assistants.
+Phone: +1 (424) 445-5334
+Website: https://www.franchiseleadspro.com
