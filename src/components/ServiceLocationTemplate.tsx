@@ -342,7 +342,7 @@ export const ServiceLocationTemplate = ({
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": content.faq.map(item => ({
+            "mainEntity": mergedFaqs.map(item => ({
               "@type": "Question",
               "name": item.q,
               "acceptedAnswer": {
