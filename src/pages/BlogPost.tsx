@@ -307,7 +307,7 @@ const BlogPost = () => {
                 </Link>
               </div>
 
-              <BlogComments postId={post.id} />
+              <BlogComments postId={post.id} postTitle={post.title} postSlug={post.slug} />
             </article>
 
             {/* Sidebar — scrollable recent posts */}
