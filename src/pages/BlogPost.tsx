@@ -290,6 +290,10 @@ const BlogPost = () => {
                 </div>
               )}
 
+              <div className="mt-12">
+                <BlogLeadForm />
+              </div>
+
               <AuthorBio />
 
               <div className="mt-12">
