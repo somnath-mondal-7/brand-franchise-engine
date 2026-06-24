@@ -41,6 +41,7 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
   
   const regionInsight = getRegionInsight(countryCode, stateSlugNorm);
   const marketNarrative = generateMarketNarrative(location, state, country, countryCode, population, isCity);
+  const cityNarrative = isCity ? getCityNarrative(location, locationSlug, state, countryCode, population) : null;
   const locationFAQs = generateLocationFAQs(location, state, country, countryCode);
   
   const pageTitle = `Franchise Lead Generation in ${locationTitle} | Buy Qualified Franchise Leads`;
