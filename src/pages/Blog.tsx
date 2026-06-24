@@ -3,10 +3,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Calendar, User, ArrowRight, TrendingUp } from "lucide-react";
+import { ArrowUpRight, Calendar, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 interface BlogPost {
@@ -23,308 +20,180 @@ interface BlogPost {
   featured_image_url: string;
 }
 
-interface Category {
-  id: string;
-  name: string;
-  slug: string;
-}
-
 const Blog = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [featuredPost, setFeaturedPost] = useState<BlogPost | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchData();
+    (async () => {
+      try {
+        const { data } = await supabase
+          .from("blog_posts")
+          .select("*")
+          .eq("is_published", true)
+          .order("published_at", { ascending: false });
+        if (data) setPosts(data as any);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
   }, []);
 
-  const fetchData = async () => {
-    try {
-      // Fetch categories
-      const { data: categoriesData } = await supabase
-        .from('categories')
-        .select('*')
-        .order('name');
-      
-      if (categoriesData) setCategories(categoriesData);
+  const formatDate = (d: string) =>
+    new Date(d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 
-      // Fetch all published posts
-      const { data: postsData } = await supabase
-        .from('blog_posts')
-        .select('*')
-        .eq('is_published', true)
-        .order('published_at', { ascending: false });
-
-      if (postsData) {
-        setPosts(postsData);
-        // Set featured post
-        const featured = postsData.find(p => p.is_featured) || postsData[0];
-        setFeaturedPost(featured);
-      }
-    } catch (error) {
-      console.error('Error fetching blog data:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
-
-  const getCategoryName = (categoryId: string) => {
-    return categories.find(c => c.id === categoryId)?.name || '';
-  };
-
-  const filteredPosts = selectedCategory === "all" 
-    ? posts.filter(p => !p.is_featured)
-    : posts.filter(p => !p.is_featured && p.category_id === selectedCategory);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-background">
-        <IndiaNav />
-        <div className="container mx-auto px-4 py-20 text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-4 text-muted-foreground">Loading blog posts...</p>
-        </div>
-        <IndiaFooter />
-      </div>
-    );
-  }
+  const recent = posts.slice(0, 5);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#0a0a0a] text-white">
       <Helmet>
-        <title>Franchise Marketing Blog | Tips, Strategies & Lead Gen Insights</title>
-        <meta name="description" content="Explore franchise marketing strategies, lead generation tips, and industry insights from the FranchiseLeadsPro team." />
+        <title>Our Latest Blogs | FranchiseLeadsPro — US Franchise News & Insights</title>
+        <meta
+          name="description"
+          content="USA franchise news, FTC and state policy changes, brand launches, and factual reporting from the FranchiseLeadsPro editorial team."
+        />
         <link rel="canonical" href="https://www.franchiseleadspro.com/blog" />
-        <meta property="og:title" content="Franchise Marketing Blog | Tips, Strategies & Lead Gen Insights" />
-        <meta property="og:description" content="Explore franchise marketing strategies, lead generation tips, and industry insights from the FranchiseLeadsPro team." />
-        <meta property="og:url" content="https://www.franchiseleadspro.com/blog" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Franchise Marketing Blog | Tips, Strategies & Lead Gen Insights" />
-        <meta name="twitter:description" content="Explore franchise marketing strategies, lead generation tips, and industry insights from the FranchiseLeadsPro team." />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Blog",
-            name: "Franchise Lead Generation Blog",
-            url: "https://www.franchiseleadspro.com/blog",
-            publisher: {
-              "@type": "Organization",
-              name: "FranchiseLeadsPro",
-              url: "https://www.franchiseleadspro.com"
-            }
-          })}
-        </script>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800;900&display=swap"
+        />
       </Helmet>
 
       <IndiaNav />
-      
-      {/* Hero Section */}
-      <section className="pt-24 pb-20 bg-gradient-to-br from-background via-accent/30 to-primary/5">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
-            <h1 className="text-5xl lg:text-6xl font-bold text-brand-navy leading-tight">
-              Franchise Growth Blog
-            </h1>
-            <p className="text-xl text-brand-gray leading-relaxed">
-              Expert insights, strategies, and tips to help franchise consultants and franchisors 
-              generate more leads and build stronger brands.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      {/* Featured Post */}
-      {featuredPost && (
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl mx-auto">
-              <div className="mb-12">
-                <h2 className="text-3xl font-bold text-brand-navy mb-6">Featured Article</h2>
-              </div>
-              
-              <Link to={`/blog/${featuredPost.slug}`}>
-                <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 overflow-hidden cursor-pointer">
-                  <div className="grid grid-cols-1 lg:grid-cols-2">
-                    <div className="bg-gradient-secondary p-8 lg:p-12 flex items-center">
-                      <div className="space-y-6">
-                        <Badge className="bg-primary text-white">
-                          <TrendingUp className="w-3 h-3 mr-1" />
-                          {getCategoryName(featuredPost.category_id)}
-                        </Badge>
-                        <h3 className="text-2xl lg:text-3xl font-bold text-brand-navy group-hover:text-primary transition-colors">
-                          {featuredPost.title}
-                        </h3>
-                        <p className="text-brand-gray leading-relaxed">
-                          {featuredPost.excerpt}
-                        </p>
-                        <div className="flex items-center space-x-4 text-sm text-brand-gray">
-                          <div className="flex items-center space-x-1">
-                            <User className="w-4 h-4" />
-                            <span>{featuredPost.author_name}</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <Calendar className="w-4 h-4" />
-                            <span>{formatDate(featuredPost.published_at)}</span>
-                          </div>
-                          <span>{featuredPost.read_time_minutes} min read</span>
-                        </div>
-                        <Button className="bg-gradient-primary hover:shadow-elegant group-hover:scale-105 transition-all">
-                          Read Full Article <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </div>
-                    </div>
-                    <div className="bg-gradient-primary p-8 lg:p-12 flex items-center justify-center">
-                      {featuredPost.featured_image_url ? (
-                        <img 
-                          src={featuredPost.featured_image_url} 
-                          alt={featuredPost.title}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="text-white text-center space-y-4">
-                          <div className="text-4xl font-bold">Featured</div>
-                          <div className="text-xl">Article</div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </Card>
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Category Filter */}
-      <section className="py-8 bg-gradient-secondary">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap gap-3 justify-center">
-            <Button
-              variant={selectedCategory === "all" ? "default" : "outline"}
-              onClick={() => setSelectedCategory("all")}
-              className="hover:bg-primary hover:text-white transition-colors"
+      {/* Hero */}
+      <section className="relative pt-32 pb-24 overflow-hidden bg-[#0a0a0a]">
+        <div
+          aria-hidden
+          className="absolute right-0 top-0 h-[600px] w-[600px] rounded-full opacity-40 blur-3xl"
+          style={{ background: "radial-gradient(circle, #FACC15 0%, transparent 60%)" }}
+        />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+          <h1
+            className="text-5xl md:text-7xl font-bold mb-8 text-white"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            Our Latest Blogs
+          </h1>
+          <div className="flex items-center justify-center gap-3 text-sm">
+            <Link
+              to="/"
+              className="px-5 py-2 rounded-full border border-white/20 text-white/80 hover:text-[#FACC15]"
             >
-              All
-            </Button>
-            {categories.map((category) => (
-              <Button
-                key={category.id}
-                variant={selectedCategory === category.id ? "default" : "outline"}
-                onClick={() => setSelectedCategory(category.id)}
-                className="hover:bg-primary hover:text-white transition-colors"
-              >
-                {category.name}
-              </Button>
-            ))}
+              FranchiseLeadsPro
+            </Link>
+            <span className="text-white/40">›</span>
+            <span className="px-5 py-2 rounded-full border border-[#FACC15] text-[#FACC15]">
+              Our Latest Blogs
+            </span>
           </div>
         </div>
       </section>
 
-      {/* Blog Posts Grid */}
-      <section className="py-20 bg-background">
+      {/* Posts + Sidebar */}
+      <section className="pb-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-brand-navy mb-6">Latest Articles</h2>
-              <p className="text-brand-gray">
-                Stay updated with the latest strategies and insights for franchise success.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPosts.length === 0 ? (
-                <div className="col-span-full text-center py-12">
-                  <p className="text-brand-gray">No blog posts found in this category.</p>
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            {/* Main column */}
+            <div className="lg:col-span-2 space-y-12">
+              {isLoading ? (
+                <p className="text-white/60">Loading posts…</p>
+              ) : posts.length === 0 ? (
+                <p className="text-white/60">No posts yet.</p>
               ) : (
-                filteredPosts.map((post) => (
-                  <Link key={post.id} to={`/blog/${post.slug}`}>
-                    <Card 
-                      className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 border-border/50 cursor-pointer h-full"
-                    >
-                      {post.featured_image_url && (
-                        <div className="aspect-video overflow-hidden">
-                          <img 
-                            src={post.featured_image_url} 
+                posts.map((post) => (
+                  <article
+                    key={post.id}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-6 group"
+                  >
+                    <Link to={`/blog/${post.slug}`} className="block overflow-hidden rounded-lg">
+                      <div className="aspect-[4/3] bg-[#111] overflow-hidden">
+                        {post.featured_image_url ? (
+                          <img
+                            src={post.featured_image_url}
                             alt={post.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
-                        </div>
-                      )}
-                      <CardHeader className="pb-4">
-                        <Badge variant="outline" className="w-fit mb-3 group-hover:bg-primary group-hover:text-white transition-colors">
-                          {getCategoryName(post.category_id)}
-                        </Badge>
-                        <CardTitle className="text-xl text-brand-navy group-hover:text-primary transition-colors line-clamp-2">
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-[#FACC15]/30 text-sm">
+                            FranchiseLeadsPro
+                          </div>
+                        )}
+                      </div>
+                    </Link>
+                    <div className="flex flex-col justify-center">
+                      <Link to={`/blog/${post.slug}`}>
+                        <h2
+                          className="text-2xl md:text-3xl font-bold text-white group-hover:text-[#FACC15] transition-colors leading-tight mb-4"
+                          style={{ fontFamily: "'Playfair Display', serif" }}
+                        >
                           {post.title}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        <p className="text-brand-gray text-sm leading-relaxed line-clamp-3">
-                          {post.excerpt}
-                        </p>
-                        <div className="flex items-center justify-between text-xs text-brand-gray">
-                          <div className="flex items-center space-x-1">
-                            <User className="w-3 h-3" />
-                            <span>{post.author_name}</span>
-                          </div>
-                          <span>{post.read_time_minutes} min read</span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-1 text-xs text-brand-gray">
-                            <Calendar className="w-3 h-3" />
-                            <span>{formatDate(post.published_at)}</span>
-                          </div>
-                          <Button 
-                            variant="ghost" 
-                            size="sm"
-                            className="text-primary hover:bg-primary hover:text-white transition-all group-hover:scale-105"
-                          >
-                            View Post <ArrowRight className="ml-1 h-3 w-3" />
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                        </h2>
+                      </Link>
+                      <p className="text-white/70 leading-relaxed mb-5 line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                      <div className="flex items-center gap-4 text-xs text-white/50 mb-5">
+                        <span className="flex items-center gap-1">
+                          <Calendar className="w-3.5 h-3.5" /> {formatDate(post.published_at)}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3.5 h-3.5" /> {post.read_time_minutes} min read
+                        </span>
+                      </div>
+                      <Link
+                        to={`/blog/${post.slug}`}
+                        className="inline-flex items-center gap-2 text-white hover:text-[#FACC15] font-medium w-fit"
+                      >
+                        Read More
+                        <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#FACC15] text-black">
+                          <ArrowUpRight className="w-4 h-4" />
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
                 ))
               )}
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Newsletter CTA */}
-      <section className="py-20 bg-gradient-primary">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center text-white space-y-8">
-            <h2 className="text-4xl font-bold">Never Miss an Update</h2>
-            <p className="text-xl opacity-90">
-              Get the latest franchise growth strategies delivered directly to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
-              <input 
-                type="email" 
-                placeholder="Your email address"
-                className="px-4 py-3 rounded-lg text-brand-navy flex-1 focus:outline-none focus:ring-2 focus:ring-white/50"
-              />
-              <Button 
-                variant="outline"
-                className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-primary px-6"
-              >
-                Subscribe
-              </Button>
-            </div>
+            {/* Sidebar */}
+            <aside className="lg:col-span-1">
+              <div className="sticky top-24 rounded-lg border border-white/10 bg-[#111] p-6">
+                <h3
+                  className="text-2xl font-bold text-white mb-6"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  Recent Posts
+                </h3>
+                <div className="space-y-5">
+                  {recent.map((p) => (
+                    <Link
+                      key={p.id}
+                      to={`/blog/${p.slug}`}
+                      className="flex gap-3 group"
+                    >
+                      <div className="w-20 h-20 flex-shrink-0 rounded overflow-hidden bg-[#0a0a0a]">
+                        {p.featured_image_url && (
+                          <img
+                            src={p.featured_image_url}
+                            alt={p.title}
+                            loading="lazy"
+                            className="w-full h-full object-cover"
+                          />
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm text-white group-hover:text-[#FACC15] font-medium line-clamp-3 leading-snug">
+                          {p.title}
+                        </p>
+                        <p className="text-xs text-white/40 mt-1">{formatDate(p.published_at)}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
