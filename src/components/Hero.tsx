@@ -56,7 +56,7 @@ const Hero = () => {
           <div className="relative">
             <img
               src={heroHandshake}
-              alt="Premium franchise marketing partnership — handshake with growth arrow"
+              alt="USA franchise lead generation agency — connecting franchisors and brokers with qualified franchise buyers nationwide"
               width="1024"
               height="1024"
               loading="eager"
