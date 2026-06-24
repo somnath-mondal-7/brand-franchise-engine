@@ -7,6 +7,7 @@ import ReadingProgress from "@/components/blog/ReadingProgress";
 import BlogComments from "@/components/blog/BlogComments";
 import FaqSchema from "@/components/blog/FaqSchema";
 import AuthorBio from "@/components/blog/AuthorBio";
+import BlogLeadForm from "@/components/blog/BlogLeadForm";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowLeft, Share2, Check, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -340,22 +341,8 @@ const BlogPost = () => {
                   </div>
                 </div>
 
-                <div className="rounded-lg border border-[#F15A29] bg-gradient-to-br from-[#F15A29]/15 to-transparent p-6 text-center">
-                  <h4
-                    className="text-xl font-bold text-neutral-900 mb-3"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
-                    Need Franchise Leads?
-                  </h4>
-                  <p className="text-sm text-neutral-700 mb-4">
-                    Talk to our team about a US franchise lead generation plan.
-                  </p>
-                  <Link to="/contact">
-                    <Button className="bg-[#F15A29] text-white hover:bg-[#F15A29]/90 w-full">
-                      Let's Talk
-                    </Button>
-                  </Link>
-                </div>
+                <BlogLeadForm compact />
+
               </div>
             </aside>
           </div>
