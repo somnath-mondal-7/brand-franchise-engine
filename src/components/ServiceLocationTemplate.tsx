@@ -394,22 +394,94 @@ export const ServiceLocationTemplate = ({
         </section>
 
 
-        {/* Market Insight Section */}
-        <section className="py-12 bg-muted">
+        {/* Deep Market Insight Section */}
+        <section className="py-16 bg-muted">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-5xl mx-auto space-y-6">
               <div className="bg-card rounded-2xl p-8 shadow-sm">
-                <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 flex items-center gap-2">
                   <Target className="h-6 w-6 text-primary" />
-                  {location} Franchise Market Insight
+                  {location} Franchise Market: What Actually Drives Demand
                 </h2>
-                <p className="text-muted-foreground text-lg leading-relaxed">
-                  {getMarketInsight()}
-                </p>
+                <p className="text-muted-foreground text-lg leading-relaxed mb-4">{marketNarrative}</p>
+                {cityNarrative && (
+                  <p className="text-muted-foreground text-base leading-relaxed border-l-4 border-primary/40 pl-4 italic">
+                    {cityNarrative}
+                  </p>
+                )}
+              </div>
+
+              {/* Region insight grid — surfaces the curated state-level data */}
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="bg-card rounded-xl p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-primary">
+                    <BarChart3 className="h-5 w-5" />
+                    <h3 className="font-semibold">Economic Base</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{regionInsight.economyDescription}</p>
+                </div>
+                <div className="bg-card rounded-xl p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-primary">
+                    <Building2 className="h-5 w-5" />
+                    <h3 className="font-semibold">Franchise Climate</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{regionInsight.franchiseClimate}</p>
+                </div>
+                <div className="bg-card rounded-xl p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-primary">
+                    <TrendingUp className="h-5 w-5" />
+                    <h3 className="font-semibold">Top Franchise Categories</h3>
+                  </div>
+                  <ul className="text-muted-foreground text-sm leading-relaxed list-disc pl-5 space-y-1">
+                    {regionInsight.topIndustries.map((ind, i) => (<li key={i}>{ind}</li>))}
+                  </ul>
+                </div>
+                <div className="bg-card rounded-xl p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-primary">
+                    <Award className="h-5 w-5" />
+                    <h3 className="font-semibold">Typical Investment Range</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{regionInsight.investmentRange}</p>
+                </div>
+                <div className="bg-card rounded-xl p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-primary">
+                    <Scale className="h-5 w-5" />
+                    <h3 className="font-semibold">Regulatory Landscape</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{regionInsight.regulatoryNote}</p>
+                </div>
+                <div className="bg-card rounded-xl p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-primary">
+                    <Users className="h-5 w-5" />
+                    <h3 className="font-semibold">Buyer Demographics</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{regionInsight.demographicHighlight}</p>
+                </div>
+              </div>
+
+              {/* Growth trend strip */}
+              <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
+                <div className="flex items-center gap-2 mb-2 text-primary font-semibold">
+                  <MapPin className="h-5 w-5" /> Where growth is concentrating
+                </div>
+                <p className="text-foreground/80 leading-relaxed">{regionInsight.growthTrend}</p>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Service-x-Market Playbook */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-foreground mb-6">
+                How We Run {capitalizedService} in {location}
+              </h2>
+              <p className="text-muted-foreground text-lg leading-relaxed">{servicePlay}</p>
+            </div>
+          </div>
+        </section>
+
 
         {/* Benefits Section */}
         <section className="py-16 bg-background">
