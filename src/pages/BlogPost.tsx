@@ -98,7 +98,7 @@ const BlogPost = () => {
       <div className="min-h-screen bg-white text-neutral-900">
         <IndiaNav />
         <div className="container mx-auto px-4 py-32 text-center">
-          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#FACC15] mx-auto" />
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#F15A29] mx-auto" />
         </div>
         <IndiaFooter />
       </div>
@@ -117,7 +117,7 @@ const BlogPost = () => {
             Post Not Found
           </h1>
           <Link to="/blog">
-            <Button className="bg-[#FACC15] text-black hover:bg-[#FACC15]/90">
+            <Button className="bg-[#F15A29] text-white hover:bg-[#F15A29]/90">
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to Blog
             </Button>
           </Link>
@@ -210,7 +210,7 @@ const BlogPost = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main */}
             <article className="lg:col-span-2">
-              <div className="flex flex-wrap items-center gap-4 text-sm text-[#b8860b] mb-8">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-[#F15A29] mb-8">
                 <span className="inline-flex items-center gap-2">
                   <Calendar className="w-4 h-4" /> {formatDate(post.published_at)}
                 </span>
@@ -221,7 +221,7 @@ const BlogPost = () => {
                   variant="outline"
                   size="sm"
                   onClick={handleShare}
-                  className="ml-auto border-neutral-300 bg-white text-neutral-900 hover:bg-[#FACC15] hover:text-black hover:border-[#FACC15]"
+                  className="ml-auto border-neutral-300 bg-white text-neutral-900 hover:bg-[#F15A29] hover:text-white hover:border-[#F15A29]"
                 >
                   {shared ? <Check className="w-4 h-4 mr-2" /> : <Share2 className="w-4 h-4 mr-2" />}
                   {shared ? "Copied" : "Share"}
@@ -229,7 +229,7 @@ const BlogPost = () => {
               </div>
 
               {post.excerpt && (
-                <p className="text-xl text-neutral-700 leading-relaxed mb-10 border-l-2 border-[#FACC15] pl-6">
+                <p className="text-xl text-neutral-700 leading-relaxed mb-10 border-l-2 border-[#F15A29] pl-6">
                   {post.excerpt}
                 </p>
               )}
@@ -295,7 +295,7 @@ const BlogPost = () => {
                 <Link to="/blog">
                   <Button
                     variant="outline"
-                    className="border-neutral-300 bg-white text-neutral-900 hover:bg-[#FACC15] hover:text-black hover:border-[#FACC15]"
+                    className="border-neutral-300 bg-white text-neutral-900 hover:bg-[#F15A29] hover:text-white hover:border-[#F15A29]"
                   >
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to All Posts
                   </Button>
@@ -328,11 +328,11 @@ const BlogPost = () => {
                             />
                           </div>
                         )}
-                        <h4 className="text-base font-semibold text-neutral-900 group-hover:text-[#b8860b] leading-snug mb-2">
+                        <h4 className="text-base font-semibold text-neutral-900 group-hover:text-[#F15A29] leading-snug mb-2">
                           {p.title}
                         </h4>
                         <p className="text-sm text-neutral-600 line-clamp-2 mb-2">{p.excerpt}</p>
-                        <span className="inline-block text-xs text-[#b8860b] font-medium">
+                        <span className="inline-block text-xs text-[#F15A29] font-medium">
                           Learn more →
                         </span>
                       </Link>
@@ -340,7 +340,7 @@ const BlogPost = () => {
                   </div>
                 </div>
 
-                <div className="rounded-lg border border-[#FACC15] bg-gradient-to-br from-[#FACC15]/15 to-transparent p-6 text-center">
+                <div className="rounded-lg border border-[#F15A29] bg-gradient-to-br from-[#F15A29]/15 to-transparent p-6 text-center">
                   <h4
                     className="text-xl font-bold text-neutral-900 mb-3"
                     style={{ fontFamily: "'Playfair Display', serif" }}
@@ -351,7 +351,7 @@ const BlogPost = () => {
                     Talk to our team about a US franchise lead generation plan.
                   </p>
                   <Link to="/contact">
-                    <Button className="bg-[#FACC15] text-black hover:bg-[#FACC15]/90 w-full">
+                    <Button className="bg-[#F15A29] text-white hover:bg-[#F15A29]/90 w-full">
                       Let's Talk
                     </Button>
                   </Link>
