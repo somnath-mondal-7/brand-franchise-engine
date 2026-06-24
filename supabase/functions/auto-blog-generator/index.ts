@@ -219,7 +219,8 @@ async function getBreakingNewsContext(supabase: any): Promise<
 > {
   const feedPromises = FRANCHISE_NEWS_SOURCES.map(fetchRSSFeed);
   const results = await Promise.all(feedPromises);
-  const headlines = results.flat().filter(Boolean);
+  const FRANCHISE_KEYWORDS = /franchis|fdd|ftc|ifa|sba|franchisor|franchisee|multi-unit|qsr/i;
+  const headlines = results.flat().filter((h) => h && FRANCHISE_KEYWORDS.test(h));
   if (headlines.length === 0) return null;
 
   const { data: recent } = await supabase
