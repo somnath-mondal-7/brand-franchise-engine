@@ -16,21 +16,20 @@ const Hero = () => {
         <div className="flex justify-center mb-6">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary border border-border text-xs font-semibold tracking-[0.18em] uppercase text-accent">
             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-            Premium Franchise Marketing · USA
+            USA Franchise Lead Generation Agency
           </span>
         </div>
 
         {/* Headline — bold editorial, navy + orange */}
         <h1 className="text-center font-extrabold tracking-tight text-accent leading-[0.95] text-[2.6rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] max-w-5xl mx-auto">
-          Franchise Marketing:
+          Franchise Leads in the USA.
           <br />
-          Attention First.{" "}
-          <span className="text-primary">Growth Next.</span>
+          <span className="text-primary">Qualified Buyers, Delivered.</span>
         </h1>
 
         {/* Sub */}
         <p className="mt-7 text-center text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          A premium marketing partner for franchise consultants and franchisors — turning sharp positioning into qualified investor conversations.
+          The franchise lead generation agency built for U.S. franchisors, brokers, and consultants — connecting your brand with serious franchise buyers across all 50 states.
         </p>
 
         {/* CTAs */}
