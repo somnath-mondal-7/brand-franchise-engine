@@ -95,7 +95,7 @@ const PressFeatures = ({ variant = "section", limit, showViewAll = false }: Pres
                     <Newspaper className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-accent/60">
+                    <p className="text-xs uppercase tracking-[0.2em] text-accent/80">
                       Featured In
                     </p>
                     <p className="font-display text-lg font-bold text-accent">
