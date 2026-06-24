@@ -532,7 +532,7 @@ export const ServiceLocationTemplate = ({
                 Frequently Asked Questions
               </h2>
               <div className="space-y-6">
-                {content.faq.map((item, index) => (
+                {mergedFaqs.map((item, index) => (
                   <div key={index} className="bg-card rounded-xl p-6 shadow-sm">
                     <h3 className="text-lg font-semibold text-foreground mb-2">{item.q}</h3>
                     <p className="text-muted-foreground">{item.a}</p>
