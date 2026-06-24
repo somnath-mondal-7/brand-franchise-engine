@@ -553,10 +553,10 @@
   animation: infinite-scroll 15s linear infinite;
 }
 /* ============================================================
-   Hoopdesk-style dark blog content theme
+   Hoopdesk-style light blog content theme (white bg, dark text)
    ============================================================ */
 .blog-content-dark {
-  color: rgba(255, 255, 255, 0.85);
+  color: #1f2937;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .blog-content-dark h1,
@@ -564,7 +564,7 @@
 .blog-content-dark h3,
 .blog-content-dark h4 {
   font-family: 'Playfair Display', Georgia, serif;
-  color: #FACC15;
+  color: #0a0a0a;
   font-weight: 700;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
@@ -572,46 +572,46 @@
 }
 .blog-content-dark h2 { font-size: 2rem; }
 .blog-content-dark h3 { font-size: 1.5rem; }
-.blog-content-dark h4 { font-size: 1.25rem; color: #ffffff; }
+.blog-content-dark h4 { font-size: 1.25rem; }
 .blog-content-dark p {
-  color: rgba(255, 255, 255, 0.78);
+  color: #374151;
   font-size: 1.05rem;
   line-height: 1.85;
   margin-bottom: 1.25rem;
 }
 .blog-content-dark a {
-  color: #FACC15;
+  color: #b8860b;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.blog-content-dark a:hover { color: #fde047; }
-.blog-content-dark strong { color: #ffffff; font-weight: 600; }
+.blog-content-dark a:hover { color: #8b6508; }
+.blog-content-dark strong { color: #0a0a0a; font-weight: 600; }
 .blog-content-dark ul,
 .blog-content-dark ol {
-  color: rgba(255, 255, 255, 0.78);
+  color: #374151;
   padding-left: 1.5rem;
   margin-bottom: 1.5rem;
 }
 .blog-content-dark li { margin-bottom: 0.5rem; line-height: 1.75; }
-.blog-content-dark ul li::marker { color: #FACC15; }
-.blog-content-dark ol li::marker { color: #FACC15; font-weight: 700; }
+.blog-content-dark ul li::marker { color: #b8860b; }
+.blog-content-dark ol li::marker { color: #b8860b; font-weight: 700; }
 .blog-content-dark blockquote {
   border-left: 3px solid #FACC15;
   padding-left: 1.25rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: #4b5563;
   font-style: italic;
   margin: 1.5rem 0;
 }
 .blog-content-dark code {
-  background: rgba(250, 204, 21, 0.1);
-  color: #FACC15;
+  background: rgba(250, 204, 21, 0.15);
+  color: #92400e;
   padding: 0.15rem 0.4rem;
   border-radius: 4px;
   font-size: 0.9em;
 }
 .blog-content-dark pre {
-  background: #111;
-  border: 1px solid rgba(255,255,255,0.1);
+  background: #f5f5f5;
+  border: 1px solid #e5e7eb;
   padding: 1rem;
   border-radius: 8px;
   overflow-x: auto;
@@ -622,7 +622,7 @@
   width: 100%;
 }
 .blog-content-dark hr {
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: #e5e7eb;
   margin: 2.5rem 0;
 }
 .blog-content-dark table {
@@ -632,8 +632,9 @@
 }
 .blog-content-dark th,
 .blog-content-dark td {
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid #e5e7eb;
   padding: 0.75rem;
   text-align: left;
 }
-.blog-content-dark th { background: rgba(250,204,21,0.08); color: #FACC15; }
+.blog-content-dark th { background: rgba(250,204,21,0.12); color: #0a0a0a; }
+

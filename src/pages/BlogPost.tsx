@@ -4,10 +4,9 @@ import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
 import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/blog/ReadingProgress";
-import RelatedPosts from "@/components/blog/RelatedPosts";
-import BlogInternalLinks from "@/components/blog/BlogInternalLinks";
 import BlogComments from "@/components/blog/BlogComments";
 import FaqSchema from "@/components/blog/FaqSchema";
+import AuthorBio from "@/components/blog/AuthorBio";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowLeft, Share2, Check, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -83,8 +82,7 @@ const BlogPost = () => {
           .select("id,title,slug,excerpt,featured_image_url,published_at")
           .eq("is_published", true)
           .neq("slug", slug)
-          .order("published_at", { ascending: false })
-          .limit(4);
+          .order("published_at", { ascending: false });
         if (recentData) setRecent(recentData as any);
       } finally {
         setIsLoading(false);
@@ -97,7 +95,7 @@ const BlogPost = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] text-white">
+      <div className="min-h-screen bg-white text-neutral-900">
         <IndiaNav />
         <div className="container mx-auto px-4 py-32 text-center">
           <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#FACC15] mx-auto" />
@@ -109,7 +107,7 @@ const BlogPost = () => {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] text-white">
+      <div className="min-h-screen bg-white text-neutral-900">
         <IndiaNav />
         <div className="container mx-auto px-4 py-32 text-center">
           <h1
@@ -130,7 +128,7 @@ const BlogPost = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-white text-neutral-900">
       <ReadingProgress />
       <Helmet>
         <title>{post.seo_title || post.title} | FranchiseLeadsPro</title>
@@ -188,9 +186,9 @@ const BlogPost = () => {
               className="absolute inset-0 w-full h-full object-cover"
             />
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-neutral-800 to-neutral-900" />
           )}
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-black/55" />
           <div className="absolute inset-0 flex items-center">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-4xl mx-auto text-center">
@@ -207,23 +205,23 @@ const BlogPost = () => {
       </header>
 
       {/* Body */}
-      <section className="py-16">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main */}
             <article className="lg:col-span-2">
-              <div className="flex flex-wrap items-center gap-4 text-sm text-[#FACC15] mb-8">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-[#b8860b] mb-8">
                 <span className="inline-flex items-center gap-2">
                   <Calendar className="w-4 h-4" /> {formatDate(post.published_at)}
                 </span>
-                <span className="inline-flex items-center gap-2 text-white/60">
+                <span className="inline-flex items-center gap-2 text-neutral-500">
                   <Clock className="w-4 h-4" /> {post.read_time_minutes} min read
                 </span>
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={handleShare}
-                  className="ml-auto border-white/20 bg-transparent text-white hover:bg-[#FACC15] hover:text-black hover:border-[#FACC15]"
+                  className="ml-auto border-neutral-300 bg-white text-neutral-900 hover:bg-[#FACC15] hover:text-black hover:border-[#FACC15]"
                 >
                   {shared ? <Check className="w-4 h-4 mr-2" /> : <Share2 className="w-4 h-4 mr-2" />}
                   {shared ? "Copied" : "Share"}
@@ -231,7 +229,7 @@ const BlogPost = () => {
               </div>
 
               {post.excerpt && (
-                <p className="text-xl text-white/80 leading-relaxed mb-10 border-l-2 border-[#FACC15] pl-6">
+                <p className="text-xl text-neutral-700 leading-relaxed mb-10 border-l-2 border-[#FACC15] pl-6">
                   {post.excerpt}
                 </p>
               )}
@@ -268,11 +266,10 @@ const BlogPost = () => {
                 };
 
                 return (
-                  <div className="blog-content blog-content-dark prose prose-lg prose-invert max-w-none scroll-smooth">
+                  <div className="blog-content blog-content-dark prose prose-lg max-w-none scroll-smooth">
                     <ReactMarkdown {...mdProps}>{firstHalf}</ReactMarkdown>
                     {secondHalf && <TableOfContents content={stripped} />}
                     {secondHalf && <ReactMarkdown {...mdProps}>{secondHalf}</ReactMarkdown>}
-                    <BlogInternalLinks />
                   </div>
                 );
               })()}
@@ -280,11 +277,11 @@ const BlogPost = () => {
               <FaqSchema content={post.content} />
 
               {post.tags && post.tags.length > 0 && (
-                <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-2">
+                <div className="mt-12 pt-8 border-t border-neutral-200 flex flex-wrap gap-2">
                   {post.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 bg-white/5 text-xs rounded-full text-white/70 border border-white/10"
+                      className="px-3 py-1 bg-neutral-100 text-xs rounded-full text-neutral-700 border border-neutral-200"
                     >
                       #{tag}
                     </span>
@@ -292,11 +289,13 @@ const BlogPost = () => {
                 </div>
               )}
 
+              <AuthorBio />
+
               <div className="mt-12">
                 <Link to="/blog">
                   <Button
                     variant="outline"
-                    className="border-white/20 bg-transparent text-white hover:bg-[#FACC15] hover:text-black hover:border-[#FACC15]"
+                    className="border-neutral-300 bg-white text-neutral-900 hover:bg-[#FACC15] hover:text-black hover:border-[#FACC15]"
                   >
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to All Posts
                   </Button>
@@ -304,24 +303,23 @@ const BlogPost = () => {
               </div>
 
               <BlogComments postId={post.id} />
-              <RelatedPosts currentPostId={post.id} categoryId={post.category_id} />
             </article>
 
-            {/* Sidebar */}
+            {/* Sidebar — scrollable recent posts */}
             <aside className="lg:col-span-1">
               <div className="sticky top-24 space-y-6">
-                <div className="rounded-lg border border-white/10 bg-[#111] p-6">
+                <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
                   <h3
-                    className="text-2xl font-bold text-white mb-6"
+                    className="text-2xl font-bold text-neutral-900 mb-6"
                     style={{ fontFamily: "'Playfair Display', serif" }}
                   >
                     Recent Posts
                   </h3>
-                  <div className="space-y-6">
+                  <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-2">
                     {recent.map((p) => (
                       <Link key={p.id} to={`/blog/${p.slug}`} className="block group">
                         {p.featured_image_url && (
-                          <div className="aspect-video rounded-md overflow-hidden mb-3 bg-[#0a0a0a]">
+                          <div className="aspect-video rounded-md overflow-hidden mb-3 bg-neutral-200">
                             <img
                               src={p.featured_image_url}
                               alt={p.title}
@@ -330,11 +328,11 @@ const BlogPost = () => {
                             />
                           </div>
                         )}
-                        <h4 className="text-base font-semibold text-white group-hover:text-[#FACC15] leading-snug mb-2">
+                        <h4 className="text-base font-semibold text-neutral-900 group-hover:text-[#b8860b] leading-snug mb-2">
                           {p.title}
                         </h4>
-                        <p className="text-sm text-white/60 line-clamp-2 mb-2">{p.excerpt}</p>
-                        <span className="inline-block text-xs text-[#FACC15] font-medium">
+                        <p className="text-sm text-neutral-600 line-clamp-2 mb-2">{p.excerpt}</p>
+                        <span className="inline-block text-xs text-[#b8860b] font-medium">
                           Learn more →
                         </span>
                       </Link>
@@ -342,14 +340,14 @@ const BlogPost = () => {
                   </div>
                 </div>
 
-                <div className="rounded-lg border border-[#FACC15]/40 bg-gradient-to-br from-[#FACC15]/10 to-transparent p-6 text-center">
+                <div className="rounded-lg border border-[#FACC15] bg-gradient-to-br from-[#FACC15]/15 to-transparent p-6 text-center">
                   <h4
-                    className="text-xl font-bold text-white mb-3"
+                    className="text-xl font-bold text-neutral-900 mb-3"
                     style={{ fontFamily: "'Playfair Display', serif" }}
                   >
                     Need Franchise Leads?
                   </h4>
-                  <p className="text-sm text-white/70 mb-4">
+                  <p className="text-sm text-neutral-700 mb-4">
                     Talk to our team about a US franchise lead generation plan.
                   </p>
                   <Link to="/contact">
