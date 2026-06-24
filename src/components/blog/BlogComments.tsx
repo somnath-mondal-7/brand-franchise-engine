@@ -24,6 +24,8 @@ interface PublicCommentRow {
 
 interface BlogCommentsProps {
   postId: string;
+  postTitle?: string;
+  postSlug?: string;
 }
 
 const commentSchema = z.object({
@@ -55,7 +57,7 @@ const initials = (name: string) =>
     .slice(0, 2)
     .toUpperCase();
 
-const BlogComments = ({ postId }: BlogCommentsProps) => {
+const BlogComments = ({ postId, postTitle, postSlug }: BlogCommentsProps) => {
   const db = supabase as any;
   const [comments, setComments] = useState<CommentRow[]>([]);
   const [loading, setLoading] = useState(true);
@@ -138,6 +140,23 @@ const BlogComments = ({ postId }: BlogCommentsProps) => {
 
     localStorage.setItem(RATE_LIMIT_KEY, String(Date.now()));
     if (data) setComments((prev) => [data as CommentRow, ...prev]);
+
+    // Fire-and-forget email notification to admin
+    try {
+      await supabase.functions.invoke("send-blog-comment-notification", {
+        body: {
+          authorName: author_name,
+          authorEmail: author_email,
+          content: cmt,
+          postId,
+          postTitle,
+          postSlug,
+        },
+      });
+    } catch (e) {
+      console.warn("Comment notify failed", e);
+    }
+
     setName("");
     setEmail("");
     setContent("");

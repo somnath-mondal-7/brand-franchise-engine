@@ -26,7 +26,7 @@ const BlogLeadForm = ({ compact = false }: { compact?: boolean }) => {
     }
     setSubmitting(true);
     const [first, ...rest] = name.trim().split(" ");
-    const { error } = await supabase.from("contact_submissions").insert({
+    const payload = {
       first_name: first,
       last_name: rest.join(" ") || "—",
       email: email.trim(),
@@ -34,7 +34,25 @@ const BlogLeadForm = ({ compact = false }: { compact?: boolean }) => {
       role: "Blog Reader",
       service_interest: "Franchise Lead Generation",
       message: concern.trim() || "Submitted via blog concern box",
-    });
+    };
+    const { error } = await supabase.from("contact_submissions").insert(payload);
+    if (!error) {
+      // Fire email notification (non-blocking on failure)
+      try {
+        await supabase.functions.invoke("send-contact-email", {
+          body: {
+            firstName: payload.first_name,
+            lastName: payload.last_name,
+            email: payload.email,
+            phone: payload.phone,
+            company: "Franchise Concern Box (Blog)",
+            message: payload.message,
+          },
+        });
+      } catch (e) {
+        console.warn("Concern email notify failed", e);
+      }
+    }
     setSubmitting(false);
     if (error) {
       toast({ title: "Could not submit", description: error.message });
