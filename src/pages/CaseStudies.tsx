@@ -179,13 +179,13 @@ const CaseStudies = () => {
       {/* CASE STUDY CARDS */}
       <section className="py-20 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          {/* John Thompson */}
+          {/* Mike Thompson */}
           <CaseCard
             open={openId === "john"}
             onToggle={() => toggle("john")}
             eyebrow="Paid Ads · CRM · Website Inbound"
             cover={johnCover}
-            title={<>John Thompson — <em>Franchise Solutions Inc.</em></>}
+            title={<>Mike Thompson — <em>Franchise Solutions Inc.</em></>}
             subtitle="Independent Franchise Consultant · USA"
             summary="An independent franchise consultant running on referrals. We built an investor lead engine that delivers qualified enquiries every week — on autopilot."
           >
@@ -253,7 +253,7 @@ const CaseStudies = () => {
                     quality of conversations they put on my calendar."
                   </p>
                   <div>
-                    <p className="font-semibold">John Thompson</p>
+                    <p className="font-semibold">Mike Thompson</p>
                     <p className="text-sm text-primary-foreground/70">Franchise Consultant, Franchise Solutions Inc.</p>
                   </div>
                 </div>
@@ -263,7 +263,7 @@ const CaseStudies = () => {
                 <div className="lg:sticky lg:top-32 space-y-6">
                   <div className="rounded-2xl border border-border bg-card p-6">
                     <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Client</p>
-                    <p className="font-display text-xl text-foreground mb-1">John Thompson</p>
+                    <p className="font-display text-xl text-foreground mb-1">Mike Thompson</p>
                     <p className="text-sm text-muted-foreground mb-6">Franchise Solutions Inc.</p>
 
                     <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">Services Delivered</p>

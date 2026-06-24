@@ -168,7 +168,7 @@ const Testimonials = () => {
               {[
                 { name: "Jonathan Morgan", title: "CEO, NextFranch Corp", videoSrc: jonathanMorganVideo.url, fit: "contain" as const },
                 { name: "Shawn Gurn", title: "HOF Franchise Consulting Company • IFPG Member", videoSrc: shawnGurnVideo.url, fit: "contain" as const },
-                { name: "John Thompson", title: "Franchise Development Leader", videoSrc: johnThompsonVideo.url, fit: "cover" as const },
+                { name: "Mike Thompson", title: "Franchise Development Leader", videoSrc: johnThompsonVideo.url, fit: "cover" as const },
               ].map((video, index) => (
                 <Card key={index} className="overflow-hidden border-border/50 hover:shadow-xl transition-all duration-300">
                   <div className="aspect-[3/4] sm:aspect-[4/5] bg-black relative overflow-hidden">
