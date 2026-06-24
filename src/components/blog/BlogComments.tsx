@@ -24,6 +24,8 @@ interface PublicCommentRow {
 
 interface BlogCommentsProps {
   postId: string;
+  postTitle?: string;
+  postSlug?: string;
 }
 
 const commentSchema = z.object({
