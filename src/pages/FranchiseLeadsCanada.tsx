@@ -3,8 +3,8 @@ import { Target, ShieldCheck, Users, Calendar, Search, LineChart } from "lucide-
 
 const config: MoneyPageConfig = {
   canonical: "https://www.franchiseleadspro.com/franchise-leads-canada",
-  metaTitle: "Franchise Lead Generation Canada | Exclusive Candidate Pipelines",
-  metaDescription: "Canadian franchise lead generation across all 10 provinces. Exclusive, capital-qualified candidate-investors booked to your calendar — bilingual EN/FR where needed.",
+  metaTitle: "Franchise Lead Generation Canada | Connect with Canadian Franchise Investors",
+  metaDescription: "Reach qualified franchise investors across Canada. FranchiseLeadsPro delivers targeted franchise lead generation campaigns for Canadian markets.",
   ogTitle: "Franchise Lead Generation Canada — FranchiseLeads Pro",
   ogDescription: "Exclusive Canadian franchise candidate-investor pipelines for franchisors and consultants.",
   badge: "Franchise Lead Generation — Canada",

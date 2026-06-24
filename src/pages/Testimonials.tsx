@@ -128,8 +128,8 @@ const Testimonials = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Client Testimonials | Franchise Lead Generation Results | FranchiseLeadsPro</title>
-        <meta name="description" content="Read real success stories from franchise consultants and franchisors who generated qualified leads with FranchiseLeadsPro. See proven results and ROI." />
+        <title>Client Testimonials | FranchiseLeadsPro Results & Reviews</title>
+        <meta name="description" content="See what franchisors, consultants, and franchise brands say about working with FranchiseLeadsPro. Real results, real leads." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/testimonials" />
         <meta name="robots" content="index, follow" />
       </Helmet>

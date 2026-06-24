@@ -63,12 +63,12 @@ const DigitalMarketing = () => {
   return (
     <>
       <Helmet>
-        <title>Franchise Digital Marketing: PPC, SEO & Social | FranchiseLeadsPro</title>
-        <meta name="description" content="Digital marketing for franchise brands — PPC, SEO, social media, web design, and AI automation built to drive franchise growth." />
+        <title>Franchise Digital Marketing Services | Social, PPC & LinkedIn</title>
+        <meta name="description" content="Full-service franchise digital marketing — LinkedIn campaigns, Facebook & Instagram ads, Google PPC, and content marketing to generate qualified franchise buyer leads." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/digital-marketing" />
         <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="Franchise Digital Marketing: PPC, SEO & Social | FranchiseLeadsPro" />
-        <meta property="og:description" content="PPC, SEO, social media, web design, and AI automation built to drive franchise growth." />
+        <meta property="og:title" content="Franchise Digital Marketing Services | Social, PPC & LinkedIn" />
+        <meta property="og:description" content="Full-service franchise digital marketing — LinkedIn campaigns, Facebook & Instagram ads, Google PPC, and content marketing to generate qualified franchise buyer leads." />
         <meta property="og:url" content="https://www.franchiseleadspro.com/digital-marketing" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">

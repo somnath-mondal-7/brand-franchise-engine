@@ -102,16 +102,16 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Franchise Lead Generation Blog | FranchiseLeadsPro</title>
-        <meta name="description" content="Actionable franchise lead generation, SEO, and paid ads insights for franchisors and franchise consultants. New research-backed posts published regularly." />
+        <title>Franchise Marketing Blog | Tips, Strategies & Lead Gen Insights</title>
+        <meta name="description" content="Explore franchise marketing strategies, lead generation tips, and industry insights from the FranchiseLeadsPro team." />
         <link rel="canonical" href="https://www.franchiseleadspro.com/blog" />
-        <meta property="og:title" content="Franchise Lead Generation Blog | FranchiseLeadsPro" />
-        <meta property="og:description" content="Research-backed strategies to generate qualified franchise buyer leads with SEO, PPC, and conversion optimization." />
+        <meta property="og:title" content="Franchise Marketing Blog | Tips, Strategies & Lead Gen Insights" />
+        <meta property="og:description" content="Explore franchise marketing strategies, lead generation tips, and industry insights from the FranchiseLeadsPro team." />
         <meta property="og:url" content="https://www.franchiseleadspro.com/blog" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Franchise Lead Generation Blog | FranchiseLeadsPro" />
-        <meta name="twitter:description" content="Franchise marketing insights that turn traffic into booked calls." />
+        <meta name="twitter:title" content="Franchise Marketing Blog | Tips, Strategies & Lead Gen Insights" />
+        <meta name="twitter:description" content="Explore franchise marketing strategies, lead generation tips, and industry insights from the FranchiseLeadsPro team." />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

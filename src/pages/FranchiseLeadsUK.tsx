@@ -3,8 +3,8 @@ import { Target, ShieldCheck, Users, Calendar, Search, LineChart } from "lucide-
 
 const config: MoneyPageConfig = {
   canonical: "https://www.franchiseleadspro.com/franchise-leads-uk",
-  metaTitle: "Franchise Lead Generation UK | Exclusive Candidate Pipelines",
-  metaDescription: "UK franchise lead generation for franchisors and franchise consultants. Exclusive, capital-qualified candidate-investors booked to your calendar across England, Scotland, Wales, NI.",
+  metaTitle: "Franchise Lead Generation UK | England, Scotland & Wales",
+  metaDescription: "Generate qualified franchise buyer leads across the UK. FranchiseLeadsPro serves franchisors and consultants targeting investors in England, Scotland, and Wales.",
   ogTitle: "Franchise Lead Generation UK — FranchiseLeads Pro",
   ogDescription: "Exclusive UK franchise candidate-investor pipelines for franchisors and consultants.",
   badge: "Franchise Lead Generation — United Kingdom",
