@@ -151,7 +151,7 @@ const IndiaNav = () => {
                                 <div className={`font-display text-sm font-bold ${isFeatures ? "text-primary" : "text-accent"}`}>
                                   {s.label}
                                 </div>
-                                <div className="text-xs text-accent/65 mt-0.5">
+                                <div className="text-xs text-accent/80 mt-0.5">
                                   {s.desc}
                                 </div>
                               </Link>
@@ -203,7 +203,7 @@ const IndiaNav = () => {
                           <div className="font-display text-base font-bold text-accent group-hover:text-primary">
                             {r.label}
                           </div>
-                          <div className="text-xs text-accent/65 mt-0.5">
+                          <div className="text-xs text-accent/80 mt-0.5">
                             {r.desc}
                           </div>
                         </Link>
