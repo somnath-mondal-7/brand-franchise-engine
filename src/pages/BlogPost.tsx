@@ -165,7 +165,7 @@ const BlogPost = () => {
       <Helmet>
         <title>{post.seo_title || post.title} | FranchiseLeads Pro</title>
         <meta name="description" content={post.seo_description || post.excerpt} />
-        <meta name="keywords" content={post.tags?.join(', ')} />
+        
         <link rel="canonical" href={`https://www.franchiseleadspro.com/blog/${post.slug}`} />
         
         {/* Open Graph Tags */}
