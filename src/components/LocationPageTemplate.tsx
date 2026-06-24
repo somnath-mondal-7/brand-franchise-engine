@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Check, Users, TrendingUp, MapPin, Phone, Mail, Building2, Scale, BarChart3, Target, Award, Linkedin, ArrowRight, Shield, Clock, Zap, Star } from 'lucide-react';
 import { getRegionInsight, generateMarketNarrative, generateLocationFAQs, hasCuratedInsight } from '@/utils/locationContent';
+import { getCityNarrative } from '@/utils/cityNarratives';
 
 interface NearbyLocation {
   name: string;
