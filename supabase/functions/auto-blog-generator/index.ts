@@ -178,6 +178,83 @@ Make it feel like breaking insights that readers can't get anywhere else.
   return { context, topicData };
 }
 
+// Breaking-news mode: scan RSS for the freshest USA franchise headline that
+// hasn't already been covered in our last 20 posts. Returns null if nothing fresh.
+async function getBreakingNewsContext(supabase: any): Promise<
+  { context: string; topicData: typeof RESEARCH_TOPICS[0] } | null
+> {
+  const feedPromises = FRANCHISE_NEWS_SOURCES.map(fetchRSSFeed);
+  const results = await Promise.all(feedPromises);
+  const headlines = results.flat().filter(Boolean);
+  if (headlines.length === 0) return null;
+
+  const { data: recent } = await supabase
+    .from("blog_posts")
+    .select("title")
+    .order("created_at", { ascending: false })
+    .limit(20);
+  const recentTitles = (recent || []).map((r: any) => (r.title || "").toLowerCase());
+
+  const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
+  const isCovered = (h: string) => {
+    const n = normalize(h);
+    if (n.length < 12) return true;
+    const words = n.split(/\s+/).filter((w) => w.length > 4).slice(0, 4);
+    if (words.length < 2) return true;
+    return recentTitles.some((t: string) => words.every((w) => t.includes(w)));
+  };
+
+  // Prefer USA-focused, franchise-focused headlines
+  const usaTerms = ["us ", "u.s.", "usa", "america", "ftc", "sba", "nlrb", "california", "texas", "florida", "new york", "ifa", "franchise"];
+  const ranked = headlines.filter((h) => {
+    const l = h.toLowerCase();
+    return usaTerms.some((t) => l.includes(t));
+  });
+
+  const candidate = (ranked.length ? ranked : headlines).find((h) => !isCovered(h));
+  if (!candidate) {
+    console.log("📰 Breaking-news: nothing fresh to cover.");
+    return null;
+  }
+
+  console.log(`📰 Breaking-news pick: ${candidate}`);
+
+  const topicData: typeof RESEARCH_TOPICS[0] = {
+    category: "us-franchise-news",
+    topic: `breaking US franchise industry news: "${candidate}"`,
+    stats: "Reference real, named sources from the headline — never fabricate numbers",
+    angle: "fresh news angle — what just happened in the US franchise space and why it matters today",
+    hook: `Breaking: ${candidate}`,
+  };
+
+  const currentDate = new Date().toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  const context = `
+CURRENT DATE: ${currentDate}
+MODE: BREAKING NEWS
+
+LEAD HEADLINE TO COVER FIRST:
+${candidate}
+
+OTHER LIVE FRANCHISE HEADLINES (context only):
+${headlines.slice(0, 12).map((h, i) => `${i + 1}. ${h}`).join("\n")}
+
+=== TODAY'S CONTENT ASSIGNMENT (BREAKING) ===
+CATEGORY: US FRANCHISE NEWS
+MAIN TOPIC: ${topicData.topic}
+KEY DATA POINT: ${topicData.stats}
+CONTENT ANGLE: ${topicData.angle}
+OPENING HOOK: ${topicData.hook}
+
+Write a US franchise news piece that leads with this headline as the news peg.
+  `.trim();
+
+  return { context, topicData };
+
 // ============================================================
 // IMAGE GENERATION + UPLOAD HELPERS
 // ============================================================
