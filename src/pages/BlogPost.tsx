@@ -2,7 +2,6 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import IndiaNav from "@/components/india/IndiaNav";
 import IndiaFooter from "@/components/india/IndiaFooter";
-import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
 import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/blog/ReadingProgress";
 import RelatedPosts from "@/components/blog/RelatedPosts";
@@ -10,8 +9,7 @@ import BlogInternalLinks from "@/components/blog/BlogInternalLinks";
 import BlogComments from "@/components/blog/BlogComments";
 import FaqSchema from "@/components/blog/FaqSchema";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Calendar, User, ArrowLeft, Share2, FileText, Download, Check, Clock } from "lucide-react";
+import { Calendar, ArrowLeft, Share2, Check, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
@@ -35,24 +33,21 @@ interface BlogPostData {
   seo_title: string;
   seo_description: string;
   featured_image_url: string;
-  attachments?: Array<{
-    name: string;
-    url: string;
-    type: string;
-    size: number;
-  }>;
 }
 
-interface Category {
+interface RecentPost {
   id: string;
-  name: string;
+  title: string;
   slug: string;
+  excerpt: string;
+  featured_image_url: string;
+  published_at: string;
 }
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPostData | null>(null);
-  const [category, setCategory] = useState<Category | null>(null);
+  const [recent, setRecent] = useState<RecentPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [shared, setShared] = useState(false);
 
@@ -68,53 +63,44 @@ const BlogPost = () => {
       setShared(true);
       toast({ title: "Link copied!", description: "Share it anywhere you like." });
       setTimeout(() => setShared(false), 2000);
-    } catch (e) {
-      // user cancelled — silent
-    }
+    } catch {}
   };
 
   useEffect(() => {
-    const fetchPost = async () => {
+    (async () => {
       if (!slug) return;
-
       try {
-        const { data: postData, error: postError } = await supabase
-          .from('blog_posts')
-          .select('*')
-          .eq('slug', slug)
-          .eq('is_published', true)
+        const { data: postData } = await supabase
+          .from("blog_posts")
+          .select("*")
+          .eq("slug", slug)
+          .eq("is_published", true)
           .single();
+        if (postData) setPost(postData as any);
 
-        if (postError) throw postError;
-
-        setPost(postData as unknown as BlogPostData);
-
-        if (postData.category_id) {
-          const { data: categoryData } = await supabase
-            .from('categories')
-            .select('*')
-            .eq('id', postData.category_id)
-            .single();
-
-          if (categoryData) setCategory(categoryData);
-        }
-      } catch (error) {
-        console.error('Error fetching blog post:', error);
+        const { data: recentData } = await supabase
+          .from("blog_posts")
+          .select("id,title,slug,excerpt,featured_image_url,published_at")
+          .eq("is_published", true)
+          .neq("slug", slug)
+          .order("published_at", { ascending: false })
+          .limit(4);
+        if (recentData) setRecent(recentData as any);
       } finally {
         setIsLoading(false);
       }
-    };
-
-    fetchPost();
+    })();
   }, [slug]);
+
+  const formatDate = (d: string) =>
+    new Date(d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-[#0a0a0a] text-white">
         <IndiaNav />
-        <div className="container mx-auto px-4 py-20 text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-4 text-muted-foreground">Loading post...</p>
+        <div className="container mx-auto px-4 py-32 text-center">
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#FACC15] mx-auto" />
         </div>
         <IndiaFooter />
       </div>
@@ -123,52 +109,37 @@ const BlogPost = () => {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen bg-[#0a0a0a] text-white">
         <IndiaNav />
-        <Card className="p-12 text-center max-w-md mx-4">
-          <h1 className="text-3xl font-bold text-brand-navy mb-4">
+        <div className="container mx-auto px-4 py-32 text-center">
+          <h1
+            className="text-4xl font-bold mb-4"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
             Post Not Found
           </h1>
-          <p className="text-brand-gray mb-6">
-            Sorry, we couldn't find the blog post you're looking for.
-          </p>
           <Link to="/blog">
-            <Button className="bg-gradient-primary">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blog
+            <Button className="bg-[#FACC15] text-black hover:bg-[#FACC15]/90">
+              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Blog
             </Button>
           </Link>
-        </Card>
+        </div>
         <IndiaFooter />
       </div>
     );
   }
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
-
-  const formatFileSize = (bytes: number) => {
-    if (bytes < 1024) return bytes + ' B';
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + ' KB';
-    return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
-  };
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#0a0a0a] text-white">
       <ReadingProgress />
-      {/* SEO Meta Tags */}
       <Helmet>
-        <title>{post.seo_title || post.title} | FranchiseLeads Pro</title>
+        <title>{post.seo_title || post.title} | FranchiseLeadsPro</title>
         <meta name="description" content={post.seo_description || post.excerpt} />
-        
         <link rel="canonical" href={`https://www.franchiseleadspro.com/blog/${post.slug}`} />
-        
-        {/* Open Graph Tags */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800;900&display=swap"
+        />
         <meta property="og:title" content={post.seo_title || post.title} />
         <meta property="og:description" content={post.seo_description || post.excerpt} />
         <meta property="og:type" content="article" />
@@ -176,252 +147,222 @@ const BlogPost = () => {
         {post.featured_image_url && <meta property="og:image" content={post.featured_image_url} />}
         <meta property="article:published_time" content={post.published_at} />
         <meta property="article:author" content={post.author_name} />
-        {post.tags?.map(tag => <meta key={tag} property="article:tag" content={tag} />)}
-        
-        {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.seo_title || post.title} />
-        <meta name="twitter:description" content={post.seo_description || post.excerpt} />
         {post.featured_image_url && <meta name="twitter:image" content={post.featured_image_url} />}
-        
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            "headline": post.title,
-            "description": post.seo_description || post.excerpt,
-            "image": post.featured_image_url,
-            "author": {
+            headline: post.title,
+            description: post.seo_description || post.excerpt,
+            image: post.featured_image_url,
+            author: { "@type": "Organization", name: post.author_name },
+            publisher: {
               "@type": "Organization",
-              "name": post.author_name
-            },
-            "publisher": {
-              "@type": "Organization",
-              "name": "FranchiseLeads Pro",
-              "logo": {
+              name: "FranchiseLeadsPro",
+              logo: {
                 "@type": "ImageObject",
-                "url": "https://www.franchiseleadspro.com/logo-hq.png"
-              }
+                url: "https://www.franchiseleadspro.com/logo-hq.png",
+              },
             },
-            "datePublished": post.published_at,
-            "dateModified": post.published_at,
-            "mainEntityOfPage": {
+            datePublished: post.published_at,
+            dateModified: post.published_at,
+            mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": `https://www.franchiseleadspro.com/blog/${post.slug}`
+              "@id": `https://www.franchiseleadspro.com/blog/${post.slug}`,
             },
-            "keywords": post.tags?.join(", ")
+            keywords: post.tags?.join(", "),
           })}
         </script>
       </Helmet>
 
       <IndiaNav />
-      
-      {/* Breadcrumbs */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24">
-        <SEOBreadcrumbs />
-      </div>
 
-      {/* Hero Section */}
-      <article className="py-12 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            {/* Category Badge */}
-            {category && (
-              <div className="mb-6">
-                <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                  {category.name}
-                </span>
+      {/* Hero with overlay title */}
+      <header className="relative pt-20">
+        <div className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
+          {post.featured_image_url ? (
+            <img
+              src={post.featured_image_url}
+              alt={post.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]" />
+          )}
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 flex items-center">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-4xl mx-auto text-center">
+                <h1
+                  className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  {post.title}
+                </h1>
               </div>
-            )}
-
-            {/* Featured Image */}
-            {post.featured_image_url && (
-              <div className="mb-8 rounded-lg overflow-hidden">
-                <img 
-                  src={post.featured_image_url} 
-                  alt={post.title}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            )}
-
-            {/* Title */}
-            <h1 className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6 leading-tight">
-              {post.title}
-            </h1>
-
-            {/* Meta Information */}
-            <div className="flex flex-wrap items-center gap-6 text-brand-gray mb-8 pb-8 border-b border-border">
-              <div className="flex items-center space-x-2">
-                <User className="w-5 h-5" />
-                <span className="font-medium">{post.author_name}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Calendar className="w-5 h-5" />
-                <span>{formatDate(post.published_at)}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Clock className="w-5 h-5" />
-                <span className="text-sm">{post.read_time_minutes} min read</span>
-              </div>
-              <Button variant="outline" size="sm" className="ml-auto" onClick={handleShare}>
-                {shared ? (
-                  <>
-                    <Check className="w-4 h-4 mr-2" />
-                    Copied
-                  </>
-                ) : (
-                  <>
-                    <Share2 className="w-4 h-4 mr-2" />
-                    Share
-                  </>
-                )}
-              </Button>
             </div>
+          </div>
+        </div>
+      </header>
 
-            {/* Excerpt — Key takeaway intro */}
-            {post.excerpt && (
-              <div className="mb-10 p-6 rounded-xl bg-primary/5 border-l-4 border-primary">
-                <p className="text-xl text-foreground leading-relaxed font-medium">
+      {/* Body */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Main */}
+            <article className="lg:col-span-2">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-[#FACC15] mb-8">
+                <span className="inline-flex items-center gap-2">
+                  <Calendar className="w-4 h-4" /> {formatDate(post.published_at)}
+                </span>
+                <span className="inline-flex items-center gap-2 text-white/60">
+                  <Clock className="w-4 h-4" /> {post.read_time_minutes} min read
+                </span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleShare}
+                  className="ml-auto border-white/20 bg-transparent text-white hover:bg-[#FACC15] hover:text-black hover:border-[#FACC15]"
+                >
+                  {shared ? <Check className="w-4 h-4 mr-2" /> : <Share2 className="w-4 h-4 mr-2" />}
+                  {shared ? "Copied" : "Share"}
+                </Button>
+              </div>
+
+              {post.excerpt && (
+                <p className="text-xl text-white/80 leading-relaxed mb-10 border-l-2 border-[#FACC15] pl-6">
                   {post.excerpt}
                 </p>
-              </div>
-            )}
+              )}
 
-            {/* Content split: first part → TOC in the middle → rest */}
-            {(() => {
-              // Strip the markdown "Want To Dig Deeper" section — rendered as a styled React component below
-              const stripped = post.content.replace(
-                /\n##\s+want to dig deeper\??[\s\S]*?(?=\n##\s+|$)/i,
-                ""
-              );
+              {(() => {
+                const stripped = post.content.replace(
+                  /\n##\s+want to dig deeper\??[\s\S]*?(?=\n##\s+|$)/i,
+                  "",
+                );
+                const lines = stripped.split("\n");
+                const h2Indices: number[] = [];
+                lines.forEach((line, i) => {
+                  if (/^##\s+/.test(line) && !/faq|frequently asked/i.test(line)) {
+                    h2Indices.push(i);
+                  }
+                });
+                const splitIdx = h2Indices[0] ?? -1;
+                const firstHalf = splitIdx > 0 ? lines.slice(0, splitIdx).join("\n") : stripped;
+                const secondHalf = splitIdx > 0 ? lines.slice(splitIdx).join("\n") : "";
 
-              const lines = stripped.split("\n");
-              const h2Indices: number[] = [];
-              lines.forEach((line, i) => {
-                if (/^##\s+/.test(line) && !/faq|frequently asked/i.test(line)) {
-                  h2Indices.push(i);
-                }
-              });
-              // Insert TOC right before the FIRST content H2, so readers see it early.
-              // Falls back gracefully if there's no H2 at all.
-              const splitIdx = h2Indices[0] ?? -1;
-              const firstHalf = splitIdx > 0 ? lines.slice(0, splitIdx).join("\n") : stripped;
-              const secondHalf = splitIdx > 0 ? lines.slice(splitIdx).join("\n") : "";
+                const mdProps = {
+                  remarkPlugins: [remarkGfm],
+                  rehypePlugins: [
+                    rehypeRaw,
+                    rehypeSlug,
+                    [
+                      rehypeAutolinkHeadings,
+                      {
+                        behavior: "wrap" as const,
+                        properties: { className: "no-underline" },
+                      },
+                    ],
+                  ] as any,
+                };
 
-              const mdProps = {
-                remarkPlugins: [remarkGfm],
-                rehypePlugins: [
-                  rehypeRaw,
-                  rehypeSlug,
-                  [
-                    rehypeAutolinkHeadings,
-                    {
-                      behavior: "wrap" as const,
-                      properties: { className: "no-underline hover:text-primary transition-colors" },
-                    },
-                  ],
-                ] as any,
-              };
+                return (
+                  <div className="blog-content blog-content-dark prose prose-lg prose-invert max-w-none scroll-smooth">
+                    <ReactMarkdown {...mdProps}>{firstHalf}</ReactMarkdown>
+                    {secondHalf && <TableOfContents content={stripped} />}
+                    {secondHalf && <ReactMarkdown {...mdProps}>{secondHalf}</ReactMarkdown>}
+                    <BlogInternalLinks />
+                  </div>
+                );
+              })()}
 
-              return (
-                <div className="blog-content prose prose-lg max-w-none scroll-smooth">
-                  <ReactMarkdown {...mdProps}>{firstHalf}</ReactMarkdown>
-                  {secondHalf && <TableOfContents content={stripped} />}
-                  {secondHalf && <ReactMarkdown {...mdProps}>{secondHalf}</ReactMarkdown>}
-                  <BlogInternalLinks />
-                </div>
-              );
-            })()}
+              <FaqSchema content={post.content} />
 
-            {/* FAQ structured data for Google rich results */}
-            <FaqSchema content={post.content} />
-
-            {/* Attachments */}
-            {post.attachments && post.attachments.length > 0 && (
-              <div className="mt-12 p-6 bg-muted rounded-lg">
-                <h3 className="text-xl font-bold text-brand-navy mb-4 flex items-center">
-                  <FileText className="w-5 h-5 mr-2" />
-                  Attachments
-                </h3>
-                <div className="space-y-3">
-                  {post.attachments.map((attachment, index) => (
-                    <a
-                      key={index}
-                      href={attachment.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between p-4 bg-background rounded-lg hover:shadow-md transition-shadow group"
-                    >
-                      <div className="flex items-center space-x-3">
-                        <div className="p-2 bg-primary/10 rounded">
-                          <FileText className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="font-medium text-brand-navy group-hover:text-primary transition-colors">
-                            {attachment.name}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {attachment.type} • {formatFileSize(attachment.size)}
-                          </p>
-                        </div>
-                      </div>
-                      <Download className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Tags */}
-            {post.tags && post.tags.length > 0 && (
-              <div className="mt-12 pt-8 border-t border-border">
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag, index) => (
+              {post.tags && post.tags.length > 0 && (
+                <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-2">
+                  {post.tags.map((tag, i) => (
                     <span
-                      key={index}
-                      className="px-3 py-1 bg-muted text-sm rounded-full text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
+                      key={i}
+                      className="px-3 py-1 bg-white/5 text-xs rounded-full text-white/70 border border-white/10"
                     >
                       #{tag}
                     </span>
                   ))}
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Back to Blog */}
-            <div className="mt-12 pt-8 border-t border-border">
-              <Link to="/blog">
-                <Button variant="outline" className="hover:bg-primary hover:text-white transition-colors">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to All Posts
-                </Button>
-              </Link>
-            </div>
-
-            {/* Comments — let readers join the conversation */}
-            <BlogComments postId={post.id} />
-
-            {/* Related Posts — keeps readers on the site, boosts internal linking & SEO */}
-            <RelatedPosts currentPostId={post.id} categoryId={post.category_id} />
-
-            {/* CTA Section */}
-            <Card className="mt-12 bg-gradient-primary text-white p-8">
-              <div className="text-center space-y-4">
-                <h3 className="text-2xl font-bold">Ready to Generate Quality Franchise Leads?</h3>
-                <p className="text-lg opacity-90">
-                  Let's discuss how we can help you achieve your franchise growth goals.
-                </p>
-                <Link to="/contact">
-                  <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90">
-                    Get Started Today
+              <div className="mt-12">
+                <Link to="/blog">
+                  <Button
+                    variant="outline"
+                    className="border-white/20 bg-transparent text-white hover:bg-[#FACC15] hover:text-black hover:border-[#FACC15]"
+                  >
+                    <ArrowLeft className="mr-2 h-4 w-4" /> Back to All Posts
                   </Button>
                 </Link>
               </div>
-            </Card>
+
+              <BlogComments postId={post.id} />
+              <RelatedPosts currentPostId={post.id} categoryId={post.category_id} />
+            </article>
+
+            {/* Sidebar */}
+            <aside className="lg:col-span-1">
+              <div className="sticky top-24 space-y-6">
+                <div className="rounded-lg border border-white/10 bg-[#111] p-6">
+                  <h3
+                    className="text-2xl font-bold text-white mb-6"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    Recent Posts
+                  </h3>
+                  <div className="space-y-6">
+                    {recent.map((p) => (
+                      <Link key={p.id} to={`/blog/${p.slug}`} className="block group">
+                        {p.featured_image_url && (
+                          <div className="aspect-video rounded-md overflow-hidden mb-3 bg-[#0a0a0a]">
+                            <img
+                              src={p.featured_image_url}
+                              alt={p.title}
+                              loading="lazy"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                          </div>
+                        )}
+                        <h4 className="text-base font-semibold text-white group-hover:text-[#FACC15] leading-snug mb-2">
+                          {p.title}
+                        </h4>
+                        <p className="text-sm text-white/60 line-clamp-2 mb-2">{p.excerpt}</p>
+                        <span className="inline-block text-xs text-[#FACC15] font-medium">
+                          Learn more →
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="rounded-lg border border-[#FACC15]/40 bg-gradient-to-br from-[#FACC15]/10 to-transparent p-6 text-center">
+                  <h4
+                    className="text-xl font-bold text-white mb-3"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    Need Franchise Leads?
+                  </h4>
+                  <p className="text-sm text-white/70 mb-4">
+                    Talk to our team about a US franchise lead generation plan.
+                  </p>
+                  <Link to="/contact">
+                    <Button className="bg-[#FACC15] text-black hover:bg-[#FACC15]/90 w-full">
+                      Let's Talk
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
-      </article>
+      </section>
 
       <IndiaFooter />
     </div>
