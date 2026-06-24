@@ -10,7 +10,7 @@ const TestimonialsSection = () => {
       videoSrc: shawnGurnVideo.url,
     },
     {
-      name: "John Thompson",
+      name: "Mike Thompson",
       title: "Franchise Development Leader",
       videoSrc: johnThompsonVideo.url,
     },
