@@ -34,7 +34,7 @@ const LocationPage = () => {
     return <Navigate to={redirectPath} replace />;
   }
 
-  // If city is provided, find the city data
+  // If city is provided, render the city-level page (no longer redirects to state).
   if (city) {
     const stateData = countryData.states.find(s => s.slug === location);
     if (!stateData) {
@@ -46,12 +46,26 @@ const LocationPage = () => {
       return <NotFound />;
     }
 
+    // Only render the city page when the parent state has curated insight
+    // (so it gets unique-enough content); otherwise send to country hub.
+    if (!hasCuratedInsight(countryData.countryCode, stateData.slug)) {
+      return <Navigate to={`/locations/${canonicalCountryCode}`} replace />;
+    }
+
     return (
-      <Navigate
-        to={hasCuratedInsight(countryData.countryCode, stateData.slug)
-          ? `/locations/${canonicalCountryCode}/${stateData.slug}`
-          : `/locations/${canonicalCountryCode}`}
-        replace
+      <LocationPageTemplate
+        location={cityData.name}
+        locationSlug={cityData.slug}
+        country={countryData.country}
+        countryCode={countryData.countryCode}
+        isCity={true}
+        state={stateData.name}
+        stateSlug={stateData.slug}
+        population={cityData.population}
+        nearbyLocations={stateData.cities
+          .filter(c => c.slug !== city)
+          .slice(0, 5)
+          .map(c => ({ name: c.name, slug: c.slug }))}
       />
     );
   }
