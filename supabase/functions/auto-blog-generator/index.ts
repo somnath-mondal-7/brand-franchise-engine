@@ -6,12 +6,39 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// Comprehensive news sources covering franchise industry
+// Comprehensive news sources covering franchise industry — franchise-trade press
+// PLUS mainstream / business / financial news outlets that regularly cover
+// franchise launches, deals, FTC actions, lawsuits, and policy moves.
 const FRANCHISE_NEWS_SOURCES = [
+  // Franchise-specific trade press
   "https://www.franchising.com/rss/news.xml",
   "https://www.franchisedirect.com/blog/feed/",
   "https://www.entrepreneur.com/topic/franchises/feed",
   "https://www.forbes.com/franchise/feed/",
+  "https://www.franchisetimes.com/rss.xml",
+  "https://www.1851franchise.com/rss",
+  "https://www.franchisewire.com/feed/",
+  "https://www.globalfranchise.com/feed",
+  "https://www.qsrmagazine.com/rss.xml",
+  "https://www.nrn.com/rss.xml", // Nation's Restaurant News
+  "https://www.restaurantbusinessonline.com/rss.xml",
+  "https://www.franchisechatter.com/feed/",
+  "https://thefranchiseking.com/feed",
+  // IFA + policy
+  "https://www.franchise.org/feed",
+  // Mainstream business / financial news (filtered later for "franchise" keyword)
+  "https://www.cnbc.com/id/10001147/device/rss/rss.html", // CNBC Business
+  "https://feeds.reuters.com/reuters/businessNews",
+  "https://feeds.bloomberg.com/markets/news.rss",
+  "https://www.wsj.com/xml/rss/3_7014.xml", // WSJ Business
+  "https://www.bizjournals.com/rss/feed/industry/22", // Bizjournals Retail/Franchise
+  "https://feeds.nbcnews.com/nbcnews/public/business",
+  "https://www.cnn.com/business/index.rss",
+  "https://feeds.foxbusiness.com/foxbusiness/latest",
+  "https://www.usatoday.com/rss/money/",
+  "https://moxie.foxbusiness.com/google-publisher/small-business.xml",
+  "https://news.google.com/rss/search?q=franchise+USA&hl=en-US&gl=US&ceid=US:en",
+  "https://news.google.com/rss/search?q=%22franchise%22+FTC+OR+SBA+OR+IFA&hl=en-US&gl=US&ceid=US:en",
 ];
 
 // USA-FOCUSED FRANCHISE NEWS, POLICY, LAUNCHES, FACTS
@@ -151,7 +178,14 @@ async function getResearchContext(): Promise<{ context: string; topicData: typeo
   // Fetch real-time news
   const feedPromises = FRANCHISE_NEWS_SOURCES.map(fetchRSSFeed);
   const results = await Promise.all(feedPromises);
-  results.forEach(headlines => allHeadlines.push(...headlines));
+  // Only keep headlines that actually mention franchise / FDD / FTC / IFA / SBA / franchisor / franchisee
+  // so mainstream feeds (CNBC, Reuters, WSJ, etc.) only contribute on-topic items.
+  const FRANCHISE_KEYWORDS = /franchis|fdd|ftc|ifa|sba|franchisor|franchisee|multi-unit|qsr/i;
+  results.forEach(headlines => {
+    headlines.forEach((h) => {
+      if (FRANCHISE_KEYWORDS.test(h)) allHeadlines.push(h);
+    });
+  });
   
   // Pick a random topic from our combined categories
   const topicData = RESEARCH_TOPICS[Math.floor(Math.random() * RESEARCH_TOPICS.length)];
@@ -185,7 +219,8 @@ async function getBreakingNewsContext(supabase: any): Promise<
 > {
   const feedPromises = FRANCHISE_NEWS_SOURCES.map(fetchRSSFeed);
   const results = await Promise.all(feedPromises);
-  const headlines = results.flat().filter(Boolean);
+  const FRANCHISE_KEYWORDS = /franchis|fdd|ftc|ifa|sba|franchisor|franchisee|multi-unit|qsr/i;
+  const headlines = results.flat().filter((h) => h && FRANCHISE_KEYWORDS.test(h));
   if (headlines.length === 0) return null;
 
   const { data: recent } = await supabase

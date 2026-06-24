@@ -170,26 +170,50 @@ const Blog = () => {
               >
                 ← Prev
               </button>
-              {Array.from({ length: totalPages }).map((_, i) => {
-                const n = i + 1;
-                const active = n === page;
-                return (
-                  <button
-                    key={n}
-                    onClick={() => {
-                      setPage(n);
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }}
-                    className={`w-10 h-10 rounded-md text-sm font-medium border transition-colors ${
-                      active
-                        ? "bg-[#F15A29] text-white border-[#F15A29]"
-                        : "bg-white text-neutral-700 border-neutral-300 hover:border-[#F15A29] hover:text-[#F15A29]"
-                    }`}
-                  >
-                    {n}
-                  </button>
+              {(() => {
+                // Windowed pagination: show at most 5 page numbers around the current page,
+                // plus first/last with ellipses.
+                const WINDOW = 5;
+                let start = Math.max(1, page - Math.floor(WINDOW / 2));
+                let end = Math.min(totalPages, start + WINDOW - 1);
+                if (end - start + 1 < WINDOW) {
+                  start = Math.max(1, end - WINDOW + 1);
+                }
+                const pages: number[] = [];
+                for (let i = start; i <= end; i++) pages.push(i);
+                const go = (n: number) => {
+                  setPage(n);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                };
+                const pageBtn = (n: number) => {
+                  const active = n === page;
+                  return (
+                    <button
+                      key={n}
+                      onClick={() => go(n)}
+                      className={`w-10 h-10 rounded-md text-sm font-medium border transition-colors ${
+                        active
+                          ? "bg-[#F15A29] text-white border-[#F15A29]"
+                          : "bg-white text-neutral-700 border-neutral-300 hover:border-[#F15A29] hover:text-[#F15A29]"
+                      }`}
+                    >
+                      {n}
+                    </button>
+                  );
+                };
+                const ellipsis = (key: string) => (
+                  <span key={key} className="px-2 text-neutral-400 select-none">…</span>
                 );
-              })}
+                return (
+                  <>
+                    {start > 1 && pageBtn(1)}
+                    {start > 2 && ellipsis("l")}
+                    {pages.map(pageBtn)}
+                    {end < totalPages - 1 && ellipsis("r")}
+                    {end < totalPages && pageBtn(totalPages)}
+                  </>
+                );
+              })()}
               <button
                 onClick={() => {
                   setPage((p) => Math.min(totalPages, p + 1));
