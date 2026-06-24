@@ -48,7 +48,7 @@ const ServiceLocationPage = () => {
     ? `/locations/${canonicalCountryCode}/${stateData.slug}`
     : `/locations/${canonicalCountryCode}`;
 
-  // If city is provided, find the city data
+  // If city is provided, render the city-level service page (no longer redirects to state).
   if (city) {
     const cityData = stateData.cities.find(c => c.slug === city);
     if (!cityData) {
@@ -59,7 +59,22 @@ const ServiceLocationPage = () => {
       return <Navigate to={fallbackLocationPath} replace />;
     }
 
-    return <Navigate to={`/${serviceSlug}/${canonicalCountryCode}/${stateData.slug}`} replace />;
+    if (!hasCuratedInsight(countryData.countryCode, stateData.slug)) {
+      return <Navigate to={`/locations/${canonicalCountryCode}`} replace />;
+    }
+
+    return (
+      <ServiceLocationTemplate
+        service={foundService}
+        location={cityData.name}
+        locationSlug={cityData.slug}
+        country={countryData.country}
+        countryCode={countryData.countryCode}
+        state={stateData.name}
+        stateSlug={stateData.slug}
+        population={cityData.population}
+      />
+    );
   }
 
   if (!foundService) {
