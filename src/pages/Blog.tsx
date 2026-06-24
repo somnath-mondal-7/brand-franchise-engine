@@ -68,7 +68,7 @@ const Blog = () => {
         />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
           <h1
-            className="text-5xl md:text-1 font-bold mb-8 text-neutral-900"
+            className="text-5xl md:text-7xl font-bold mb-8 text-neutral-900"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             Our Latest Blogs
