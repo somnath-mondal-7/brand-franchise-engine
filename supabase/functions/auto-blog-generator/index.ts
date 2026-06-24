@@ -882,11 +882,13 @@ serve(async (req) => {
       intervalHours = 24,
       publishAsDraft = false,
       background = true, // run in background by default to avoid HTTP timeouts
+      mode = "scheduled", // "scheduled" | "breaking"
     } = body;
 
-    console.log(`Auto-blog v3: force=${force}, interval=${intervalHours}h, draft=${publishAsDraft}, bg=${background}`);
+    console.log(`Auto-blog v3: mode=${mode}, force=${force}, interval=${intervalHours}h, draft=${publishAsDraft}, bg=${background}`);
 
-    if (!force) {
+    // Skip interval gate for breaking-news runs (the function itself decides if anything fresh exists)
+    if (!force && mode !== "breaking") {
       const canPublish = await shouldPublish(supabase, intervalHours);
       if (!canPublish) {
         const lastPost = await getLastPostTime(supabase);
@@ -907,14 +909,15 @@ serve(async (req) => {
     if (background) {
       // @ts-ignore — EdgeRuntime is provided by Supabase Edge Runtime
       EdgeRuntime.waitUntil(
-        runGenerationPipeline(supabase, publishAsDraft).catch((e) => {
+        runGenerationPipeline(supabase, publishAsDraft, mode as "scheduled" | "breaking").catch((e) => {
           console.error("Background pipeline error:", e);
         })
       );
       return new Response(
         JSON.stringify({
           success: true,
-          message: "Blog generation started in background. New post will appear in ~60-90 seconds.",
+          message: `Blog generation started in background (${mode}). New post will appear in ~60-90 seconds if fresh content is found.`,
+          mode,
           background: true,
         }),
         { status: 202, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -922,7 +925,14 @@ serve(async (req) => {
     }
 
     // Synchronous path (rare — only when caller explicitly opts in)
-    const { savedPost, wordCount, readTime, topicData } = await runGenerationPipeline(supabase, publishAsDraft);
+    const result: any = await runGenerationPipeline(supabase, publishAsDraft, mode as "scheduled" | "breaking");
+    if (result?.skipped) {
+      return new Response(
+        JSON.stringify({ success: true, skipped: true, message: "No fresh breaking news to cover." }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    const { savedPost, wordCount, readTime, topicData } = result;
 
     return new Response(
       JSON.stringify({
