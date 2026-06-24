@@ -2,9 +2,16 @@ import { Helmet } from "react-helmet-async";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { Button } from "./ui/button";
-import { CheckCircle, TrendingUp, Users, Target, Zap, Building2, Handshake, Award, ArrowRight } from "lucide-react";
+import { CheckCircle, TrendingUp, Users, Target, Zap, Building2, Handshake, Award, ArrowRight, Scale, BarChart3, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import { hasCuratedInsight } from "@/utils/locationContent";
+import {
+  hasCuratedInsight,
+  getRegionInsight,
+  generateMarketNarrative,
+  generateLocationFAQs,
+} from "@/utils/locationContent";
+import { getCityNarrative, getServiceMarketPlay } from "@/utils/cityNarratives";
+
 
 interface ServiceLocationTemplateProps {
   service: string;
@@ -257,24 +264,19 @@ export const ServiceLocationTemplate = ({
   const normalizedService = service.toLowerCase();
   const content = serviceContent[normalizedService] ?? buildDynamicServiceContent(normalizedService, location, country);
 
-  // Location-specific market insights
-  const getMarketInsight = () => {
-    const populationText = population ? ` With a population of ${population.toLocaleString()}, the city` : ` The region`;
-    if (countryCode === "IN") {
-      return `India's franchise industry is one of the fastest-growing globally, valued at over ₹70,000 crore annually.${populationText} of ${location} presents significant opportunities across retail, F&B, education, healthcare, and service sectors. Our local expertise helps businesses navigate ${state ? `${state}'s` : "India's"} unique regulatory landscape and consumer preferences for effective ${service} campaigns.`;
-    } else if (countryCode === "USA") {
-      return `The US franchise industry generates over $800 billion annually, making it the world's largest franchise market.${populationText} of ${location} offers a mature ecosystem with strong consumer spending and established franchise infrastructure. We leverage deep ${state ? `${state}` : "US"} market data to deliver targeted ${service} strategies that connect you with qualified investors.`;
-    } else if (countryCode === "UK") {
-      return `The UK franchise sector contributes over £17 billion to the national economy with high franchise success rates.${populationText} of ${location} provides access to a sophisticated, regulation-friendly market. Our ${service} strategies are tailored to UK consumer behavior, BFA compliance requirements, and local competitive dynamics.`;
-    } else if (countryCode === "CA") {
-      return `Canada's franchise sector is one of the most stable in North America, with over 1,300 franchise brands operating nationwide.${populationText} of ${location} offers a bilingual, diverse consumer base with strong purchasing power. Our ${service} approach considers ${state ? `${state}'s` : "Canada's"} provincial franchise legislation and market nuances.`;
-    } else if (countryCode === "AU") {
-      return `Australia's franchise industry is well-regulated under the Franchising Code of Conduct, providing a stable environment for franchise growth.${populationText} of ${location} offers access to a high-spending consumer market. Our ${service} campaigns are designed for Australian market dynamics and ACCC compliance.`;
-    } else if (countryCode === "AE") {
-      return `The UAE franchise market is rapidly expanding, driven by a cosmopolitan population and business-friendly free zones.${populationText} of ${location} offers premium positioning in the Middle Eastern market. Our ${service} strategies account for cultural nuances, RERA regulations, and the region's unique investor profiles.`;
-    }
-    return `${location} offers growing opportunities in the franchise sector with increasing investor interest and consumer demand.${populationText} provides a strong base for ${service} campaigns. Our data-driven approach ensures your franchise reaches the right prospects in this market.`;
-  };
+  // Deep, location-aware market data
+  const isCity = Boolean(state);
+  const stateSlugNorm = (state || location).toLowerCase().replace(/\s+/g, '-');
+  const regionInsight = getRegionInsight(countryCode, stateSlugNorm);
+  const marketNarrative = generateMarketNarrative(location, state, country, countryCode, population, isCity);
+  const cityNarrative = isCity ? getCityNarrative(location, locationSlug, state, countryCode, population) : null;
+  const servicePlay = getServiceMarketPlay(normalizedService, location, state, countryCode);
+  const locationFAQs = generateLocationFAQs(location, state, country, countryCode);
+  // Merge state-aware FAQs with the service-specific FAQs, keeping order and de-duping by question.
+  const mergedFaqs = [...locationFAQs, ...content.faq].filter(
+    (f, i, arr) => arr.findIndex(g => g.q === f.q) === i
+  );
+
 
   return (
     <>
@@ -340,7 +342,7 @@ export const ServiceLocationTemplate = ({
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": content.faq.map(item => ({
+            "mainEntity": mergedFaqs.map(item => ({
               "@type": "Question",
               "name": item.q,
               "acceptedAnswer": {
@@ -392,22 +394,94 @@ export const ServiceLocationTemplate = ({
         </section>
 
 
-        {/* Market Insight Section */}
-        <section className="py-12 bg-muted">
+        {/* Deep Market Insight Section */}
+        <section className="py-16 bg-muted">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-5xl mx-auto space-y-6">
               <div className="bg-card rounded-2xl p-8 shadow-sm">
-                <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 flex items-center gap-2">
                   <Target className="h-6 w-6 text-primary" />
-                  {location} Franchise Market Insight
+                  {location} Franchise Market: What Actually Drives Demand
                 </h2>
-                <p className="text-muted-foreground text-lg leading-relaxed">
-                  {getMarketInsight()}
-                </p>
+                <p className="text-muted-foreground text-lg leading-relaxed mb-4">{marketNarrative}</p>
+                {cityNarrative && (
+                  <p className="text-muted-foreground text-base leading-relaxed border-l-4 border-primary/40 pl-4 italic">
+                    {cityNarrative}
+                  </p>
+                )}
+              </div>
+
+              {/* Region insight grid — surfaces the curated state-level data */}
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="bg-card rounded-xl p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-primary">
+                    <BarChart3 className="h-5 w-5" />
+                    <h3 className="font-semibold">Economic Base</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{regionInsight.economyDescription}</p>
+                </div>
+                <div className="bg-card rounded-xl p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-primary">
+                    <Building2 className="h-5 w-5" />
+                    <h3 className="font-semibold">Franchise Climate</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{regionInsight.franchiseClimate}</p>
+                </div>
+                <div className="bg-card rounded-xl p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-primary">
+                    <TrendingUp className="h-5 w-5" />
+                    <h3 className="font-semibold">Top Franchise Categories</h3>
+                  </div>
+                  <ul className="text-muted-foreground text-sm leading-relaxed list-disc pl-5 space-y-1">
+                    {regionInsight.topIndustries.map((ind, i) => (<li key={i}>{ind}</li>))}
+                  </ul>
+                </div>
+                <div className="bg-card rounded-xl p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-primary">
+                    <Award className="h-5 w-5" />
+                    <h3 className="font-semibold">Typical Investment Range</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{regionInsight.investmentRange}</p>
+                </div>
+                <div className="bg-card rounded-xl p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-primary">
+                    <Scale className="h-5 w-5" />
+                    <h3 className="font-semibold">Regulatory Landscape</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{regionInsight.regulatoryNote}</p>
+                </div>
+                <div className="bg-card rounded-xl p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-primary">
+                    <Users className="h-5 w-5" />
+                    <h3 className="font-semibold">Buyer Demographics</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{regionInsight.demographicHighlight}</p>
+                </div>
+              </div>
+
+              {/* Growth trend strip */}
+              <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
+                <div className="flex items-center gap-2 mb-2 text-primary font-semibold">
+                  <MapPin className="h-5 w-5" /> Where growth is concentrating
+                </div>
+                <p className="text-foreground/80 leading-relaxed">{regionInsight.growthTrend}</p>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Service-x-Market Playbook */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-foreground mb-6">
+                How We Run {capitalizedService} in {location}
+              </h2>
+              <p className="text-muted-foreground text-lg leading-relaxed">{servicePlay}</p>
+            </div>
+          </div>
+        </section>
+
 
         {/* Benefits Section */}
         <section className="py-16 bg-background">
@@ -458,7 +532,7 @@ export const ServiceLocationTemplate = ({
                 Frequently Asked Questions
               </h2>
               <div className="space-y-6">
-                {content.faq.map((item, index) => (
+                {mergedFaqs.map((item, index) => (
                   <div key={index} className="bg-card rounded-xl p-6 shadow-sm">
                     <h3 className="text-lg font-semibold text-foreground mb-2">{item.q}</h3>
                     <p className="text-muted-foreground">{item.a}</p>

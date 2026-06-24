@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Check, Users, TrendingUp, MapPin, Phone, Mail, Building2, Scale, BarChart3, Target, Award, Linkedin, ArrowRight, Shield, Clock, Zap, Star } from 'lucide-react';
 import { getRegionInsight, generateMarketNarrative, generateLocationFAQs, hasCuratedInsight } from '@/utils/locationContent';
+import { getCityNarrative } from '@/utils/cityNarratives';
 
 interface NearbyLocation {
   name: string;
@@ -40,6 +41,7 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
   
   const regionInsight = getRegionInsight(countryCode, stateSlugNorm);
   const marketNarrative = generateMarketNarrative(location, state, country, countryCode, population, isCity);
+  const cityNarrative = isCity ? getCityNarrative(location, locationSlug, state, countryCode, population) : null;
   const locationFAQs = generateLocationFAQs(location, state, country, countryCode);
   
   const pageTitle = `Franchise Lead Generation in ${locationTitle} | Buy Qualified Franchise Leads`;
@@ -382,6 +384,14 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
             <p className="text-lg text-muted-foreground text-center mb-12 max-w-3xl mx-auto">
               {marketNarrative}
             </p>
+            {cityNarrative && (
+              <div className="bg-card border-l-4 border-primary rounded-xl p-6 mb-12 max-w-4xl mx-auto shadow-sm">
+                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                  <MapPin className="h-5 w-5 text-primary" /> Inside the {location} franchise market
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">{cityNarrative}</p>
+              </div>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-card rounded-xl p-6 border border-border">
                 <div className="flex items-center gap-3 mb-3">
