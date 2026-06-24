@@ -3,8 +3,8 @@ import { Target, ShieldCheck, Users, Calendar, Search, LineChart } from "lucide-
 
 const config: MoneyPageConfig = {
   canonical: "https://www.franchiseleadspro.com/franchise-leads-india",
-  metaTitle: "Franchise Lead Generation India | Franchise Investors Across India",
-  metaDescription: "Connect with franchise investors in Mumbai, Delhi, Bangalore, and all major Indian cities. FranchiseLeadsPro runs targeted franchise marketing campaigns across India.",
+  metaTitle: "Franchise Lead Generation India | FranchiseLeadsPro",
+  metaDescription: "Connect with franchise investors across Mumbai, Delhi, Bangalore and every major Indian city through targeted franchise marketing campaigns.",
   ogTitle: "Franchise Lead Generation India — FranchiseLeads Pro",
   ogDescription: "Exclusive Indian franchise candidate-investor pipelines for franchisors and consultants.",
   badge: "Franchise Lead Generation — India",
