@@ -61,7 +61,7 @@ export const generateBrandUrls = (): SitemapUrl[] => {
 // This keeps Google away from retired or templated permutations that were
 // creating repeated 404/410 and crawl-budget waste in Search Console.
 
-// Generate location pages (country + curated state only)
+// Generate location pages: country + curated state + city pages under curated states.
 export const generateLocationUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
   const currentDate = getTodayDate();
@@ -75,6 +75,16 @@ export const generateLocationUrls = (): SitemapUrl[] => {
     country.states.forEach(state => {
       if (!hasCuratedInsight(country.countryCode, state.slug)) return;
       urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
+
+      // City-level pages — backed by parent state's curated insight.
+      state.cities.forEach(city => {
+        urls.push({
+          loc: `${DOMAIN}/locations/${cc}/${state.slug}/${city.slug}`,
+          lastmod: currentDate,
+          changefreq: 'monthly',
+          priority: '0.65',
+        });
+      });
     });
   });
 
@@ -94,12 +104,36 @@ export const generateKeywordUrls = (): SitemapUrl[] => {
   return urls;
 };
 
-// Service + location pages are intentionally omitted from the XML sitemap.
-// They remain reachable by internal navigation where relevant, but we do not
-// advertise them directly because they have historically generated low-value
-// crawl expansion and "currently not indexed" reports at scale.
+// Service + location pages: emit only the primary money keyword
+// ("franchise lead generation") for each curated state and city across USA/UK/CA.
+// This is the high-intent surface area we want Google to discover.
 export const generateServiceLocationUrls = (): SitemapUrl[] => {
-  return [];
+  const urls: SitemapUrl[] = [];
+  const currentDate = getTodayDate();
+  const primaryServiceSlug = 'franchise-lead-generation';
+
+  locationData.forEach(country => {
+    const cc = country.countryCode.toLowerCase();
+    country.states.forEach(state => {
+      if (!hasCuratedInsight(country.countryCode, state.slug)) return;
+      urls.push({
+        loc: `${DOMAIN}/${primaryServiceSlug}/${cc}/${state.slug}`,
+        lastmod: currentDate,
+        changefreq: 'weekly',
+        priority: '0.7',
+      });
+      state.cities.forEach(city => {
+        urls.push({
+          loc: `${DOMAIN}/${primaryServiceSlug}/${cc}/${state.slug}/${city.slug}`,
+          lastmod: currentDate,
+          changefreq: 'monthly',
+          priority: '0.6',
+        });
+      });
+    });
+  });
+
+  return urls;
 };
 
 // Get all URLs combined

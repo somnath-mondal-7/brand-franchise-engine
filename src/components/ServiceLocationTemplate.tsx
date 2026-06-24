@@ -285,9 +285,11 @@ export const ServiceLocationTemplate = ({
             other programmatic permutation is templated and should stay out of
             the index to clear the "Crawled – currently not indexed" backlog. */}
         {(() => {
-          const isCityLevel = !!population || (!!state && !!stateSlug && location !== state);
-          const stateKey = state ? state.toLowerCase().replace(/\s+/g, '-') : undefined;
-          const shouldIndex = !isCityLevel && hasCuratedInsight(countryCode, stateKey);
+          // Index any service+location page (state or city) backed by a curated state insight.
+          const stateKey = state
+            ? state.toLowerCase().replace(/\s+/g, '-')
+            : location.toLowerCase().replace(/\s+/g, '-');
+          const shouldIndex = hasCuratedInsight(countryCode, stateKey);
           return (
             <meta
               name="robots"

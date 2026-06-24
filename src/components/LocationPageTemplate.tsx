@@ -79,14 +79,12 @@ export const LocationPageTemplate: React.FC<LocationPageProps> = ({
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
         {(() => {
-          // Index ONLY pages backed by curated unique regional content.
-          // City pages and uncurated state/country pages are noindexed to
-          // resolve "Crawled – currently not indexed" from templated copy.
+          // Index any page whose parent state has curated insight (state OR city)
+          // plus country root pages with curated country-level insight.
           const stateKey = isCity && state
             ? state.toLowerCase().replace(/\s+/g, '-')
             : (!isCity ? locationSlug : undefined);
-          const shouldIndex = !isCity && hasCuratedInsight(countryCode, stateKey);
-          // Always index country root pages (no stateSlug, no isCity)
+          const shouldIndex = hasCuratedInsight(countryCode, stateKey);
           const isCountryRoot = !stateSlug && !isCity;
           const finalIndex = isCountryRoot ? hasCuratedInsight(countryCode) : shouldIndex;
           return (
