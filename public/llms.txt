@@ -1,38 +1,35 @@
 # FranchiseLeadsPro
 
-FranchiseLeadsPro is a franchise-focused marketing and IT solutions agency. We help franchisors, franchise consultants, and franchise brokers generate qualified franchise buyer leads through LinkedIn marketing, social media campaigns, SEO, website development, and technology solutions.
+> Franchise-focused marketing and IT solutions agency helping franchisors, franchise consultants, and franchise brokers generate qualified franchise buyer leads.
 
-## Services
+FranchiseLeadsPro delivers LinkedIn marketing, social media campaigns, SEO, website development, and technology solutions tailored to franchise brands across the USA, India, UK, Canada, Australia, Dubai, Kuwait, and worldwide.
 
-Franchise Lead Generation (USA, India, UK, Canada, Australia, Dubai, Kuwait, worldwide)
+## Pages
 
-LinkedIn Marketing for Franchise Lead Generation
-
-Social Media Marketing (Facebook, Instagram, LinkedIn)
-
-Franchise Website Development
-
-SEO & Digital Marketing for Franchises
-
-IT Services & App Development for Franchise Brands
-
-Buy Franchise Leads (pre-qualified franchise investor leads)
-
-## Key Pages
-
-Homepage: https://www.franchiseleadspro.com/
-
-Services: https://www.franchiseleadspro.com/services
-
-Buy Franchise Leads: https://www.franchiseleadspro.com/buy-franchise-leads
-
-Contact: https://www.franchiseleadspro.com/contact
-
-Blog: https://www.franchiseleadspro.com/blog
+- [Homepage](https://www.franchiseleadspro.com/): Franchise lead generation agency overview and core offer.
+- [About](https://www.franchiseleadspro.com/about): Who we are, our team, and how we work with franchise brands.
+- [Services](https://www.franchiseleadspro.com/services): Full suite of franchise marketing services — LinkedIn, SEO, social, web, IT.
+- [Buy Franchise Leads](https://www.franchiseleadspro.com/buy-franchise-leads): Pre-qualified franchise investor leads available on demand.
+- [Digital Marketing](https://www.franchiseleadspro.com/digital-marketing): Multi-channel paid media and conversion strategy for franchisors.
+- [Contact](https://www.franchiseleadspro.com/contact): Book a strategy call or reach our team directly.
+- [Blog](https://www.franchiseleadspro.com/blog): Franchise lead generation strategies, guides, and industry insights.
+- [Testimonials](https://www.franchiseleadspro.com/testimonials): Client results and reviews from franchise brands we serve.
+- [FAQ](https://www.franchiseleadspro.com/faq): Common questions about our franchise lead generation services.
 
 ## Markets Served
 
-USA, India, UK, Canada, Australia, Dubai & UAE, Kuwait
+- [USA Franchise Leads](https://www.franchiseleadspro.com/franchise-leads-usa): Franchise lead generation across all 50 US states.
+- [India Franchise Leads](https://www.franchiseleadspro.com/franchise-leads-india): Franchise buyer lead generation for the Indian market.
+- [UK Franchise Leads](https://www.franchiseleadspro.com/franchise-leads-uk): Franchise marketing for United Kingdom franchisors.
+- [Canada Franchise Leads](https://www.franchiseleadspro.com/franchise-leads-canada): Franchise lead generation services for Canadian brands.
+- [Australia Franchise Leads](https://www.franchiseleadspro.com/franchise-leads-australia): Franchise buyer outreach for Australian franchisors.
+- [Dubai & UAE Franchise Leads](https://www.franchiseleadspro.com/franchise-leads-dubai): Franchise lead generation across UAE and the Gulf.
+
+## Optional
+
+- [Franchise Broker Lead Generation](https://www.franchiseleadspro.com/franchise-broker-lead-generation): Lead programs purpose-built for franchise brokers.
+- [LinkedIn Lead Generation for Brokers](https://www.franchiseleadspro.com/linkedin-lead-generation-brokers): LinkedIn outreach playbook for brokers.
+- [Franchise Marketing Agency](https://www.franchiseleadspro.com/franchise-marketing-agency): Agency positioning page for franchisors evaluating partners.
 
 ## Contact
 

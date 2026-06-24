@@ -121,17 +121,17 @@ const Services = () => {
   return (
     <>
       <Helmet>
-        <title>Franchise Marketing Services | LinkedIn, SEO, Social Media & Web Dev</title>
+        <title>Franchise Marketing Services | FranchiseLeadsPro</title>
         <meta
           name="description"
-          content="Explore our full suite of franchise lead generation services — LinkedIn outreach, paid social, franchise website development, SEO, and IT solutions for franchise brands worldwide."
+          content="Franchise marketing services: LinkedIn outreach, paid social, SEO, franchise website development, and IT solutions for franchise brands worldwide."
         />
         <link rel="canonical" href="https://www.franchiseleadspro.com/services" />
         <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="Franchise Marketing Services | LinkedIn, SEO, Social Media & Web Dev" />
+        <meta property="og:title" content="Franchise Marketing Services | FranchiseLeadsPro" />
         <meta
           property="og:description"
-          content="Explore our full suite of franchise lead generation services — LinkedIn outreach, paid social, franchise website development, SEO, and IT solutions for franchise brands worldwide."
+          content="Franchise marketing services: LinkedIn outreach, paid social, SEO, franchise website development, and IT solutions for franchise brands worldwide."
         />
         <meta property="og:url" content="https://www.franchiseleadspro.com/services" />
         <meta property="og:type" content="website" />
