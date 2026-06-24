@@ -1,1 +1,13 @@
 project_id = "yquuidpajigvecyonqir"
+
+[functions.send-chat-notification]
+verify_jwt = false
+
+[functions.send-blog-comment-notification]
+verify_jwt = false
+
+[functions.send-contact-email]
+verify_jwt = false
+
+[functions.chat-ai]
+verify_jwt = false
