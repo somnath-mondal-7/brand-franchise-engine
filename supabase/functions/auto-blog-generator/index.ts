@@ -178,6 +178,83 @@ Make it feel like breaking insights that readers can't get anywhere else.
   return { context, topicData };
 }
 
+// Breaking-news mode: scan RSS for the freshest USA franchise headline that
+// hasn't already been covered in our last 20 posts. Returns null if nothing fresh.
+async function getBreakingNewsContext(supabase: any): Promise<
+  { context: string; topicData: typeof RESEARCH_TOPICS[0] } | null
+> {
+  const feedPromises = FRANCHISE_NEWS_SOURCES.map(fetchRSSFeed);
+  const results = await Promise.all(feedPromises);
+  const headlines = results.flat().filter(Boolean);
+  if (headlines.length === 0) return null;
+
+  const { data: recent } = await supabase
+    .from("blog_posts")
+    .select("title")
+    .order("created_at", { ascending: false })
+    .limit(20);
+  const recentTitles = (recent || []).map((r: any) => (r.title || "").toLowerCase());
+
+  const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
+  const isCovered = (h: string) => {
+    const n = normalize(h);
+    if (n.length < 12) return true;
+    const words = n.split(/\s+/).filter((w) => w.length > 4).slice(0, 4);
+    if (words.length < 2) return true;
+    return recentTitles.some((t: string) => words.every((w) => t.includes(w)));
+  };
+
+  // Prefer USA-focused, franchise-focused headlines
+  const usaTerms = ["us ", "u.s.", "usa", "america", "ftc", "sba", "nlrb", "california", "texas", "florida", "new york", "ifa", "franchise"];
+  const ranked = headlines.filter((h) => {
+    const l = h.toLowerCase();
+    return usaTerms.some((t) => l.includes(t));
+  });
+
+  const candidate = (ranked.length ? ranked : headlines).find((h) => !isCovered(h));
+  if (!candidate) {
+    console.log("📰 Breaking-news: nothing fresh to cover.");
+    return null;
+  }
+
+  console.log(`📰 Breaking-news pick: ${candidate}`);
+
+  const topicData: typeof RESEARCH_TOPICS[0] = {
+    category: "us-franchise-news",
+    topic: `breaking US franchise industry news: "${candidate}"`,
+    stats: "Reference real, named sources from the headline — never fabricate numbers",
+    angle: "fresh news angle — what just happened in the US franchise space and why it matters today",
+    hook: `Breaking: ${candidate}`,
+  };
+
+  const currentDate = new Date().toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  const context = `
+CURRENT DATE: ${currentDate}
+MODE: BREAKING NEWS
+
+LEAD HEADLINE TO COVER FIRST:
+${candidate}
+
+OTHER LIVE FRANCHISE HEADLINES (context only):
+${headlines.slice(0, 12).map((h, i) => `${i + 1}. ${h}`).join("\n")}
+
+=== TODAY'S CONTENT ASSIGNMENT (BREAKING) ===
+CATEGORY: US FRANCHISE NEWS
+MAIN TOPIC: ${topicData.topic}
+KEY DATA POINT: ${topicData.stats}
+CONTENT ANGLE: ${topicData.angle}
+OPENING HOOK: ${topicData.hook}
+
+Write a US franchise news piece that leads with this headline as the news peg.
+  `.trim();
+
+  return { context, topicData };
+
 // ============================================================
 // IMAGE GENERATION + UPLOAD HELPERS
 // ============================================================
@@ -632,21 +709,77 @@ async function shouldPublish(supabase: any, intervalHours: number): Promise<bool
 }
 
 // Heavy generation pipeline — extracted so it can run in background via EdgeRuntime.waitUntil
-async function runGenerationPipeline(supabase: any, publishAsDraft: boolean) {
-  console.log("Researching current franchise news and trends...");
-  const { context: researchContext, topicData } = await getResearchContext();
+async function runGenerationPipeline(
+  supabase: any,
+  publishAsDraft: boolean,
+  mode: "scheduled" | "breaking" = "scheduled",
+) {
+  let researchContext: string;
+  let topicData: typeof RESEARCH_TOPICS[0];
+
+  if (mode === "breaking") {
+    console.log("📰 Breaking-news mode — scanning RSS for fresh USA franchise stories...");
+    const breaking = await getBreakingNewsContext(supabase);
+    if (!breaking) {
+      console.log("📰 No fresh breaking news — skipping this run.");
+      return { skipped: true } as any;
+    }
+    researchContext = breaking.context;
+    topicData = breaking.topicData;
+  } else {
+    console.log("Researching current franchise news and trends...");
+    const ctx = await getResearchContext();
+    researchContext = ctx.context;
+    topicData = ctx.topicData;
+  }
   console.log(`Topic selected: [${topicData.category}] ${topicData.topic}`);
 
   console.log("Generating human-centric blog content...");
   const blogPost = await generateBlogWithAI(researchContext, topicData);
   console.log(`Generated: "${blogPost.title}"`);
 
-  // Image generation disabled — text-only blog posts
-  console.log("⏭️  Image generation disabled (text-only mode)");
-  const coverUrl: string | null = null;
+  // ---- Cover image ----
+  console.log("🎨 Generating cover image...");
+  const coverPrompt =
+    blogPost.coverImagePrompt ||
+    `Editorial photograph illustrating: ${blogPost.title}. US franchise industry setting.`;
+  let coverUrl: string | null = null;
+  try {
+    const coverDataUrl = await generateImageBase64(coverPrompt);
+    if (coverDataUrl) {
+      coverUrl = await uploadImageToStorage(
+        supabase,
+        coverDataUrl,
+        `cover-${Date.now()}-${blogPost.slug.slice(0, 40)}`,
+      );
+    }
+  } catch (e) {
+    console.error("Cover image failed (non-fatal):", e);
+  }
+
+  // ---- Inline images ----
+  const inlineUrls: string[] = [];
+  if (blogPost.inlineImagePrompts && blogPost.inlineImagePrompts.length > 0) {
+    for (let i = 0; i < Math.min(2, blogPost.inlineImagePrompts.length); i++) {
+      try {
+        const d = await generateImageBase64(blogPost.inlineImagePrompts[i]);
+        if (d) {
+          const u = await uploadImageToStorage(
+            supabase,
+            d,
+            `inline-${Date.now()}-${i}-${blogPost.slug.slice(0, 30)}`,
+          );
+          if (u) inlineUrls.push(u);
+        }
+      } catch (e) {
+        console.error(`Inline image ${i} failed:`, e);
+      }
+    }
+  }
 
   let finalContent = stripDuplicateTitle(blogPost.content, blogPost.title);
   finalContent = await ensureFaqSection(finalContent, blogPost.title);
+  if (inlineUrls.length > 0) finalContent = injectInlineImages(finalContent, inlineUrls);
   finalContent = finalContent.trimEnd() + "\n" + buildInternalLinksSection();
 
   const wordCount = finalContent.split(/\s+/).length;
@@ -749,11 +882,13 @@ serve(async (req) => {
       intervalHours = 24,
       publishAsDraft = false,
       background = true, // run in background by default to avoid HTTP timeouts
+      mode = "scheduled", // "scheduled" | "breaking"
     } = body;
 
-    console.log(`Auto-blog v3: force=${force}, interval=${intervalHours}h, draft=${publishAsDraft}, bg=${background}`);
+    console.log(`Auto-blog v3: mode=${mode}, force=${force}, interval=${intervalHours}h, draft=${publishAsDraft}, bg=${background}`);
 
-    if (!force) {
+    // Skip interval gate for breaking-news runs (the function itself decides if anything fresh exists)
+    if (!force && mode !== "breaking") {
       const canPublish = await shouldPublish(supabase, intervalHours);
       if (!canPublish) {
         const lastPost = await getLastPostTime(supabase);
@@ -774,14 +909,15 @@ serve(async (req) => {
     if (background) {
       // @ts-ignore — EdgeRuntime is provided by Supabase Edge Runtime
       EdgeRuntime.waitUntil(
-        runGenerationPipeline(supabase, publishAsDraft).catch((e) => {
+        runGenerationPipeline(supabase, publishAsDraft, mode as "scheduled" | "breaking").catch((e) => {
           console.error("Background pipeline error:", e);
         })
       );
       return new Response(
         JSON.stringify({
           success: true,
-          message: "Blog generation started in background. New post will appear in ~60-90 seconds.",
+          message: `Blog generation started in background (${mode}). New post will appear in ~60-90 seconds if fresh content is found.`,
+          mode,
           background: true,
         }),
         { status: 202, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -789,7 +925,14 @@ serve(async (req) => {
     }
 
     // Synchronous path (rare — only when caller explicitly opts in)
-    const { savedPost, wordCount, readTime, topicData } = await runGenerationPipeline(supabase, publishAsDraft);
+    const result: any = await runGenerationPipeline(supabase, publishAsDraft, mode as "scheduled" | "breaking");
+    if (result?.skipped) {
+      return new Response(
+        JSON.stringify({ success: true, skipped: true, message: "No fresh breaking news to cover." }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    const { savedPost, wordCount, readTime, topicData } = result;
 
     return new Response(
       JSON.stringify({
