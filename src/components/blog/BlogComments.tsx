@@ -140,6 +140,23 @@ const BlogComments = ({ postId, postTitle, postSlug }: BlogCommentsProps) => {
 
     localStorage.setItem(RATE_LIMIT_KEY, String(Date.now()));
     if (data) setComments((prev) => [data as CommentRow, ...prev]);
+
+    // Fire-and-forget email notification to admin
+    try {
+      await supabase.functions.invoke("send-blog-comment-notification", {
+        body: {
+          authorName: author_name,
+          authorEmail: author_email,
+          content: cmt,
+          postId,
+          postTitle,
+          postSlug,
+        },
+      });
+    } catch (e) {
+      console.warn("Comment notify failed", e);
+    }
+
     setName("");
     setEmail("");
     setContent("");
