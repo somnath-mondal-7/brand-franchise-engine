@@ -57,7 +57,7 @@ const initials = (name: string) =>
     .slice(0, 2)
     .toUpperCase();
 
-const BlogComments = ({ postId }: BlogCommentsProps) => {
+const BlogComments = ({ postId, postTitle, postSlug }: BlogCommentsProps) => {
   const db = supabase as any;
   const [comments, setComments] = useState<CommentRow[]>([]);
   const [loading, setLoading] = useState(true);
