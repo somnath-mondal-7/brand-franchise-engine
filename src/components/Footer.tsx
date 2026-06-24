@@ -155,8 +155,10 @@ const Footer = () => {
             <div className="text-gray-400 text-sm sm:text-base">
               <p>© 2026 FranchiseLeadsPro. All rights reserved.</p>
             </div>
-            <div className="flex space-x-6">
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
               <a href="/legal-terms/privacy-policy" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Privacy Policy</a>
+              <a href="/legal-terms/terms-of-service" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Terms of Service</a>
+              <a href="/sitemap" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Sitemap</a>
             </div>
           </div>
         </div>
