@@ -9,7 +9,7 @@ Allow: /llms-full.txt
 Sitemap: https://www.franchiseleadspro.com/sitemap.xml
 Sitemap: https://www.franchiseleadspro.com/sitemap-blog.xml
 
-# Disallow admin/private/utility paths
+# Disallow admin/private/utility paths only
 Disallow: /admin/
 Disallow: /private/
 Disallow: /*?*utm_
@@ -17,40 +17,24 @@ Disallow: /*?*sort=
 Disallow: /*?*filter=
 Disallow: /session-demo
 Disallow: /search
-Disallow: /india
 Disallow: /home-original
 
 # ─────────────────────────────────────────────────────────────
-# HARD BLOCK programmatic city/state combinations.
-# These URL patterns produced thousands of thin pages that
-# Google flagged as "Discovered – currently not indexed" and
-# they drag down domain authority. Templates already render
-# noindex, but Disallow stops Google from spending crawl budget
-# on them entirely.
+# Programmatic SEO pages (services × country × state × city)
+# are now ENRICHED with unique market analysis and FAQs.
+# They are explicitly ALLOWED so Google can crawl and rank them.
 # ─────────────────────────────────────────────────────────────
-
-# Service + country + state + city permutations
-Disallow: /franchise-marketing/*/*/*
-Disallow: /franchise-lead-generation/*/*/*
-Disallow: /franchise-consulting/*/*/*
-Disallow: /franchise-development/*/*/*
-Disallow: /franchise-advertising/*/*/*
-Disallow: /franchise-branding/*/*/*
-Disallow: /franchise-digital-marketing/*/*/*
-Disallow: /franchise-seo/*/*/*
-Disallow: /franchise-social-media-marketing/*/*/*
-Disallow: /franchise-content-marketing/*/*/*
-
-# Legacy bloat patterns — "affordable / best / top X agency Y" combos
-Disallow: /affordable-*
-Disallow: /best-*
-Disallow: /top-*
-Disallow: /cheap-*
-Disallow: /*-agency-usa/*
-Disallow: /*-opportunity-in-*
-
-# City-level location pages (state hubs stay open)
-Disallow: /locations/*/*/*
+Allow: /franchise-marketing/
+Allow: /franchise-lead-generation/
+Allow: /franchise-consulting/
+Allow: /franchise-development/
+Allow: /franchise-advertising/
+Allow: /franchise-branding/
+Allow: /franchise-digital-marketing/
+Allow: /franchise-seo/
+Allow: /franchise-social-media-marketing/
+Allow: /franchise-content-marketing/
+Allow: /locations/
 
 # Allow important bot access
 User-agent: Googlebot
@@ -68,8 +52,6 @@ Allow: /
 # AI/LLM Bots — full access to indexable content
 User-agent: GPTBot
 Allow: /
-Allow: /llms.txt
-Allow: /llms-full.txt
 
 User-agent: ChatGPT-User
 Allow: /
@@ -88,16 +70,3 @@ Allow: /
 
 User-agent: Cohere-ai
 Allow: /
-
-# High-priority pages
-Allow: /
-Allow: /brands/
-Allow: /franchise-leads-usa
-Allow: /franchise-leads-uk
-Allow: /franchise-leads-canada
-Allow: /franchise-leads-australia
-Allow: /franchise-leads-dubai
-Allow: /franchise-leads-india
-Allow: /buy-franchise-leads
-Allow: /blog
-Allow: /services
