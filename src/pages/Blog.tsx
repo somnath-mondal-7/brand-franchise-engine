@@ -11,37 +11,48 @@ interface BlogPost {
   title: string;
   slug: string;
   excerpt: string;
-  author_name: string;
   published_at: string;
-  category_id: string;
   read_time_minutes: number;
-  tags: string[];
-  is_featured: boolean;
   featured_image_url: string;
 }
 
+const PAGE_SIZE = 5;
+
 const Blog = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [totalCount, setTotalCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const PAGE_SIZE = 5;
-  const totalPages = Math.max(1, Math.ceil(posts.length / PAGE_SIZE));
-  const pagePosts = posts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
 
   useEffect(() => {
+    let cancelled = false;
     (async () => {
+      setIsLoading(true);
       try {
-        const { data } = await supabase
+        const from = (page - 1) * PAGE_SIZE;
+        const to = from + PAGE_SIZE - 1;
+        const { data, count } = await supabase
           .from("blog_posts")
-          .select("*")
+          .select(
+            "id, title, slug, excerpt, published_at, read_time_minutes, featured_image_url",
+            { count: "estimated" }
+          )
           .eq("is_published", true)
-          .order("published_at", { ascending: false });
+          .order("published_at", { ascending: false })
+          .range(from, to);
+        if (cancelled) return;
         if (data) setPosts(data as any);
+        if (typeof count === "number") setTotalCount(count);
       } finally {
-        setIsLoading(false);
+        if (!cancelled) setIsLoading(false);
       }
     })();
-  }, []);
+    return () => {
+      cancelled = true;
+    };
+  }, [page]);
 
   const formatDate = (d: string) =>
     new Date(d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
@@ -97,11 +108,23 @@ const Blog = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
           <div className="space-y-12">
             {isLoading ? (
-              <p className="text-neutral-500">Loading posts…</p>
+              <div className="space-y-12">
+                {Array.from({ length: PAGE_SIZE }).map((_, i) => (
+                  <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-pulse">
+                    <div className="aspect-[4/3] bg-neutral-100 rounded-lg" />
+                    <div className="flex flex-col justify-center gap-3">
+                      <div className="h-6 bg-neutral-100 rounded w-3/4" />
+                      <div className="h-4 bg-neutral-100 rounded w-full" />
+                      <div className="h-4 bg-neutral-100 rounded w-5/6" />
+                      <div className="h-4 bg-neutral-100 rounded w-1/3" />
+                    </div>
+                  </div>
+                ))}
+              </div>
             ) : posts.length === 0 ? (
               <p className="text-neutral-500">No posts yet.</p>
             ) : (
-              pagePosts.map((post) => (
+              posts.map((post, idx) => (
                 <article
                   key={post.id}
                   className="grid grid-cols-1 md:grid-cols-2 gap-6 group"
@@ -112,7 +135,9 @@ const Blog = () => {
                         <img
                           src={post.featured_image_url}
                           alt={post.title}
-                          loading="lazy"
+                          loading={idx < 2 ? "eager" : "lazy"}
+                          decoding="async"
+                          fetchPriority={idx === 0 ? "high" : "auto"}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
@@ -171,8 +196,6 @@ const Blog = () => {
                 ← Prev
               </button>
               {(() => {
-                // Windowed pagination: show at most 5 page numbers around the current page,
-                // plus first/last with ellipses.
                 const WINDOW = 5;
                 let start = Math.max(1, page - Math.floor(WINDOW / 2));
                 let end = Math.min(totalPages, start + WINDOW - 1);
