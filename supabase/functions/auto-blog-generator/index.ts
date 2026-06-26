@@ -485,7 +485,10 @@ async function backfillMissingBlogImages(supabase: any, limit = 8) {
 
   if (error) throw new Error(`Backfill lookup failed: ${error.message}`);
 
-  const missing = (posts || []).filter((p: any) => !p.featured_image_url || String(p.featured_image_url).trim() === "");
+  const missing = (posts || []).filter((p: any) => {
+    const url = String(p.featured_image_url || "").trim();
+    return !url || url.startsWith("/src/");
+  });
   console.log(`🎨 Backfill found ${missing.length} posts without images`);
 
   const updated: Array<{ id: string; slug: string; imageUrl: string }> = [];
