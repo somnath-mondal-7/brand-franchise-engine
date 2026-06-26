@@ -11,7 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PlusCircle, Edit, Trash2, Eye, Upload, X, FileText, Send } from 'lucide-react';
+import { PlusCircle, Edit, Trash2, Eye, Upload, X, FileText, Send, Sparkles } from 'lucide-react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -71,6 +71,24 @@ export default function BlogAdmin() {
     size: number;
   }>>([]);
   const [uploadingFiles, setUploadingFiles] = useState(false);
+
+  const createLocalFallbackImage = (title: string) => {
+    const safeTitle = (title || 'FranchiseLeadsPro').slice(0, 90).replace(/[&<>"']/g, '');
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024"><defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F15A29"/><stop offset="1" stop-color="#111827"/></linearGradient></defs><rect width="1536" height="1024" fill="#f8fafc"/><rect x="104" y="136" width="1328" height="752" rx="28" fill="#ffffff"/><rect x="104" y="136" width="1328" height="250" rx="28" fill="url(#a)"/><text x="188" y="280" font-family="Georgia, serif" font-size="54" font-weight="700" fill="#ffffff">FranchiseLeadsPro</text><rect x="188" y="478" width="1160" height="58" rx="12" fill="#111827" opacity=".14"/><rect x="188" y="574" width="860" height="42" rx="10" fill="#111827" opacity=".10"/><rect x="188" y="650" width="1020" height="42" rx="10" fill="#111827" opacity=".10"/><text x="188" y="790" font-family="Arial, sans-serif" font-size="34" fill="#374151">${safeTitle}</text></svg>`;
+    return `data:image/svg+xml;base64,${window.btoa(svg)}`;
+  };
+
+  const generateFeaturedImage = async (title: string, slug: string) => {
+    const prompt = `Editorial image for a franchise industry blog post titled "${title}". Use a premium US business news style, no text or logos.`;
+    const { data, error } = await supabase.functions.invoke('auto-blog-generator', {
+      body: { operation: 'generate-image', prompt, title, slug },
+    });
+    if (error || !data?.imageUrl) {
+      console.error('Featured image generation failed:', error || data);
+      return createLocalFallbackImage(title);
+    }
+    return data.imageUrl as string;
+  };
 
   useEffect(() => {
     fetchPosts();
@@ -184,9 +202,16 @@ export default function BlogAdmin() {
       const slug = generateSlug(formData.title);
       const readTime = estimateReadTime(formData.content);
       const tagsArray = formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : [];
+      let featuredImageUrl = formData.featured_image_url?.trim() || '';
+
+      if (!featuredImageUrl) {
+        toast({ title: "Generating featured image...", description: "Adding a blog image before saving." });
+        featuredImageUrl = await generateFeaturedImage(formData.title, slug);
+      }
 
       const postData = {
         ...formData,
+        featured_image_url: featuredImageUrl,
         slug,
         tags: tagsArray,
         read_time_minutes: readTime,
@@ -497,12 +522,41 @@ export default function BlogAdmin() {
 
                         <div>
                           <Label htmlFor="featured_image_url">Featured Image URL</Label>
-                          <Input
-                            id="featured_image_url"
-                            value={formData.featured_image_url}
-                            onChange={(e) => setFormData({...formData, featured_image_url: e.target.value})}
-                            placeholder="https://example.com/image.jpg"
-                          />
+                          <div className="flex gap-2">
+                            <Input
+                              id="featured_image_url"
+                              value={formData.featured_image_url}
+                              onChange={(e) => setFormData({...formData, featured_image_url: e.target.value})}
+                              placeholder="Leave blank to auto-generate"
+                            />
+                            <Button
+                              type="button"
+                              variant="outline"
+                              disabled={isLoading || !formData.title.trim()}
+                              onClick={async () => {
+                                setIsLoading(true);
+                                try {
+                                  const slug = generateSlug(formData.title);
+                                  toast({ title: "Generating featured image...", description: "This can take a few seconds." });
+                                  const imageUrl = await generateFeaturedImage(formData.title, slug);
+                                  setFormData((prev) => ({ ...prev, featured_image_url: imageUrl }));
+                                  toast({ title: "Image ready", description: "Featured image added to this post." });
+                                } finally {
+                                  setIsLoading(false);
+                                }
+                              }}
+                              title="Generate featured image"
+                            >
+                              <Sparkles className="w-4 h-4" />
+                            </Button>
+                          </div>
+                          {formData.featured_image_url && (
+                            <img
+                              src={formData.featured_image_url}
+                              alt="Featured preview"
+                              className="mt-3 aspect-video w-full rounded-md object-cover border"
+                            />
+                          )}
                         </div>
 
                         <div className="flex gap-4">
