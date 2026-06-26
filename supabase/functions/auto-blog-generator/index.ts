@@ -345,7 +345,7 @@ async function generateImageBase64(prompt: string): Promise<string | null> {
       model: "openai/gpt-image-2",
       prompt: enhancedPrompt,
       quality: "low",
-      size: "1536x1024",
+      size: "1024x1024",
       n: 1,
       stream: false,
     },
@@ -355,14 +355,14 @@ async function generateImageBase64(prompt: string): Promise<string | null> {
 
   result = await tryGatewayImage(
     {
-      model: "openai/gpt-image-2",
+      model: "openai/gpt-image-1-mini",
       prompt: enhancedPrompt,
       quality: "low",
       size: "1024x1024",
       n: 1,
       stream: false,
     },
-    "OpenAI GPT Image 2 square fallback",
+    "OpenAI GPT Image mini fallback",
   );
   if (result) return result;
 
@@ -956,6 +956,20 @@ serve(async (req) => {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     const body = await req.json().catch(() => ({}));
+    if (body.operation === "generate-image") {
+      const prompt = String(body.prompt || body.title || "US franchise industry editorial blog cover").trim();
+      const slug = String(body.slug || prompt.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")).slice(0, 60) || "manual-blog";
+      console.log(`🎨 Manual image generation requested: ${slug}`);
+      const dataUrl = await generateImageBase64(prompt);
+      if (!dataUrl) throw new Error("Image generation failed");
+      const imageUrl = await uploadImageToStorage(supabase, dataUrl, `manual-${Date.now()}-${slug}`);
+      if (!imageUrl) throw new Error("Image upload failed");
+      return new Response(
+        JSON.stringify({ success: true, imageUrl }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
+
     const {
       force = false,
       intervalHours = 24,
