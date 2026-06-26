@@ -289,37 +289,35 @@ Write a US franchise news piece that leads with this headline as the news peg.
   `.trim();
 
   return { context, topicData };
+}
 
 // ============================================================
 // IMAGE GENERATION + UPLOAD HELPERS
 // ============================================================
 
-// Generate image using Lovable AI Gateway — Nano Banana Pro (gemini-3-pro-image-preview)
-// for highest fidelity faces, with Nano Banana 2 and Pollinations as fallbacks.
+// Generate image using the current Lovable AI Gateway image endpoint.
 async function generateImageBase64(prompt: string): Promise<string | null> {
-  const enhancedPrompt = `Ultra-photorealistic editorial photograph, shot on Canon EOS R5 with 85mm f/1.4 lens: ${prompt}. Sharp focus on subjects, anatomically perfect human faces with realistic skin texture, natural pores, lifelike eyes with clear iris detail, accurate facial proportions, symmetrical features, natural expressions, professional studio-quality cinematic lighting, shallow depth of field, vibrant natural colors, 8k ultra-detailed, magazine-quality composition. Faces must be clear, fully visible, in-focus, and identifiable. ABSOLUTELY NO text, letters, typography, words, watermarks, logos, UI elements, charts, deformed faces, distorted features, extra limbs, or blurry faces. Pure photographic imagery only.`;
+  const enhancedPrompt = `Create a premium editorial image for a franchise industry news article: ${prompt}. Photorealistic business journalism style, modern US commercial setting, natural light, credible newsroom/documentary feel, no brand logos, no readable text, no typography, no watermarks, no charts, no UI screens, no distorted hands or faces. The image should feel specific to franchising, business ownership, policy, retail expansion, or investor diligence.`;
 
   const lovableKey = Deno.env.get("LOVABLE_API_KEY");
+  if (!lovableKey) {
+    console.warn("LOVABLE_API_KEY missing — using fallback editorial SVG");
+    return createFallbackImageDataUrl(prompt);
+  }
 
-  // Helper to call Lovable AI Gateway with a given image model
-  async function tryLovableModel(model: string, label: string): Promise<string | null> {
-    if (!lovableKey) return null;
+  async function tryGatewayImage(body: Record<string, unknown>, label: string): Promise<string | null> {
     try {
-      console.log(`🎨 Trying ${label} (${model})...`);
+      console.log(`🎨 Trying ${label}...`);
       const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 90_000);
-      const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+      const timer = setTimeout(() => controller.abort(), 75_000);
+      const res = await fetch("https://ai.gateway.lovable.dev/v1/images/generations", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${lovableKey}`,
           "Content-Type": "application/json",
         },
         signal: controller.signal,
-        body: JSON.stringify({
-          model,
-          messages: [{ role: "user", content: enhancedPrompt }],
-          modalities: ["image", "text"],
-        }),
+        body: JSON.stringify(body),
       });
       clearTimeout(timer);
       if (!res.ok) {
@@ -328,10 +326,10 @@ async function generateImageBase64(prompt: string): Promise<string | null> {
         return null;
       }
       const data = await res.json();
-      const imgUrl = data?.choices?.[0]?.message?.images?.[0]?.image_url?.url;
-      if (imgUrl && imgUrl.startsWith("data:image")) {
+      const b64 = data?.data?.[0]?.b64_json;
+      if (b64 && typeof b64 === "string") {
         console.log(`✅ ${label} image ok`);
-        return imgUrl;
+        return `data:image/png;base64,${b64}`;
       }
       console.warn(`${label} returned no image data`);
       return null;
@@ -341,19 +339,56 @@ async function generateImageBase64(prompt: string): Promise<string | null> {
     }
   }
 
-  // ---- Attempt 1: Nano Banana Pro (highest quality, best faces) ----
-  let result = await tryLovableModel("google/gemini-3-pro-image-preview", "Nano Banana Pro");
+  // OpenAI is the default/reliable image route. Gemini is kept as fallback.
+  let result = await tryGatewayImage(
+    {
+      model: "openai/gpt-image-2",
+      prompt: enhancedPrompt,
+      quality: "low",
+      size: "1536x1024",
+      n: 1,
+      stream: false,
+    },
+    "OpenAI GPT Image 2",
+  );
   if (result) return result;
 
-  // ---- Attempt 2: Nano Banana 2 (fast pro-quality) ----
-  result = await tryLovableModel("google/gemini-3.1-flash-image-preview", "Nano Banana 2");
+  result = await tryGatewayImage(
+    {
+      model: "openai/gpt-image-2",
+      prompt: enhancedPrompt,
+      quality: "low",
+      size: "1024x1024",
+      n: 1,
+      stream: false,
+    },
+    "OpenAI GPT Image 2 square fallback",
+  );
   if (result) return result;
 
-  // ---- Attempt 3: Original Nano Banana ----
-  result = await tryLovableModel("google/gemini-2.5-flash-image", "Nano Banana");
+  result = await tryGatewayImage(
+    {
+      model: "google/gemini-3.1-flash-image",
+      messages: [{ role: "user", content: enhancedPrompt }],
+      modalities: ["image", "text"],
+      stream: false,
+    },
+    "Gemini 3.1 Flash Image",
+  );
   if (result) return result;
 
-  // ---- Attempt 4: Pollinations.ai fallback ----
+  result = await tryGatewayImage(
+    {
+      model: "google/gemini-2.5-flash-image",
+      messages: [{ role: "user", content: enhancedPrompt }],
+      modalities: ["image", "text"],
+      stream: false,
+    },
+    "Gemini 2.5 Flash Image",
+  );
+  if (result) return result;
+
+  // External fallback, then a local SVG fallback so posts never publish blank.
   console.log("🎨 Falling back to Pollinations...");
   const pollPrompt = `${enhancedPrompt}, 8k`;
   const negativePrompt = "text, letters, words, typography, watermark, logo, signature, caption, subtitle, ui, interface, low quality, blurry, distorted, deformed face, disfigured, bad anatomy, extra limbs, mutated hands, ugly, poorly drawn face";
@@ -389,12 +424,21 @@ async function generateImageBase64(prompt: string): Promise<string | null> {
       console.error(`Pollinations attempt ${attempt} error:`, (e as Error).message);
     }
   }
-  console.error("All image generation attempts exhausted");
-  return null;
+  console.error("All AI image attempts exhausted — using fallback editorial SVG");
+  return createFallbackImageDataUrl(prompt);
+}
+
+function createFallbackImageDataUrl(seedText: string): string {
+  let hash = 0;
+  for (let i = 0; i < seedText.length; i++) hash = (hash * 31 + seedText.charCodeAt(i)) >>> 0;
+  const accent = ["#F15A29", "#0F766E", "#1D4ED8", "#7C2D12"][hash % 4];
+  const accent2 = ["#111827", "#164E63", "#365314", "#7F1D1D"][(hash >> 3) % 4];
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fafafa"/><stop offset="1" stop-color="#e5e7eb"/></linearGradient><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${accent}"/><stop offset="1" stop-color="${accent2}"/></linearGradient></defs><rect width="1536" height="1024" fill="url(#g)"/><rect x="104" y="136" width="1328" height="752" rx="28" fill="#fff"/><rect x="104" y="136" width="1328" height="210" rx="28" fill="url(#a)"/><rect x="188" y="438" width="430" height="282" rx="18" fill="#111827" opacity=".08"/><rect x="674" y="438" width="674" height="54" rx="12" fill="#111827" opacity=".12"/><rect x="674" y="528" width="560" height="38" rx="10" fill="#111827" opacity=".09"/><rect x="674" y="594" width="626" height="38" rx="10" fill="#111827" opacity=".09"/><rect x="674" y="660" width="472" height="38" rx="10" fill="#111827" opacity=".09"/><circle cx="408" cy="584" r="96" fill="url(#a)" opacity=".9"/><path d="M272 726c66-82 139-123 218-123 88 0 156 41 204 123" fill="none" stroke="#fff" stroke-width="28" stroke-linecap="round" opacity=".86"/><path d="M230 302h1076" stroke="#fff" stroke-width="18" stroke-linecap="round" opacity=".42"/><path d="M230 254h732" stroke="#fff" stroke-width="28" stroke-linecap="round" opacity=".78"/></svg>`;
+  return `data:image/svg+xml;base64,${btoa(svg)}`;
 }
 
 function dataUrlToBytes(dataUrl: string): { bytes: Uint8Array; contentType: string } {
-  const match = dataUrl.match(/^data:(image\/[a-z]+);base64,(.+)$/);
+  const match = dataUrl.match(/^data:(image\/[a-zA-Z0-9.+-]+);base64,(.+)$/);
   if (!match) throw new Error("Invalid data URL");
   const contentType = match[1];
   const b64 = match[2];
@@ -411,7 +455,7 @@ async function uploadImageToStorage(
 ): Promise<string | null> {
   try {
     const { bytes, contentType } = dataUrlToBytes(dataUrl);
-    const ext = contentType.split("/")[1] || "png";
+    const ext = contentType.includes("svg") ? "svg" : contentType.split("/")[1] || "png";
     const path = `auto/${fileName}.${ext}`;
 
     const { error } = await supabase.storage
