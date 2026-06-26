@@ -475,6 +475,45 @@ async function uploadImageToStorage(
   }
 }
 
+async function backfillMissingBlogImages(supabase: any, limit = 8) {
+  const { data: posts, error } = await supabase
+    .from("blog_posts")
+    .select("id,title,slug,excerpt,featured_image_url")
+    .eq("is_published", true)
+    .order("created_at", { ascending: false })
+    .limit(Math.max(1, Math.min(20, limit)));
+
+  if (error) throw new Error(`Backfill lookup failed: ${error.message}`);
+
+  const missing = (posts || []).filter((p: any) => !p.featured_image_url || String(p.featured_image_url).trim() === "");
+  console.log(`🎨 Backfill found ${missing.length} posts without images`);
+
+  const updated: Array<{ id: string; slug: string; imageUrl: string }> = [];
+  for (const post of missing) {
+    const prompt = `Editorial cover image for a US franchise industry article titled "${post.title}". Context: ${post.excerpt || "franchise news, buyers, operators, and policy"}. No text or logos.`;
+    try {
+      const dataUrl = await generateImageBase64(prompt);
+      if (!dataUrl) continue;
+      const imageUrl = await uploadImageToStorage(supabase, dataUrl, `backfill-${Date.now()}-${String(post.slug).slice(0, 45)}`);
+      if (!imageUrl) continue;
+      const { error: updateError } = await supabase
+        .from("blog_posts")
+        .update({ featured_image_url: imageUrl })
+        .eq("id", post.id);
+      if (updateError) {
+        console.error(`Backfill update failed for ${post.slug}:`, updateError.message);
+        continue;
+      }
+      updated.push({ id: post.id, slug: post.slug, imageUrl });
+      console.log(`✅ Backfilled image for ${post.slug}`);
+    } catch (e) {
+      console.error(`Backfill image failed for ${post.slug}:`, (e as Error).message);
+    }
+  }
+
+  return { checked: posts?.length || 0, missing: missing.length, updated };
+}
+
 function slugifyHeading(s: string): string {
   return s
     .toLowerCase()
@@ -966,6 +1005,30 @@ serve(async (req) => {
       if (!imageUrl) throw new Error("Image upload failed");
       return new Response(
         JSON.stringify({ success: true, imageUrl }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
+
+    if (body.operation === "backfill-missing-images") {
+      const limit = Number(body.limit || 8);
+      const backgroundBackfill = body.background !== false;
+      if (backgroundBackfill) {
+        // @ts-ignore — EdgeRuntime is provided by Supabase Edge Runtime
+        EdgeRuntime.waitUntil(
+          backfillMissingBlogImages(supabase, limit).then((result) => {
+            console.log("🎨 Backfill complete:", JSON.stringify(result));
+          }).catch((e) => {
+            console.error("Backfill background error:", e);
+          })
+        );
+        return new Response(
+          JSON.stringify({ success: true, message: "Missing blog image backfill started.", background: true, limit }),
+          { status: 202, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        );
+      }
+      const result = await backfillMissingBlogImages(supabase, limit);
+      return new Response(
+        JSON.stringify({ success: true, ...result }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
