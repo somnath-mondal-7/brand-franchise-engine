@@ -902,43 +902,23 @@ async function runGenerationPipeline(
   const blogPost = await generateBlogWithAI(researchContext, topicData);
   console.log(`Generated: "${blogPost.title}"`);
 
-  // ---- Cover image ----
-  console.log("🎨 Generating cover image...");
-  const coverPrompt =
-    blogPost.coverImagePrompt ||
-    `Editorial photograph illustrating: ${blogPost.title}. US franchise industry setting.`;
+  // ---- Cover image (REUSED from existing posts — no new generation) ----
+  console.log("♻️ Selecting reused cover image from existing posts...");
   let coverUrl: string | null = null;
   try {
-    const coverDataUrl = await generateImageBase64(coverPrompt);
-    if (coverDataUrl) {
-      coverUrl = await uploadImageToStorage(
-        supabase,
-        coverDataUrl,
-        `cover-${Date.now()}-${blogPost.slug.slice(0, 40)}`,
-      );
-    }
+    coverUrl = await pickRotatingExistingImage(supabase, []);
+    if (!coverUrl) console.warn("No reusable image pool available yet.");
   } catch (e) {
-    console.error("Cover image failed (non-fatal):", e);
+    console.error("Cover image reuse failed (non-fatal):", e);
   }
 
-  // ---- Inline images ----
+  // ---- Inline images: reuse a second distinct image from the pool ----
   const inlineUrls: string[] = [];
-  if (blogPost.inlineImagePrompts && blogPost.inlineImagePrompts.length > 0) {
-    for (let i = 0; i < Math.min(2, blogPost.inlineImagePrompts.length); i++) {
-      try {
-        const d = await generateImageBase64(blogPost.inlineImagePrompts[i]);
-        if (d) {
-          const u = await uploadImageToStorage(
-            supabase,
-            d,
-            `inline-${Date.now()}-${i}-${blogPost.slug.slice(0, 30)}`,
-          );
-          if (u) inlineUrls.push(u);
-        }
-      } catch (e) {
-        console.error(`Inline image ${i} failed:`, e);
-      }
-    }
+  try {
+    const second = await pickRotatingExistingImage(supabase, coverUrl ? [coverUrl] : []);
+    if (second && second !== coverUrl) inlineUrls.push(second);
+  } catch (e) {
+    console.error("Inline image reuse failed (non-fatal):", e);
   }
 
   let finalContent = stripDuplicateTitle(blogPost.content, blogPost.title);
