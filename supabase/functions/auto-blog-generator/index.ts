@@ -475,6 +475,47 @@ async function uploadImageToStorage(
   }
 }
 
+// ============================================================
+// IMAGE REUSE / ROTATION
+// Reuse existing blog cover images across new posts instead of generating
+// new ones. Rotates so the same image isn't repeated back-to-back.
+// ============================================================
+async function pickRotatingExistingImage(
+  supabase: any,
+  excludeUrls: string[] = [],
+): Promise<string | null> {
+  try {
+    const { data: pool, error: poolErr } = await supabase
+      .from("blog_posts")
+      .select("featured_image_url,created_at")
+      .not("featured_image_url", "is", null)
+      .order("created_at", { ascending: false })
+      .limit(200);
+    if (poolErr) {
+      console.error("Image pool lookup failed:", poolErr.message);
+      return null;
+    }
+    const valid = (pool || [])
+      .map((p: any) => String(p.featured_image_url || "").trim())
+      .filter((u: string) => u && /^https?:\/\//i.test(u));
+    if (valid.length === 0) return null;
+
+    const distinct = Array.from(new Set(valid));
+
+    // Avoid the most recently used images (last 10) so we rotate.
+    const recent = new Set([...valid.slice(0, 10), ...excludeUrls]);
+    let candidates = distinct.filter((u) => !recent.has(u));
+    if (candidates.length === 0) candidates = distinct;
+
+    const pick = candidates[Math.floor(Math.random() * candidates.length)];
+    console.log(`♻️ Reusing existing image (${candidates.length} candidates).`);
+    return pick;
+  } catch (e) {
+    console.error("pickRotatingExistingImage error:", (e as Error).message);
+    return null;
+  }
+}
+
 async function backfillMissingBlogImages(supabase: any, limit = 8) {
   const { data: posts, error } = await supabase
     .from("blog_posts")
