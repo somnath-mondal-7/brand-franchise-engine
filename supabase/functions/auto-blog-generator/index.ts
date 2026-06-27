@@ -533,13 +533,14 @@ async function backfillMissingBlogImages(supabase: any, limit = 8) {
   console.log(`🎨 Backfill found ${missing.length} posts without images`);
 
   const updated: Array<{ id: string; slug: string; imageUrl: string }> = [];
+  const usedThisRun: string[] = [];
   for (const post of missing) {
-    const prompt = `Editorial cover image for a US franchise industry article titled "${post.title}". Context: ${post.excerpt || "franchise news, buyers, operators, and policy"}. No text or logos.`;
     try {
-      const dataUrl = await generateImageBase64(prompt);
-      if (!dataUrl) continue;
-      const imageUrl = await uploadImageToStorage(supabase, dataUrl, `backfill-${Date.now()}-${String(post.slug).slice(0, 45)}`);
-      if (!imageUrl) continue;
+      const imageUrl = await pickRotatingExistingImage(supabase, usedThisRun);
+      if (!imageUrl) {
+        console.warn(`No reusable image available for ${post.slug}`);
+        continue;
+      }
       const { error: updateError } = await supabase
         .from("blog_posts")
         .update({ featured_image_url: imageUrl })
@@ -548,10 +549,11 @@ async function backfillMissingBlogImages(supabase: any, limit = 8) {
         console.error(`Backfill update failed for ${post.slug}:`, updateError.message);
         continue;
       }
+      usedThisRun.push(imageUrl);
       updated.push({ id: post.id, slug: post.slug, imageUrl });
-      console.log(`✅ Backfilled image for ${post.slug}`);
+      console.log(`♻️ Reused image for ${post.slug}`);
     } catch (e) {
-      console.error(`Backfill image failed for ${post.slug}:`, (e as Error).message);
+      console.error(`Backfill reuse failed for ${post.slug}:`, (e as Error).message);
     }
   }
 
