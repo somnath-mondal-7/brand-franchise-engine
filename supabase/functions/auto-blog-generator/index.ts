@@ -1079,6 +1079,25 @@ serve(async (req) => {
 
     console.log(`Auto-blog v3: mode=${mode}, force=${force}, interval=${intervalHours}h, draft=${publishAsDraft}, bg=${background}`);
 
+    // Hard daily cap: max 1 scheduled post + 1 breaking post per UTC day.
+    // Manual UI runs can bypass with bypassDailyCap=true.
+    const bypassDailyCap = body.bypassDailyCap === true;
+    if (!bypassDailyCap) {
+      const todayCount = await getTodayPostCount(supabase);
+      const dailyLimit = mode === "breaking" ? 2 : 1;
+      if (todayCount >= dailyLimit) {
+        console.log(`⛔ Daily cap reached (${todayCount}/${dailyLimit}) for mode=${mode} — skipping.`);
+        return new Response(
+          JSON.stringify({
+            success: false,
+            skipped: true,
+            message: `Daily cap reached (${todayCount} post${todayCount === 1 ? '' : 's'} today). Only 1 scheduled + 1 breaking allowed per day.`,
+          }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    }
+
     // Skip interval gate for breaking-news runs (the function itself decides if anything fresh exists)
     if (!force && mode !== "breaking") {
       const canPublish = await shouldPublish(supabase, intervalHours);
