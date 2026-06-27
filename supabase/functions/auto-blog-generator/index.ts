@@ -475,6 +475,47 @@ async function uploadImageToStorage(
   }
 }
 
+// ============================================================
+// IMAGE REUSE / ROTATION
+// Reuse existing blog cover images across new posts instead of generating
+// new ones. Rotates so the same image isn't repeated back-to-back.
+// ============================================================
+async function pickRotatingExistingImage(
+  supabase: any,
+  excludeUrls: string[] = [],
+): Promise<string | null> {
+  try {
+    const { data: pool, error: poolErr } = await supabase
+      .from("blog_posts")
+      .select("featured_image_url,created_at")
+      .not("featured_image_url", "is", null)
+      .order("created_at", { ascending: false })
+      .limit(200);
+    if (poolErr) {
+      console.error("Image pool lookup failed:", poolErr.message);
+      return null;
+    }
+    const valid = (pool || [])
+      .map((p: any) => String(p.featured_image_url || "").trim())
+      .filter((u: string) => u && /^https?:\/\//i.test(u));
+    if (valid.length === 0) return null;
+
+    const distinct = Array.from(new Set(valid));
+
+    // Avoid the most recently used images (last 10) so we rotate.
+    const recent = new Set([...valid.slice(0, 10), ...excludeUrls]);
+    let candidates = distinct.filter((u) => !recent.has(u));
+    if (candidates.length === 0) candidates = distinct;
+
+    const pick = candidates[Math.floor(Math.random() * candidates.length)];
+    console.log(`♻️ Reusing existing image (${candidates.length} candidates).`);
+    return pick;
+  } catch (e) {
+    console.error("pickRotatingExistingImage error:", (e as Error).message);
+    return null;
+  }
+}
+
 async function backfillMissingBlogImages(supabase: any, limit = 8) {
   const { data: posts, error } = await supabase
     .from("blog_posts")
@@ -492,13 +533,14 @@ async function backfillMissingBlogImages(supabase: any, limit = 8) {
   console.log(`🎨 Backfill found ${missing.length} posts without images`);
 
   const updated: Array<{ id: string; slug: string; imageUrl: string }> = [];
+  const usedThisRun: string[] = [];
   for (const post of missing) {
-    const prompt = `Editorial cover image for a US franchise industry article titled "${post.title}". Context: ${post.excerpt || "franchise news, buyers, operators, and policy"}. No text or logos.`;
     try {
-      const dataUrl = await generateImageBase64(prompt);
-      if (!dataUrl) continue;
-      const imageUrl = await uploadImageToStorage(supabase, dataUrl, `backfill-${Date.now()}-${String(post.slug).slice(0, 45)}`);
-      if (!imageUrl) continue;
+      const imageUrl = await pickRotatingExistingImage(supabase, usedThisRun);
+      if (!imageUrl) {
+        console.warn(`No reusable image available for ${post.slug}`);
+        continue;
+      }
       const { error: updateError } = await supabase
         .from("blog_posts")
         .update({ featured_image_url: imageUrl })
@@ -507,10 +549,11 @@ async function backfillMissingBlogImages(supabase: any, limit = 8) {
         console.error(`Backfill update failed for ${post.slug}:`, updateError.message);
         continue;
       }
+      usedThisRun.push(imageUrl);
       updated.push({ id: post.id, slug: post.slug, imageUrl });
-      console.log(`✅ Backfilled image for ${post.slug}`);
+      console.log(`♻️ Reused image for ${post.slug}`);
     } catch (e) {
-      console.error(`Backfill image failed for ${post.slug}:`, (e as Error).message);
+      console.error(`Backfill reuse failed for ${post.slug}:`, (e as Error).message);
     }
   }
 
@@ -859,43 +902,23 @@ async function runGenerationPipeline(
   const blogPost = await generateBlogWithAI(researchContext, topicData);
   console.log(`Generated: "${blogPost.title}"`);
 
-  // ---- Cover image ----
-  console.log("🎨 Generating cover image...");
-  const coverPrompt =
-    blogPost.coverImagePrompt ||
-    `Editorial photograph illustrating: ${blogPost.title}. US franchise industry setting.`;
+  // ---- Cover image (REUSED from existing posts — no new generation) ----
+  console.log("♻️ Selecting reused cover image from existing posts...");
   let coverUrl: string | null = null;
   try {
-    const coverDataUrl = await generateImageBase64(coverPrompt);
-    if (coverDataUrl) {
-      coverUrl = await uploadImageToStorage(
-        supabase,
-        coverDataUrl,
-        `cover-${Date.now()}-${blogPost.slug.slice(0, 40)}`,
-      );
-    }
+    coverUrl = await pickRotatingExistingImage(supabase, []);
+    if (!coverUrl) console.warn("No reusable image pool available yet.");
   } catch (e) {
-    console.error("Cover image failed (non-fatal):", e);
+    console.error("Cover image reuse failed (non-fatal):", e);
   }
 
-  // ---- Inline images ----
+  // ---- Inline images: reuse a second distinct image from the pool ----
   const inlineUrls: string[] = [];
-  if (blogPost.inlineImagePrompts && blogPost.inlineImagePrompts.length > 0) {
-    for (let i = 0; i < Math.min(2, blogPost.inlineImagePrompts.length); i++) {
-      try {
-        const d = await generateImageBase64(blogPost.inlineImagePrompts[i]);
-        if (d) {
-          const u = await uploadImageToStorage(
-            supabase,
-            d,
-            `inline-${Date.now()}-${i}-${blogPost.slug.slice(0, 30)}`,
-          );
-          if (u) inlineUrls.push(u);
-        }
-      } catch (e) {
-        console.error(`Inline image ${i} failed:`, e);
-      }
-    }
+  try {
+    const second = await pickRotatingExistingImage(supabase, coverUrl ? [coverUrl] : []);
+    if (second && second !== coverUrl) inlineUrls.push(second);
+  } catch (e) {
+    console.error("Inline image reuse failed (non-fatal):", e);
   }
 
   let finalContent = stripDuplicateTitle(blogPost.content, blogPost.title);
@@ -999,15 +1022,13 @@ serve(async (req) => {
 
     const body = await req.json().catch(() => ({}));
     if (body.operation === "generate-image") {
-      const prompt = String(body.prompt || body.title || "US franchise industry editorial blog cover").trim();
-      const slug = String(body.slug || prompt.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")).slice(0, 60) || "manual-blog";
-      console.log(`🎨 Manual image generation requested: ${slug}`);
-      const dataUrl = await generateImageBase64(prompt);
-      if (!dataUrl) throw new Error("Image generation failed");
-      const imageUrl = await uploadImageToStorage(supabase, dataUrl, `manual-${Date.now()}-${slug}`);
-      if (!imageUrl) throw new Error("Image upload failed");
+      console.log("♻️ Manual image request — reusing existing image from pool");
+      const imageUrl = await pickRotatingExistingImage(supabase, []);
+      if (!imageUrl) {
+        throw new Error("No existing images available to reuse yet. Add at least one image to a blog post first.");
+      }
       return new Response(
-        JSON.stringify({ success: true, imageUrl }),
+        JSON.stringify({ success: true, imageUrl, reused: true }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
