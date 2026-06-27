@@ -872,6 +872,18 @@ async function shouldPublish(supabase: any, intervalHours: number): Promise<bool
   return hoursDiff >= intervalHours;
 }
 
+// Count auto-generated posts published in the current UTC day.
+async function getTodayPostCount(supabase: any): Promise<number> {
+  const start = new Date();
+  start.setUTCHours(0, 0, 0, 0);
+  const { count } = await supabase
+    .from('blog_posts')
+    .select('id', { count: 'exact', head: true })
+    .eq('author_name', 'FranchiseLeadsPro Research Team')
+    .gte('created_at', start.toISOString());
+  return count || 0;
+}
+
 // Heavy generation pipeline — extracted so it can run in background via EdgeRuntime.waitUntil
 async function runGenerationPipeline(
   supabase: any,
@@ -1066,6 +1078,25 @@ serve(async (req) => {
     } = body;
 
     console.log(`Auto-blog v3: mode=${mode}, force=${force}, interval=${intervalHours}h, draft=${publishAsDraft}, bg=${background}`);
+
+    // Hard daily cap: max 1 scheduled post + 1 breaking post per UTC day.
+    // Manual UI runs can bypass with bypassDailyCap=true.
+    const bypassDailyCap = body.bypassDailyCap === true;
+    if (!bypassDailyCap) {
+      const todayCount = await getTodayPostCount(supabase);
+      const dailyLimit = mode === "breaking" ? 2 : 1;
+      if (todayCount >= dailyLimit) {
+        console.log(`⛔ Daily cap reached (${todayCount}/${dailyLimit}) for mode=${mode} — skipping.`);
+        return new Response(
+          JSON.stringify({
+            success: false,
+            skipped: true,
+            message: `Daily cap reached (${todayCount} post${todayCount === 1 ? '' : 's'} today). Only 1 scheduled + 1 breaking allowed per day.`,
+          }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    }
 
     // Skip interval gate for breaking-news runs (the function itself decides if anything fresh exists)
     if (!force && mode !== "breaking") {
