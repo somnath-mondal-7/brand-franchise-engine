@@ -872,6 +872,18 @@ async function shouldPublish(supabase: any, intervalHours: number): Promise<bool
   return hoursDiff >= intervalHours;
 }
 
+// Count auto-generated posts published in the current UTC day.
+async function getTodayPostCount(supabase: any): Promise<number> {
+  const start = new Date();
+  start.setUTCHours(0, 0, 0, 0);
+  const { count } = await supabase
+    .from('blog_posts')
+    .select('id', { count: 'exact', head: true })
+    .eq('author_name', 'FranchiseLeadsPro Research Team')
+    .gte('created_at', start.toISOString());
+  return count || 0;
+}
+
 // Heavy generation pipeline — extracted so it can run in background via EdgeRuntime.waitUntil
 async function runGenerationPipeline(
   supabase: any,
