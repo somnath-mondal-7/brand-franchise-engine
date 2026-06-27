@@ -1022,15 +1022,13 @@ serve(async (req) => {
 
     const body = await req.json().catch(() => ({}));
     if (body.operation === "generate-image") {
-      const prompt = String(body.prompt || body.title || "US franchise industry editorial blog cover").trim();
-      const slug = String(body.slug || prompt.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")).slice(0, 60) || "manual-blog";
-      console.log(`🎨 Manual image generation requested: ${slug}`);
-      const dataUrl = await generateImageBase64(prompt);
-      if (!dataUrl) throw new Error("Image generation failed");
-      const imageUrl = await uploadImageToStorage(supabase, dataUrl, `manual-${Date.now()}-${slug}`);
-      if (!imageUrl) throw new Error("Image upload failed");
+      console.log("♻️ Manual image request — reusing existing image from pool");
+      const imageUrl = await pickRotatingExistingImage(supabase, []);
+      if (!imageUrl) {
+        throw new Error("No existing images available to reuse yet. Add at least one image to a blog post first.");
+      }
       return new Response(
-        JSON.stringify({ success: true, imageUrl }),
+        JSON.stringify({ success: true, imageUrl, reused: true }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
