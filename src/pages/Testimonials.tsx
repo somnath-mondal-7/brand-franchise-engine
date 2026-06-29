@@ -16,73 +16,72 @@ const Testimonials = () => {
     {
       name: "Sarah Mitchell",
       title: "Franchise Consultant",
-      company: "Mitchell Franchise Group",
+      company: "Mitchell Franchise Group • Dallas, TX",
       rating: 5,
-      text: "FranchiseLeadsPro transformed our lead generation completely. We went from 15 leads per month to over 100 qualified prospects. The quality is exceptional and our conversion rate doubled.",
-      results: "100+ leads/month",
+      text: "Solid, steady pipeline. I usually get somewhere between 12 and 20 qualified appointments a month — not all of them close, but the ones that do are worth the work. Honest team, honest reporting.",
+      results: "Qualified appointments",
       industry: "Multi-Unit Development"
     },
     {
       name: "Michael Rodriguez",
-      title: "CEO & Franchisor", 
-      company: "GrowthMax Franchising",
+      title: "CEO & Franchisor",
+      company: "GrowthMax Franchising • Austin, TX",
       rating: 5,
-      text: "The brand building work they did for us was game-changing. Our brand recognition improved dramatically, and we're now the go-to choice in our market. ROI was 400% in the first year.",
-      results: "400% ROI",
+      text: "The brand positioning work made a real difference in how candidates perceive us before the first call. Can't put a magic number on it, but our discovery conversations feel sharper now.",
+      results: "Stronger brand presence",
       industry: "Food & Beverage"
     },
     {
       name: "Jennifer Chen",
       title: "Franchise Development Director",
-      company: "Elite Franchise Solutions",
-      rating: 5,
-      text: "Working with FranchiseLeadsPro has been the best business decision we made. Their systematic approach to lead qualification saves us hours each week, and we close more deals than ever.",
-      results: "3x more closures",
+      company: "Elite Franchise Solutions • San Jose, CA",
+      rating: 4,
+      text: "Good experience overall. Some months the lead flow is great, other months it's quieter — that's just the nature of this business. What matters is the qualification work is consistent.",
+      results: "Consistent qualification",
       industry: "Business Services"
     },
     {
       name: "David Thompson",
       title: "Franchise Consultant",
-      company: "Thompson Franchise Partners", 
+      company: "Thompson Franchise Partners • Columbus, OH",
       rating: 5,
-      text: "I was skeptical at first, but the results speak for themselves. In 6 months, we generated over $2M in franchise fees. Their lead quality is unmatched in the industry.",
-      results: "$2M+ in fees",
+      text: "I was skeptical going in — I've been doing this 30+ years and I've heard every pitch. They didn't oversell. They quietly delivered a handful of serious candidates each month, and a few have already signed.",
+      results: "Serious candidates",
       industry: "Retail & Services"
     },
     {
       name: "Lisa Anderson",
       title: "VP of Franchise Development",
-      company: "NextGen Franchises",
-      rating: 5,
-      text: "The brand positioning strategy they developed helped us stand out in a crowded market. We're now seen as the premium choice, and our average franchise investment increased by 40%.",
-      results: "40% higher investment",
+      company: "NextGen Franchises • Minneapolis, MN",
+      rating: 4,
+      text: "The brand work helped us look more polished against bigger competitors. Lead quality has been good — not every appointment is a perfect fit, but the average is well above what we used to see from portals.",
+      results: "Better positioning",
       industry: "Health & Fitness"
     },
     {
       name: "Robert Johnson",
       title: "Franchise Broker",
-      company: "Johnson Business Brokers",
+      company: "Johnson Business Brokers • St. Louis, MO",
       rating: 5,
-      text: "FranchiseLeadsPro doesn't just deliver leads - they deliver results. Our pipeline is consistently full of qualified prospects, and our team can focus on what we do best: closing deals.",
-      results: "Consistent pipeline",
+      text: "Pipeline stays warm. I'm not getting flooded — and I don't want to be. I want 10 to 15 real conversations a month with funded buyers, and that's roughly what shows up.",
+      results: "Funded buyers",
       industry: "Business Brokerage"
-    }
-    ,
+    },
     {
       name: "Amanda Reyes",
       title: "Independent Franchise Consultant",
       company: "Reyes Franchise Advisory • Phoenix, AZ",
       rating: 5,
-      text: "As a solo consultant, my calendar is my business. Their team handles outreach and qualification end-to-end so every conversation I take is with a serious, vetted candidate.",
-      results: "Vetted candidates",
+      text: "As a one-person shop, I needed support without the chaos of a big agency. They book me a manageable number of vetted calls each week and stay out of the way. Exactly what I was looking for.",
+      results: "Vetted calls",
       industry: "Independent Consulting"
     },
     {
       name: "Daniel Brooks",
       title: "Franchise Development Director",
       company: "Brooks Brands USA • Atlanta, GA",
-      rating: 5,
-      text: "They actually took the time to learn our brand story. The candidates they bring fit our culture, not just the price point. That's something other agencies never delivered.",
+      rating: 4,
+      text: "Mixed results in the first 60 days, but it picked up once they understood our brand voice. Now the candidates they bring genuinely fit our culture — that's harder to find than people think.",
       results: "Culture-fit leads",
       industry: "Multi-Brand Franchisor"
     },
@@ -91,7 +90,7 @@ const Testimonials = () => {
       title: "VP Franchise Growth",
       company: "Sunrise QSR Group • Chicago, IL",
       rating: 5,
-      text: "Prospects show up to our discovery calls already familiar with our concept. That kind of warm pipeline is rare and it's changed how our development team operates.",
+      text: "Prospects show up to discovery calls already familiar with our concept. That alone has changed how my team works. Volume is modest but quality is consistently strong.",
       results: "Warm discovery calls",
       industry: "Quick Service Restaurants"
     },
@@ -100,17 +99,17 @@ const Testimonials = () => {
       title: "Independent Franchise Broker, IFPG",
       company: "Hill Franchise Group • Charlotte, NC",
       rating: 5,
-      text: "Straightforward team, no fluff, no over-promising. They told me what to expect and delivered consistently month after month. Refreshing in this industry.",
-      results: "Consistent delivery",
+      text: "Straightforward team. They told me upfront to expect maybe 10 to 20 qualified intros a month, not a fire hose, and that's what I've gotten. Refreshing in an industry full of inflated promises.",
+      results: "Honest expectations",
       industry: "Independent Brokerage"
     },
     {
       name: "Elena Vasquez",
       title: "Franchise Consultant",
       company: "FranBridge Partners • Miami, FL",
-      rating: 5,
-      text: "Communication is what sets them apart. Clear weekly updates, transparent reporting, and a team that actually picks up the phone when I have a question.",
-      results: "Transparent reporting",
+      rating: 4,
+      text: "Communication is where they really stand out. Weekly check-ins, clear notes on each candidate, and someone always picks up the phone. The leads themselves are a mix — some excellent, some average — but the support makes up for it.",
+      results: "Strong communication",
       industry: "Franchise Consulting"
     },
     {
@@ -118,8 +117,8 @@ const Testimonials = () => {
       title: "Founder & CEO",
       company: "Patel Fitness Concepts • Houston, TX",
       rating: 5,
-      text: "We're a US-based emerging franchisor and they treated our brand like it was their own. The investor introductions they made directly led to signed franchise agreements.",
-      results: "Signed agreements",
+      text: "We're an emerging US franchisor and they treated our brand seriously from day one. Not every introduction has converted, but a few have moved into signed agreements — which is all I really needed at this stage.",
+      results: "Quality introductions",
       industry: "Health & Fitness Franchisor"
     }
   ];
