@@ -26,67 +26,67 @@ const TestimonialsSection = () => {
       name: "Robert Williams",
       title: "Sr. Franchise Consultant, GrowthPath Advisory • Dallas, TX",
       quote:
-        "FranchiseLeadsPro completely transformed our lead pipeline. The investor conversations they put on my calendar are warm, qualified, and ready to talk numbers.",
+        "Steady, qualified appointments on the calendar each month — usually somewhere between 12 and 20 conversations worth taking. Not every one closes, but they're real people with real capital.",
     },
     {
       name: "Amanda Reyes",
       title: "Independent Franchise Consultant • Phoenix, AZ",
       quote:
-        "As a solo consultant, my time is everything. Their team handles the outreach and qualification so I can focus on closing — it feels like having a full BDR team behind me.",
+        "As a solo consultant my time matters. Their team handles the front-end work and books me a handful of vetted calls each week. It's been a solid addition to what I already do.",
     },
     {
       name: "Daniel Brooks",
       title: "Franchise Development Director, Brooks Brands USA • Atlanta, GA",
       quote:
-        "We've worked with several lead gen agencies. FranchiseLeadsPro is the first one that actually understood our brand story and brought us candidates who fit our culture, not just our budget.",
+        "Honest take — some months are stronger than others, but the candidates generally fit our brand. That's more than I can say about most lead vendors I've worked with over the years.",
     },
     {
       name: "Priya Natarajan",
       title: "VP Franchise Growth, Sunrise QSR Group • Chicago, IL",
       quote:
-        "Their outreach quality is exceptional. Prospects show up to discovery calls already familiar with our concept — that almost never happens with cold lead vendors.",
+        "Discovery calls feel different. Prospects show up having read about us, which makes my job easier. The volume isn't huge but the conversations are the right ones.",
     },
     {
       name: "Marcus Hill",
       title: "Independent Franchise Broker, IFPG • Charlotte, NC",
       quote:
-        "Straightforward team, no fluff, no over-promising. They told me exactly what to expect, then delivered consistently month after month. Rare in this industry.",
+        "Straightforward team. They told me what to expect — a handful of qualified intros a month, not a flood — and that's what I've gotten. No over-promising.",
     },
     {
       name: "Elena Vasquez",
       title: "Franchise Consultant, FranBridge Partners • Miami, FL",
       quote:
-        "Communication is what sets them apart. Clear weekly updates, transparent reporting, and a team that actually picks up the phone when I have a question.",
+        "What I appreciate most is the communication. Weekly check-ins, clear notes on each candidate, and they actually pick up the phone. The appointments themselves have been a mixed bag in quality, but the good ones are very good.",
     },
     {
       name: "Kevin O'Sullivan",
       title: "Franchise Broker, FBA Member • Boston, MA",
       quote:
-        "I've referred multiple candidates from their pipeline and the close rate is the best I've seen. They pre-qualify properly so I'm not wasting cycles on tire-kickers.",
+        "I've referred several candidates from their pipeline. Close rate has been better than most sources I use. Not every intro is a fit, but the qualification work up front saves me time.",
     },
     {
       name: "Rachel Kim",
       title: "Managing Broker, Summit Commercial Realty • Seattle, WA",
       quote:
-        "We partner with them on tenant-rep deals for franchise concepts. Their candidates are funded, serious, and ready to sign leases — exactly what landlords want to see.",
+        "We partner with them on tenant-rep deals for franchise concepts. Their candidates are funded and serious about timelines — that's what landlords want to see.",
     },
     {
       name: "Tom Hargrove",
       title: "Principal Broker, Hargrove Business Brokers • Nashville, TN",
       quote:
-        "As a business broker, lead quality is everything. FranchiseLeadsPro consistently delivers buyers with verified capital and a clear timeline to acquire.",
+        "After 40+ years in this business, I'm hard to impress. They're not magic, but they consistently put buyers with verified capital in front of me. That alone is rare.",
     },
     {
       name: "Nicole Carter",
       title: "Commercial Real Estate Broker, Carter Retail Group • Denver, CO",
       quote:
-        "Their franchise candidates show up to site tours informed and decisive. It's made our retail leasing process dramatically faster for our franchisor clients.",
+        "Their franchise candidates show up to site tours informed. Some weeks are quieter than others, but when they deliver, the leads are sharp and ready to move.",
     },
     {
       name: "James Whitaker",
       title: "Senior Franchise Broker, IFPG • Tampa, FL",
       quote:
-        "After 15 years in the industry, I can tell when a lead source is solid. These folks are the real deal — every introduction has been worth my time.",
+        "Reasonable volume, honest reporting, and the team doesn't disappear after onboarding. That's about all you can ask for in this space.",
     },
   ];
 
