@@ -23,7 +23,8 @@
     --secondary: 210 20% 97%;            /* #F5F7FA cool light section */
     --secondary-foreground: 215 50% 12%;
     --muted: 210 20% 97%;
-    --muted-foreground: 215 18% 38%;
+   --muted-foreground: 215 20% 30%;
+
 
     --accent: 215 60% 15%;               /* #10213D deep navy */
     --accent-foreground: 0 0% 100%;
@@ -113,7 +114,7 @@
   --secondary: 210 20% 97%;
   --secondary-foreground: 215 50% 12%;
   --muted: 210 20% 97%;
-  --muted-foreground: 215 18% 38%;
+  --muted-foreground: 215 20% 30%;
 
   --accent: 215 60% 15%;
   --accent-foreground: 0 0% 100%;
