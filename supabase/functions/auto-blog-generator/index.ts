@@ -914,28 +914,13 @@ async function runGenerationPipeline(
   const blogPost = await generateBlogWithAI(researchContext, topicData);
   console.log(`Generated: "${blogPost.title}"`);
 
-  // ---- Cover image (REUSED from existing posts — no new generation) ----
-  console.log("♻️ Selecting reused cover image from existing posts...");
-  let coverUrl: string | null = null;
-  try {
-    coverUrl = await pickRotatingExistingImage(supabase, []);
-    if (!coverUrl) console.warn("No reusable image pool available yet.");
-  } catch (e) {
-    console.error("Cover image reuse failed (non-fatal):", e);
-  }
-
-  // ---- Inline images: reuse a second distinct image from the pool ----
+  // ---- Images disabled per user request: text-only blog posts ----
+  const coverUrl: string | null = null;
   const inlineUrls: string[] = [];
-  try {
-    const second = await pickRotatingExistingImage(supabase, coverUrl ? [coverUrl] : []);
-    if (second && second !== coverUrl) inlineUrls.push(second);
-  } catch (e) {
-    console.error("Inline image reuse failed (non-fatal):", e);
-  }
 
   let finalContent = stripDuplicateTitle(blogPost.content, blogPost.title);
   finalContent = await ensureFaqSection(finalContent, blogPost.title);
-  if (inlineUrls.length > 0) finalContent = injectInlineImages(finalContent, inlineUrls);
+
   finalContent = finalContent.trimEnd() + "\n" + buildInternalLinksSection();
 
   const wordCount = finalContent.split(/\s+/).length;
