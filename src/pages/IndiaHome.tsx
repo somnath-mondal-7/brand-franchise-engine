@@ -14,8 +14,9 @@ const IndiaHome = () => {
         <title>Franchise Lead Generation Agency USA | FranchiseLeadsPro</title>
         <meta
           name="description"
-          content="Premium franchise marketing agency for US consultants and franchisors. Qualified investor conversations through sharp positioning, LinkedIn, and high-converting websites."
+          content="Franchise lead generation agency for US franchisors and consultants — qualified investor conversations via LinkedIn and high-converting sites."
         />
+
         <link rel="canonical" href="https://www.franchiseleadspro.com/" />
         <meta property="og:title" content="Franchise Lead Generation Agency USA | FranchiseLeadsPro" />
         <meta
