@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Star, Quote, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import jonathanMorganVideo from "@/assets/videos/jonathan-morgan-review.mp4.asset.json";
 import shawnGurnVideo from "@/assets/videos/shawn-gurn-review.mp4.asset.json";
 
 import johnThompsonVideo from "@/assets/videos/john-thompson-review.mp4.asset.json";
