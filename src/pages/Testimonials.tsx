@@ -165,7 +165,6 @@ const Testimonials = () => {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 { name: "Shawn Gurn", title: "HOF Franchise Consulting Company • IFPG Member", videoSrc: shawnGurnVideo.url, fit: "contain" as const },
-                { name: "Shawn Gurn", title: "HOF Franchise Consulting Company • IFPG Member", videoSrc: shawnGurnVideo.url, fit: "contain" as const },
                 { name: "Mike Thompson", title: "Franchise Development Leader", videoSrc: johnThompsonVideo.url, fit: "cover" as const },
               ].map((video, index) => (
                 <Card key={index} className="overflow-hidden border-border/50 hover:shadow-xl transition-all duration-300">
