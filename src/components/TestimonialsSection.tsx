@@ -103,11 +103,11 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Video testimonials grid */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 max-w-3xl mx-auto mb-16 justify-items-center">
           {videoTestimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="group relative rounded-2xl border border-border/50 bg-card overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+              className="group relative w-full max-w-sm rounded-2xl border border-border/50 bg-card overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
             >
               <div className="aspect-[3/4] sm:aspect-[4/5] bg-black relative overflow-hidden">
                 <video
