@@ -103,7 +103,7 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Video testimonials grid */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 max-w-3xl mx-auto mb-16 justify-items-center">
           {videoTestimonials.map((testimonial, index) => (
             <div
               key={index}
