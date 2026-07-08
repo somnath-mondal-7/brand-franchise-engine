@@ -162,12 +162,12 @@ const Testimonials = () => {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto justify-items-center">
               {[
                 { name: "Shawn Gurn", title: "HOF Franchise Consulting Company • IFPG Member", videoSrc: shawnGurnVideo.url, fit: "contain" as const },
                 { name: "Mike Thompson", title: "Franchise Development Leader", videoSrc: johnThompsonVideo.url, fit: "cover" as const },
               ].map((video, index) => (
-                <Card key={index} className="overflow-hidden border-border/50 hover:shadow-xl transition-all duration-300">
+                <Card key={index} className="w-full max-w-sm overflow-hidden border-border/50 hover:shadow-xl transition-all duration-300">
                   <div className="aspect-[3/4] sm:aspect-[4/5] bg-black relative overflow-hidden">
                     <video
                       className={`w-full h-full bg-black ${video.fit === "cover" ? "object-cover" : "object-contain"}`}
