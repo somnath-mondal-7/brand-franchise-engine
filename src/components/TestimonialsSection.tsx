@@ -1,5 +1,4 @@
 import shawnGurnVideo from "@/assets/videos/shawn-gurn-review.mp4.asset.json";
-import jonathanMorganVideo from "@/assets/videos/jonathan-morgan-review.mp4.asset.json";
 import johnThompsonVideo from "@/assets/videos/john-thompson-review.mp4.asset.json";
 
 const TestimonialsSection = () => {
@@ -13,11 +12,6 @@ const TestimonialsSection = () => {
       name: "Mike Thompson",
       title: "Franchise Development Leader",
       videoSrc: johnThompsonVideo.url,
-    },
-    {
-      name: "Jonathan Morgan",
-      title: "CEO, NextFranch Corp",
-      videoSrc: jonathanMorganVideo.url,
     },
   ];
 
