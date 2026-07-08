@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Star, Quote, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import jonathanMorganVideo from "@/assets/videos/jonathan-morgan-review.mp4.asset.json";
 import shawnGurnVideo from "@/assets/videos/shawn-gurn-review.mp4.asset.json";
 
 import johnThompsonVideo from "@/assets/videos/john-thompson-review.mp4.asset.json";
@@ -165,7 +164,6 @@ const Testimonials = () => {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { name: "Jonathan Morgan", title: "CEO, NextFranch Corp", videoSrc: jonathanMorganVideo.url, fit: "contain" as const },
                 { name: "Shawn Gurn", title: "HOF Franchise Consulting Company • IFPG Member", videoSrc: shawnGurnVideo.url, fit: "contain" as const },
                 { name: "Mike Thompson", title: "Franchise Development Leader", videoSrc: johnThompsonVideo.url, fit: "cover" as const },
               ].map((video, index) => (
