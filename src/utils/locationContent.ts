@@ -713,6 +713,10 @@ export function getAvailableStateInsights(): string[] {
 // regional content should appear in the sitemap and be indexable.
 export function hasCuratedInsight(countryCode: string, stateSlug?: string): boolean {
   const cc = countryCode.toUpperCase();
+  // USA-first strategy: only USA/UK/CA are indexable. IN/AU/AE country pages
+  // are 410'd at the edge — do NOT emit them into the sitemap.
+  const indexableCountries = new Set(["USA", "UK", "CA"]);
+  if (!indexableCountries.has(cc)) return false;
   if (stateSlug) {
     if (cc === "USA") return Object.prototype.hasOwnProperty.call(usaStateInsights, stateSlug);
     if (cc === "UK") return Object.prototype.hasOwnProperty.call(ukRegionInsights, stateSlug);
