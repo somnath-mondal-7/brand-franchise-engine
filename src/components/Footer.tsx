@@ -85,17 +85,22 @@ const Footer = () => {
 
           {/* Franchise Broker Leads by Region */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold">Broker Leads by Region</h4>
+            <h4 className="text-lg font-semibold">Locations</h4>
             <ul className="space-y-2 text-gray-400">
               <li><a href="/franchise-broker-leads-usa" className="hover:text-white transition-colors py-1 inline-block">USA (All Regions)</a></li>
               <li><a href="/franchise-broker-leads-northeast" className="hover:text-white transition-colors py-1 inline-block">Northeast</a></li>
               <li><a href="/franchise-broker-leads-southeast" className="hover:text-white transition-colors py-1 inline-block">Southeast</a></li>
               <li><a href="/franchise-broker-leads-midwest" className="hover:text-white transition-colors py-1 inline-block">Midwest</a></li>
               <li><a href="/franchise-broker-leads-west" className="hover:text-white transition-colors py-1 inline-block">West</a></li>
+              <li><a href="/franchise-lead-generation/usa/california" className="hover:text-white transition-colors py-1 inline-block">California</a></li>
+              <li><a href="/franchise-lead-generation/usa/texas" className="hover:text-white transition-colors py-1 inline-block">Texas</a></li>
+              <li><a href="/franchise-lead-generation/usa/florida" className="hover:text-white transition-colors py-1 inline-block">Florida</a></li>
+              <li><a href="/franchise-lead-generation/usa/new-york" className="hover:text-white transition-colors py-1 inline-block">New York</a></li>
               <li><a href="/franchise-leads-uk" className="hover:text-white transition-colors py-1 inline-block">UK Franchise Leads</a></li>
               <li><a href="/franchise-leads-canada" className="hover:text-white transition-colors py-1 inline-block">Canada Franchise Leads</a></li>
             </ul>
           </div>
+
 
           {/* Company */}
           <div className="space-y-4">
