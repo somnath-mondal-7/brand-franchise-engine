@@ -27,12 +27,12 @@ export const generateCorePages = (): SitemapUrl[] => {
     { loc: `${DOMAIN}/contact`, lastmod: currentDate, changefreq: 'monthly', priority: '0.8' },
     { loc: `${DOMAIN}/blog`, lastmod: currentDate, changefreq: 'daily', priority: '0.85' },
     { loc: `${DOMAIN}/testimonials`, lastmod: currentDate, changefreq: 'weekly', priority: '0.8' },
-    { loc: `${DOMAIN}/franchise-leads-india`, lastmod: currentDate, changefreq: 'weekly', priority: '0.95' },
+    // USA-first strategy: India/Australia/Dubai country pages removed from
+    // sitemap — they attracted the wrong audience and diluted topical focus.
     { loc: `${DOMAIN}/franchise-leads-usa`, lastmod: currentDate, changefreq: 'weekly', priority: '0.95' },
     { loc: `${DOMAIN}/franchise-leads-uk`, lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
     { loc: `${DOMAIN}/franchise-leads-canada`, lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
-    { loc: `${DOMAIN}/franchise-leads-australia`, lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
-    { loc: `${DOMAIN}/franchise-leads-dubai`, lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
+    
     
     { loc: `${DOMAIN}/buy-franchise-leads`, lastmod: currentDate, changefreq: 'weekly', priority: '0.9' },
     { loc: `${DOMAIN}/digital-marketing`, lastmod: currentDate, changefreq: 'weekly', priority: '0.85' },
