@@ -4,8 +4,11 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight, Phone } from "lucide-react";
 import type { ReactNode } from "react";
+import LocationHubLinks from "@/components/LocationHubLinks";
+import { localBusinessSchema, reviewsSchema, breadcrumbSchema } from "@/components/SEOSchemas";
 
 const openCal = () => window.open("https://calendly.com/lets-build-your-brand", "_blank");
+
 
 export interface MoneyPageConfig {
   canonical: string;
