@@ -130,7 +130,7 @@ const main = async () => {
   // and serve stale/unpruned data. Keep this generator focused on the URL index.
   await generateStaticBlogSitemapXml(); // still hits Supabase to validate connectivity, output discarded
   console.log(`📍 Index: ${indexPath}`);
-  console.log(`📍 Blog sitemap: ${blogSitemapPath}`);
+  console.log(`📍 Blog sitemap: served live by Supabase edge function (blog-sitemap)`);
   console.log(`📁 Sitemaps: ${sitemapsDir}/`);
   console.log('\n📝 Next Steps:');
   console.log('   1. Publish your site');
