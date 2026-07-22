@@ -1,0 +1,26 @@
+# Google Disavow File for franchiseleadspro.com
+# Last updated: 2026-07-22
+# Purpose: Disavow low-quality / spam / PBN backlinks flagged in Semrush backlink audit.
+# Format reference: https://support.google.com/webmasters/answer/2648487
+#
+# Notes:
+# - Lines beginning with "#" are comments and ignored by Google.
+# - "domain:" disavows the entire domain (recommended for spam networks).
+# - Upload this file at: https://search.google.com/search-console/disavow-links
+#   (select the franchiseleadspro.com property, then upload).
+
+# --- Obvious spam / PBN / link-shortener networks ---
+domain:atomizelink.icu
+domain:buzzshrink.website
+domain:byteshort.xyz
+domain:dailymusings.top
+domain:nivira.shop
+domain:antspath.com
+domain:drjack.world
+domain:bye.fyi
+
+# --- Low-quality directory / auto-generated listings ---
+domain:yplocal.com
+
+# --- Add any additional spam domains below as they appear in Semrush / GSC ---
+# domain:example-spam-site.com
