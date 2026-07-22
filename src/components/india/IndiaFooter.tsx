@@ -124,6 +124,23 @@ const IndiaFooter = () => {
           </div>
 
           <div>
+            <h4 className="font-display text-lg mb-4 text-accent">Locations</h4>
+            <ul className="space-y-2 text-sm text-primary-foreground/80">
+              <li><Link to="/franchise-broker-leads-usa" className="hover:text-accent">USA (All Regions)</Link></li>
+              <li><Link to="/franchise-broker-leads-northeast" className="hover:text-accent">Northeast</Link></li>
+              <lijk><Link to="/franchise-broker-leads-southeast" className="hover:text-accent">Southeast</Link></jk></li>
+              <li><Link to="/franchise-broker-leads-midwest" className="hover:text-accent">Midwest</Link></li>
+              <li><Link to="/franchise-broker-leads-west" className="hover:text-accent">West</Link></li>
+              <li><Link to="/franchise-lead-generation/usa/california" className="hover:text-accent">California</Link></li>
+              <li><Link to="/franchise-lead-generation/usa/texas" className="hover:text-accent">Texas</Link></li>
+              <li><Link to="/franchise-lead-generation/usa/florida" className="hover:text-accent">Florida</Link></li>
+              <li><Link to="/franchise-lead-generation/usa/new-york" className="hover:text-accent">New York</Link></li>
+              <li><Link to="/franchise-leads-uk" className="hover:text-accent">UK Franchise Leads</Link></li>
+              <li><Link to="/franchise-leads-canada" className="hover:text-accent">Canada Franchise Leads</Link></li>
+            </ul>
+          </div>
+
+          <div>
             <h4 className="font-display text-lg mb-4 text-accent">Contact</h4>
             <ul className="space-y-3 text-sm text-primary-foreground/80">
               <li className="flex gap-2"><Phone className="w-4 h-4 mt-0.5 text-accent" /><a href="tel:+14244455334">USA: +1 (424) 445-5334</a></li>
