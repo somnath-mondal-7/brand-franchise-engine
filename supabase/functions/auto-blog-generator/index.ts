@@ -1090,19 +1090,50 @@ serve(async (req) => {
 
     console.log(`Auto-blog v3: mode=${mode}, force=${force}, interval=${intervalHours}h, draft=${publishAsDraft}, bg=${background}`);
 
-    // Hard daily cap: max 1 scheduled post + 1 breaking post per UTC day.
-    // Manual UI runs can bypass with bypassDailyCap=true.
-    const bypassDailyCap = body.bypassDailyCap === true;
-    if (!bypassDailyCap) {
-      const todayCount = await getTodayPostCount(supabase);
-      const dailyLimit = mode === "breaking" ? 2 : 1;
-      if (todayCount >= dailyLimit) {
-        console.log(`⛔ Daily cap reached (${todayCount}/${dailyLimit}) for mode=${mode} — skipping.`);
+    // Weekly cap: 2-3 scheduled posts per UTC week.
+    // Breaking-news posts are separate and only published for genuinely important news.
+    // Manual UI runs can bypass with bypassWeeklyCap=true.
+    const bypassWeeklyCap = body.bypassWeeklyCap === true;
+    if (!bypassWeeklyCap && mode !== "breaking") {
+      const weekCount = await getWeekPostCount(supabase);
+      const weeklyTarget = getWeeklyTarget();
+      if (weekCount >= weeklyTarget) {
+        console.log(`⛔ Weekly cap reached (${weekCount}/${weeklyTarget}) — skipping scheduled run.`);
         return new Response(
           JSON.stringify({
             success: false,
             skipped: true,
-            message: `Daily cap reached (${todayCount} post${todayCount === 1 ? '' : 's'} today). Only 1 scheduled + 1 breaking allowed per day.`,
+            message: `Weekly cap reached (${weekCount}/${weeklyTarget} posts this week). Target is ${weeklyTarget} scheduled posts per week.`,
+          }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    }
+
+    // Breaking news: hard daily cap of 1 per UTC day, and max 1 per week.
+    if (!bypassWeeklyCap && mode === "breaking") {
+      const todayCount = await getTodayPostCount(supabase);
+      const weekCount = await getWeekPostCount(supabase);
+      if (todayCount >= 1) {
+        console.log(`⛔ Breaking-news daily cap reached (${todayCount}/1) — skipping.`);
+        return new Response(
+          JSON.stringify({
+            success: false,
+            skipped: true,
+            message: `Breaking-news daily cap reached (${todayCount}/1 today). Only 1 breaking post per day.`,
+          }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+      // Allow only 1 breaking post per week on top of scheduled target.
+      const weeklyTarget = getWeeklyTarget();
+      if (weekCount > weeklyTarget) {
+        console.log(`⛔ Breaking-news weekly cap reached (${weekCount}/${weeklyTarget}) — skipping.`);
+        return new Response(
+          JSON.stringify({
+            success: false,
+            skipped: true,
+            message: `Breaking-news weekly cap reached. Only 1 extra breaking post per week beyond the ${weeklyTarget} scheduled posts.`,
           }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
