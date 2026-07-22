@@ -48,7 +48,7 @@ const generateStaticBlogSitemapXml = async (): Promise<string> => {
 
   try {
     const response = await fetch(
-      `${SUPABASE_URL}/rest/v1/blog_posts?select=slug,published_at,updated_at&is_published=eq.true&order=published_at.desc`,
+      `${SUPABASE_URL}/rest/v1/blog_posts?select=slug,published_at,updated_at&is_published=eq.true&order=published_at.desc&limit=30`,
       {
         headers: {
           apikey: SUPABASE_PUBLISHABLE_KEY,
