@@ -48,7 +48,7 @@ const generateStaticBlogSitemapXml = async (): Promise<string> => {
 
   try {
     const response = await fetch(
-      `${SUPABASE_URL}/rest/v1/blog_posts?select=slug,published_at,updated_at&is_published=eq.true&order=published_at.desc`,
+      `${SUPABASE_URL}/rest/v1/blog_posts?select=slug,published_at,updated_at&is_published=eq.true&order=published_at.desc&limit=30`,
       {
         headers: {
           apikey: SUPABASE_PUBLISHABLE_KEY,
@@ -124,13 +124,13 @@ const main = async () => {
   const indexPath = join(outDir, 'sitemap.xml');
   writeFileSync(indexPath, sitemapIndexXml, 'utf-8');
 
-  const blogSitemapXml = await generateStaticBlogSitemapXml();
-  const blogSitemapPath = join(outDir, 'sitemap-blog.xml');
-  writeFileSync(blogSitemapPath, blogSitemapXml, 'utf-8');
-
-  console.log('\n✅ Sitemap index generated successfully!');
+  // NOTE: We intentionally do NOT write a static public/sitemap-blog.xml here.
+  // /sitemap-blog.xml is served live by the `blog-sitemap` Supabase edge function
+  // (see vercel.json rewrite). Writing a static file would override the rewrite
+  // and serve stale/unpruned data. Keep this generator focused on the URL index.
+  await generateStaticBlogSitemapXml(); // still hits Supabase to validate connectivity, output discarded
   console.log(`📍 Index: ${indexPath}`);
-  console.log(`📍 Blog sitemap: ${blogSitemapPath}`);
+  console.log(`📍 Blog sitemap: served live by Supabase edge function (blog-sitemap)`);
   console.log(`📁 Sitemaps: ${sitemapsDir}/`);
   console.log('\n📝 Next Steps:');
   console.log('   1. Publish your site');
