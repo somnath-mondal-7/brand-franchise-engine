@@ -1645,25 +1645,28 @@ export default async function handler(req, res) {
       pageData = brandPage(segments[1]);
     } else if (segments[0] === 'locations') {
       const [, country, state, city] = segments;
-      const CURATED_COUNTRIES = new Set(['usa', 'in', 'uk', 'ca', 'au', 'ae', 'kw']);
-      const CURATED_USA_STATES = new Set(['california','texas','new-york','florida','illinois','georgia']);
+      // Curated countries — must match src/utils/locationContent.ts hasCuratedInsight()
+      const CURATED_COUNTRIES = new Set(['usa', 'uk', 'ca']);
+      const CURATED_USA_STATES = new Set(['california','texas','new-york','florida','illinois','georgia','arizona','colorado','pennsylvania','ohio','michigan','north-carolina','new-jersey','virginia','washington','massachusetts','tennessee','maryland','minnesota','wisconsin','missouri','indiana','oregon','nevada','utah','connecticut','south-carolina','alabama','louisiana','kentucky','oklahoma','iowa','kansas','arkansas','mississippi','nebraska','new-mexico','idaho','hawaii','west-virginia','new-hampshire','maine','rhode-island','montana','delaware','south-dakota','north-dakota','alaska','vermont','wyoming']);
+      const CURATED_UK_REGIONS = new Set(['england','scotland','wales','northern-ireland']);
+      const CURATED_CA_PROVINCES = new Set(['ontario','british-columbia','quebec','alberta','manitoba','saskatchewan']);
       if (country && isValidLocation(country, state, city)) {
-        if (city) {
-          res.setHeader('Location', `${SITE}/locations/${country}/${state}`);
-          return res.status(301).end();
-        }
-        if (state && country === 'usa' && !CURATED_USA_STATES.has(state)) {
-          res.setHeader('Location', `${SITE}/locations/usa`);
-          return res.status(301).end();
-        }
-        if (state && country !== 'usa') {
-          res.setHeader('Location', `${SITE}/locations/${country}`);
-          return res.status(301).end();
-        }
+        // Non-curated countries → home
         if (!CURATED_COUNTRIES.has(country)) {
           res.setHeader('Location', `${SITE}/`);
           return res.status(301).end();
         }
+        // Non-curated state → country hub (only redirect when state is unknown)
+        if (state) {
+          const curatedStates = country === 'usa' ? CURATED_USA_STATES
+            : country === 'uk' ? CURATED_UK_REGIONS
+            : CURATED_CA_PROVINCES;
+          if (!curatedStates.has(state)) {
+            res.setHeader('Location', `${SITE}/locations/${country}`);
+            return res.status(301).end();
+          }
+        }
+        // Curated country / state / city all render directly (no city→state 301)
         pageData = locationPage(country, state, city);
       }
     } else if (segments[0] === 'services' && segments[1] && curatedKeywordSlugs.has(segments[1])) {
@@ -1691,13 +1694,19 @@ export default async function handler(req, res) {
         const country = segments[1];
         const state = segments[2];
         const city = segments[3];
-        const CURATED_USA_STATES = new Set(['california','texas','new-york','florida','illinois','georgia']);
-        if (city) {
-          res.setHeader('Location', `${SITE}/${service}/${country}/${state}`);
+        const CURATED_COUNTRIES = new Set(['usa', 'uk', 'ca']);
+        const CURATED_USA_STATES = new Set(['california','texas','new-york','florida','illinois','georgia','arizona','colorado','pennsylvania','ohio','michigan','north-carolina','new-jersey','virginia','washington','massachusetts','tennessee','maryland','minnesota','wisconsin','missouri','indiana','oregon','nevada','utah','connecticut','south-carolina','alabama','louisiana','kentucky','oklahoma','iowa','kansas','arkansas','mississippi','nebraska','new-mexico','idaho','hawaii','west-virginia','new-hampshire','maine','rhode-island','montana','delaware','south-dakota','north-dakota','alaska','vermont','wyoming']);
+        const CURATED_UK_REGIONS = new Set(['england','scotland','wales','northern-ireland']);
+        const CURATED_CA_PROVINCES = new Set(['ontario','british-columbia','quebec','alberta','manitoba','saskatchewan']);
+        if (!CURATED_COUNTRIES.has(country)) {
+          res.setHeader('Location', `${SITE}/`);
           return res.status(301).end();
         }
-        if (!(country === 'usa' && CURATED_USA_STATES.has(state))) {
-          res.setHeader('Location', `${SITE}/locations/${country === 'usa' ? 'usa' : country}`);
+        const curatedStates = country === 'usa' ? CURATED_USA_STATES
+          : country === 'uk' ? CURATED_UK_REGIONS
+          : CURATED_CA_PROVINCES;
+        if (!curatedStates.has(state)) {
+          res.setHeader('Location', `${SITE}/locations/${country}`);
           return res.status(301).end();
         }
         pageData = serviceLocationPage(service, country, state, city);
