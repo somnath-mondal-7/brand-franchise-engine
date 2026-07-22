@@ -59,7 +59,9 @@ import BestFranchiseLeadsAgency from "./pages/BestFranchiseLeadsAgency";
 import TopFranchiseLeadsAgencies from "./pages/TopFranchiseLeadsAgencies";
 import FranchiseLeadsAgencyNearMe from "./pages/FranchiseLeadsAgencyNearMe";
 import ServiceDetail from "./pages/ServiceDetail";
+import OAuthConsent from "./pages/OAuthConsent";
 import ScrollToTop from "./components/ScrollToTop";
+
 import ChatWidget from "./components/ChatWidget";
 import { useLocation } from "react-router-dom";
 
@@ -157,7 +159,9 @@ const App = () => (
             <Route path="/best-franchise-leads-agency" element={<BestFranchiseLeadsAgency />} />
             <Route path="/top-franchise-leads-agencies" element={<TopFranchiseLeadsAgencies />} />
             <Route path="/franchise-leads-agency-near-me" element={<FranchiseLeadsAgencyNearMe />} />
+            <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
             <Route path="*" element={<NotFound />} />
+
           </Routes>
           </div>
         </BrowserRouter>
