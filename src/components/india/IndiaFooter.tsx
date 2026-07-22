@@ -128,7 +128,7 @@ const IndiaFooter = () => {
             <ul className="space-y-2 text-sm text-primary-foreground/80">
               <li><Link to="/franchise-broker-leads-usa" className="hover:text-accent">USA (All Regions)</Link></li>
               <li><Link to="/franchise-broker-leads-northeast" className="hover:text-accent">Northeast</Link></li>
-              <lijk><Link to="/franchise-broker-leads-southeast" className="hover:text-accent">Southeast</Link></jk></li>
+              <li><Link to="/franchise-broker-leads-southeast" className="hover:text-accent">Southeast</Link></li>
               <li><Link to="/franchise-broker-leads-midwest" className="hover:text-accent">Midwest</Link></li>
               <li><Link to="/franchise-broker-leads-west" className="hover:text-accent">West</Link></li>
               <li><Link to="/franchise-lead-generation/usa/california" className="hover:text-accent">California</Link></li>
