@@ -3,14 +3,15 @@ import { Award, Target, ShieldCheck, Users, BarChart3, Sparkles } from "lucide-r
 
 const config: MoneyPageConfig = {
   canonical: "https://www.franchiseleadspro.com/best-franchise-leads-agency",
-  metaTitle: "Best Franchise Leads Agency | FranchiseLeads Pro",
-  metaDescription: "Looking for the best franchise leads agency? Exclusive, capital-qualified candidate-investors booked to your calendar. No shared portal leads, no fluff.",
-  ogTitle: "Best Franchise Leads Agency — FranchiseLeads Pro",
-  ogDescription: "The best franchise leads agency for franchisors and brokers who want exclusive, qualified pipeline.",
-  badge: "Best Franchise Leads Agency",
-  h1Line1: "The Best Franchise",
-  h1Line2: "Leads Agency",
-  heroSubtitle: "Franchisors and brokers don't need more shared portal leads. They need exclusive, capital-qualified candidate-investors booked straight to their calendar. That's what we build.",
+  metaTitle: "Best Franchise Leads Agency in the USA (2026) | FranchiseLeadsPro",
+  metaDescription: "Best franchise leads agency in the USA — exclusive, capital-qualified candidate-investors booked to your calendar. No shared portal leads. Franchisors, brokers, consultants.",
+  ogTitle: "Best Franchise Leads Agency in the USA",
+  ogDescription: "The best franchise leads agency for US franchisors and brokers who want exclusive, qualified pipeline.",
+  badge: "Best Franchise Leads Agency — USA",
+  h1Line1: "The Best Franchise Leads Agency",
+  h1Line2: "in the USA",
+  heroSubtitle: "Franchisors and brokers don't need more shared portal leads. They need exclusive, capital-qualified candidate-investors booked straight to their calendar — from an agency that only works in franchise. That's what we build.",
+
   problemHeading: "What actually separates the best franchise leads agency from the rest",
   problemParagraphs: [
     "Most franchise lead vendors fall into one of three buckets. Portal aggregators (Franchise Direct, BizBuySell, IFPG shared leads) sell the same candidate to 3-5 brokers simultaneously. General digital marketing agencies treat franchise like SaaS or e-commerce — they have no idea what an FDD is, what a registration state requires, or why capital qualification matters.",

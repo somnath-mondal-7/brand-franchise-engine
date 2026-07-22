@@ -3,14 +3,15 @@ import { MapPin, Clock, Globe2, Phone, Users, ShieldCheck } from "lucide-react";
 
 const config: MoneyPageConfig = {
   canonical: "https://www.franchiseleadspro.com/franchise-leads-agency-near-me",
-  metaTitle: "Franchise Leads Agency Near Me | US Nationwide Coverage",
-  metaDescription: "Looking for a franchise leads agency near you? We serve franchisors and brokers across every US state with time-zone-aware delivery and US-native strategists.",
-  ogTitle: "Franchise Leads Agency Near Me",
-  ogDescription: "A US-native franchise leads agency serving franchisors and brokers in every state.",
+  metaTitle: "Franchise Leads Agency Near Me — US Nationwide, US-Native Team",
+  metaDescription: "Franchise leads agency near me — US-native senior strategists serving franchisors and brokers in every state and metro. Time-zone-aware, registration-state compliant.",
+  ogTitle: "Franchise Leads Agency Near Me — Every US State",
+  ogDescription: "A US-native franchise leads agency serving franchisors and brokers in every state and major metro.",
   badge: "Franchise Leads Agency — Near You",
-  h1Line1: "Franchise Leads",
-  h1Line2: "Agency Near Me",
-  heroSubtitle: "You don't need an agency on your street — you need one that knows your market. We serve franchisors and brokers in every US state, with time-zone-aware delivery, registration-state compliance, and US-native senior strategists.",
+  h1Line1: "Franchise Leads Agency",
+  h1Line2: "Near Me — Every US State",
+  heroSubtitle: "You don't need an agency on your street — you need one that knows your market. We serve franchisors and brokers in every US state and major metro, with time-zone-aware delivery, registration-state compliance, and US-native senior strategists.",
+
   problemHeading: "Why 'near me' matters less than you think — and what actually does",
   problemParagraphs: [
     "Franchise development is a national game. The candidate considering your concept in Dallas, the franchisor headquartered in Atlanta, and the broker representing the deal in Phoenix rarely live in the same metro. Searching for a 'franchise leads agency near me' is really searching for an agency that <strong>works the way your market works</strong> — same time zones, same regulatory environment, same candidate culture.",

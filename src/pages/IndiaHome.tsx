@@ -6,6 +6,8 @@ import PressFeatures from "@/components/PressFeatures";
 import FinalCTASection from "@/components/FinalCTASection";
 import PhilosophyBlock from "@/components/PhilosophyBlock";
 import IndiaFooter from "@/components/india/IndiaFooter";
+import LocationHubLinks from "@/components/LocationHubLinks";
+import { localBusinessSchema, reviewsSchema } from "@/components/SEOSchemas";
 
 const IndiaHome = () => {
   return (
@@ -14,7 +16,7 @@ const IndiaHome = () => {
         <title>Franchise Lead Generation Agency USA | FranchiseLeadsPro</title>
         <meta
           name="description"
-          content="Franchise lead generation agency for US franchisors and consultants — qualified investor conversations via LinkedIn and high-converting sites."
+          content="Franchise lead generation agency for US franchisors and brokers — exclusive, capital-qualified investor conversations booked to your calendar."
         />
 
         <link rel="canonical" href="https://www.franchiseleadspro.com/" />
@@ -25,16 +27,8 @@ const IndiaHome = () => {
         />
         <meta property="og:url" content="https://www.franchiseleadspro.com/" />
         <meta property="og:type" content="website" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ProfessionalService",
-            "name": "FranchiseLeadsPro",
-            "areaServed": "US",
-            "url": "https://www.franchiseleadspro.com/",
-            "slogan": "Attention First. Growth Next.",
-          })}
-        </script>
+        <script type="application/ld+json">{JSON.stringify(localBusinessSchema())}</script>
+        <script type="application/ld+json">{JSON.stringify(reviewsSchema())}</script>
       </Helmet>
 
       <IndiaNav />
@@ -45,6 +39,7 @@ const IndiaHome = () => {
         <TestimonialsSection />
         <PressFeatures limit={2} showViewAll />
         <PhilosophyBlock />
+        <LocationHubLinks />
         <FinalCTASection />
       </main>
 
@@ -54,3 +49,4 @@ const IndiaHome = () => {
 };
 
 export default IndiaHome;
+

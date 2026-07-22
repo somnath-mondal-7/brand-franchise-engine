@@ -3,14 +3,15 @@ import { Target, Search, MessageSquare, Calendar, Users, ShieldCheck } from "luc
 
 const config: MoneyPageConfig = {
   canonical: "https://www.franchiseleadspro.com/franchise-broker-lead-generation-usa",
-  metaTitle: "Franchise Broker Lead Generation USA | Nationwide Exclusive Pipelines",
-  metaDescription: "Nationwide US franchise broker lead generation for independent brokers and consultants. Exclusive, capital-qualified candidates booked to your calendar — every state, every capital band.",
-  ogTitle: "Franchise Broker Lead Generation USA",
-  ogDescription: "Nationwide exclusive candidate-investor pipelines for US franchise brokers and consultants.",
-  badge: "US Broker Lead Generation — Nationwide",
-  h1Line1: "Franchise Broker Lead Generation",
-  h1Line2: "USA",
-  heroSubtitle: "Nationwide lead generation for US franchise brokers and consultants. We build exclusive candidate-investor pipelines across all 50 states — calibrated to the territories, industries, and capital bands you actually want.",
+  metaTitle: "Franchise Broker Leads USA — Exclusive Nationwide Pipeline",
+  metaDescription: "Franchise broker leads USA — nationwide, exclusive candidate-investor pipeline for US franchise brokers, consultants, FBA/IFPG/FranNet members. Booked to your calendar.",
+  ogTitle: "Franchise Broker Leads USA — Exclusive Pipeline",
+  ogDescription: "Nationwide exclusive candidate-investor leads for US franchise brokers and consultants — all 50 states.",
+  badge: "Franchise Broker Leads — USA Nationwide",
+  h1Line1: "Franchise Broker Leads",
+  h1Line2: "USA — Exclusive Pipeline",
+  heroSubtitle: "Exclusive franchise broker leads across all 50 US states. Capital-qualified candidate-investors booked to your calendar — calibrated to the territories, industries, and capital bands you actually award.",
+
   problemHeading: "The US franchise broker market is enormous — and most brokers cannot reach it",
   problemParagraphs: [
     "The United States hosts roughly 800,000+ operating franchised units across 26,000+ brand concepts, with approximately 350,000+ Americans researching franchise ownership annually. Independent franchise brokers and consultants represent a substantial slice of those awards through groups like FBA, IFPG, FranNet, and FranChoice.",

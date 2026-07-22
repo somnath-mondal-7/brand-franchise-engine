@@ -3,14 +3,15 @@ import { Target, ShieldCheck, Users, Calendar, Search, LineChart } from "lucide-
 
 const config: MoneyPageConfig = {
   canonical: "https://www.franchiseleadspro.com/franchise-leads-usa",
-  metaTitle: "Franchise Lead Generation USA | FranchiseLeadsPro",
-  metaDescription: "Qualified franchise buyer leads across all 50 US states — LinkedIn outreach, paid social, and targeted campaigns for American franchisors.",
-  ogTitle: "Franchise Lead Generation USA — FranchiseLeads Pro",
-  ogDescription: "Exclusive, capital-qualified franchise lead generation for the US market.",
-  badge: "Franchise Lead Generation — United States",
-  h1Line1: "Franchise Lead Generation",
-  h1Line2: "USA",
-  heroSubtitle: "Franchise lead generation built for the US market. Exclusive, capital-qualified candidate-investors booked to your calendar — across every state, every registration jurisdiction, and every capital band from $50k startup concepts to $5M multi-unit awards.",
+  metaTitle: "Franchise Leads USA — Exclusive, Capital-Qualified | FranchiseLeadsPro",
+  metaDescription: "Franchise leads USA — exclusive, capital-qualified franchise buyer leads across all 50 states. Discovery calls booked to your calendar. Not shared portal leads.",
+  ogTitle: "Franchise Leads USA — Exclusive & Capital-Qualified",
+  ogDescription: "Exclusive US franchise leads for franchisors, brokers, and consultants. All 50 states, all 13 registration jurisdictions.",
+  badge: "Franchise Leads — United States",
+  h1Line1: "Franchise Leads",
+  h1Line2: "USA — Exclusive & Qualified",
+  heroSubtitle: "Exclusive, capital-qualified franchise leads across all 50 US states. Discovery calls booked straight to your calendar — every state, every registration jurisdiction, every capital band from $50k entry concepts to $1.5M+ area-developer awards.",
+
   problemHeading: "Why most US franchise lead generation fails (and what fixes it)",
   problemParagraphs: [
     "US franchisors and brokers do not have a demand problem. The US franchise sector spans roughly 800,000+ operating units across 26,000+ brand concepts, and an estimated 350,000+ Americans research franchise ownership every year. The category produces around $898B in annual economic output. The candidates exist.",

@@ -3,14 +3,15 @@ import { Trophy, Filter, ClipboardCheck, Handshake, Building2, LineChart } from 
 
 const config: MoneyPageConfig = {
   canonical: "https://www.franchiseleadspro.com/top-franchise-leads-agencies",
-  metaTitle: "Top Franchise Leads Agencies | How to Choose the Right One",
-  metaDescription: "What to look for in top franchise leads agencies — exclusivity, capital qualification, registration-state compliance, and franchise-native strategists.",
-  ogTitle: "Top Franchise Leads Agencies",
-  ogDescription: "The buyer's guide to choosing a top franchise leads agency for franchisors and brokers.",
-  badge: "Top Franchise Leads Agencies",
-  h1Line1: "Top Franchise",
-  h1Line2: "Leads Agencies",
-  heroSubtitle: "A clear buyer's guide for franchisors and brokers comparing top franchise leads agencies — what to ask, what to avoid, and how to pick a partner that actually awards territories.",
+  metaTitle: "Top 10 Franchise Leads Agencies USA (2026) — Buyer's Guide",
+  metaDescription: "Top franchise leads agencies USA — buyer's guide. What separates the best from the rest: exclusivity, capital qualification, registration-state compliance, franchise-native strategists.",
+  ogTitle: "Top Franchise Leads Agencies USA — 2026 Buyer's Guide",
+  ogDescription: "The 2026 buyer's guide for shortlisting top franchise leads agencies in the USA.",
+  badge: "Top Franchise Leads Agencies — 2026",
+  h1Line1: "Top Franchise Leads",
+  h1Line2: "Agencies USA (2026)",
+  heroSubtitle: "A clear 2026 buyer's guide for franchisors and brokers comparing the top franchise leads agencies in the USA — what to ask, what to avoid, and how to pick a partner that actually awards territories.",
+
   problemHeading: "Why most shortlists of top franchise leads agencies are wrong",
   problemParagraphs: [
     "Search 'top franchise leads agencies' and you'll mostly find listicles written by SEO content farms — agencies ranked by ad spend, not by award outcomes. Franchisors and brokers end up calling generic digital marketing shops dressed up in franchise language, signing six-month contracts, and burning ad budget on unqualified portal traffic.",

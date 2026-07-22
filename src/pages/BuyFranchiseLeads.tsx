@@ -3,14 +3,15 @@ import { ShoppingCart, ShieldCheck, Users, Calendar, Target, LineChart } from "l
 
 const config: MoneyPageConfig = {
   canonical: "https://www.franchiseleadspro.com/buy-franchise-leads",
-  metaTitle: "Buy Franchise Leads | Pre-Qualified Franchise Buyer Leads for Sale",
-  metaDescription: "Buy pre-qualified franchise buyer leads from FranchiseLeadsPro. We deliver verified, intent-based leads of franchise investors actively looking to invest.",
-  ogTitle: "Buy Franchise Leads — Exclusive and Qualified",
+  metaTitle: "Buy Franchise Leads — Exclusive, Pre-Qualified (Not Shared)",
+  metaDescription: "Buy franchise leads that are exclusive to you, capital-qualified, and delivered as booked discovery calls — not shared portal records. USA nationwide.",
+  ogTitle: "Buy Franchise Leads — Exclusive & Pre-Qualified",
   ogDescription: "Buy franchise leads the right way — exclusive, capital-qualified, booked to your calendar.",
-  badge: "Buy Franchise Leads — The Right Way",
-  h1Line1: "Buy Franchise",
-  h1Line2: "Leads",
+  badge: "Buy Franchise Leads — Exclusive Only",
+  h1Line1: "Buy Franchise Leads",
+  h1Line2: "Exclusive & Pre-Qualified",
   heroSubtitle: "Most franchise leads sold online are shared 3–5 ways and barely qualified. Ours are exclusive to you, screened against your capital bands, and booked to your calendar as discovery calls — not raw contact records.",
+
   problemHeading: "What people actually mean when they search 'buy franchise leads'",
   problemParagraphs: [
     "When franchisors and brokers search 'buy franchise leads,' they usually find two things — shared portal aggregators (Franchise Direct, BizBuySell, IFPG, Franchise Gator) selling the same candidate to multiple buyers, or pay-per-lead vendors selling raw contact records with no qualification beyond a form fill.",
