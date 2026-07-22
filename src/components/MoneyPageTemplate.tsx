@@ -265,9 +265,12 @@ const MoneyPageTemplate = ({ config }: { config: MoneyPageConfig }) => {
         </div>
       </section>
 
+      <LocationHubLinks />
+
       <Footer />
     </>
   );
 };
 
 export default MoneyPageTemplate;
+
