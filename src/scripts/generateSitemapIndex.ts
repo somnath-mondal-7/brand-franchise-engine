@@ -124,11 +124,11 @@ const main = async () => {
   const indexPath = join(outDir, 'sitemap.xml');
   writeFileSync(indexPath, sitemapIndexXml, 'utf-8');
 
-  const blogSitemapXml = await generateStaticBlogSitemapXml();
-  const blogSitemapPath = join(outDir, 'sitemap-blog.xml');
-  writeFileSync(blogSitemapPath, blogSitemapXml, 'utf-8');
-
-  console.log('\n✅ Sitemap index generated successfully!');
+  // NOTE: We intentionally do NOT write a static public/sitemap-blog.xml here.
+  // /sitemap-blog.xml is served live by the `blog-sitemap` Supabase edge function
+  // (see vercel.json rewrite). Writing a static file would override the rewrite
+  // and serve stale/unpruned data. Keep this generator focused on the URL index.
+  await generateStaticBlogSitemapXml(); // still hits Supabase to validate connectivity, output discarded
   console.log(`📍 Index: ${indexPath}`);
   console.log(`📍 Blog sitemap: ${blogSitemapPath}`);
   console.log(`📁 Sitemaps: ${sitemapsDir}/`);
