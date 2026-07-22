@@ -59,13 +59,24 @@ const MoneyPageTemplate = ({ config }: { config: MoneyPageConfig }) => {
     serviceType: config.serviceSchemaType,
     provider: {
       "@type": "Organization",
-      name: "FranchiseLeads Pro",
+      name: "FranchiseLeadsPro",
       url: "https://www.franchiseleadspro.com",
       telephone: "+1-424-445-5334",
     },
-    areaServed: ["United States", "Canada", "United Kingdom", "Australia", "UAE", "India"],
+    areaServed: ["United States", "Canada", "United Kingdom"],
     description: config.serviceSchemaDescription,
+    offers: {
+      "@type": "Offer",
+      url: config.canonical,
+      availability: "https://schema.org/InStock",
+      priceCurrency: "USD",
+    },
   };
+
+  const crumbs = breadcrumbSchema([
+    { name: "Home", url: "https://www.franchiseleadspro.com/" },
+    { name: config.serviceSchemaName, url: config.canonical },
+  ]);
 
   return (
     <>
@@ -79,9 +90,13 @@ const MoneyPageTemplate = ({ config }: { config: MoneyPageConfig }) => {
         <meta property="og:url" content={config.canonical} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
+        <script type="application/ld+json">{JSON.stringify(localBusinessSchema())}</script>
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(reviewsSchema())}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(crumbs)}</script>
       </Helmet>
+
 
       <Navigation />
 
