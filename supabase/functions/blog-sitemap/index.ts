@@ -9,11 +9,15 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
+    // Authority concentration: only expose the 30 most recent quality posts
+    // in the sitemap. Older posts are still crawlable via /blog listing and
+    // internal links, but we don't ask Google to spend crawl budget on them.
     const { data: posts, error } = await supabase
       .from('blog_posts')
       .select('slug, published_at, updated_at')
       .eq('is_published', true)
-      .order('published_at', { ascending: false });
+      .order('published_at', { ascending: false })
+      .limit(30);
 
     if (error) {
       console.error('Error fetching posts:', error);
