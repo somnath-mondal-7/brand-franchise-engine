@@ -57,86 +57,84 @@ export const generateBrandUrls = (): SitemapUrl[] => {
 };
 
 
-// Curated sitemap policy: only emit URLs backed by unique regional content.
-// This keeps Google away from retired or templated permutations that were
-// creating repeated 404/410 and crawl-budget waste in Search Console.
+// PRUNED SITEMAP (July 2026): Concentrating authority on ~50 highest-intent URLs.
+// Previously emitted 900+ programmatic pages that Google flagged as "Crawled — not
+// indexed" or "Discovered — not indexed". Cutting the surface area forces crawl
+// budget onto pages that can actually rank and generate inbound leads.
 
-// Generate location pages: country + curated state + city pages under curated states.
+// Top 10 US states by franchise market size + broker demand.
+const TOP_STATES: string[] = [
+  'california', 'texas', 'florida', 'new-york', 'illinois',
+  'georgia', 'north-carolina', 'pennsylvania', 'ohio', 'arizona',
+];
+
+// Top 10 US metros where broker + franchisor decision-makers concentrate.
+const TOP_CITIES: Array<{ state: string; city: string }> = [
+  { state: 'california', city: 'los-angeles' },
+  { state: 'california', city: 'san-diego' },
+  { state: 'texas', city: 'houston' },
+  { state: 'texas', city: 'dallas' },
+  { state: 'texas', city: 'austin' },
+  { state: 'florida', city: 'miami' },
+  { state: 'florida', city: 'orlando' },
+  { state: 'new-york', city: 'new-york-city' },
+  { state: 'illinois', city: 'chicago' },
+  { state: 'georgia', city: 'atlanta' },
+];
+
+// Highest-intent keyword/service pages we actually want ranked.
+const TOP_KEYWORDS: string[] = [
+  'franchise-lead-generation',
+  'franchise-marketing-agency',
+  'franchise-development',
+  'franchise-consulting',
+  'best-franchise-lead-generation-agency',
+];
+
 export const generateLocationUrls = (): SitemapUrl[] => {
   const urls: SitemapUrl[] = [];
   const currentDate = getTodayDate();
 
-  locationData.forEach(country => {
-    const cc = country.countryCode.toLowerCase();
-    if (!hasCuratedInsight(country.countryCode)) return;
+  urls.push({ loc: `${DOMAIN}/locations/usa`, lastmod: currentDate, changefreq: 'weekly', priority: '0.8' });
 
-    urls.push({ loc: `${DOMAIN}/locations/${cc}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.8' });
+  TOP_STATES.forEach(state => {
+    if (!hasCuratedInsight('USA', state)) return;
+    urls.push({ loc: `${DOMAIN}/locations/usa/${state}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
+  });
 
-    country.states.forEach(state => {
-      if (!hasCuratedInsight(country.countryCode, state.slug)) return;
-      urls.push({ loc: `${DOMAIN}/locations/${cc}/${state.slug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.75' });
-
-      // City-level pages — backed by parent state's curated insight.
-      state.cities.forEach(city => {
-        urls.push({
-          loc: `${DOMAIN}/locations/${cc}/${state.slug}/${city.slug}`,
-          lastmod: currentDate,
-          changefreq: 'monthly',
-          priority: '0.65',
-        });
-      });
+  TOP_CITIES.forEach(({ state, city }) => {
+    urls.push({
+      loc: `${DOMAIN}/locations/usa/${state}/${city}`,
+      lastmod: currentDate,
+      changefreq: 'monthly',
+      priority: '0.7',
     });
   });
 
   return urls;
 };
 
-// Generate keyword/service pages
 export const generateKeywordUrls = (): SitemapUrl[] => {
-  const urls: SitemapUrl[] = [];
   const currentDate = getTodayDate();
-
-  highValueKeywordPages.forEach(keyword => {
-    const keywordSlug = keyword.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    urls.push({ loc: `${DOMAIN}/services/${keywordSlug}`, lastmod: currentDate, changefreq: 'weekly', priority: '0.7' });
-  });
-
-  return urls;
+  return TOP_KEYWORDS.map(slug => ({
+    loc: `${DOMAIN}/services/${slug}`,
+    lastmod: currentDate,
+    changefreq: 'weekly',
+    priority: '0.75',
+  }));
 };
 
-// Service + location pages: emit only the primary money keyword
-// ("franchise lead generation") for each curated state and city across USA/UK/CA.
-// This is the high-intent surface area we want Google to discover.
 export const generateServiceLocationUrls = (): SitemapUrl[] => {
-  const urls: SitemapUrl[] = [];
   const currentDate = getTodayDate();
-  const primaryServiceSlug = 'franchise-lead-generation';
-
-  locationData.forEach(country => {
-    const cc = country.countryCode.toLowerCase();
-    country.states.forEach(state => {
-      if (!hasCuratedInsight(country.countryCode, state.slug)) return;
-      urls.push({
-        loc: `${DOMAIN}/${primaryServiceSlug}/${cc}/${state.slug}`,
-        lastmod: currentDate,
-        changefreq: 'weekly',
-        priority: '0.7',
-      });
-      state.cities.forEach(city => {
-        urls.push({
-          loc: `${DOMAIN}/${primaryServiceSlug}/${cc}/${state.slug}/${city.slug}`,
-          lastmod: currentDate,
-          changefreq: 'monthly',
-          priority: '0.6',
-        });
-      });
-    });
-  });
-
-  return urls;
+  const primary = 'franchise-lead-generation';
+  return TOP_STATES.filter(s => hasCuratedInsight('USA', s)).map(state => ({
+    loc: `${DOMAIN}/${primary}/usa/${state}`,
+    lastmod: currentDate,
+    changefreq: 'weekly',
+    priority: '0.7',
+  }));
 };
 
-// Get all URLs combined
 export const getAllUrls = (): SitemapUrl[] => {
   return [
     ...generateCorePages(),
