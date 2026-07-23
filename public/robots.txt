@@ -5,11 +5,11 @@ Allow: /
 Allow: /llms.txt
 Allow: /llms-full.txt
 
-# Sitemaps — primary index + children + blog
+# Sitemaps — primary index + blog
 Sitemap: https://www.franchiseleadspro.com/sitemap.xml
 Sitemap: https://www.franchiseleadspro.com/sitemap-blog.xml
 
-# Disallow admin/private/utility paths only
+# Admin/private/utility paths
 Disallow: /admin/
 Disallow: /private/
 Disallow: /*?*utm_
@@ -18,23 +18,41 @@ Disallow: /*?*filter=
 Disallow: /session-demo
 Disallow: /search
 Disallow: /home-original
+Disallow: /oauth/
+Disallow: /.lovable/
 
 # ─────────────────────────────────────────────────────────────
-# Programmatic SEO pages (services × country × state × city)
-# are now ENRICHED with unique market analysis and FAQs.
-# They are explicitly ALLOWED so Google can crawl and rank them.
+# DEPRECATED programmatic paths — these return 410 Gone via vercel.json.
+# Explicitly disallow so Google stops wasting crawl budget on them.
 # ─────────────────────────────────────────────────────────────
-Allow: /franchise-marketing/
-Allow: /franchise-lead-generation/
-Allow: /franchise-consulting/
-Allow: /franchise-development/
-Allow: /franchise-advertising/
-Allow: /franchise-branding/
-Allow: /franchise-digital-marketing/
-Allow: /franchise-seo/
-Allow: /franchise-social-media-marketing/
-Allow: /franchise-content-marketing/
-Allow: /locations/
+Disallow: /franchise-marketing/
+
+Disallow: /franchise-consulting/
+Disallow: /franchise-development/
+Disallow: /franchise-advertising/
+Disallow: /franchise-branding/
+Disallow: /franchise-digital-marketing/
+Disallow: /franchise-seo/
+Disallow: /franchise-social-media-marketing/
+Disallow: /franchise-content-marketing/
+Disallow: /franchise-lead-buying/
+Disallow: /franchise-expansion/
+Disallow: /franchise-digital-marketing-agency/
+Disallow: /franchise-marketing-agency/in/
+Disallow: /franchise-marketing-agency/au/
+Disallow: /franchise-marketing-agency/uk/
+Disallow: /franchise-marketing-agency/ca/
+Disallow: /franchise-marketing-agency/usa/
+Disallow: /franchise-advertising-agency/
+Disallow: /linkedin-lead-generation-for-franchises/
+Disallow: /locations/in/
+Disallow: /locations/au/
+Disallow: /locations/ae/
+Disallow: /locations/kw/
+Disallow: /brands/
+Disallow: /franchise-leads-india
+Disallow: /franchise-leads-australia
+Disallow: /franchise-leads-dubai
 
 # Allow important bot access
 User-agent: Googlebot
