@@ -26,7 +26,7 @@ Disallow: /.lovable/
 # Explicitly disallow so Google stops wasting crawl budget on them.
 # ─────────────────────────────────────────────────────────────
 Disallow: /franchise-marketing/
-Disallow: /franchise-lead-generation/
+
 Disallow: /franchise-consulting/
 Disallow: /franchise-development/
 Disallow: /franchise-advertising/
